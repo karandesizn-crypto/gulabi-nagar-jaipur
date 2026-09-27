@@ -8,6 +8,7 @@ import { Player } from './core/player.js';
 import { batchStatic } from './core/batch.js';
 import { batchStatic as batchStatic2 } from './core/batch2.js';
 import { createAudio } from './core/audio.js';
+import { createSoundscape } from './core/soundscape.js';
 
 export const MODULES = [
   'environment', 'street', 'poles', 'railway', 'station', 'plaza', 'shopsA', 'shopsB', 'houses',
@@ -45,9 +46,11 @@ const camera = new THREE.PerspectiveCamera(58, innerWidth / innerHeight, 0.1, 25
 const sunDir = new THREE.Vector3(...L.SUN_DIR).normalize();
 const sky = createSky(scene, sunDir, quality);
 const pipeline = createRenderPipeline(renderer, quality);
-const audio = createAudio();
+const audio = createAudio({ ambience: false });
+const soundscape = createSoundscape(audio);
 const ctx = createContext({ scene, camera, renderer, audio, quality, sunDir });
 ctx.sky = sky;
+ctx.soundscape = soundscape;
 window.__ctx = ctx; window.THREE = THREE;
 
 function resize() {
@@ -194,6 +197,7 @@ function frame(now) {
   if (!SHOT) player.update(dt);
   ctx.physics.refreshDynamic();
   stepUpdates(dt, simT);
+  soundscape.update(player.pos, dt);
   try { audio.update(camera, dt); } catch (e) { if (!audio.__err) { audio.__err = 1; console.error('audio', e); } }
   sky.update(simT, camera);
   renderer.info.reset();

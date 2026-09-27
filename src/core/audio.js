@@ -12,7 +12,8 @@
 //   None of these ever throw; unknown names are ignored (one console warning).
 //
 // Sound names
-//   loops:     'wind', 'birds', 'town' (ambient; auto-started by start()),
+//   loops:     'wind', 'birds', 'town' (ambient; auto-started unless ambience: false),
+//              'bazaarBed', 'chowkBed', 'stationBed', 'crossingBed', 'promenadeBed',
 //              'crossingBell' (カンカン alternating bell), 'trainRun' (params: speed m/s, 0..25),
 //              'cafeMusic' (soft music box near the café)
 //   one-shots: 'trainBrake', 'doorChime', 'doorOpen', 'doorClose', 'departMelody', 'announce' (text),
@@ -536,12 +537,12 @@ export function createAudio(options = {}) {
   // ------------------------------------------------------------ one-shot definitions
   // gain: level at refDistance (inverse distance model beyond it); range: not started beyond this distance
   const SFX = {
-    trainBrake: { ref: 12, range: 400, gain: 0.55, run: brakeVoice },
+    trainBrake: { ref: 12, range: 120, gain: 0.55, run: brakeVoice },
     doorChime: { ref: 4, range: 80, gain: 0.25, wet: 'lo', notes: () => DOOR_NOTES },
     doorOpen: { ref: 4, range: 90, gain: 0.55, wet: 'lo', buf: ['doorOpen'], jitter: 0.02 },
     doorClose: { ref: 4, range: 90, gain: 0.6, wet: 'lo', buf: ['doorClose'], jitter: 0.02 },
-    departMelody: { ref: 8, range: 220, gain: 0.14, wet: 'hi', pa: true, notes: () => DEPART },
-    announce: { ref: 8, range: 220, gain: 0.19, wet: 'hi', pa: true, notes: () => CHIME_NOTES, speech: 1.75 },
+    departMelody: { ref: 8, range: 45, gain: 0.14, wet: 'hi', pa: true, notes: () => DEPART },
+    announce: { ref: 8, range: 38, gain: 0.19, wet: 'hi', pa: true, notes: () => CHIME_NOTES, speech: 1.75 },
     bicycleBell: { ref: 3, range: 80, gain: 0.5, wet: 'lo', buf: ['bike'], jitter: 0.03 },
     catMeow: { ref: 2, range: 45, gain: 0.25, wet: 'lo', buf: ['meow0', 'meow1', 'meow2'], jitter: 0.06 },
     sparrow: { ref: 3, range: 60, gain: 0.45, wet: 'lo', buf: ['sp0', 'sp1', 'sp2', 'sp3', 'sp4', 'sp5'], jitter: 0.05 },
@@ -642,8 +643,8 @@ export function createAudio(options = {}) {
         const ss = globalThis.speechSynthesis, U = globalThis.SpeechSynthesisUtterance;
         if (!ss || !U || muted || hidden() || !ac || ac.state !== 'running') return;
         const v = jaVoice || (jaVoice = pickVoice()); if (!v) return;       // no Japanese voice -> silent
-        const d = p ? distTo(p) : 0, att = p ? 10 / (10 + Math.max(0, d - 10)) : 1;
-        const g = clamp(vol * masterVol * att * 0.7, 0, 0.55); if (g < 0.04) return;
+        const d = p ? distTo(p) : 0, att = p ? 10 / (10 + Math.max(0, d - 10)) * farFade(d, SFX.announce.range) : 1;
+        const g = clamp(vol * masterVol * att * 0.35, 0, 0.35); if (g < 0.04) return;
         const u = new U(text); u.voice = v; u.lang = v.lang || 'hi-IN'; u.rate = 0.96; u.pitch = 1.08; u.volume = g;
         if (ss.speaking || ss.pending) ss.cancel();
         ss.speak(u);
@@ -657,8 +658,13 @@ export function createAudio(options = {}) {
     wind: { amb: true, build: buildWind },
     birds: { amb: true, build: buildBirds },
     town: { amb: true, build: buildTown },
-    crossingBell: { ref: 6, roll: 1, range: 300, wet: 'hi', build: buildBell },
-    trainRun: { ref: 10, roll: 1, range: 600, wet: 'lo', build: buildTrain },
+    bazaarBed: { amb: true, build: (I, now) => buildPlaceBed(I, now, 'bazaar') },
+    chowkBed: { amb: true, build: (I, now) => buildPlaceBed(I, now, 'chowk') },
+    stationBed: { amb: true, build: (I, now) => buildPlaceBed(I, now, 'station') },
+    crossingBed: { amb: true, build: (I, now) => buildPlaceBed(I, now, 'crossing') },
+    promenadeBed: { amb: true, build: (I, now) => buildPlaceBed(I, now, 'promenade') },
+    crossingBell: { ref: 6, roll: 1, range: 85, wet: 'hi', build: buildBell },
+    trainRun: { ref: 10, roll: 1, range: 120, wet: 'lo', build: buildTrain },
     cafeMusic: { ref: 3, roll: 1.1, range: 45, wet: 'hi', build: buildCafe },
   };
   function bind(h) {
@@ -854,6 +860,44 @@ export function createAudio(options = {}) {
     }
     for (const s of v.srcs) s.stop(t + dur + 0.1);
     v.end = t + dur + 0.3;
+  }
+
+  // ---- neighbourhood beds: small, deliberately different acoustic signatures for each place
+  function buildPlaceBed(I, now, kind) {
+    I.in.gain.value = { bazaar: 2.2, chowk: 2.4, station: 0.45, crossing: 0.5, promenade: 2.25 }[kind];
+    const specs = {
+      bazaar: [ ['pink', 'bandpass', 430, 0.55, 0.032], ['pink', 'bandpass', 1150, 0.42, 0.013] ],
+      chowk: [ ['pink', 'highpass', 1100, 0.5, 0.008], ['brown', 'lowpass', 220, 0.5, 0.009] ],
+      station: [ ['brown', 'lowpass', 160, 0.6, 0.042], ['pink', 'bandpass', 1800, 0.65, 0.013] ],
+      crossing: [ ['brown', 'lowpass', 450, 0.6, 0.047], ['pink', 'bandpass', 900, 0.5, 0.022] ],
+      promenade: [ ['white', 'bandpass', 3700, 0.45, 0.012], ['pink', 'lowpass', 550, 0.5, 0.011] ],
+    };
+    const layers = specs[kind].map(([source, type, freq, q, level], index) => {
+      const s = NOISE(source, now), f = BQ(type, freq, q), g = G(0);
+      s.connect(f); f.connect(g); g.connect(I.in);
+      I.srcs.push(s); I.nodes.push(f, g);
+      return { g, level, index };
+    });
+    if (kind === 'station') {
+      const hum = OSC('sine', 84), overtone = OSC('sine', 168), hg = G(0.012), og = G(0.004);
+      hum.connect(hg); overtone.connect(og); hg.connect(I.in); og.connect(I.in);
+      hum.start(now); overtone.start(now);
+      I.srcs.push(hum, overtone); I.nodes.push(hg, og);
+    }
+    const st = { next: now + R.range(4, 9) };
+    I.tick = (t, _dt, _d, aud) => {
+      const pulse = kind === 'crossing' ? 0.45 + 0.55 * Math.pow(0.5 + 0.5 * Math.sin(t * 0.44), 2)
+        : kind === 'bazaar' ? 0.52 + 0.22 * Math.sin(t * 1.7) + 0.17 * Math.sin(t * 3.3 + 1.2)
+        : kind === 'promenade' ? 0.45 + 0.4 * Math.pow(0.5 + 0.5 * Math.sin(t * 0.83 + 1), 2)
+        : 0.72 + 0.17 * Math.sin(t * 0.38);
+      for (const layer of layers) set(layer.g.gain, layer.level * (layer.index ? 1.15 - pulse * 0.25 : pulse), 0.16, t);
+      if (st.next < t - 1) st.next = t + 1;
+      if (!aud || st.next > t + LA) return;
+      if (kind === 'bazaar') playSrc('bike', I.in, st.next, 0.036, R.range(0.94, 1.07));
+      else if (kind === 'chowk') playSrc('n:box:79', I.in, st.next, 0.013, 1);
+      else if (kind === 'promenade') playSrc('sp' + Math.floor(R() * 6), I.in, st.next, 0.055, R.range(0.94, 1.06));
+      st.next += kind === 'promenade' ? R.range(5, 11) : R.range(13, 25);
+    };
   }
 
   // ---- crossing bell: カン・カン, ~2 strikes/s alternating two pitches
