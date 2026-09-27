@@ -228,7 +228,7 @@ async function main() {
     return;
   }
   document.body.classList.add('loaded');
-  $('loadlabel').textContent = errors.length ? 'Some scenery could not load. Reload to retry.' : 'Your afternoon in the Pink City awaits.';
+  $('loadlabel').textContent = errors.length ? 'Some scenery could not load. Reload to retry.' : 'The street is ready.';
   const go = $('go'); if (go) { go.disabled = false; go.focus(); go.addEventListener('click', start); }
   canvas.addEventListener('click', () => { if (started) player.requestLock(); });
   document.addEventListener('pointerlockchange', () => { document.body.classList.toggle('locked', document.pointerLockElement === canvas); });

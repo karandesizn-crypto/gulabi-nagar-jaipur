@@ -8,6 +8,7 @@ try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('Failed to load resource'))errors.push(m.text())});
  await page.goto(process.env.PLAYTEST_URL || 'http://127.0.0.1:5180/?q=medium',{waitUntil:'load',timeout:120000});
  await page.waitForFunction('window.__ready === true',{timeout:240000});
+ await new Promise(r=>setTimeout(r,900));
  await page.screenshot({path:'art/verification/welcome.png'});
  report.build=await page.evaluate(()=>({errors:__errors,modules:Object.keys(__stats.modules),jaipur:__ctx.services.jaipur}));
  assert.deepEqual(report.build.errors,[]);assert.equal(report.build.jaipur.rickshaws,3);
@@ -27,7 +28,7 @@ try{
  await page.evaluate(()=>__setCam(2,2.2,-6,4,0));await new Promise(r=>setTimeout(r,300));await page.screenshot({path:'art/verification/station.png'});
  report.stats=await page.evaluate(()=>({fps:__stats.fps,calls:__stats.calls,triangles:__stats.triangles}));
  await page.setViewport({width:390,height:844,isMobile:true,hasTouch:true});await page.reload({waitUntil:'load'});await page.waitForFunction('window.__ready===true',{timeout:240000});
- await page.screenshot({path:'art/verification/mobile-welcome.png'});await page.click('#go');await new Promise(r=>setTimeout(r,500));await page.screenshot({path:'art/verification/mobile-playing.png'});
+ await new Promise(r=>setTimeout(r,900));await page.screenshot({path:'art/verification/mobile-welcome.png'});await page.click('#go');await new Promise(r=>setTimeout(r,500));await page.screenshot({path:'art/verification/mobile-playing.png'});
  report.mobile=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,playing:document.body.classList.contains('playing')}));assert.equal(report.mobile.overflow,false);
  report.errors=errors;fs.writeFileSync('art/verification/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
  assert.deepEqual(errors,[]);
