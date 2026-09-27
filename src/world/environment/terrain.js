@@ -52,7 +52,7 @@ export function buildTerrain(ctx, tx, distantMat) {
     // worn verge next to roads (feet / bikes)
     const rd = roadDist(x, z);
     if (rd > -0.1 && rd < 1.4) c = mix3(c, mix3(P.dirt, P.gravel, n3), (1 - smoothstep(0.1, 1.4, rd)) * (0.55 + 0.3 * n1));
-    // vacant lot W: gravel yard (月極駐車場 style)
+    // vacant lot W: gravel yard (月極PARKING style)
     if (x > VACANT_W.x0 && x < VACANT_W.x1 && z > VACANT_W.z0 && z < VACANT_W.z1) {
       if (x < -76 && z > -13.5) c = mix3(c, mix3(P.gravel, P.gravelD, n3 * 0.6), smoothstep(-76, -77.5, x) * smoothstep(-13.5, -12, z) * 0.95);
     }

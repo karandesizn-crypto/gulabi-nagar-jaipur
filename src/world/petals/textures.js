@@ -86,7 +86,7 @@ export function createPetalTextures(rng) {
   const color = new Uint8Array(N * N * 4);
   const aa = 1.3 / N;
   // painted colours (sRGB 0..1): claw (base) a deeper pink, body pale, tip lightest
-  const cBase = [0.93, 0.66, 0.76], cBody = [0.975, 0.925, 0.945], cTip = [0.985, 0.95, 0.96];
+  const cBase = [0.78, 0.29, 0.17], cBody = [0.96, 0.60, 0.29], cTip = [0.99, 0.78, 0.42];
   for (let j = 0; j < N; j++) {
     const v = (j + 0.5) / N;
     for (let i = 0; i < N; i++) {

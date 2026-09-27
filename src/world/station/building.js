@@ -155,81 +155,10 @@ export function buildBuilding(A) {
   }
 
   // ------------------------------------------------------------------ main roof
-  const { RIDGE_Z, PITCH, ROOF_T, ROOF_BASE } = B;
-  const th = Math.atan(PITCH), cth = Math.cos(th);
-  const roofX0 = X0 - 0.45, roofX1 = X1 + 0.45, zS = Z1 + 0.7, zN = Z0 - 1.1;
-  function roofSlab(xa, xb, za, zb) { // za = ridge side z, zb = eave side z
-    const south = zb > za;
-    const zm = (za + zb) / 2, ytop = roofTop(zm), len = Math.abs(zb - za) / cth;
-    const g = new THREE.Group(); g.position.set((xa + xb) / 2, ytop, zm); g.rotation.x = south ? th : -th; root.add(g);
-    const kk = ctx.kit(g);
-    kk.box(xb - xa, ROOF_T, len, M.roof, [0, -ROOF_T / 2, 0]);
-    // standing seams
-    const n = Math.floor((xb - xa) / 0.46);
-    for (let i = 1; i < n; i++) kk.box(0.035, 0.045, len - 0.04, M.roofSeam, [-(xb - xa) / 2 + i * (xb - xa) / n, 0.02, 0]);
-    return g;
-  }
-  roofSlab(roofX0, B.GX0, RIDGE_Z, zS);
-  roofSlab(B.GX0, B.GX1, RIDGE_Z, Z1 - 0.12);
-  roofSlab(B.GX1, roofX1, RIDGE_Z, zS);
-  roofSlab(roofX0, roofX1, RIDGE_Z, zN);
-  // ridge cap
-  k.box(roofX1 - roofX0 + 0.04, 0.12, 0.34, M.fascia, [(roofX0 + roofX1) / 2, roofTop(RIDGE_Z) + 0.02, RIDGE_Z]);
-  // soffits (flat boards under the eaves, from wall to fascia)
-  const soff = (xa, xb, za, zb) => k.box(xb - xa, 0.03, Math.abs(zb - za), M.soffit, [(xa + xb) / 2, Math.min(roofTop(za), roofTop(zb)) - ROOF_T - 0.03, (za + zb) / 2]);
-  soff(roofX0, B.GX0 - 0.3, Z1, zS - 0.05); soff(B.GX1 + 0.3, roofX1, Z1, zS - 0.05); soff(roofX0, roofX1, zN + 0.05, Z0);
-  // fascia boards + gutters along the eaves
-  const eave = (xa, xb, z, dir) => {
-    const yt = roofTop(z);
-    k.box(xb - xa, 0.26, 0.05, M.fascia, [(xa + xb) / 2, yt - 0.1, z + dir * 0.025]);
-    k.box(xb - xa, 0.1, 0.13, M.gutter, [(xa + xb) / 2, yt - 0.2, z + dir * 0.11]);
-    k.box(xb - xa, 0.02, 0.15, M.gutter, [(xa + xb) / 2, yt - 0.14, z + dir * 0.11]);
-  };
-  eave(roofX0, B.GX0 - 0.3, zS, 1); eave(B.GX1 + 0.3, roofX1, zS, 1); eave(roofX0, roofX1, zN, -1);
-  // barge boards on the E/W gables
-  for (const x of [roofX0 - 0.02, roofX1 + 0.02]) for (const [za, zb] of [[RIDGE_Z, zS], [RIDGE_Z, zN]]) {
-    const south = zb > za, zm = (za + zb) / 2, len = Math.abs(zb - za) / cth;
-    const g = new THREE.Group(); g.position.set(x, roofTop(zm), zm); g.rotation.x = south ? th : -th; root.add(g);
-    ctx.kit(g).box(0.06, 0.3, len + 0.05, M.fascia, [0, -0.1, 0]);
-  }
-  // E/W gable triangles (plaster) + louvre vents
-  const triH = roofTop(RIDGE_Z) - ROOF_T - WT;
-  for (const [x, rot] of [[X1 - 0.06, -Math.PI / 2], [X0 + 0.06, -Math.PI / 2]]) {
-    const pts = [[Z0 + 0.02, 0], [Z1 - 0.02, 0], [RIDGE_Z, triH + 0.02]];
-    const m = k.mesh(ctx.geo.extrude(pts, 0.12), M.plasterExt, [x, WT, 0], [0, rot, 0]);
-    U.worldUV(m, pt);
-    const vx = x + (x > 4 ? 0.07 : -0.07);
-    k.box(0.04, 0.5, 0.7, M.trim, [vx, WT + 0.75, RIDGE_Z]);
-    for (let i = 0; i < 5; i++) k.box(0.05, 0.03, 0.62, M.sill, [vx + (x > 4 ? 0.01 : -0.01), WT + 0.56 + i * 0.09, RIDGE_Z]);
-  }
-
-  // ------------------------------------------------------------------ entrance cross gable + clock
-  const { GX0, GX1, GPITCH } = B;
-  const gph = Math.atan(GPITCH), cgp = Math.cos(gph);
-  const gHalf = (GX1 - GX0) / 2 + 0.3, gRidgeY = ROOF_BASE + (GX1 - GX0) / 2 * GPITCH;
-  const gz0 = Z1 + 0.55, gz1 = -29.9; // front overhang .. dies into the main roof
-  for (const side of [-1, 1]) {
-    const xm = 4.0 + side * gHalf / 2, ym = gRidgeY - gHalf / 2 * GPITCH;
-    const g = new THREE.Group(); g.position.set(xm, ym, (gz0 + gz1) / 2); g.rotation.z = side < 0 ? gph : -gph; root.add(g);
-    const kk = ctx.kit(g), len = gHalf / cgp;
-    kk.box(len, ROOF_T, gz0 - gz1, M.roof, [0, -ROOF_T / 2, 0]);
-    const n = Math.floor((gz0 - gz1) / 0.46);
-    for (let i = 1; i < n; i++) kk.box(len - 0.04, 0.045, 0.035, M.roofSeam, [0, 0.02, -(gz0 - gz1) / 2 + i * (gz0 - gz1) / n]);
-    kk.box(len + 0.04, 0.3, 0.06, M.fascia, [0, -0.1, (gz0 - gz1) / 2 + 0.02]); // barge board
-  }
-  k.box(0.3, 0.12, gz0 - gz1, M.fascia, [4.0, gRidgeY + 0.02, (gz0 + gz1) / 2]);
-  {
-    const pts = [[GX0 + 0.02, 0], [GX1 - 0.02, 0], [4.0, gRidgeY - ROOF_T - 0.04 - WT]];
-    const m = k.mesh(ctx.geo.extrude(pts, 0.14), M.plasterExt, [0, WT, Z1 - 0.07], [0, 0, 0]);
-    U.worldUV(m, pt);
-    // decorative gable board (懸魚-like) + round clock
-    k.box(0.36, 0.26, 0.06, M.fascia, [4.0, gRidgeY - 0.34, Z1 + 0.55 - 0.02]);
-    k.box(0.22, 0.14, 0.07, M.pinkDeep, [4.0, gRidgeY - 0.36, Z1 + 0.55 - 0.01]);
-    A.clock([4.0, 5.3, Z1 + 0.03], 0, 0.36, { frame: M.fascia });
-  }
-  // flashing where the gable meets the main roof
-  for (const side of [-1, 1]) U.beam(k, [4.0 + side * 3.0, ROOF_BASE + 0.05, Z1 - 0.1], [4.0 + side * 0.05, gRidgeY + 0.02, gz1], 0.12, 0.05, M.fascia);
-
+  // Flat sandstone terrace; the jaipur module supplies chhatris and the arched parapet.
+  const roofX0 = X0 - .45, roofX1 = X1 + .45, zS = Z1 + .7, zN = Z0 - 1.1;
+  k.box(16.9, .24, 11.8, M.roof, [4, 4.65, -30.25]);
+  A.clock([4, 3.03, -24.85], 0, .26, {frame: M.fascia});
   // ------------------------------------------------------------------ downpipes
   function downpipe(xg, zg, yTop, xw, zw, yBot) {
     // from gutter end (xg,zg,yTop) with an offset down to the wall point (xw,zw) then vertical

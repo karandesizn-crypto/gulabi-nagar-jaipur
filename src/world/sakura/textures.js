@@ -81,40 +81,40 @@ export function createSakuraTextures(ctx) {
     g.lineWidth = Math.max(1, r * 0.05); g.strokeStyle = cols[3]; g.stroke();
   }
   const FLOWER_COLS = [
-    ['#ef98b5', '#fbe0e9', '#fff7f9', 'rgba(214,128,160,0.55)'],
-    ['#ec8fae', '#f9d3df', '#fdeff3', 'rgba(208,118,150,0.55)'],
-    ['#f2a9c0', '#fdeaf0', '#fffafb', 'rgba(220,150,175,0.5)'],
+    ['#c84f34', '#ec8741', '#f8c068', 'rgba(179,89,45,0.55)'],
+    ['#dc6939', '#f19a4f', '#f5c674', 'rgba(196,96,45,0.55)'],
+    ['#b74635', '#db773d', '#f0ac55', 'rgba(176,83,42,0.5)'],
   ];
   function flower(g, x, y, r, rot, squash = 1) {
     const cols = FLOWER_COLS[Math.floor(R() * FLOWER_COLS.length)];
     g.save(); g.translate(x, y); g.rotate(rot * 0.3); g.scale(1, squash); g.rotate(rot);
     // halo (alpha < 0.5: invisible at full res, keeps edge colour pink and mip coverage solid)
-    g.fillStyle = 'rgba(247,214,225,0.3)'; g.beginPath(); g.arc(0, 0, r * 1.2, 0, Math.PI * 2); g.fill();
+    g.fillStyle = 'rgba(245,175,104,0.3)'; g.beginPath(); g.arc(0, 0, r * 1.2, 0, Math.PI * 2); g.fill();
     for (let k = 0; k < 5; k++) {
       g.save(); g.rotate(k * Math.PI * 2 / 5 + (R() - 0.5) * 0.2);
       petal(g, r * (0.9 + R() * 0.16), r * 0.36, cols); g.restore();
     }
     // centre: deep pink eye + stamens
-    g.fillStyle = '#e07799'; g.beginPath(); g.arc(0, 0, r * 0.2, 0, Math.PI * 2); g.fill();
-    g.strokeStyle = 'rgba(205,90,125,0.85)'; g.lineWidth = Math.max(1, r * 0.035);
+    g.fillStyle = '#a9472e'; g.beginPath(); g.arc(0, 0, r * 0.2, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = 'rgba(165,72,34,0.85)'; g.lineWidth = Math.max(1, r * 0.035);
     for (let k = 0; k < 9; k++) {
       const a = k / 9 * Math.PI * 2 + R() * 0.3, l = r * (0.26 + R() * 0.1);
       g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.cos(a) * l, Math.sin(a) * l); g.stroke();
       g.fillStyle = '#f4dc8c'; g.beginPath(); g.arc(Math.cos(a) * l, Math.sin(a) * l, Math.max(1.2, r * 0.045), 0, Math.PI * 2); g.fill();
     }
-    g.fillStyle = '#c95a80'; g.beginPath(); g.arc(0, 0, r * 0.07, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#9e4b2c'; g.beginPath(); g.arc(0, 0, r * 0.07, 0, Math.PI * 2); g.fill();
     g.restore();
   }
   function bud(g, x, y, r, a) {
     g.save(); g.translate(x, y); g.rotate(a);
-    g.fillStyle = 'rgba(247,214,225,0.3)'; g.beginPath(); g.ellipse(0, 0, r * 0.8, r * 1.3, 0, 0, Math.PI * 2); g.fill();
-    g.fillStyle = '#e98aab'; g.beginPath(); g.ellipse(0, -r * 0.2, r * 0.5, r * 0.85, 0, 0, Math.PI * 2); g.fill();
-    g.fillStyle = '#f6c3d3'; g.beginPath(); g.ellipse(-r * 0.12, -r * 0.45, r * 0.2, r * 0.38, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = 'rgba(245,175,104,0.3)'; g.beginPath(); g.ellipse(0, 0, r * 0.8, r * 1.3, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#d36533'; g.beginPath(); g.ellipse(0, -r * 0.2, r * 0.5, r * 0.85, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#f6ad59'; g.beginPath(); g.ellipse(-r * 0.12, -r * 0.45, r * 0.2, r * 0.38, 0, 0, Math.PI * 2); g.fill();
     g.fillStyle = '#9b5a5c'; g.beginPath(); g.ellipse(0, r * 0.55, r * 0.34, r * 0.3, 0, 0, Math.PI * 2); g.fill();
     g.restore();
   }
   function stalk(g, x0, y0, x1, y1, wd) {
-    g.strokeStyle = 'rgba(247,214,225,0.3)'; g.lineWidth = wd * 3; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke();
+    g.strokeStyle = 'rgba(245,175,104,0.3)'; g.lineWidth = wd * 3; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke();
     g.strokeStyle = '#8f6a4f'; g.lineWidth = wd; g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo((x0 + x1) / 2 + wd, (y0 + y1) / 2, x1, y1); g.stroke();
   }
   function leaf(g, x, y, len, a, col) {
@@ -156,7 +156,7 @@ export function createSakuraTextures(ctx) {
     g.restore();
     // cell B (1,0): spray along a curved twig
     g.save(); g.translate(C, 0);
-    g.strokeStyle = 'rgba(247,214,225,0.3)'; g.lineWidth = 22; g.beginPath(); g.moveTo(C * 0.06, C * 0.9); g.quadraticCurveTo(C * 0.35, C * 0.35, C * 0.94, C * 0.12); g.stroke();
+    g.strokeStyle = 'rgba(245,175,104,0.3)'; g.lineWidth = 22; g.beginPath(); g.moveTo(C * 0.06, C * 0.9); g.quadraticCurveTo(C * 0.35, C * 0.35, C * 0.94, C * 0.12); g.stroke();
     g.strokeStyle = '#6e4d45'; g.lineWidth = 7; g.beginPath(); g.moveTo(C * 0.06, C * 0.9); g.quadraticCurveTo(C * 0.35, C * 0.35, C * 0.94, C * 0.12); g.stroke();
     for (let k = 0; k < 6; k++) {
       const t = 0.12 + k * 0.15, u = 1 - t;

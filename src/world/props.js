@@ -10,7 +10,7 @@ import { optimizeProps } from './props/optimize.js';
 export async function build(ctx) {
   const H = makeHelpers(ctx);
   const before = new Set(ctx.staticRoot.children);
-  const parts = [['vending', buildVending], ['shrine', buildShrine], ['scatter', buildScatter]];
+  const parts = [['scatter', buildScatter]];
   const errors = [];
   for (const [name, fn] of parts) {
     try { await fn(ctx, H); } catch (e) { errors.push(name); console.error(`[props/${name}]`, e); if (typeof process !== 'undefined' && process.env && process.env.PROPS_STRICT) throw e; }

@@ -1,4 +1,4 @@
-// 2-storey wooden apartment (アパート「コーポ桜ヶ丘」): 4 units per floor, rear external corridor with
+// 2-storey wooden apartment (アパート「コーポगुलाबी नगर」): 4 units per floor, rear external corridor with
 // steel stairs (walkable), front balconies with partitions + laundry, bike shelter, mailbox bank.
 import { WALLS, buildWindow } from './house.js';
 
@@ -132,7 +132,7 @@ export function buildApartment(H, F, w, depth, r) {
   const mbx = bx0 - 0.9, mbz = bz1 + 0.2;
   F.boxB(M.atlas, '#ffffff', 0.9, 0.45, 0.3, mbx, gy(mbx, mbz) + 0.8, mbz, { uv: { rect: A.rects.posts, white: A.white } });
   F.boxB(M.plain, '#8e949b', 0.06, 0.8, 0.06, mbx - 0.4, gy(mbx, mbz), mbz); F.boxB(M.plain, '#8e949b', 0.06, 0.8, 0.06, mbx + 0.4, gy(mbx, mbz), mbz);
-  // bike shelter (駐輪場) along the front
+  // bike shelter (CYCLE PARKING) along the front
   const shx0 = bx0 + 0.3, shx1 = bx0 + 5.6, shz = -1.2;
   for (const x of [shx0, shx1]) for (const z of [shz - 0.8, shz + 0.8]) { F.boxB(M.plain, '#8e949b', 0.07, 2.1, 0.07, x, gy(x, z) - 0.05, z); H.colC(F, x, z, 0.06, gy(x, z) - 0.5, gy(x, z) + 2.1); }
   const shY = Math.max(gy(shx0, shz), gy(shx1, shz)) + 2.1;

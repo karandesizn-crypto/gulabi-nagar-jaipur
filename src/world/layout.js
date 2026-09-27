@@ -13,12 +13,12 @@ export const smoothstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1
 
 // ---------------------------------------------------------------- names
 export const NAMES = {
-  company: '桜川電鉄', companyEn: 'Sakuragawa Railway', line: '桜川線', lineEn: 'Sakuragawa Line',
-  lineColor: '#ef9fbe', lineColorDeep: '#d9718f',
-  station: '桜ヶ丘', stationKana: 'さくらがおか', stationEn: 'Sakuragaoka', stationNo: 'SK07',
-  prev: { kanji: '花見台', kana: 'はなみだい', en: 'Hanamidai', no: 'SK06', dir: 'west' },
-  next: { kanji: '春日野', kana: 'かすがの', en: 'Kasugano', no: 'SK08', dir: 'east' },
-  town: '桜ヶ丘町', shoppingStreet: '桜ヶ丘駅前商店街',
+  company: 'गुलाबी रेल', companyEn: 'Gulabi Rail', line: 'गुलाबी रेल', lineEn: 'Pink City Line',
+  lineColor: '#e2a63e', lineColorDeep: '#a9442f',
+  station: 'गुलाबी नगर', stationKana: 'गुलाबी नगर', stationEn: 'Gulabi Nagar', stationNo: 'GN07',
+  prev: { kanji: 'चाँदपोल', kana: 'चाँदपोल', en: 'Chandpole', no: 'GN06', dir: 'west' },
+  next: { kanji: 'सांगानेर', kana: 'सांगानेर', en: 'Sanganer', no: 'GN08', dir: 'east' },
+  town: 'Gulabi Nagar', shoppingStreet: 'Gulabi Bazaar',
 };
 
 // ---------------------------------------------------------------- playable bounds
@@ -31,7 +31,7 @@ export const WORLD = {
 export const RAIL = {
   zA: -41.0,            // track A (south, next to station building) centerline
   zB: -45.0,            // track B (north) centerline
-  gauge: 1.067,         // Japanese narrow gauge (inner rail distance)
+  gauge: 1.676,         // Japanese narrow gauge (inner rail distance)
   railTopY: 0.15,
   railH: 0.15,          // rail height; rail foot sits at y = 0.0
   sleeperTopY: 0.0,
@@ -48,7 +48,7 @@ export const PLATFORM = {
   south: { x0: -7, x1: 40, z0: -39.5, z1: -35.5, edgeZ: -39.5 }, // serves track A
   north: { x0: -7, x1: 40, z0: -50.5, z1: -46.5, edgeZ: -46.5 }, // serves track B
   rampX0: 40, rampX1: 46,            // both platforms ramp down (east end) to walkway level
-  walkCrossing: { x0: 46, x1: 48.5 }, // 構内踏切 (in-station crossing) across both tracks
+  walkCrossing: { x0: 46, x1: 48.5 }, // 構内Level Crossing (in-station crossing) across both tracks
   // Fixed spots used by other modules (station builds benches; characters sits a reader on B1)
   benchB1: { x: 18.0, z: -36.15, rotY: Math.PI },  // south platform bench facing the track (north)
 };
@@ -83,7 +83,7 @@ export const SCHEDULE = {
 // bike-local: forward +Z, origin on the ground midway between the wheel contact points.
 export const BIKE = { length: 1.75, wheelR: 0.33, wheelbase: 1.08, handlebar: { y: 1.02, z: 0.50, halfW: 0.28 }, saddle: { y: 0.86, z: -0.22 }, basket: { y: 0.92, z: 0.72 } };
 
-// ---------------------------------------------------------------- level crossing (踏切)
+// ---------------------------------------------------------------- level crossing (Level Crossing)
 export const CROSSING = {
   x: -12.0, roadHalfW: 2.75,      // road R2 passes here
   deckZ0: -47.6, deckZ1: -38.4,   // crossing deck boards between/around rails
@@ -131,12 +131,12 @@ export function streetFrame(z, side = 0, offset = 0) {
 // ---------------------------------------------------------------- other roads
 // Each road: centerline polyline (x,z) + half width. y comes from heightAt().
 export const ROADS = {
-  R1: { name: '駅前商店街 (main street)', halfW: 3.0, kind: 'main' }, // centerline = streetCenterX(z), z from 1 to 130
-  R2: { name: '踏切道 (crossing road)', halfW: 2.75, kind: 'local', x: -12.0, z0: -88, z1: -5 }, // straight N-S, crosses tracks
-  R3: { name: '駅前通り (station-front cross street)', halfW: 3.0, kind: 'local', z: -2.0, x0: -95, x1: 95 }, // E-W
+  R1: { name: '駅前Gulabi Bazaar (main street)', halfW: 3.0, kind: 'main' }, // centerline = streetCenterX(z), z from 1 to 130
+  R2: { name: 'Level Crossing道 (crossing road)', halfW: 2.75, kind: 'local', x: -12.0, z0: -88, z1: -5 }, // straight N-S, crosses tracks
+  R3: { name: 'Station Road (station-front cross street)', halfW: 3.0, kind: 'local', z: -2.0, x0: -95, x1: 95 }, // E-W
   R4: { name: '線路北の道 (north lane along tracks)', halfW: 2.0, kind: 'lane', z: -55.5, x0: -95, x1: 95 },
   R6: { name: '住宅街の路地 (residential alley)', halfW: 1.5, kind: 'lane', z: -71.0, x0: -85, x1: 85 },
-  R5: { name: '河川敷の堤防道 (levee-top path)', halfW: 1.5, kind: 'path', z: -93.0, x0: -130, x1: 130, y: 3.2 },
+  R5: { name: 'Promenadeの堤防道 (levee-top path)', halfW: 1.5, kind: 'path', z: -93.0, x0: -130, x1: 130, y: 3.2 },
 };
 
 // ---------------------------------------------------------------- plaza
@@ -312,17 +312,17 @@ SPOTS.shrineSakura = lotToWorld(lotById('E6'), -2.5, -6.5);
 
 // Named areas for the HUD location toast (first match wins).
 export const AREAS = [
-  { name: '桜ヶ丘駅 1番線ホーム', x0: -7, x1: 46, z0: -40, z1: -35.5 },
-  { name: '桜ヶ丘駅 2番線ホーム', x0: -7, x1: 46, z0: -51, z1: -46 },
-  { name: '桜ヶ丘駅', x0: -4, x1: 12, z0: -35.5, z1: -25 },
-  { name: '桜川線 第一踏切', x0: -17, x1: -7, z0: -52, z1: -34 },
-  { name: '駅前広場', x0: -9.25, x1: 26, z0: -25, z1: -5 },
-  { name: '駅前通り', x0: -95, x1: 95, z0: -5.5, z1: 1.5 },
-  { name: '桜ヶ丘駅前商店街', x0: -12, x1: 14, z0: 1.5, z1: 60 },
-  { name: '桜ヶ丘 住宅街', x0: -95, x1: 95, z0: 60, z1: 130 },
-  { name: '河川敷 · 桜川堤', x0: -130, x1: 130, z0: -120, z1: -84 },
-  { name: '線路北の住宅街', x0: -95, x1: 95, z0: -84, z1: -52 },
-  { name: '桜ヶ丘町', x0: -999, x1: 999, z0: -999, z1: 999 },
+  { name: 'गुलाबी नगर स्टेशन Platform 1', x0: -7, x1: 46, z0: -40, z1: -35.5 },
+  { name: 'गुलाबी नगर स्टेशन Platform 2ホーム', x0: -7, x1: 46, z0: -51, z1: -46 },
+  { name: 'गुलाबी नगर स्टेशन', x0: -4, x1: 12, z0: -35.5, z1: -25 },
+  { name: 'गुलाबी रेल 第一Level Crossing', x0: -17, x1: -7, z0: -52, z1: -34 },
+  { name: 'Station Chowk', x0: -9.25, x1: 26, z0: -25, z1: -5 },
+  { name: 'Station Road', x0: -95, x1: 95, z0: -5.5, z1: 1.5 },
+  { name: 'Gulabi Bazaar', x0: -12, x1: 14, z0: 1.5, z1: 60 },
+  { name: 'Haveli Quarter', x0: -95, x1: 95, z0: 60, z1: 130 },
+  { name: 'Gulmohar Promenade', x0: -130, x1: 130, z0: -120, z1: -84 },
+  { name: 'North Quarter', x0: -95, x1: 95, z0: -84, z1: -52 },
+  { name: 'Gulabi Nagar', x0: -999, x1: 999, z0: -999, z1: 999 },
 ];
 
 // Hero shot (initial camera). yaw/pitch in degrees (yaw 0 = north).

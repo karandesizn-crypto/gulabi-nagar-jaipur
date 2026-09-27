@@ -1,4 +1,4 @@
-// W4 こもれび書店 — interior, modelled: wall bookcases + double-sided islands filled with individual
+// W4 किताब घर — interior, modelled: wall bookcases + double-sided islands filled with individual
 // instanced books (varied thickness / height / depth / colour, series runs, flat stacks, leaning books;
 // only the spines are printed), manga section, face-out end caps, flat display tables with stacked books,
 // magazine rack under the window, register counter with POS, card reader, bookmark stand, paper covers
@@ -118,7 +118,7 @@ export function buildBooksInterior(ctx, C, S, D) {
   bookcase((IX0 + 0.0 + -0.62) / 2 - 0.0 + 0.17, IZ0 + 0.005, 0, -0.62 - (IX0 + 0.34), H, NS, DP, (b, i) => i === 5 ? 'face' : 'manga', 'コミック');
   bookcase((0.92 + IX1 - 0.34) / 2, IZ0 + 0.005, 0, IX1 - 0.34 - 0.92, H, NS, DP, (b, i) => i === 0 ? 'large' : i === 4 ? 'face' : 'tanko', '趣味 · 実用');
   // printed section boards hung from the ceiling over the wall cases
-  for (const [t, x, z, ry] of [['文庫 · 新書', IX0 + 0.35, -9.0, Math.PI / 2], ['文芸 · エッセイ', IX0 + 0.35, -5.2, Math.PI / 2], ['絵本 · 図鑑', IX1 - 0.35, -9.2, -Math.PI / 2]]) {
+  for (const [t, x, z, ry] of [['BOOKS · 新書', IX0 + 0.35, -9.0, Math.PI / 2], ['文芸 · エッセイ', IX0 + 0.35, -5.2, Math.PI / 2], ['絵本 · 図鑑', IX1 - 0.35, -9.2, -Math.PI / 2]]) {
     const g = S.k.group([x, 2.55, z], ry); const kk = ctx.kit(g); g.updateWorldMatrix(true, false);
     kk.box(1.0, 0.18, 0.02, mCase, [0, 0, 0]); S.card(headerReg(t), 0.94, 0.14, [0, 0, 0.011], null, null, kk);
     ctx.wires.add([g.localToWorld(new THREE.Vector3(-0.4, 0.09, 0)), g.localToWorld(new THREE.Vector3(-0.4, CI - 2.55, 0))], { width: 0.005, color: '#6d6a80' });
@@ -150,12 +150,12 @@ export function buildBooksInterior(ctx, C, S, D) {
   const rPOP = A.inner.region(140, 80, (g, w, h2) => { g.fillStyle = '#f6e3a0'; U.rr(g, 0, 0, w, h2, 12); g.fill(); U.text(g, '店長', w / 2, 24, 20, F.hand, '#d9463b', { weight: 400 }); U.text(g, 'おすすめ!', w / 2, 56, 26, F.hand, INK, { weight: 400 }); });
   k.box(0.008, 0.16, 0.008, mMetal, [1.55, FY + IH + 0.13, IZb - 0.4]);
   S.card(rPOP, 0.26, 0.15, [1.55, FY + IH + 0.27, IZb - 0.4]);
-  const rManga = A.inner.region(140, 80, (g, w, h2) => { g.fillStyle = '#e8506a'; U.rr(g, 0, 0, w, h2, 12); g.fill(); U.text(g, '新刊コミック', w / 2, 28, 22, F.round, '#fff', { weight: 900 }); U.text(g, '続々入荷!', w / 2, 58, 20, F.round, '#fff', { weight: 900 }); });
+  const rManga = A.inner.region(140, 80, (g, w, h2) => { g.fillStyle = '#e8506a'; U.rr(g, 0, 0, w, h2, 12); g.fill(); U.text(g, 'NEW BOOKSコミック', w / 2, 28, 22, F.round, '#fff', { weight: 900 }); U.text(g, '続々入荷!', w / 2, 58, 20, F.round, '#fff', { weight: 900 }); });
   k.box(0.008, 0.16, 0.008, mMetal, [-1.35, FY + IH + 0.13, IZb - 0.4]);
   S.card(rManga, 0.26, 0.15, [-1.35, FY + IH + 0.27, IZb - 0.4]);
 
   // ---------------- flat display tables (平台) with stacks of new releases
-  const rNewP = A.inner.region(140, 70, (g, w2, h2) => { g.fillStyle = '#d9463b'; U.rr(g, 0, 0, w2, h2, 10); g.fill(); U.text(g, '新刊コーナー', w2 / 2, h2 / 2 + 2, 22, F.sans, '#fff', { weight: 900 }); });
+  const rNewP = A.inner.region(140, 70, (g, w2, h2) => { g.fillStyle = '#d9463b'; U.rr(g, 0, 0, w2, h2, 10); g.fill(); U.text(g, 'NEW BOOKSコーナー', w2 / 2, h2 / 2 + 2, 22, F.sans, '#fff', { weight: 900 }); });
   const rBest = A.inner.region(140, 70, (g, w2, h2) => { g.fillStyle = GREEN; U.rr(g, 0, 0, w2, h2, 10); g.fill(); U.text(g, '話題の本', w2 / 2, h2 / 2 + 2, 24, F.serif, CREAM, { weight: 700 }); });
   for (const [x0, x1, reg] of [[0.7, 2.5, rNewP], [-2.6, -1.7, rBest]]) {
     const z0 = -4.8, z1 = -4.0, cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, w = x1 - x0, d = z1 - z0;
@@ -206,7 +206,7 @@ export function buildBooksInterior(ctx, C, S, D) {
     const sg = S.k.group([cx + 0.55, ty + 0.2, cz - 0.08], Math.PI); const ks = ctx.kit(sg);
     ks.cyl(0.018, 0.018, 0.12, mDark, [0, -0.06, 0], null, 8);
     ks.box(0.32, 0.22, 0.03, mInk, [0, 0.06, 0], [-0.25, 0, 0]);
-    const rScr = A.glow.region(96, 64, (g, w2, h2) => { g.fillStyle = '#e8f1ea'; g.fillRect(0, 0, w2, h2); g.fillStyle = GREEN; g.fillRect(0, 0, w2, 14); U.text(g, 'こもれび書店', w2 / 2, 8, 10, F.sans, '#fff', { weight: 700 }); U.text(g, '¥ 1,540', w2 / 2, 42, 16, F.en, INK, { weight: 900 }); });
+    const rScr = A.glow.region(96, 64, (g, w2, h2) => { g.fillStyle = '#e8f1ea'; g.fillRect(0, 0, w2, h2); g.fillStyle = GREEN; g.fillRect(0, 0, w2, 14); U.text(g, 'किताब घर', w2 / 2, 8, 10, F.sans, '#fff', { weight: 700 }); U.text(g, '₹ 1,540', w2 / 2, 42, 16, F.en, INK, { weight: 900 }); });
     S.card(rScr, 0.28, 0.18, [0, 0.064, 0.018], [-0.25, 0, 0], null, ks);
     k.cyl(0.035, 0.045, 0.03, mDark, [cx + 0.2, ty + 0.015, cz + 0.12], null, 10);
     const pg = S.k.group([cx + 0.2, ty + 0.05, cz + 0.12], 0); const kp = ctx.kit(pg);
@@ -230,8 +230,8 @@ export function buildBooksInterior(ctx, C, S, D) {
     k.cyl(0.07, 0.055, 0.1, M.inner('#e8e2d6', 0.35), [cx + 0.95, ty + 0.05, cz - 0.12], null, 12);
     C.shrub(S, cx + 0.95, ty + 0.09, cz - 0.12, { r: 0.1, h: 0.16, green: '#6f9a5a', seed: 41 });
     S.box(cx, cz, w + 0.1, d + 0.1, -1, FY + 0.97);
-    // hanging お会計 sign
-    const rPay = A.inner.region(120, 60, (g, w2, h2) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w2, h2); U.text(g, 'お会計', w2 / 2, 22, 20, F.sans, GREEN, { weight: 900 }); U.text(g, '図書カード使えます', w2 / 2, 46, 11, F.sans, INK, { weight: 700 }); });
+    // hanging BILLING sign
+    const rPay = A.inner.region(120, 60, (g, w2, h2) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w2, h2); U.text(g, 'BILLING', w2 / 2, 22, 20, F.sans, GREEN, { weight: 900 }); U.text(g, '図書カード使えます', w2 / 2, 46, 11, F.sans, INK, { weight: 700 }); });
     k.box(0.42, 0.22, 0.02, mCase, [cx, 2.5, cz + 0.02]);
     S.card(rPay, 0.4, 0.2, [cx, 2.5, cz + 0.031]);
     ctx.wires.add([S.world(cx - 0.15, CI, cz), S.world(cx - 0.15, 2.61, cz)], { width: 0.006, color: '#6d6a80' });

@@ -1,4 +1,4 @@
-// W2 花屋 はなのわ — interior, modelled: tiered wooden stands and tin buckets holding individual flower
+// W2 फूल भंडार — interior, modelled: tiered wooden stands and tin buckets holding individual flower
 // bunches (instanced stems, leaves and heads: roses, tulips, daisies, sweet peas, gypsophila, ranunculus,
 // sakura branches, hydrangea pots), glass-door flower cooler with shelves of buckets, wrapping station
 // (kraft roll dispenser with cutter, ribbon spool rack, tape, scissors, cut sheets, bouquet in a paper cone,
@@ -108,7 +108,7 @@ export function buildFlowerInterior(ctx, C, S, D) {
       bucket(cx + Math.cos(a) * r, FY + y, cz + Math.sin(a) * r, kinds[(i + n) % kinds.length], [rr.pick(PAL), rr.pick(PAL)], { r: 0.085, h: 0.2, n: 8, len: [0.26, 0.38] });
     }
     hydrangea(cx, FY + 0.965, cz, ['#7fa6d9', '#9aa9e0', '#b8a6de']);
-    tag('春の花束', '¥1,500〜', cx + 0.3, FY + 0.965, cz + 0.12);
+    tag('春のBOUQUETS', '₹1,500〜', cx + 0.3, FY + 0.965, cz + 0.12);
     S.cyl(cx, cz, 0.78, -1, FY + 1.1);
   }
 
@@ -123,7 +123,7 @@ export function buildFlowerInterior(ctx, C, S, D) {
     for (const zz of [z0 + 0.02, z1 - 0.02]) k.box(0.9, 0.04, 0.03, mWoodD, [x1 - 0.44, FY + 0.12, zz]);
     const rows = [['rose', ['#d9546f', '#e8819c']], ['tulip', ['#f2c230', '#f6e3a0']], ['pea', ['#c9b8e8', '#f2b5c8', '#fbe9ef']], ['ranun', ['#f08a4b', '#f6c58a', '#f7d3de']], ['daisy', ['#fbf8f2']], ['tulip', ['#e8506a', '#f28db2']], ['gyp', ['#fbf8f2']], ['euca', ['#9fb8a0']], ['rose', ['#fbe9ef', '#f7d3de']]];
     let ri = 0;
-    const names = { rose: ['バラ', '1本 ¥300'], tulip: ['チューリップ', '1本 ¥200'], pea: ['スイートピー', '¥350'], ranun: ['ラナンキュラス', '1本 ¥280'], daisy: ['マーガレット', '¥380'], gyp: ['かすみ草', '¥500'], euca: ['ユーカリ', '¥400'] };
+    const names = { rose: ['バラ', '1本 ₹300'], tulip: ['チューリップ', '1本 ₹200'], pea: ['スイートピー', '₹350'], ranun: ['ラナンキュラス', '1本 ₹280'], daisy: ['マーガレット', '₹380'], gyp: ['かすみ草', '₹500'], euca: ['ユーカリ', '₹400'] };
     steps.forEach(([h, x], si) => {
       for (let i = 0; i < 4; i++) {
         const z = z0 + 0.35 + i * (len - 0.7) / 3, [kind, cols] = rows[ri++ % rows.length];
@@ -140,7 +140,7 @@ export function buildFlowerInterior(ctx, C, S, D) {
     bucket(x, FY, -3.62, 'euca', ['#9fb8a0'], { r: 0.13, h: 0.34, n: 8, len: [0.5, 0.7] });
     bucket(x, FY, -4.02, 'tulip', ['#fbf8f2', '#f7d3de'], { r: 0.12, h: 0.32, n: 12, len: [0.4, 0.55] });
     bucket(x, FY, -4.42, 'gyp', null, { r: 0.12, h: 0.32, n: 10, len: [0.4, 0.55] });
-    tag('桜の枝', '1本 ¥600', x + 0.18, FY + 0.42, -3.3, Math.PI / 2);
+    tag('桜の枝', '1本 ₹600', x + 0.18, FY + 0.42, -3.3, Math.PI / 2);
     S.box(x, -3.8, 0.36, 1.6, -1, FY + 0.8);
   }
 
@@ -230,14 +230,14 @@ export function buildFlowerInterior(ctx, C, S, D) {
       kr.box(0.26, 0.012, 0.13, M.inner('#9aa1a8', 0.22), [0, 0.1, 0.05], [0.25, 0, 0]);
       for (let i = 0; i < 12; i++) kr.box(0.03, 0.01, 0.022, M.inner('#f4f1e8', 0.4), [-0.09 + (i % 4) * 0.06, 0.112 + Math.floor(i / 4) * 0.007, 0.02 + Math.floor(i / 4) * 0.03], [0.25, 0, 0]);
       kr.box(0.14, 0.08, 0.03, mInk, [0, 0.16, -0.1], [-0.25, 0, 0]);
-      const rDisp = A.glow.region(64, 24, (g, ww, hh) => { g.fillStyle = '#1f2a24'; g.fillRect(0, 0, ww, hh); U.text(g, '¥ 2,200', ww / 2, hh / 2 + 1, 14, F.en, '#9ff0a0', { weight: 900 }); });
+      const rDisp = A.glow.region(64, 24, (g, ww, hh) => { g.fillStyle = '#1f2a24'; g.fillRect(0, 0, ww, hh); U.text(g, '₹ 2,200', ww / 2, hh / 2 + 1, 14, F.en, '#9ff0a0', { weight: 900 }); });
       S.card(rDisp, 0.12, 0.05, [0, 0.16, -0.084], [-0.25, 0, 0], null, kr);
       S.card(rDisp, 0.12, 0.05, [0, 0.16, -0.117], [-0.25, Math.PI, 0], null, kr);
     }
     const rCard = A.inner.region(64, 48, (g, ww, hh) => { g.fillStyle = '#fbf8ee'; g.fillRect(0, 0, ww, hh); U.sakura(g, 12, 12, 7, '#f2b5c8'); U.text(g, 'Thank you', ww / 2, 30, 11, F.hand, '#c2476a', { weight: 400 }); });
     k.box(0.16, 0.05, 0.06, mWoodD, [cx - 0.85, ty + 0.025, cz + 0.28]);
     for (let i = 0; i < 4; i++) S.card(rCard, 0.07, 0.05, [cx - 0.91 + i * 0.04, ty + 0.07, cz + 0.28 + (i % 2) * 0.01], [-0.2, 0, 0]);
-    const rWrap = A.inner.region(120, 72, (g, ww, hh) => { g.fillStyle = '#fbe3ea'; U.rr(g, 0, 0, ww, hh, 10); g.fill(); U.text(g, 'ラッピング', ww / 2, 24, 18, F.hand, '#c2476a', { weight: 400 }); U.text(g, '無料です♪', ww / 2, 50, 18, F.hand, INK, { weight: 400 }); });
+    const rWrap = A.inner.region(120, 72, (g, ww, hh) => { g.fillStyle = '#fbe3ea'; U.rr(g, 0, 0, ww, hh, 10); g.fill(); U.text(g, 'ラッピング', ww / 2, 24, 18, F.hand, '#c2476a', { weight: 400 }); U.text(g, 'FREEです♪', ww / 2, 50, 18, F.hand, INK, { weight: 400 }); });
     S.card(rWrap, 0.2, 0.12, [cx + 0.35, ty + 0.09, cz + 0.38], [-0.2, 0, 0]);
     k.box(0.2, 0.01, 0.06, mWoodL, [cx + 0.35, ty + 0.005, cz + 0.36]);
   }
@@ -281,7 +281,7 @@ export function buildFlowerInterior(ctx, C, S, D) {
       g.fillStyle = '#fbf8ee'; g.fillRect(0, 0, w, h); g.fillStyle = '#8fb58a'; g.fillRect(0, 0, w, 30);
       U.text(g, 'フラワーレッスン', w / 2, 16, 18, F.round, '#fbf8ee', { weight: 900, maxW: w - 10 });
       U.text(g, '毎月 第2土曜日', w / 2, 52, 16, F.round, GREEN_D, { weight: 700 });
-      U.text(g, '14:00〜 ¥2,500', w / 2, 76, 16, F.round, '#c2476a', { weight: 700 });
+      U.text(g, '14:00〜 ₹2,500', w / 2, 76, 16, F.round, '#c2476a', { weight: 700 });
       for (let i = 0; i < 4; i++) U.sakura(g, 24 + i * 38, 102, 9, ['#f2b5c8', '#f2c230', '#c9b8e8', '#e8819c'][i], '#fbf8ee');
     });
     k.box(0.02, 0.36, 0.46, mWoodD, [IX1 - 0.01, FY + 1.6, -6.25]);

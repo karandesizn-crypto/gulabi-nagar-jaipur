@@ -1,4 +1,4 @@
-// 桜川線 — the railway corridor module.
+// गुलाबी रेल — the railway corridor module.
 // Track (ballast bed, rails, PC / wooden sleepers, fasteners, joints, crossover with two turnouts),
 // catenary (centre poles near the station, portal beams elsewhere, zig-zag contact wire, droppers,
 // feeders), signals animated from ctx.services.rail, km posts, speed signs, equipment, troughs,
@@ -19,7 +19,7 @@ function makeEnv(L) {
     rails: { SaZ: R.zA + HG, NaZ: R.zA - HG, SbZ: R.zB + HG, NbZ: R.zB - HG },
     xo: { xa: 66, xb: 114 },                                   // crossover (A -> B) between x 66..114
     cross: [L.CROSSING.zone.x0, L.CROSSING.zone.x1],           // -17..-7 (crossing module)
-    walk: [L.PLATFORM.walkCrossing.x0, L.PLATFORM.walkCrossing.x1], // 46..48.5 (構内踏切, station)
+    walk: [L.PLATFORM.walkCrossing.x0, L.PLATFORM.walkCrossing.x1], // 46..48.5 (構内Level Crossing, station)
     station: [L.PLATFORM.south.x0, 50],
   };
 }

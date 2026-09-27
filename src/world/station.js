@@ -1,5 +1,5 @@
-// 桜ヶ丘駅 — station building (inside + out), forecourt, both platforms with shelters and furniture,
-// 駅名標, fences, platform ends, east ramps + 構内踏切 walkway, north exit, side / west yards.
+// गुलाबी नगर स्टेशन — station building (inside + out), forecourt, both platforms with shelters and furniture,
+// 駅名標, fences, platform ends, east ramps + 構内Level Crossing walkway, north exit, side / west yards.
 // Publishes ctx.services.station = { benches: [{x,z,y,rotY,len}] }.
 import * as THREE from 'three';
 import { createUtil } from './station/util.js';

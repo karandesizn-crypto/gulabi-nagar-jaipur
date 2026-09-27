@@ -27,7 +27,7 @@ function rimChunk(k, sheenK, env) {
     float trans = clamp( 0.45 - dot( nW, sW ) * 0.55, 0.0, 1.0 );
     // a faint cool-pink sky sheen on the outer silhouette even when front-lit
     float sheen = pow( 1.0 - ndv, 4.0 ) * ${sheenK.toFixed(2)};
-    vec3 glow = vec3( 1.0, 0.64, 0.75 ) * ( 0.62 * rim + 0.26 * trans ) * back + vec3( 0.9, 0.85, 1.0 ) * sheen;
+    vec3 glow = vec3( 1.0, 0.75, 0.44 ) * ( 0.62 * rim + 0.26 * trans ) * back + vec3( 1.0, 0.9, 0.6 ) * sheen;
     totalEmissiveRadiance += glow * diffuseColor.rgb * ${k.toFixed(2)};
     // cool sky fill + light passing through petals: lifts the shadow side to lavender-pink
     totalEmissiveRadiance += diffuseColor.rgb * vec3( 0.13, 0.12, 0.17 ) * ( 0.75 + 0.25 * trans );

@@ -1,5 +1,5 @@
 // Canvas atlases for the trains: decals (logo, numbers, stickers, ads), LED/LCD displays, petals.
-// All text is fictional (桜川電鉄 / Sakuragawa Railway) and drawn un-mirrored (planes face +Z).
+// All text is fictional (गुलाबी रेल / Gulabi Rail) and drawn un-mirrored (planes face +Z).
 
 const DEC_W = 1024, DEC_H = 1024;
 const LED_W = 1024, LED_H = 256;
@@ -126,7 +126,7 @@ export function createTrainTextures(ctx) {
       g.fillStyle = '#e57aa1'; sakuraPath(g, cx, cy + 4, w * 0.42); g.fill();
       g.fillStyle = '#fbf6ee'; g.beginPath(); g.arc(cx, cy + 4, w * 0.2, 0, Math.PI * 2); g.fill();
       g.fillStyle = '#d4577f'; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, 'SR', cx, cy + 8, w * 0.36, w * 0.24, F.round, 900);
+      T.fitText(g, 'GR', cx, cy + 8, w * 0.36, w * 0.24, F.round, 900);
     }
     // --- wordmark
     {
@@ -134,26 +134,26 @@ export function createTrainTextures(ctx) {
       const cx = x + 62, cy = y + h / 2;
       g.fillStyle = '#e57aa1'; sakuraPath(g, cx, cy + 2, 50); g.fill();
       g.fillStyle = '#fbf6ee'; g.beginPath(); g.arc(cx, cy + 2, 21, 0, Math.PI * 2); g.fill();
-      g.fillStyle = '#d4577f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'SR', cx, cy + 4, 34, 24, F.round, 900);
+      g.fillStyle = '#d4577f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'GR', cx, cy + 4, 34, 24, F.round, 900);
       g.textAlign = 'left'; g.fillStyle = '#4a4668';
       T.fitText(g, NAMES.company, x + 124, y + 56, 370, 66, F.sans, 900);
-      g.fillStyle = '#d9718f'; T.fitText(g, 'SAKURAGAWA RAILWAY', x + 128, y + 104, 360, 24, F.en, 700);
+      g.fillStyle = '#d9718f'; T.fitText(g, 'GULABI RAIL • RAJASTHAN', x + 128, y + 104, 360, 24, F.en, 700);
     }
-    // --- 弱冷房車
+    // --- AC COACH
     {
       const [x, y, w, h] = R.jakurei;
       g.fillStyle = '#7fb3d9'; rr(T, g, x + 6, y + 14, w - 12, h - 28, 16); g.fill();
       g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '弱冷房車', x + w / 2, y + 54, w - 40, 46, F.sans, 900);
+      T.fitText(g, 'AC COACH', x + w / 2, y + 54, w - 40, 46, F.sans, 900);
       T.fitText(g, 'Mild A/C Car', x + w / 2, y + 92, w - 60, 20, F.en, 700);
     }
-    // --- priority seat strip: 優先席 + elderly / injured / pregnant / child
+    // --- priority seat strip: Priority + elderly / injured / pregnant / child
     {
       const [x, y, w, h] = R.priority;
       g.fillStyle = '#fbf6ee'; rr(T, g, x + 4, y + 4, w - 8, h - 8, 14); g.fill();
       g.fillStyle = '#ee8a3c'; rr(T, g, x + 4, y + 4, 150, h - 8, 14); g.fill();
       g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '優先席', x + 79, y + 54, 130, 40, F.sans, 900);
+      T.fitText(g, 'Priority', x + 79, y + 54, 130, 40, F.sans, 900);
       T.fitText(g, 'Priority Seat', x + 79, y + 92, 130, 18, F.en, 700);
       const icons = [{ bend: 1, cane: true }, { crutch: true }, { belly: true }, { child: true }];
       icons.forEach((o, i) => {
@@ -179,7 +179,7 @@ export function createTrainTextures(ctx) {
       g.beginPath(); g.ellipse(cx - 12, cy + 6, 18, 22, -0.3, 0, Math.PI * 2); g.fill();
       for (let k = 0; k < 4; k++) { g.beginPath(); g.ellipse(cx + 6 + k * 2, cy - 14 + k * 9, 16, 5, 0.15, 0, Math.PI * 2); g.fill(); }
       g.fillStyle = '#6d7480'; g.fillRect(cx + 20, cy - 34, 10, 66); g.fillRect(cx + 32, cy - 34, 10, 66);
-      g.fillStyle = '#e8545f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'ドアにご注意', cx, cy + 40, 84, 14, F.sans, 900);
+      g.fillStyle = '#e8545f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'MIND THE DOOR', cx, cy + 40, 84, 14, F.sans, 900);
     }
     // --- mascot sticker (さくらちゃん)
     {
@@ -191,7 +191,7 @@ export function createTrainTextures(ctx) {
       g.strokeStyle = '#3f3a4a'; g.lineWidth = 3; g.beginPath(); g.arc(cx, cy + 8, 8, 0.15 * Math.PI, 0.85 * Math.PI); g.stroke();
       g.fillStyle = 'rgba(232,110,140,0.55)'; g.beginPath(); g.ellipse(cx - 27, cy + 10, 8, 5, 0, 0, Math.PI * 2); g.ellipse(cx + 27, cy + 10, 8, 5, 0, 0, Math.PI * 2); g.fill();
     }
-    // --- kids (こどもの手をはなさないで)
+    // --- kids (CHILDの手をはなさないで)
     {
       const [x, y, w] = R.kids; const cx = x + w / 2, cy = y + w / 2;
       g.fillStyle = '#f7d65a'; rr(T, g, x + 8, y + 8, w - 16, w - 16, 18); g.fill();
@@ -203,26 +203,26 @@ export function createTrainTextures(ctx) {
     {
       let [x, y, w, h] = R.prioritySign;
       g.fillStyle = '#ee8a3c'; g.fillRect(x, y, w, h); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '優先席  Priority Seat', x + w / 2, y + h / 2 + 2, w - 20, 34, F.sans, 900);
+      T.fitText(g, 'Priority  Priority Seat', x + w / 2, y + h / 2 + 2, w - 20, 34, F.sans, 900);
       [x, y, w, h] = R.crewSign;
       g.fillStyle = '#3c4660'; g.fillRect(x, y, w, h); g.fillStyle = '#fff';
-      T.fitText(g, '乗務員室  Crew Only', x + w / 2, y + h / 2 + 2, w - 20, 32, F.sans, 700);
+      T.fitText(g, 'CREW  Crew Only', x + w / 2, y + h / 2 + 2, w - 20, 32, F.sans, 700);
       [x, y, w, h] = R.emergency;
       g.fillStyle = '#d9463b'; rr(T, g, x + 4, y + 4, w - 8, h - 8, 8); g.fill(); g.fillStyle = '#fff';
-      T.fitText(g, '非常用ドアコック', x + w / 2, y + 26, w - 16, 16, F.sans, 900); T.fitText(g, 'EMERGENCY', x + w / 2, y + 46, w - 24, 12, F.en, 700);
+      T.fitText(g, 'EMERGENCY', x + w / 2, y + 26, w - 16, 16, F.sans, 900); T.fitText(g, 'EMERGENCY', x + w / 2, y + 46, w - 24, 12, F.en, 700);
       [x, y, w, h] = R.plate;
       g.fillStyle = '#c9c3b4'; rr(T, g, x + 4, y + 8, w - 8, h - 16, 6); g.fill(); g.fillStyle = '#4a4552';
-      T.fitText(g, '桜川車輌 2019', x + w / 2, y + 26, w - 16, 14, F.sans, 700); T.fitText(g, '桜ヶ丘工場', x + w / 2, y + 42, w - 24, 12, F.sans, 500);
+      T.fitText(g, 'Gulabi車輌 2019', x + w / 2, y + 26, w - 16, 14, F.sans, 700); T.fitText(g, 'गुलाबी नगर工場', x + w / 2, y + 42, w - 24, 12, F.sans, 500);
       [x, y, w, h] = R.jumperWarn;
-      g.fillStyle = '#f2c230'; g.fillRect(x + 4, y + 8, w - 8, h - 16); g.fillStyle = '#3a3346'; T.fitText(g, '高圧注意', x + w / 2, y + h / 2 + 1, w - 20, 24, F.sans, 900);
+      g.fillStyle = '#f2c230'; g.fillRect(x + 4, y + 8, w - 8, h - 16); g.fillStyle = '#3a3346'; T.fitText(g, 'HIGH VOLTAGE', x + w / 2, y + h / 2 + 1, w - 20, 24, F.sans, 900);
     }
     // --- route map strip (above doors, inside)
     {
       const [x, y, w, h] = R.routeMap;
       g.fillStyle = '#fbf8f2'; g.fillRect(x, y, w, h);
       g.fillStyle = '#ef9fbe'; g.fillRect(x, y, w, 26); g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle';
-      T.fitText(g, '桜川線  Sakuragawa Line', x + 10, y + 14, w - 20, 18, F.sans, 900);
-      const st = [['川辺', 'SK05'], ['花見台', 'SK06'], ['桜ヶ丘', 'SK07'], ['春日野', 'SK08'], ['城山', 'SK09']];
+      T.fitText(g, 'गुलाबी रेल  Pink City Line', x + 10, y + 14, w - 20, 18, F.sans, 900);
+      const st = [['Amer', 'GN05'], ['चाँदपोल', 'GN06'], ['गुलाबी नगर', 'GN07'], ['सांगानेर', 'GN08'], ['Sanganer', 'GN09']];
       g.fillStyle = '#ef9fbe'; g.fillRect(x + 24, y + 62, w - 48, 8);
       st.forEach(([n, no], i) => {
         const sx = x + 34 + i * ((w - 68) / 4);
@@ -241,11 +241,11 @@ export function createTrainTextures(ctx) {
     });
     // --- window-top ads
     const ads = [
-      { bg: '#f7d3de', fg: '#b84a72', t: 'お花見きっぷ', s: '桜川線 1日乗り放題 ¥800', deco: 'sakura' },
-      { bg: '#d6ead0', fg: '#3f7a52', t: '花見台植物園', s: 'さくらまつり 4/1〜4/15', deco: 'leaf' },
-      { bg: '#d4e4f2', fg: '#35609a', t: '春日野温泉郷', s: '日帰り入浴プラン 好評', deco: 'wave' },
+      { bg: '#f7d3de', fg: '#b84a72', t: 'お花見TICKET', s: 'गुलाबी रेल 1日乗り放題 ₹800', deco: 'sakura' },
+      { bg: '#d6ead0', fg: '#3f7a52', t: 'चाँदपोल植物園', s: 'さくらまつり 4/1〜4/15', deco: 'leaf' },
+      { bg: '#d4e4f2', fg: '#35609a', t: 'सांगानेर温泉郷', s: '日帰り入浴プラン 好評', deco: 'wave' },
       { bg: '#f6e7b0', fg: '#9a6a1f', t: 'さくら進学ゼミ', s: '新学期生 募集中！', deco: 'star' },
-      { bg: '#f3dcc6', fg: '#8a5234', t: '桜あんぱん', s: '桜ヶ丘ベーカリー 駅前店', deco: 'bun' },
+      { bg: '#f3dcc6', fg: '#8a5234', t: '桜あんぱん', s: 'गुलाबी नगरベーカリー 駅前店', deco: 'bun' },
       { bg: '#e2ecf4', fg: '#3c5a82', t: '車内マナー', s: '通話はご遠慮ください', deco: 'phone' },
     ];
     ads.forEach((a, i) => {
@@ -262,10 +262,10 @@ export function createTrainTextures(ctx) {
     });
     // --- hanging posters (中吊り)
     const hangs = [
-      { bg: '#fbf1f4', fg: '#c65a82', t: '季刊 さくら文庫', s: '春の新刊フェア 4月号' },
-      { bg: '#eef5fb', fg: '#2f64b5', t: '春の交通安全運動', s: '4月6日〜15日 桜ヶ丘警察署' },
-      { bg: '#f5f3e4', fg: '#6f8a3a', t: 'かすがの動物園', s: 'レッサーパンダの赤ちゃん誕生' },
-      { bg: '#fdf0e6', fg: '#d9718f', t: 'SAKURA PASS', s: 'ICカードでスムーズにご乗車' },
+      { bg: '#fbf1f4', fg: '#c65a82', t: '季刊 さくらBOOKS', s: '春のNEW BOOKSフェア 4月号' },
+      { bg: '#eef5fb', fg: '#2f64b5', t: '春の交通安全運動', s: '4月6日〜15日 गुलाबी नगर警察署' },
+      { bg: '#f5f3e4', fg: '#6f8a3a', t: 'सांगानेर動物園', s: 'レッサーBREADダの赤ちゃん誕生' },
+      { bg: '#fdf0e6', fg: '#d9718f', t: 'GULABI PASS', s: 'ICカードでスムーズにご乗車' },
     ];
     hangs.forEach((a, i) => {
       const [x, y, w, h] = R['hang' + i];
@@ -297,27 +297,27 @@ export function createTrainTextures(ctx) {
     const dest = (rect, kanji, en) => {
       const [x, y, w, h] = rect;
       g.fillStyle = '#000'; g.fillRect(x, y, w, h);
-      // type box 普通 (local) — in green, as on many lines
+      // type box LOCAL (local) — in green, as on many lines
       g.strokeStyle = GREEN; g.lineWidth = 6; g.strokeRect(x + 12, y + 16, 128, h - 32);
       g.fillStyle = GREEN; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '普通', x + 76, y + 56, 110, 56, F.sans, 900);
+      T.fitText(g, 'LOCAL', x + 76, y + 56, 110, 56, F.sans, 900);
       T.fitText(g, 'Local', x + 76, y + 96, 100, 22, F.en, 900);
       g.fillStyle = AMBER;
       T.fitText(g, kanji, x + 330, y + 54, 330, 76, F.sans, 900);
       T.fitText(g, en, x + 330, y + 104, 300, 24, F.en, 900);
       ledify(g, x, y, w, h, 4);
     };
-    dest(R.destA, '花見台', 'Hanamidai');
-    dest(R.destB, '春日野', 'Kasugano');
+    dest(R.destA, 'चाँदपोल', 'Chandpole');
+    dest(R.destB, 'सांगानेर', 'Sanganer');
     const side = (rect, kanji) => {
       const [x, y, w, h] = rect;
       g.fillStyle = '#000'; g.fillRect(x, y, w, h);
       g.fillStyle = GREEN; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '普通', x + 60, y + h / 2 + 2, 96, 44, F.sans, 900);
-      g.fillStyle = AMBER; T.fitText(g, kanji + ' 行', x + 238, y + h / 2 + 2, 250, 48, F.sans, 900);
+      T.fitText(g, 'LOCAL', x + 60, y + h / 2 + 2, 96, 44, F.sans, 900);
+      g.fillStyle = AMBER; T.fitText(g, kanji + ' TO', x + 238, y + h / 2 + 2, 250, 48, F.sans, 900);
       ledify(g, x, y, w, h, 4);
     };
-    side(R.sideA, '花見台'); side(R.sideB, '春日野');
+    side(R.sideA, 'चाँदपोल'); side(R.sideB, 'सांगानेर');
     const run = (rect, s) => {
       const [x, y, w, h] = rect; g.fillStyle = '#000'; g.fillRect(x, y, w, h);
       g.fillStyle = ORANGE; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, s, x + w / 2, y + h / 2 + 2, w - 12, 50, F.en, 900);
@@ -328,11 +328,11 @@ export function createTrainTextures(ctx) {
       const [x, y, w, h] = rect;
       g.fillStyle = '#16233e'; g.fillRect(x, y, w, h);
       g.fillStyle = '#ef9fbe'; g.fillRect(x, y + h - 8, w, 8);
-      g.fillStyle = '#cfd8ea'; g.textAlign = 'left'; g.textBaseline = 'middle'; T.fitText(g, '次は', x + 10, y + 26, 50, 20, F.sans, 700);
+      g.fillStyle = '#cfd8ea'; g.textAlign = 'left'; g.textBaseline = 'middle'; T.fitText(g, 'NEXT', x + 10, y + 26, 50, 20, F.sans, 700);
       g.fillStyle = '#ffffff'; T.fitText(g, kanji, x + 62, y + 26, 110, 34, F.sans, 900);
       g.fillStyle = '#9fb3d6'; T.fitText(g, en, x + 176, y + 28, 74, 16, F.en, 700);
     };
-    lcd(R.lcdA, '花見台', 'Hanamidai'); lcd(R.lcdB, '春日野', 'Kasugano');
+    lcd(R.lcdA, 'चाँदपोल', 'Chandpole'); lcd(R.lcdB, 'सांगानेर', 'Sanganer');
     const cab = (rect, hue) => {
       const [x, y, w, h] = rect; g.fillStyle = '#0c1a2a'; g.fillRect(x, y, w, h);
       g.strokeStyle = hue; g.lineWidth = 3; g.beginPath(); g.arc(x + 32, y + 36, 20, Math.PI * 0.8, Math.PI * 2.2); g.stroke();

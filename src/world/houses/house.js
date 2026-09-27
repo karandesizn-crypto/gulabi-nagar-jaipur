@@ -9,6 +9,13 @@ export const WALLS = { plaster: ['plaster', 3], paint: ['plaster', 3], siding: [
 const INTERIORS = ['int_lace', 'int_lace', 'int_curtain_pink', 'int_curtain_green', 'int_curtain_blue', 'int_blind', 'int_blind', 'int_dark', 'int_room', 'int_room'];
 
 export function buildHouse(H, F, S) {
+  // Jaipur-inspired plaster houses: flat terraces, cream cornices and deep teal joinery.
+  const colors = ['#d78b72', '#dc9d82', '#ca7968', '#edb499', '#e4ad87', '#c78676'];
+  const color = colors[Math.abs(Math.round(F.origin.x * 7 + F.origin.z * 3)) % colors.length];
+  S = { ...S, wall: {kind: 'plaster', color}, wall2: null, traditional: false,
+    roof: {...S.roof, type: 'flat', mat: 'metal', color: '#d8b393', pitch: 0},
+    trim: '#f5d9ab', frameColor: '#285e60', railColor: '#366467',
+    fasciaColor: '#efd0a5', skirt: null, antenna: false };
   const { M, A } = H;
   const r = S.rng;
   const lod = S.lod ?? 2;

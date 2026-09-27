@@ -1,4 +1,4 @@
-// characters — the people, cats and sparrows of 桜ヶ丘 (SPEC 十四).
+// characters — the people, cats and sparrows of गुलाबी नगर (SPEC 十四).
 // Every figure is ONE skinned mesh (vertex colours + a small painted atlas), animated as a pure
 // function of t (plus light smoothing): breathing, weight shifts, blinking, gestures, a walk cycle,
 // and hair / skirts moved by ctx.shared.uWind / uGust through skirt & hair bones (GPU skinning, so the

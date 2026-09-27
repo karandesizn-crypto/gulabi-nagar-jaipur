@@ -1,10 +1,10 @@
-// 桜ヶ丘第1踏切 — the level crossing (第1種踏切) on road R2 over both tracks.
+// गुलाबी नगर第1Level Crossing — the level crossing (第1種Level Crossing) on road R2 over both tracks.
 // Owns everything inside L.CROSSING.zone except the road asphalt (street) and the rails (railway):
 // deck (rubber panels + asphalt fills + flangeways + concrete edge beams), equipment aprons,
-// road markings (edge lines, green pedestrian bands, bicycle chevrons/navi marks, stop lines, 止まれ,
+// road markings (edge lines, green pedestrian bands, bicycle chevrons/navi marks, stop lines, STOP,
 // pedestrian waiting lines, tactile blocks), four warning posts (crossbuck, speaker, direction
 // indicator, twin flashing lamps front+back, name plate / とまれ みよ, emergency buttons), two barrier
-// machines with animated arms, control cabinet, relay box, 踏切動作反応灯, side fences + signs.
+// machines with animated arms, control cabinet, relay box, Level Crossing動作反応灯, side fences + signs.
 // Animation: ctx.services.rail.crossingActive / crossingApproach (fallback: timetable-derived demo cycle).
 import * as THREE from 'three';
 import { makeCrossingTextures, INK, HAZ_YELLOW } from './crossing/tex.js';
@@ -76,7 +76,7 @@ export function build(ctx) {
     // road paint (decals: transparent, no depth write, polygon offset)
     white: mat.decal('#eeece6', { map: T.worn }),
     green: mat.decal('#7fb08b', { map: T.worn }),
-    sym: mat.decal('#ffffff', { map: T.roadAtlas }),   // 止まれ, とまれ, footprints, chevrons, navi mark, tactile blocks
+    sym: mat.decal('#ffffff', { map: T.roadAtlas }),   // STOP, とまれ, footprints, chevrons, navi mark, tactile blocks
     guide: mat.decal('#ffffff', { map: T.guide }),
   };
   M.slot = M.housing; M.machCap = M.rim; M.grille = M.rim; M.weight = M.rim; M.plateBack = M.speaker;
@@ -181,7 +181,7 @@ export function build(ctx) {
     return me;
   }
 
-  // ------------------------------------------------------------------ deck (踏切板)
+  // ------------------------------------------------------------------ deck (Level Crossing板)
   const HG = L.RAIL.gauge / 2;
   // flangeway: rail heads span gauge/2 .. gauge/2 + 0.065 from the track centre (railway profile)
   const OUTER = 0.08, INNER = 0.07, OUTW = 0.70;
@@ -293,13 +293,13 @@ export function build(ctx) {
     decal(XLW - 0.075, XLW + 0.075, s.z0, s.z1, yDeck(0.006), M.white, { tile: 1.7 });
     decal(XLE - 0.075, XLE + 0.075, s.z0, s.z1, yDeck(0.006), M.white, { tile: 1.7 });
   }
-  // linear tactile guide (踏切道内誘導表示) along each walkway across the whole deck
+  // linear tactile guide (Level Crossing道内誘導表示) along each walkway across the whole deck
   for (const gx of [(bandW[0] + bandW[1]) / 2, (bandE[0] + bandE[1]) / 2]) {
     for (const s of strips) decal(gx - 0.15, gx + 0.15, s.z0 + 0.01, s.z1 - 0.01, yDeck(0.009), M.guide, { tile: 0.3 });
   }
   // stop lines (full width between the edge lines: narrow road without centre line)
   for (const zs of [ZSS, ZSN]) decal(XLW - 0.075, XLE + 0.075, zs - 0.225, zs + 0.225, yRoad(LIFT + 0.004), M.white, { nz: 2, tile: 1.7 });
-  // 止まれ before each stop line, centred in the road, reading for the approaching driver
+  // STOP before each stop line, centred in the road, reading for the approaching driver
   decal(CX - 1.35, CX + 1.35, ZSS + 0.4, ZSS + 2.0, yRoad(LIFT + 0.003), M.sym, { rect: 'tomare', mode: 'N', nz: 4, nx: 2 });
   decal(CX - 1.35, CX + 1.35, ZSN - 2.0, ZSN - 0.4, yRoad(LIFT + 0.003), M.sym, { rect: 'tomare', mode: 'S', nz: 4, nx: 2 });
   // pedestrian waiting lines + tactile blocks + footprints + とまれ in each band (4 corners)
@@ -317,7 +317,7 @@ export function build(ctx) {
     decal(bc - 0.24, bc + 0.24, -50.53, -50.05, yRoad(LIFT + 0.005), M.sym, { rect: 'feet', mode: 'S', nz: 2 });
     decal(bc - 0.45, bc + 0.45, -51.4, -50.88, yRoad(LIFT + 0.005), M.sym, { rect: 'tomareSmall', mode: 'S', nz: 2 });
   }
-  // bicycle guidance: blue 矢羽根 chevrons at the left edge of each direction + 自転車ナビマーク
+  // bicycle guidance: blue 矢羽根 chevrons at the left edge of each direction + CYCLEナビマーク
   const onDeck = (z) => z <= ZDS && z >= ZDN;
   const chev = (xc, zc, dir) => {
     const yf = onDeck(zc) ? yDeck(0.008) : yRoad(LIFT + 0.006);
@@ -340,7 +340,7 @@ export function build(ctx) {
   // visor over the lens: ~150° arc, slightly flared toward the front (cylinder +y -> lamp +z after rotation)
   const hoodGeo = new THREE.CylinderGeometry(0.185, 0.152, 0.17, 16, 1, true, Math.PI / 2 + 0.3, Math.PI - 0.6);
 
-  // ------------------------------------------------------------------ warning posts (踏切警報機)
+  // ------------------------------------------------------------------ warning posts (Level Crossing警報機)
   const lampFaces = [];   // {obj, phase}
   function warningPost({ x, z, rotY, main, roadSide }) {
     const gy = prof(z);
@@ -360,13 +360,13 @@ export function build(ctx) {
       signPlane(kk, 'grille', 0.19, 0.15, [0, POST_H + 0.3, s * 0.1185], [0, s > 0 ? 0 : Math.PI, 0]);
     }
     kk.rbox(0.31, 0.035, 0.27, 0.015, M.machCap, [0, POST_H + 0.44, 0]);
-    // crossbuck (踏切警標)
+    // crossbuck (Level Crossing警標)
     const yB = 3.55;
     kk.box(0.09, 0.34, 0.07, M.steelDark, [0, yB, 0.085]);
     signBox(kk, 'buckA', 1.2, 0.18, 0.028, [0, yB, 0.132], [0, 0, 0.6]);
     signBox(kk, 'buckB', 1.2, 0.18, 0.028, [0, yB, 0.162], [0, 0, -0.6]);
     kk.cyl(0.035, 0.035, 0.02, M.steel, [0, yB, 0.182], [Math.PI / 2, 0, 0], 10);
-    // direction indicator (列車進行方向指示器): arrows on both faces
+    // direction indicator (列車進TO方向指示器): arrows on both faces
     const yI = 2.95;
     kk.rbox(0.64, 0.23, 0.2, 0.025, M.housing, [0, yI, 0]);
     for (const s of [1, -1]) {
@@ -407,7 +407,7 @@ export function build(ctx) {
       signPlane(kk, 'tomareMiyo', 0.27, 0.36, [0, yP, POST_R + 0.024]);
     }
     for (const dy of [-0.13, 0.13]) kk.box(0.2, 0.025, 0.17, M.steelDark, [0, yP + dy, 0.0]);
-    // emergency button box (非常ボタン / 踏切支障報知装置) facing the road
+    // emergency button box (非常ボタン / Level Crossing支障報知装置) facing the road
     const eb = new THREE.Group(); eb.position.set(roadSide * (POST_R + 0.068), 1.22, 0); eb.rotation.y = roadSide * Math.PI / 2; g.add(eb);
     const ek = ctx.kit(eb);
     ek.rbox(0.24, 0.32, 0.12, 0.015, M.emBox, [0, 0, 0]);
@@ -532,8 +532,8 @@ export function build(ctx) {
     kk.cyl(0.035, 0.035, 0.3, M.steelDark, [-w * 0.3, -0.02, -d / 2 - 0.05], null, 8);   // cable conduit into the ground
     physics.addBox(x, z, Math.abs(Math.cos(rotY)) > 0.5 ? w + 0.1 : d + 0.1, Math.abs(Math.cos(rotY)) > 0.5 ? d + 0.1 : w + 0.1, 0, gy - 0.5, gy + h + 0.2);
   }
-  cabinet({ x: -16.42, z: -50.55, rotY: Math.PI / 2, w: 0.82, h: 1.3, d: 0.5, face: 'cabinet' });   // NW 踏切制御器, door to the road
-  cabinet({ x: -7.58, z: -38.12, rotY: -Math.PI / 2, w: 0.55, h: 0.82, d: 0.38, face: 'relay' }); // SE 踏切器具箱 (kept low)
+  cabinet({ x: -16.42, z: -50.55, rotY: Math.PI / 2, w: 0.82, h: 1.3, d: 0.5, face: 'cabinet' });   // NW Level Crossing制御器, door to the road
+  cabinet({ x: -7.58, z: -38.12, rotY: -Math.PI / 2, w: 0.55, h: 0.82, d: 0.38, face: 'relay' }); // SE Level Crossing器具箱 (kept low)
 
   function reactionLamp({ x, z, rotY }) {
     const gy = prof(z);
@@ -602,7 +602,7 @@ export function build(ctx) {
     kk.box(w + 0.02, h + 0.02, 0.012, M.plateBack, [0, yOff, 0]);
     signPlane(kk, m, w, h, [0, yOff, 0.012]);
   }
-  // 踏切注意 on the side fences, facing the road; 線路内立入禁止 on the track-side returns
+  // Level Crossing注意 on the side fences, facing the road; 線路内NO ENTRY on the track-side returns
   plate(XAW + 0.1, -34.95, Math.PI / 2, 0.5, 0.31, 'chui', 0.78);
   plate(XAE - 0.1, -34.95, -Math.PI / 2, 0.5, 0.31, 'chui', 0.78);
   plate(XAW + 0.1, -51.05, Math.PI / 2, 0.5, 0.31, 'chui', 0.78);

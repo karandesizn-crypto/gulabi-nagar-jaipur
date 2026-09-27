@@ -1,9 +1,9 @@
 // Train traffic — pure functions of the simulation time t (120 s loop, see layout.js SCHEDULE).
 //
-// Train A: westbound on track A (moves -X, dest 花見台). Stopped centred at x=17 for t∈[0,48],
+// Train A: westbound on track A (moves -X, dest चाँदपोल). Stopped centred at x=17 for t∈[0,48],
 //          doors 2..44, departs 48 (0.8 m/s²), crosses x=-12 ≈52–59, exits west;
 //          the next A comes in from the far east (cruise 20 m/s, 0.75 m/s² brake) and stops at 120≡0.
-// Train B: eastbound on track B (moves +X, dest 春日野). Cruises in from the far west at 18 m/s,
+// Train B: eastbound on track B (moves +X, dest सांगानेर). Cruises in from the far west at 18 m/s,
 //          brakes at 0.611 m/s² so it passes the crossing slowly (~7→4 m/s) during ≈19–27,
 //          stops centred at x=17 at 32, doors 34..70, departs 76 east (0.8 m/s²).
 import { TRAIN, RAIL, SCHEDULE } from '../layout.js';
@@ -18,13 +18,13 @@ export const CFG = {
     id: 'A', track: 'A', z: RAIL.zA, dir: -1, stopX: TRAIN.stopCenterX,
     arriveT: 0, departT: SCHEDULE.A.depart, doors: SCHEDULE.A.doors,
     acc: 0.8, vmax: 25, vc: 20, brake: 0.75,
-    dest: '花見台', destEn: 'Hanamidai', platform: 1,
+    dest: 'चाँदपोल', destEn: 'Chandpole', platform: 1,
   },
   B: {
     id: 'B', track: 'B', z: RAIL.zB, dir: +1, stopX: TRAIN.stopCenterX,
     arriveT: SCHEDULE.B.stop, departT: SCHEDULE.B.depart, doors: SCHEDULE.B.doors,
     acc: 0.8, vmax: 25, vc: 18, brake: 2 * 11 / 36, // 0.611: tail clears x=-12 at t≈26
-    dest: '春日野', destEn: 'Kasugano', platform: 2,
+    dest: 'सांगानेर', destEn: 'Sanganer', platform: 2,
   },
 };
 

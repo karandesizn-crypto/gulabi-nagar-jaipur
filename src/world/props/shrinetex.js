@@ -1,4 +1,4 @@
-// Canvas textures for the E6 neighbourhood shrine (桜ヶ丘稲荷神社).
+// Canvas textures for the E6 neighbourhood shrine (Gulabi Nagar Mandir).
 import { rr, sakuraFlower, vtext, ftext } from './common.js';
 
 export const EMA = { W: 1024, H: 704, cw: 204, ch: 136, cols: 5, rows: 5 };
@@ -82,14 +82,14 @@ export function makeShrineTextures(ctx) {
   // engraved shrine name pillar 社号標 (alpha decal)
   const shagou = T.draw(128, 768, (g, w, h) => {
     g.clearRect(0, 0, w, h);
-    vtext(g, '桜ヶ丘稲荷神社', w / 2, 24, 86, F.brush, 700, 1.03, 'rgba(70,64,72,0.82)');
+    vtext(g, 'Gulabi Nagar Mandir', w / 2, 24, 86, F.brush, 700, 1.03, 'rgba(70,64,72,0.82)');
   }, { key: 'props.shrine.shagou' });
   const kenno = (name, i) => T.draw(64, 256, (g, w, h) => {
     g.clearRect(0, 0, w, h);
     vtext(g, '奉納', w / 2, 8, 22, F.serif, 700, 1.0, 'rgba(78,72,78,0.75)');
     vtext(g, name, w / 2, 62, 20, F.serif, 700, 1.0, 'rgba(78,72,78,0.75)');
   }, { key: 'props.shrine.kenno' + i });
-  const kennoTex = ['山田商店', '桜ヶ丘町内会', '中村家', '鈴木工務店'].map(kenno);
+  const kennoTex = ['शर्मा किराना', 'Gulabi Nagar内会', '中村家', '鈴木工務店'].map(kenno);
 
   // red nobori 正一位稲荷大明神
   const nobori = (donor, i) => T.draw(128, 512, (g, w, h) => {
@@ -99,7 +99,7 @@ export function makeShrineTextures(ctx) {
     vtext(g, '正一位稲荷大明神', w / 2, 60, 46, F.brush, 700, 0.97, '#fbf6ee');
     ftext(g, donor, w / 2, h - 18, 110, 14, F.serif, 700, '#fbe9d8');
   }, { key: 'props.shrine.nobori' + i });
-  const noboriTex = ['桜ヶ丘町内会', '有志一同', '山本米店', '駅前商店会'].map(nobori);
+  const noboriTex = ['Gulabi Nagar内会', '有志一同', '山本米店', '駅前商店会'].map(nobori);
 
   // hokora doors (lattice + gold fittings)
   const doors = T.draw(256, 256, (g, w, h) => {
@@ -161,11 +161,11 @@ export function makeShrineTextures(ctx) {
       // lanterns row
       for (let i = 0; i < 7; i++) { g.fillStyle = '#e59a7a'; g.beginPath(); g.ellipse(30 + i * 50, 300, 16, 22, 0, 0, Math.PI * 2); g.fill(); }
       g.strokeStyle = '#3f3a48'; g.lineWidth = 2; g.beginPath(); g.moveTo(0, 276); g.quadraticCurveTo(pw / 2, 290, pw, 276); g.stroke();
-      ftext(g, '桜ヶ丘', pw / 2, 350, pw * 0.8, 44, F.brush, 700, '#f4ecdf');
+      ftext(g, 'गुलाबी नगर', pw / 2, 350, pw * 0.8, 44, F.brush, 700, '#f4ecdf');
       ftext(g, '夏まつり', pw / 2, 410, pw * 0.9, 76, F.brush, 700, '#fbe7c8');
       ftext(g, '令和7年 8月2日(土)・3日(日)', pw / 2, 466, pw * 0.9, 24, F.sans, 900, '#f4ecdf');
-      ftext(g, '盆踊り・夜店・花火　会場 桜ヶ丘稲荷神社／駅前広場', pw / 2, 498, pw * 0.94, 14, F.sans, 700, '#e8e0d4');
-      ftext(g, '主催 桜ヶ丘町内会', pw / 2, 522, pw * 0.8, 14, F.sans, 700, '#e8e0d4');
+      ftext(g, '盆踊り・夜店・花火　会場 Gulabi Nagar Mandir／Station Chowk', pw / 2, 498, pw * 0.94, 14, F.sans, 700, '#e8e0d4');
+      ftext(g, '主催 Gulabi Nagar内会', pw / 2, 522, pw * 0.8, 14, F.sans, 700, '#e8e0d4');
       g.fillStyle = 'rgba(246,238,222,0.42)'; g.fillRect(0, 0, pw, ph); // sun-faded
       g.fillStyle = 'rgba(246,238,222,0.3)'; g.fillRect(0, ph * 0.55, pw, ph * 0.45);
       g.fillStyle = '#e9e1d2'; g.beginPath(); g.moveTo(pw, ph); g.lineTo(pw - 44, ph); g.lineTo(pw, ph - 50); g.fill(); // curled corner
@@ -178,19 +178,19 @@ export function makeShrineTextures(ctx) {
       ftext(g, '桜まつり', pw / 2, 120, pw * 0.86, 58, F.brush, 700, '#c9557a');
       ftext(g, '4月4日(土)・5日(日)', pw / 2, 182, pw * 0.86, 26, F.sans, 900, '#5a4a5e');
       ftext(g, 'ぼんぼり点灯 18:00〜21:00', pw / 2, 218, pw * 0.86, 18, F.sans, 700, '#5a4a5e');
-      ftext(g, '駅前広場・桜川堤', pw / 2, 246, pw * 0.86, 18, F.sans, 700, '#5a4a5e');
+      ftext(g, 'Station Chowk・Gulabi堤', pw / 2, 246, pw * 0.86, 18, F.sans, 700, '#5a4a5e');
     }
     g.restore(); pin(440, 38, '#3f7bd0'); pin(712, 42, '#3f7bd0');
     // 3. 町内一斉清掃
     g.save(); g.translate(746, 36); g.rotate(-0.03);
     { const pw = 240, ph = 220; g.fillStyle = '#fbf8ef'; g.fillRect(0, 0, pw, ph);
       g.fillStyle = '#3f8f5b'; g.fillRect(0, 0, pw, 44);
-      ftext(g, 'お知らせ', pw / 2, 23, pw * 0.8, 26, F.sans, 900, '#ffffff');
+      ftext(g, 'NOTICE', pw / 2, 23, pw * 0.8, 26, F.sans, 900, '#ffffff');
       ftext(g, '町内一斉清掃', pw / 2, 78, pw * 0.9, 30, F.sans, 900, '#2f5a3f');
       ftext(g, '4月19日(日) 午前8時〜', pw / 2, 118, pw * 0.9, 18, F.sans, 700, '#3a3346');
       ftext(g, '集合：稲荷神社前', pw / 2, 146, pw * 0.9, 18, F.sans, 700, '#3a3346');
       ftext(g, '軍手・ごみ袋は用意します', pw / 2, 178, pw * 0.9, 14, F.sans, 500, '#3a3346');
-      ftext(g, '桜ヶ丘町内会', pw / 2, 202, pw * 0.9, 13, F.sans, 700, '#6d6a80');
+      ftext(g, 'Gulabi Nagar内会', pw / 2, 202, pw * 0.9, 13, F.sans, 700, '#6d6a80');
     }
     g.restore(); pin(868, 44, '#e8c547');
     // 4. 春の交通安全運動
@@ -204,7 +204,7 @@ export function makeShrineTextures(ctx) {
       g.fillStyle = '#f4d7c0'; g.beginPath(); g.arc(80, 170, 18, 0, Math.PI * 2); g.fill();
       g.fillStyle = '#3f7bd0'; rr(g, 60, 190, 40, 36, 8); g.fill();
       ftext(g, 'とび出し注意！', 200, 160, 170, 24, F.round, 900, '#3a3346');
-      ftext(g, '桜ヶ丘警察署', 200, 200, 170, 16, F.sans, 700, '#6d6a80');
+      ftext(g, 'गुलाबी नगर警察署', 200, 200, 170, 16, F.sans, 700, '#6d6a80');
     }
     g.restore(); pin(588, 368);
     // 5. 防犯パトロール (small)
@@ -217,13 +217,13 @@ export function makeShrineTextures(ctx) {
       ftext(g, '夕方の見守りに', pw / 2, 170, pw * 0.9, 18, F.sans, 700, '#3a3346');
       ftext(g, 'ご協力ください', pw / 2, 196, pw * 0.9, 18, F.sans, 700, '#3a3346');
       g.fillStyle = '#f2c230'; rr(g, 30, 230, pw - 60, 40, 8); g.fill();
-      ftext(g, '桜ヶ丘町 自治会', pw / 2, 250, pw * 0.8, 16, F.sans, 900, '#3a3346');
+      ftext(g, 'Gulabi Nagar 自治会', pw / 2, 250, pw * 0.8, 16, F.sans, 900, '#3a3346');
     }
     g.restore(); pin(876, 298, '#3f8f5b');
   }, { key: 'props.shrine.notice', anisotropy: 8 });
   const noticeHead = T.draw(512, 64, (g, w, h) => {
     g.fillStyle = '#5a4032'; g.fillRect(0, 0, w, h);
-    ftext(g, '桜ヶ丘町内会　掲示板', w / 2, h / 2 + 2, w * 0.9, 38, F.serif, 900, '#f3e6cc');
+    ftext(g, 'Gulabi Nagar内会　掲示板', w / 2, h / 2 + 2, w * 0.9, 38, F.serif, 900, '#f3e6cc');
   }, { key: 'props.shrine.noticehead' });
 
   // ema atlas: wish side (front) of 24 plaques + plain wood back
@@ -231,26 +231,26 @@ export function makeShrineTextures(ctx) {
     ['合格祈願', '第一志望に', '合格できますように', 'ゆうと'],
     ['家内安全', '家族みんなが', '元気で過ごせますように', '中村'],
     ['恋愛成就', '先輩と', 'もっと話せますように', 'み'],
-    ['商売繁盛', 'お店が', '長く続きますように', '山田商店'],
+    ['商売繁盛', 'お店が', '長く続きますように', 'शर्मा किराना'],
     ['無病息災', 'おばあちゃんが', 'ずっと元気でいますように', 'さくら'],
-    ['必勝祈願', '夏の大会で', '県大会に行けますように！', '桜ヶ丘中 野球部'],
+    ['必勝祈願', '夏の大会で', '県大会にTOけますように！', 'गुलाबी नगर中 野球部'],
     ['交通安全', '毎日の通学が', '安全でありますように', 'はると'],
     ['安産祈願', '元気な赤ちゃんが', '生まれますように', '佐藤'],
     ['学業成就', '数学のテストで', '80点とれますように', 'りこ'],
     ['心願成就', '絵がもっと', '上手になりますように', 'あおい'],
-    ['健康第一', 'ことしこそ', '禁煙できますように', 'パパ'],
+    ['健康第一', 'ことしこそ', 'NO SMOKINGできますように', 'パパ'],
     ['良縁祈願', 'すてきな人と', '出会えますように', 'K'],
     ['合格祈願', '看護学校に', '受かりますように', 'まい'],
     ['家内安全', 'ポチが', '長生きしますように', 'けんた'],
     ['諸願成就', '友だちと', 'また同じクラスに', 'ひな'],
     ['開運招福', 'いい一年に', 'なりますように', '鈴木'],
     ['学業成就', 'ピアノの発表会', 'うまくいきますように', 'ゆい'],
-    ['商売繁盛', '新しいパン屋が', 'うまくいきますように', 'ベーカリー 小春'],
+    ['商売繁盛', '新しいBREAD屋が', 'うまくいきますように', 'ベーカリー 小春'],
     ['無病息災', 'みんな', '笑顔でいられますように', '田中家'],
-    ['合格祈願', '運転免許', '一発合格！', 'そうた'],
+    ['合格祈願', 'SERVICE免許', '一発合格！', 'そうた'],
     ['心願成就', '東京の大学で', 'がんばれますように', 'れん'],
     ['縁結び', '大好きな人と', 'ずっと一緒に', 'M&S'],
-    ['必勝祈願', '吹奏楽コンクール', '金賞！', '桜ヶ丘高校'],
+    ['必勝祈願', '吹奏楽コンクール', '金賞！', 'गुलाबी नगर高校'],
     ['家内安全', '新しい家で', '仲よく暮らせますように', '小林'],
   ];
   const ema = T.draw(EMA.W, EMA.H, (g) => {

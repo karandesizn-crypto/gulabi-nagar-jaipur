@@ -1,4 +1,4 @@
-// environment/water.js — 桜川: toon water surface, rip-rap stones at the waterline, a low weir,
+// environment/water.js — Gulabi: toon water surface, rip-rap stones at the waterline, a low weir,
 // stepping stones, a small gravel bar and the road bridge far west (x≈-160).
 import * as L from '../layout.js';
 import { terrainH, vnoise, fbm, BRIDGE, smoothstep } from './common.js';
@@ -162,7 +162,7 @@ function buildBridge(ctx, tx) {
   const plate = ctx.tex.draw(256, 128, (g, w, h) => {
     g.fillStyle = '#8b8577'; g.fillRect(0, 0, w, h); g.fillStyle = '#e8e4d8';
     g.textAlign = 'center'; g.textBaseline = 'middle';
-    ctx.tex.fitText(g, '桜川橋', w / 2, h * 0.42, w * 0.86, 62, ctx.tex.FONTS.serif, 700);
+    ctx.tex.fitText(g, 'Gulabi橋', w / 2, h * 0.42, w * 0.86, 62, ctx.tex.FONTS.serif, 700);
     ctx.tex.fitText(g, 'さくらがわばし', w / 2, h * 0.82, w * 0.86, 22, ctx.tex.FONTS.serif, 700);
   }, { key: 'env-bridge-plate' });
   const pm = ctx.mat.toon('#ffffff', { map: plate, paint: 0.02 });

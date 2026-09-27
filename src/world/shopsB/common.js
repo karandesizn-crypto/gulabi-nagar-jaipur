@@ -24,6 +24,10 @@ export function createKit(ctx) {
   /** Vertical text; rotates long-vowel marks / wave dashes like real 縦書き. g.font must be set. */
   K.vtext = (g, text, x, y, size, gap = 1.04) => {
     g.textAlign = 'center'; g.textBaseline = 'middle';
+    if (/[\u0900-\u097f]/.test(text)) {
+      K.tex.fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, F.sans, 700);
+      return y + size * 2;
+    }
     let yy = y + size / 2;
     for (const ch of text) {
       if (ch === ' ' || ch === '　') { yy += size * 0.5; continue; }
@@ -739,7 +743,7 @@ export function createKit(ctx) {
     g.fillStyle = 'rgba(248,244,236,0.93)'; K.rr(g, 4, 4, w - 8, h - 8, 14); g.fill();
     g.strokeStyle = accent; g.lineWidth = 5; K.rr(g, 10, 10, w - 20, h - 20, 10); g.stroke();
     g.fillStyle = accent; K.rr(g, 10, 10, w - 20, 44, 10); g.fill();
-    K.text(g, '営業時間', w / 2, 33, w - 40, 30, F.round, 900, '#fbf6ee');
+    K.text(g, 'HOURS', w / 2, 33, w - 40, 30, F.round, 900, '#fbf6ee');
     lines.forEach((l, i) => K.text(g, l, w / 2, 82 + i * 38, w - 36, i === lines.length - 1 && lines.length > 2 ? 22 : 28, F.round, 700, '#3a3346'));
   }, 'sb-hours|' + lines.join('/'), false);
   K.cashless = () => draw(512, 160, (g, w, h) => {
@@ -747,15 +751,15 @@ export function createKit(ctx) {
     g.fillStyle = 'rgba(250,248,242,0.95)'; K.rr(g, 4, 4, w - 8, h - 8, 16); g.fill();
     g.strokeStyle = '#6a8bb8'; g.lineWidth = 4; K.rr(g, 8, 8, w - 16, h - 16, 12); g.stroke();
     K.text(g, '各種キャッシュレス決済 ご利用いただけます', w / 2, 34, w - 40, 26, F.sans, 700, '#2f4d7a');
-    const icons = [['IC', '#3f8f5b', '交通系IC'], ['QR', '#d9463b', 'QR決済'], ['CARD', '#2f64b5', 'クレジット'], ['e¥', '#e9a23b', '電子マネー']];
+    const icons = [['IC', '#3f8f5b', '交通系IC'], ['QR', '#d9463b', 'QR決済'], ['CARD', '#2f64b5', 'クレジット'], ['e₹', '#e9a23b', '電子マネー']];
     icons.forEach(([s, c, lab], i) => {
       const x = 22 + i * 122; g.fillStyle = c; K.rr(g, x, 56, 108, 60, 10); g.fill();
       K.text(g, s, x + 54, 87, 96, 34, F.en, 900, '#fbf7ee');
       K.text(g, lab, x + 54, 136, 110, 19, F.sans, 700, '#3a3346');
     });
   }, 'sb-cashless', false);
-  /** Hand-written 営業中 wooden plate. */
-  K.eigyoTex = (text = '営業中', sub = '') => draw(256, 128, (g, w, h) => {
+  /** Hand-written OPEN wooden plate. */
+  K.eigyoTex = (text = 'OPEN', sub = '') => draw(256, 128, (g, w, h) => {
     const r = rng('eigyo' + text);
     g.fillStyle = '#c9a57a'; K.rr(g, 0, 0, w, h, 14); g.fill();
     g.strokeStyle = 'rgba(90,60,40,0.25)'; g.lineWidth = 2; for (let i = 0; i < 12; i++) { const y = r() * h; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y + 6, w * 0.6, y - 6, w, y + 3); g.stroke(); }
@@ -764,11 +768,11 @@ export function createKit(ctx) {
     if (sub) K.text(g, sub, w / 2, h * 0.8, w - 50, 22, F.hand, 400, '#5a3a2a');
     g.fillStyle = '#3a3346'; g.beginPath(); g.arc(w / 2, 12, 4, 0, 7); g.fill();
   }, 'sb-eigyo|' + text + sub, false);
-  K.eigyoPlate = (parent, x, y, z, rotY = 0, text = '営業中', sub = '', scale = 1) => {
-    // reversible plate: 営業中 on the street side, 準備中 on the back (never mirrored text)
+  K.eigyoPlate = (parent, x, y, z, rotY = 0, text = 'OPEN', sub = '', scale = 1) => {
+    // reversible plate: OPEN on the street side, CLOSED on the back (never mirrored text)
     const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = rotY; parent.add(g);
     const m = K.plane(g, 0.3 * scale, 0.15 * scale, K.toonMemo('#ffffff', { map: K.eigyoTex(text, sub) }), [0, 0, 0.0015]);
-    K.plane(g, 0.3 * scale, 0.15 * scale, K.toonMemo('#ffffff', { map: K.eigyoTex('準備中', '') }), [0, 0, -0.0015], Math.PI);
+    K.plane(g, 0.3 * scale, 0.15 * scale, K.toonMemo('#ffffff', { map: K.eigyoTex('CLOSED', '') }), [0, 0, -0.0015], Math.PI);
     return m;
   };
 

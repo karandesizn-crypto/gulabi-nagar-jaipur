@@ -1,5 +1,5 @@
 // Trackside: corridor ground strips, cable troughs (トラフ), maintenance walkway, drainage channels,
-// corridor fences (古レール柵 + ネットフェンス) with colliders, 立入禁止 / 緊急連絡先 signs, signals with
+// corridor fences (古レール柵 + ネットフェンス) with colliders, NO ENTRY / 緊急連絡先 signs, signals with
 // red/green lamps (animated from services.rail), km posts, speed limit signs, equipment cabinets,
 // reflectors, spare rails and a stack of spare sleepers.
 import * as THREE from 'three';
@@ -179,7 +179,7 @@ export function buildTrackside(ctx, root, T, E, track, cat) {
   physics.addAABB(-17.5, -52.35, -17.2, -33.65, -2, 3);
   physics.addAABB(50.2, -52.35, 50.5, -33.65, -2, 3);
   physics.addAABB(-7.2, -46.5, -6.95, -39.5, -2, 3);
-  // walkable ballast top where the player can reach the tracks (crossing zone .. 構内踏切 / platform
+  // walkable ballast top where the player can reach the tracks (crossing zone .. 構内Level Crossing / platform
   // ramps): feet rest on the stones (y -0.02) instead of sinking to the corridor floor (-0.3)
   physics.addWalkBox((-17.2 + 50.2) / 2, -43, 50.2 + 17.2, 6.7, 0, -0.02);
 

@@ -1,4 +1,4 @@
-// E2 和菓子処 桜月堂 — interior: slanted-glass showcase with trays of individually modelled sweets,
+// E2 SWEETS मिष्ठान — interior: slanted-glass showcase with trays of individually modelled sweets,
 // register counter (register, abacus, calculator, coin tray), back hutch with wrapping station,
 // gift boxes & tea canisters, right-wall ceramics shelf (teapots, cups, plates on stands),
 // tea cabinet + tetsubin, pendulum clock, kamidana, wooden menu tags, inner noren to a tatami
@@ -7,9 +7,9 @@ import * as THREE from 'three';
 import { SWEETS, lacquerTray, fillTray, tentCard, sakuraBranch } from './sweets.js';
 import * as PR from './props.js';
 
-export const TEXTS = ['桜もち', '三色だんご', 'どら焼き', '柏もち', '豆大福', 'いちご大福', '草もち', '煉羊羹', '酒まんじゅう', '練り切り', 'もなか', 'みたらし',
-  '一八〇円', '一五〇円', '二〇〇円', '一六〇円', '二六〇円', '八〇〇円', '一三〇円', '二五〇円', '三〇〇円', '詰め合わせ', '御進物', '包装承ります', '桜月堂', '4月', '卯月',
-  '煎茶', '玄米茶', 'ほうじ茶', '抹茶', '桜', '湯呑', '急須', '日月火水木金土', '商売繁盛', '和菓子'];
+export const TEXTS = ['LADDU', 'BARFI', 'GHEWAR', 'PEDA', 'KALAKAND', 'GULAB JAMUN', 'PISTA BARFI', 'KAJU KATLI', 'JALEBI', '練り切り', 'もなか', 'みたらし',
+  '一八〇 Rs', '一五〇 Rs', '二〇〇 Rs', '一六〇 Rs', '二六〇 Rs', '八〇〇 Rs', '一三〇 Rs', '二五〇 Rs', '三〇〇 Rs', '詰め合わせ', '御進物', '包装承ります', 'मिष्ठान', '4月', '卯月',
+  '煎茶', '玄米茶', 'ほうじ茶', '抹茶', '桜', '湯呑', '急須', '日月火水木金土', '商売繁盛', 'MITHAI'];
 
 export function buildWagashiInterior(ctx, K, S, P) {
   const { FL, ZF, ZI, WT, X0, X1 } = P;
@@ -98,9 +98,9 @@ export function buildWagashiInterior(ctx, K, S, P) {
       fillTray(g, K, t.split, tx + hw / 2, y, trayZ, hw, d, t.cols / 2, t.rows, rnd);
       I.add('box', g, [tx, y, trayZ], [0.006, 0.012, d], '#6f8a4a');                       // bamboo-leaf divider (baran)
     } else fillTray(g, K, t.kind, tx, y, trayZ, w, d, t.cols, t.rows, rnd);
-    const names = { sakura: ['桜もち', '一八〇円'], dango: ['三色だんご', '一五〇円'], dora: ['どら焼き', '二〇〇円'], manju: ['酒まんじゅう', '一三〇円'], daifuku: ['豆大福', '一八〇円'], kashiwa: ['柏もち', '一六〇円'] };
+    const names = { sakura: ['LADDU', '一八〇 Rs'], dango: ['BARFI', '一五〇 Rs'], dora: ['GHEWAR', '二〇〇 Rs'], manju: ['JALEBI', '一三〇 Rs'], daifuku: ['KALAKAND', '一八〇 Rs'], kashiwa: ['PEDA', '一六〇 Rs'] };
     tentCard(g, K, tx - (t.split ? 0.1 : 0), bedY, -2.998, 0, cardTex(...names[t.kind], t.kind === 'sakura' ? '#fbe6ec' : '#fbf6ea'));
-    if (t.split) tentCard(g, K, tx + 0.12, bedY, -2.998, 0, cardTex(...({ ichigo: ['いちご大福', '二六〇円'], kusa: ['草もち', '一六〇円'] })[t.split]));
+    if (t.split) tentCard(g, K, tx + 0.12, bedY, -2.998, 0, cardTex(...({ ichigo: ['GULAB JAMUN', '二六〇 Rs'], kusa: ['PISTA BARFI', '一六〇 Rs'] })[t.split]));
   });
   // upper tier: yokan bars, sliced yokan, boxed assortments, monaka, nerikiri on dishes
   ['neri', 'sakura', 'matcha'].forEach((k, i) => SWEETS.yokan(g, K, bays[0] - 0.33 + i * 0.22, tierY, tierZ, 0, k));
@@ -108,8 +108,8 @@ export function buildWagashiInterior(ctx, K, S, P) {
   for (let i = 0; i < 2; i++) giftBox(g, K, bays[1] - 0.3 + i * 0.26, tierY, tierZ, 0.22, 0.05, 0.15, i + 2, 0);
   for (let i = 0; i < 4; i++) SWEETS.monaka(g, K, bays[1] + 0.16 + (i % 2) * 0.08, tierY, tierZ - 0.04 + Math.floor(i / 2) * 0.08, 0.3 * i);
   ['#f6c3d2', '#f4efe4', '#cfe0b0', '#f6c3d2'].forEach((c, i) => { const x = bays[2] - 0.33 + i * 0.22; I.add('dish', g, [x, tierY, tierZ], [0.1, 0.1, 0.1], '#e9e4d8'); SWEETS.nerikiri(g, K, x, tierY + 0.006, tierZ, i * 0.4, c); });
-  tentCard(g, K, bays[0], tierY, tierZ + 0.075, 0, cardTex('煉羊羹', '八〇〇円'));
-  tentCard(g, K, bays[2], tierY, tierZ + 0.075, 0, cardTex('練り切り', '二五〇円', '#fbe6ec'));
+  tentCard(g, K, bays[0], tierY, tierZ + 0.075, 0, cardTex('KAJU KATLI', '八〇〇 Rs'));
+  tentCard(g, K, bays[2], tierY, tierZ + 0.075, 0, cardTex('練り切り', '二五〇 Rs', '#fbe6ec'));
   sakuraBranch(g, K, -2.12, topY + 0.01, -3.3, 0.42, rnd);
 
   // ------------------------------------------------------------------ register counter (right end of the case)
@@ -173,7 +173,7 @@ export function buildWagashiInterior(ctx, K, S, P) {
   {
     const wg = PR.grp(g, xi0 + 0.02, 0, 0, Math.PI / 2);      // wall frame: local x = -world z, front +x
     B(0.035, 0.04, 1.75, iBeam, [xi0 + 0.035, FL + 2.33, -3.1]);
-    const tags = [['桜もち', '一八〇円'], ['三色だんご', '一五〇円'], ['どら焼き', '二〇〇円'], ['柏もち', '一六〇円'], ['豆大福', '一八〇円'], ['いちご大福', '二六〇円'], ['草もち', '一六〇円'], ['煉羊羹', '八〇〇円']];
+    const tags = [['LADDU', '一八〇 Rs'], ['BARFI', '一五〇 Rs'], ['GHEWAR', '二〇〇 Rs'], ['PEDA', '一六〇 Rs'], ['KALAKAND', '一八〇 Rs'], ['GULAB JAMUN', '二六〇 Rs'], ['PISTA BARFI', '一六〇 Rs'], ['KAJU KATLI', '八〇〇 Rs']];
     tags.forEach(([a, b], i) => {
       const lx = 2.35 + i * 0.2;                                   // local x → world z = -lx
       K.box(wg, 0.16, 0.42, 0.014, iWoodL, [lx, FL + 2.1, 0.02], [0, 0, 0.01 * (i % 3 - 1)]);
@@ -199,14 +199,14 @@ export function buildWagashiInterior(ctx, K, S, P) {
       I.add('box', sg, [x, 0.53, 0.06], [0.35, 0.012, 0.21], '#d9c296', [1.2, 0, 0]);          // lid leaning at the back
     }
     // L2: kyusu teapots + price cards
-    ['#8a5a44', '#6f7f5a', '#b7c7c9', '#4f5a78'].forEach((c, i) => { const x = -1.0 + i * 0.6; PR.kyusu(sg, K, x, 0.92, 0.22, -0.5 + i * 0.2, c); PR.yunomi(sg, K, x + 0.2, 0.92, 0.26, c, 0.07, 0.03); K.plane(sg, 0.1, 0.055, K.im('#ffffff', 0.35, { map: K.card(['急須', ['二八〇〇円', '三二〇〇円', '二五〇〇円', '四五〇〇円'][i]], { w: 128, h: 72, font: F.serif, fg: '#3a3346', fg2: '#a33a36' }) }), [x, 0.95, 0.415], 0, -0.2); });
+    ['#8a5a44', '#6f7f5a', '#b7c7c9', '#4f5a78'].forEach((c, i) => { const x = -1.0 + i * 0.6; PR.kyusu(sg, K, x, 0.92, 0.22, -0.5 + i * 0.2, c); PR.yunomi(sg, K, x + 0.2, 0.92, 0.26, c, 0.07, 0.03); K.plane(sg, 0.1, 0.055, K.im('#ffffff', 0.35, { map: K.card(['急須', ['二八〇〇 Rs', '三二〇〇 Rs', '二五〇〇 Rs', '四五〇〇 Rs'][i]], { w: 128, h: 72, font: F.serif, fg: '#3a3346', fg2: '#a33a36' }) }), [x, 0.95, 0.415], 0, -0.2); });
     // L3: tea canisters + standing tea packs
     for (let i = 0; i < 7; i++) teaCan(sg, K, -1.1 + i * 0.2, 1.38, 0.22, i + 1);
     for (let i = 0; i < 5; i++) I.add('pillow', sg, [0.36 + i * 0.17, 1.38, 0.2], [0.13, 0.2, 0.05], ['#6f9a6a', '#c98aa0', '#9a6a48', '#7fa36b', '#3e4d78'][i]);
     K.plane(sg, 0.36, 0.1, K.im('#ffffff', 0.35, { map: K.card(['煎茶 ・ ほうじ茶', '玄米茶 ・ 抹茶'], { w: 256, h: 72, font: F.serif, fg: '#3a3346', fg2: '#3f6a4a' }) }), [0.7, 1.43, 0.425], 0, -0.1);
     // top: large bowls & a vase
     for (let i = 0; i < 3; i++) I.add('bowl', sg, [-0.8 + i * 0.5, 1.9, 0.2], [0.24, 0.2, 0.24], ['#c8a27a', '#6b86a8', '#e9e4d8'][i]);
-    K.plane(g, 0.34, 0.2, K.im('#ffffff', 0.3, { map: K.card(['お茶', '器'], { w: 192, h: 112, font: F.brush, bg: '#efe6d2', size0: 44, size1: 38, fg: '#3a3346', fg2: '#3a3346' }) }), [xi1 - 0.026, FL + 2.2, -2.9], -Math.PI / 2);
+    K.plane(g, 0.34, 0.2, K.im('#ffffff', 0.3, { map: K.card(['CHAI', '器'], { w: 192, h: 112, font: F.brush, bg: '#efe6d2', size0: 44, size1: 38, fg: '#3a3346', fg2: '#3a3346' }) }), [xi1 - 0.026, FL + 2.2, -2.9], -Math.PI / 2);
     S.box(xi1 - 0.44, -4.2, xi1, -1.6, FL, FL + 1.95);
   }
 
@@ -418,7 +418,7 @@ function innerNorenTex(K) {
     g.fillStyle = '#f0ebe0'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#e9d4db'; g.fillRect(0, h - 40, w, 40);
     flower(g, w * 0.25, h * 0.46, 34, '#e38aa6'); flower(g, w * 0.75, h * 0.46, 34, '#e38aa6');
-    K.text(g, '桜月堂', w * 0.5, h - 20, w * 0.5, 26, K.F.serif, 700, '#8e3b56');
+    K.text(g, 'मिष्ठान', w * 0.5, h - 20, w * 0.5, 26, K.F.serif, 700, '#8e3b56');
   }, { key: 'sb-oug-innernoren2' });
 }
 function gakuTex(K) {

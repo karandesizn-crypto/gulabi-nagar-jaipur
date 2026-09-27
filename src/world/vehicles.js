@@ -86,7 +86,7 @@ export async function build(ctx) {
   ];
   S.konbiniBikes.forEach((p, i) => placeBike(p.x, p.z, p.rotY, { seed: 'konbini' + i, ...konbini[i % 2] }, 0.01));
   placeBike(S.bookstoreBike.x, S.bookstoreBike.z, S.bookstoreBike.rotY, { seed: 'book', color: BC.navy, basketColor: '#4c4a55', steer: -0.1, electric: true }, 0.01);
-  // bicycle shop (サイクル丸山): three new bikes with price tags
+  // bicycle shop (शर्मा साइकिल): three new bikes with price tags
   const newBikes = [
     { color: BC.mint, tag: 'tag1' }, { color: BC.cream, tag: 'tag2' }, { color: '#9cc0e6', tag: 'tag3' },
   ];
@@ -140,7 +140,7 @@ export async function build(ctx) {
     const towardWallIsPlusX = (lx * -dirX + lz * -dirZ) > 0;
     return placeBike(x, z, rotY, { stand: 'up', lean: towardWallIsPlusX ? -LEAN : LEAN, ...opts }, 0.005);
   };
-  // station staff bicycle shed (職員用駐輪場, station builds shed + front-wheel slots at x 22.75 + 0.62 i, z -32.5)
+  // station staff bicycle shed (職員用CYCLE PARKING, station builds shed + front-wheel slots at x 22.75 + 0.62 i, z -32.5)
   if (ctx.services.station) {
     const staff = [{ i: 0, color: BC.black, basketColor: '#4c4a55' }, { i: 2, color: BC.silver, electric: true }, { i: 3, color: BC.navy, saddleCover: '#8fb3d9', steer: 0.2 }];
     for (const s of staff) placeBike(22.75 + 0.62 * s.i, -31.98, Math.PI, { seed: 'staff' + s.i, sticker: null, ...s }, 0.004);

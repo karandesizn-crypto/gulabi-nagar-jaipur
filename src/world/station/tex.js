@@ -1,15 +1,15 @@
 // Station canvas textures: tiling surfaces + sign / poster / info atlases + foliage cards.
-// All text is natural Japanese; all brands are fictional (桜川電鉄, さくらパス …).
+// All text is natural Japanese; all brands are fictional (गुलाबी रेल, さくらパス …).
 import { makeAtlas } from './util.js';
 
-export const INK = { navy: '#223c6a', navy2: '#34507e', pink: '#ef9fbe', pinkDeep: '#d9718f', paper: '#ecebe6', cream: '#ebe4d4', ink: '#34303f', grey: '#7d7b86', yellow: '#efc53c', red: '#cf4a44', green: '#3f8f5b', blue: '#3a6fb8', sky: '#9cc4ea' };
+export const INK = { navy: '#223c6a', navy2: '#34507e', pink: '#dca443', pinkDeep: '#a34d36', paper: '#ecebe6', cream: '#ebe4d4', ink: '#34303f', grey: '#7d7b86', yellow: '#efc53c', red: '#cf4a44', green: '#3f8f5b', blue: '#3a6fb8', sky: '#9cc4ea' };
 
-// Stations of the 桜川線 (fictional). SK07 = this station.
+// Stations of the गुलाबी रेल (fictional). GN07 = this station.
 export const LINE = [
-  ['SK01', '桜川', 'さくらがわ', 'Sakuragawa'], ['SK02', '本町', 'ほんまち', 'Hommachi'], ['SK03', '緑ヶ丘', 'みどりがおか', 'Midorigaoka'],
-  ['SK04', '梅見坂', 'うめみざか', 'Umemizaka'], ['SK05', '若葉', 'わかば', 'Wakaba'], ['SK06', '花見台', 'はなみだい', 'Hanamidai'],
-  ['SK07', '桜ヶ丘', 'さくらがおか', 'Sakuragaoka'], ['SK08', '春日野', 'かすがの', 'Kasugano'], ['SK09', '雲雀野', 'ひばりの', 'Hibarino'],
-  ['SK10', '東山口', 'ひがしやまぐち', 'Higashi-Yamaguchi'], ['SK11', '若菜', 'わかな', 'Wakana'], ['SK12', '山桜', 'やまざくら', 'Yamazakura'],
+  ['GN01', 'आमेर', 'आमेर', 'Amer'], ['GN02', 'जल महल', 'जल महल', 'Jal Mahal'], ['GN03', 'हवा महल', 'हवा महल', 'Hawa Mahal'],
+  ['GN04', 'सिंधी कैंप', 'सिंधी कैंप', 'Sindhi Camp'], ['GN05', 'बड़ी चौपड़', 'बड़ी चौपड़', 'Badi Chaupar'], ['GN06', 'चाँदपोल', 'चाँदपोल', 'Chandpole'],
+  ['GN07', 'गुलाबी नगर', 'गुलाबी नगर', 'Gulabi Nagar'], ['GN08', 'सांगानेर', 'सांगानेर', 'Sanganer'], ['GN09', 'दुर्गापुरा', 'दुर्गापुरा', 'Durgapura'],
+  ['GN10', 'सीतापुरा', 'सीतापुरा', 'Sitapura'], ['GN11', 'जयसिंहपुरा', 'जयसिंहपुरा', 'Jaisinghpura'], ['GN12', 'बगरू', 'बगरू', 'Bagru'],
 ];
 const FARES = [290, 260, 230, 200, 170, 140, 0, 140, 170, 200, 230, 260];
 
@@ -24,6 +24,7 @@ export function createStationTextures(ctx) {
   }
   function spaced(g, s, x, y, size, color, gap, o = {}) { // letter-spaced centred text
     g.font = `${o.weight || 700} ${size}px ${o.font || F.sans}`;
+    if (/[\u0900-\u097f]/.test(s)) { T.fitText(g, s, x, y, 260, size, o.font || F.sans, o.weight || 700); return; }
     const chars = [...s]; const ws = chars.map(c => g.measureText(c).width);
     const total = ws.reduce((a, b) => a + b, 0) + gap * (chars.length - 1);
     let xx = x - total / 2; g.fillStyle = color; g.textAlign = 'left'; g.textBaseline = 'middle';
@@ -210,14 +211,14 @@ export function createStationTextures(ctx) {
   function ekimeihyo(g, W, H, left, right) {
     g.fillStyle = '#9aa0a8'; rr(g, 0, 0, W, H, 20); g.fill();
     g.fillStyle = '#eeede9'; rr(g, 6, 6, W - 12, H - 12, 16); g.fill();
-    txt(g, '桜川電鉄  桜川線', 36, 34, 22, INK.grey, { align: 'left', weight: 500 });
+    txt(g, 'गुलाबी रेल  गुलाबी रेल', 36, 34, 22, INK.grey, { align: 'left', weight: 500 });
     g.fillStyle = INK.pinkDeep; g.fillRect(36, 50, 110, 5);
     // station number box
     g.strokeStyle = INK.pinkDeep; g.lineWidth = 9; rr(g, 168, 64, 104, 104, 14); g.stroke();
     txt(g, 'SK', 220, 92, 28, INK.navy, { weight: 700 }); txt(g, '07', 220, 138, 52, INK.navy, { weight: 900 });
-    txt(g, '桜ヶ丘', W / 2 + 30, 124, 138, INK.navy, { weight: 900, maxW: 520 });
-    spaced(g, 'さくらがおか', W / 2 + 30, 212, 40, INK.navy, 14, { weight: 700, font: F.round });
-    spaced(g, 'Sakuragaoka', W / 2 + 30, 250, 30, '#4f5f7c', 5, { weight: 500, font: F.en });
+    txt(g, 'गुलाबी नगर', W / 2 + 30, 124, 138, INK.navy, { weight: 900, maxW: 520 });
+    spaced(g, 'गुलाबी नगर', W / 2 + 30, 212, 40, INK.navy, 14, { weight: 700, font: F.round });
+    spaced(g, 'Gulabi Nagar', W / 2 + 30, 250, 30, '#4f5f7c', 5, { weight: 500, font: F.en });
     // line colour stripe
     g.fillStyle = INK.pink; g.fillRect(6, 270, W - 12, 26);
     g.fillStyle = INK.pinkDeep; g.fillRect(6, 270, W - 12, 4); g.fillRect(6, 292, W - 12, 4);
@@ -246,21 +247,21 @@ export function createStationTextures(ctx) {
     g.fillStyle = INK.pink; g.fillRect(0, H - 8, W, 8);
   }
   const signs = makeAtlas(ctx, 'st-atlas-signs', 1024, [
-    { id: 'ekiN', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, prev, next) },   // read looking north: west (花見台) on the left
-    { id: 'ekiS', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, next, prev) },   // read looking south: east (春日野) on the left
-    { id: 'plat1', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 1, '花見台・桜川 方面', 'for Hanamidai / Sakuragawa') },
-    { id: 'plat2', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 2, '春日野・山桜 方面', 'for Kasugano / Yamazakura') },
-    { id: 'exitL', w: 500, h: 128, draw: (g, w, h) => { // 出口 (yellow) arrow pointing left
+    { id: 'ekiN', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, prev, next) },   // read looking north: west (चाँदपोल) on the left
+    { id: 'ekiS', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, next, prev) },   // read looking south: east (सांगानेर) on the left
+    { id: 'plat1', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 1, 'चाँदपोल・Gulabi BOUND', 'for Chandpole / Sakuragawa') },
+    { id: 'plat2', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 2, 'सांगानेर・山桜 BOUND', 'for Sanganer / Yamazakura') },
+    { id: 'exitL', w: 500, h: 128, draw: (g, w, h) => { // EXIT (yellow) arrow pointing left
       g.fillStyle = '#f0c63a'; rr(g, 0, 0, w, h, 10); g.fill();
       g.fillStyle = '#2f2c34'; g.beginPath(); g.moveTo(26, h / 2); g.lineTo(76, h / 2 - 34); g.lineTo(76, h / 2 - 14); g.lineTo(120, h / 2 - 14); g.lineTo(120, h / 2 + 14); g.lineTo(76, h / 2 + 14); g.lineTo(76, h / 2 + 34); g.fill();
-      txt(g, '出口', 230, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
+      txt(g, 'EXIT', 230, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
       txt(g, 'Exit', 230, h / 2 + 38, 22, '#2f2c34', { weight: 700 });
-      txt(g, '改札口', 400, h / 2 - 12, 34, '#2f2c34', { weight: 700 }); txt(g, 'Ticket Gate', 400, h / 2 + 26, 18, '#2f2c34', { weight: 500 });
+      txt(g, 'TICKETS', 400, h / 2 - 12, 34, '#2f2c34', { weight: 700 }); txt(g, 'Ticket Gate', 400, h / 2 + 26, 18, '#2f2c34', { weight: 500 });
     } },
     { id: 'toTrack2', w: 500, h: 128, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; rr(g, 0, 0, w, h, 10); g.fill();
-      txt(g, '2番線 春日野・山桜 方面', 210, h / 2 - 20, 30, '#f1efe9', { weight: 700, maxW: 380 });
-      txt(g, '構内踏切をお渡りください  Track 2 via crossing', 210, h / 2 + 22, 17, '#c9d3e6', { weight: 500, maxW: 380 });
+      txt(g, 'Platform 2 सांगानेर・山桜 BOUND', 210, h / 2 - 20, 30, '#f1efe9', { weight: 700, maxW: 380 });
+      txt(g, '構内Level Crossingをお渡りください  Track 2 via crossing', 210, h / 2 + 22, 17, '#c9d3e6', { weight: 500, maxW: 380 });
       g.fillStyle = '#f1efe9'; g.beginPath(); g.moveTo(w - 62, 16); g.lineTo(w - 24, 60); g.lineTo(w - 48, 60); g.lineTo(w - 48, 110); g.lineTo(w - 76, 110); g.lineTo(w - 76, 60); g.lineTo(w - 100, 60); g.fill();
       g.fillStyle = INK.pink; g.fillRect(0, h - 8, w, 8);
     } },
@@ -276,7 +277,7 @@ export function createStationTextures(ctx) {
       g.beginPath(); g.moveTo(c + Math.sin(a) * (c - 10), c - Math.cos(a) * (c - 10)); g.lineTo(c + Math.sin(a) * (c - (big ? 30 : 18)), c - Math.cos(a) * (c - (big ? 30 : 18))); g.stroke();
     }
     for (let i = 1; i <= 12; i++) { const a = i / 12 * Math.PI * 2; txt(g, String(i), c + Math.sin(a) * (c - 52), c - Math.cos(a) * (c - 52) + 2, 26, '#2d3550', { weight: 700 }); }
-    txt(g, '桜川電鉄', c, c + 44, 15, INK.pinkDeep, { weight: 700 });
+    txt(g, 'गुलाबी रेल', c, c + 44, 15, INK.pinkDeep, { weight: 700 });
     blossom(g, c, c - 42, 12);
   }
   const faceItems = [
@@ -285,43 +286,43 @@ export function createStationTextures(ctx) {
       g.strokeStyle = '#4a4550'; g.lineWidth = 6; g.strokeRect(3, 3, W - 6, H - 6);
       g.fillStyle = INK.pink; g.beginPath(); g.arc(86, H / 2, 54, 0, 7); g.fill();
       blossom(g, 86, H / 2, 46, '#fbe7ee', '#ffffff');
-      txt(g, '桜ヶ丘駅', 395, H / 2 + 6, 112, INK.navy, { weight: 700, font: F.serif, maxW: 470 });
-      spaced(g, 'さくらがおか', 812, 46, 36, INK.navy, 6, { weight: 700, font: F.round });
-      spaced(g, 'SAKURAGAOKA STATION', 812, 92, 24, '#4f5f7c', 3, { weight: 700, font: F.en });
+      txt(g, 'गुलाबी नगर स्टेशन', 395, H / 2 + 6, 112, INK.navy, { weight: 700, font: F.serif, maxW: 470 });
+      spaced(g, 'गुलाबी नगर', 812, 46, 36, INK.navy, 6, { weight: 700, font: F.round });
+      spaced(g, 'GULABI NAGAR STATION', 812, 92, 24, '#4f5f7c', 3, { weight: 700, font: F.en });
       g.fillStyle = INK.pink; g.fillRect(672, 116, 280, 5);
-      txt(g, '桜川電鉄  桜川線', 812, 140, 22, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी रेल  गुलाबी रेल', 812, 140, 22, INK.grey, { weight: 500 });
     } },
     { id: 'clock', w: 256, h: 256, draw: (g, w) => clockFace(g, w) },
     { id: 'ticketHead', w: 500, h: 96, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, h);
-      txt(g, 'きっぷ・ICチャージ', w / 2 - 40, h / 2 - 10, 38, '#f4f2ec', { weight: 700 });
+      txt(g, 'TICKET・ICチャージ', w / 2 - 40, h / 2 - 10, 38, '#f4f2ec', { weight: 700 });
       txt(g, 'Tickets / IC Card Charge', w / 2 - 40, h / 2 + 26, 17, '#c9d3e6', { weight: 500 });
       g.fillStyle = INK.pink; g.fillRect(w - 70, 20, 50, 56); txt(g, 'IC', w - 45, h / 2 + 2, 30, '#ffffff', { weight: 900 });
     } },
     { id: 'windowSign', w: 500, h: 96, draw: (g, w, h) => {
       g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); g.fillStyle = '#2b4574'; g.fillRect(0, 0, 14, h);
       txt(g, '駅務室  窓口', w / 2, h / 2 - 12, 38, INK.navy, { weight: 700 });
-      txt(g, 'きっぷ・定期券・お忘れ物のご相談', w / 2, h / 2 + 26, 19, INK.ink, { weight: 500 });
+      txt(g, 'TICKET・定期券・お忘れ物のご相談', w / 2, h / 2 + 26, 19, INK.ink, { weight: 500 });
     } },
     { id: 'fareAdj', w: 500, h: 96, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, h);
       txt(g, 'のりこし精算機', w / 2, h / 2 - 12, 38, '#f4f2ec', { weight: 700 }); txt(g, 'Fare Adjustment', w / 2, h / 2 + 26, 17, '#c9d3e6', { weight: 500 });
       g.fillStyle = INK.pink; g.fillRect(0, h - 6, w, 6);
     } },
-    { id: 'exitUp', w: 500, h: 128, draw: (g, w, h) => { // 出口 (yellow) arrow straight ahead
+    { id: 'exitUp', w: 500, h: 128, draw: (g, w, h) => { // EXIT (yellow) arrow straight ahead
       g.fillStyle = '#f0c63a'; rr(g, 0, 0, w, h, 10); g.fill();
       g.fillStyle = '#2f2c34'; g.beginPath(); g.moveTo(70, 18); g.lineTo(108, 62); g.lineTo(84, 62); g.lineTo(84, 110); g.lineTo(56, 110); g.lineTo(56, 62); g.lineTo(32, 62); g.fill();
-      txt(g, '出口', 220, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
+      txt(g, 'EXIT', 220, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
       txt(g, 'Exit', 220, h / 2 + 38, 22, '#2f2c34', { weight: 700 });
-      txt(g, '駅前広場・バス', 395, h / 2 - 12, 28, '#2f2c34', { weight: 700 }); txt(g, 'Station Square / Bus', 395, h / 2 + 26, 16, '#2f2c34', { weight: 500 });
+      txt(g, 'Station Chowk・バス', 395, h / 2 - 12, 28, '#2f2c34', { weight: 700 }); txt(g, 'Station Square / Bus', 395, h / 2 + 26, 16, '#2f2c34', { weight: 500 });
     } },
     { id: 'gateSign', w: 1016, h: 110, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, h);
-      txt(g, '改札口', 120, h / 2 - 8, 46, '#f4f2ec', { weight: 700 }); txt(g, 'Ticket Gate', 120, h / 2 + 32, 18, '#c9d3e6', { weight: 500 });
+      txt(g, 'TICKETS', 120, h / 2 - 8, 46, '#f4f2ec', { weight: 700 }); txt(g, 'Ticket Gate', 120, h / 2 + 32, 18, '#c9d3e6', { weight: 500 });
       g.fillStyle = '#eeede9'; g.beginPath(); g.arc(300, h / 2, 30, 0, 7); g.fill(); txt(g, '1', 300, h / 2 + 2, 40, '#2b4574', { weight: 900 });
-      txt(g, '花見台・桜川 方面', 470, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Hanamidai / Sakuragawa', 470, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
+      txt(g, 'चाँदपोल・Gulabi BOUND', 470, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Chandpole / Sakuragawa', 470, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
       g.fillStyle = '#eeede9'; g.beginPath(); g.arc(660, h / 2, 30, 0, 7); g.fill(); txt(g, '2', 660, h / 2 + 2, 40, '#2b4574', { weight: 900 });
-      txt(g, '春日野・山桜 方面', 830, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Kasugano / Yamazakura', 830, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
+      txt(g, 'सांगानेर・山桜 BOUND', 830, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Sanganer / Yamazakura', 830, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
       g.fillStyle = INK.pink; g.fillRect(0, h - 7, w, 7);
     } },
     { id: 'depBoard', w: 512, h: 170, draw: (g, w, h) => { // 発車標 (LED look)
@@ -334,34 +335,34 @@ export function createStationTextures(ctx) {
         txt(g, dest, 310, y, 28, col, { weight: 700 });
         txt(g, trk, 460, y, 26, '#f5e7a0', { weight: 700 });
       };
-      row(78, '#ffb36b', '普通', '16:08', '花見台・桜川', '1番線');
-      row(126, '#ffb36b', '普通', '16:12', '春日野・山桜', '2番線');
+      row(78, '#ffb36b', 'LOCAL', '16:08', 'चाँदपोल・Gulabi', 'Platform 1');
+      row(126, '#ffb36b', 'LOCAL', '16:12', 'सांगानेर・山桜', 'Platform 2');
       g.fillStyle = 'rgba(0,0,0,0.25)'; for (let y = 38; y < h; y += 4) g.fillRect(0, y, w, 1);
     } },
     { id: 'keepOut', w: 256, h: 190, draw: (g, w, h) => {
       g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.red; g.fillRect(0, 0, w, 58);
       txt(g, '危 険', w / 2, 30, 40, '#ffffff', { weight: 900 });
-      txt(g, '立入禁止', w / 2, 96, 48, INK.red, { weight: 900 });
+      txt(g, 'NO ENTRY', w / 2, 96, 48, INK.red, { weight: 900 });
       txt(g, 'KEEP OUT', w / 2, 138, 22, INK.ink, { weight: 700 });
-      txt(g, '桜川電鉄', w / 2, 170, 18, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी रेल', w / 2, 170, 18, INK.grey, { weight: 500 });
     } },
     { id: 'staffOnly', w: 256, h: 96, draw: (g, w, h) => {
       g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.red; g.fillRect(0, 0, w, 8);
-      txt(g, '関係者以外', w / 2, 36, 30, INK.red, { weight: 900 }); txt(g, '立入禁止', w / 2, 72, 30, INK.red, { weight: 900 });
+      txt(g, '関係者以外', w / 2, 36, 30, INK.red, { weight: 900 }); txt(g, 'NO ENTRY', w / 2, 72, 30, INK.red, { weight: 900 });
     } },
-    { id: 'crossWarn', w: 256, h: 330, draw: (g, w, h) => { // 構内踏切 sign
+    { id: 'crossWarn', w: 256, h: 330, draw: (g, w, h) => { // 構内Level Crossing sign
       g.fillStyle = '#f0c63a'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#2f2c34'; for (let i = -2; i < 12; i++) { g.beginPath(); g.moveTo(i * 36, 0); g.lineTo(i * 36 + 18, 0); g.lineTo(i * 36 - 22, 30); g.lineTo(i * 36 - 40, 30); g.fill(); }
       g.fillStyle = '#eeede9'; g.fillRect(12, 42, w - 24, h - 54);
-      txt(g, '構内踏切', w / 2, 80, 38, INK.ink, { weight: 900 });
+      txt(g, '構内Level Crossing', w / 2, 80, 38, INK.ink, { weight: 900 });
       txt(g, '列車に注意', w / 2, 142, 44, INK.red, { weight: 900 });
       txt(g, '左右確認', w / 2, 204, 44, INK.red, { weight: 900 });
       txt(g, '← 左 右 →', w / 2, 256, 28, INK.ink, { weight: 700 });
-      txt(g, '桜ヶ丘駅長', w / 2, 298, 18, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी नगर स्टेशन長', w / 2, 298, 18, INK.grey, { weight: 500 });
     } },
     { id: 'toilet', w: 500, h: 110, draw: (g, w, h) => {
       g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h);
-      txt(g, 'お手洗い', 150, h / 2 - 12, 42, INK.ink, { weight: 700 }); txt(g, 'Toilet', 150, h / 2 + 30, 20, INK.grey, { weight: 500 });
+      txt(g, 'TOILET', 150, h / 2 - 12, 42, INK.ink, { weight: 700 }); txt(g, 'Toilet', 150, h / 2 + 30, 20, INK.grey, { weight: 500 });
       const person = (x, col, skirt) => { g.fillStyle = col; g.beginPath(); g.arc(x, 30, 11, 0, 7); g.fill(); g.beginPath(); if (skirt) { g.moveTo(x - 16, 82); g.lineTo(x + 16, 82); g.lineTo(x + 7, 44); g.lineTo(x - 7, 44); } else g.rect(x - 11, 44, 22, 38); g.fill(); g.fillRect(x - 8, 82, 6, 18); g.fillRect(x + 2, 82, 6, 18); };
       person(330, '#3a6fb8', false); person(385, '#cf4a44', true);
       g.fillStyle = '#3f8f5b'; rr(g, 420, 18, 64, 74, 8); g.fill(); g.strokeStyle = '#ffffff'; g.lineWidth = 5; g.beginPath(); g.arc(452, 64, 18, 0.3, 5.2); g.stroke(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(452, 34, 7, 0, 7); g.fill();
@@ -378,27 +379,27 @@ export function createStationTextures(ctx) {
     { id: 'gateGo', w: 64, h: 64, draw: (g, w) => { g.fillStyle = '#1e2a26'; g.fillRect(0, 0, w, w); g.fillStyle = '#6ff09a'; g.beginPath(); g.moveTo(32, 8); g.lineTo(56, 34); g.lineTo(40, 34); g.lineTo(40, 56); g.lineTo(24, 56); g.lineTo(24, 34); g.lineTo(8, 34); g.fill(); } },
     { id: 'gateNo', w: 64, h: 64, draw: (g, w) => { g.fillStyle = '#2a1e22'; g.fillRect(0, 0, w, w); g.strokeStyle = '#ff6a6a'; g.lineWidth = 9; g.beginPath(); g.moveTo(14, 14); g.lineTo(50, 50); g.moveTo(50, 14); g.lineTo(14, 50); g.stroke(); } },
     { id: 'gateLabel', w: 160, h: 48, draw: (g, w, h) => { g.fillStyle = '#4b5060'; g.fillRect(0, 0, w, h); txt(g, 'IC専用', w / 2, h / 2 + 1, 26, '#f6d86a', { weight: 700 }); } },
-    { id: 'gateLabel2', w: 160, h: 48, draw: (g, w, h) => { g.fillStyle = '#4b5060'; g.fillRect(0, 0, w, h); txt(g, 'きっぷ・IC', w / 2, h / 2 + 1, 24, '#f4f2ec', { weight: 700 }); } },
-    { id: 'mannedGate', w: 256, h: 80, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); g.fillStyle = INK.green; g.fillRect(0, 0, w, 10); txt(g, '有人改札', w / 2, 38, 30, INK.ink, { weight: 700 }); txt(g, 'きっぷ回収・精算・車いす', w / 2, 64, 16, INK.grey, { weight: 500 }); } },
+    { id: 'gateLabel2', w: 160, h: 48, draw: (g, w, h) => { g.fillStyle = '#4b5060'; g.fillRect(0, 0, w, h); txt(g, 'TICKET・IC', w / 2, h / 2 + 1, 24, '#f4f2ec', { weight: 700 }); } },
+    { id: 'mannedGate', w: 256, h: 80, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); g.fillStyle = INK.green; g.fillRect(0, 0, w, 10); txt(g, '有人改札', w / 2, 38, 30, INK.ink, { weight: 700 }); txt(g, 'TICKET回収・精算・車いす', w / 2, 64, 16, INK.grey, { weight: 500 }); } },
     { id: 'northExit', w: 500, h: 128, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; rr(g, 0, 0, w, h, 10); g.fill();
       txt(g, '北口', 120, h / 2 - 8, 56, '#f4f2ec', { weight: 900 }); txt(g, 'North Exit', 120, h / 2 + 36, 18, '#c9d3e6', { weight: 500 });
-      txt(g, 'IC専用改札', 350, h / 2 - 16, 32, '#f6d86a', { weight: 700 }); txt(g, 'きっぷのお客さまは南口へ', 350, h / 2 + 24, 20, '#f4f2ec', { weight: 500 });
+      txt(g, 'IC専用改札', 350, h / 2 - 16, 32, '#f6d86a', { weight: 700 }); txt(g, 'TICKETのお客さまは南口へ', 350, h / 2 + 24, 20, '#f4f2ec', { weight: 500 });
       g.fillStyle = INK.pink; g.fillRect(0, h - 8, w, 8);
     } },
     { id: 'stopPos', w: 128, h: 160, draw: (g, w, h) => { g.fillStyle = '#2f2c34'; g.fillRect(0, 0, w, h); g.fillStyle = '#f0c63a'; g.fillRect(8, 8, w - 16, h - 16); txt(g, '2', w / 2, 70, 92, '#2f2c34', { weight: 900 }); txt(g, '両 停止位置', w / 2, 136, 20, '#2f2c34', { weight: 700 }); } },
-    { id: 'equipLabel', w: 160, h: 64, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); txt(g, '信号通信機器箱', w / 2, 24, 18, INK.ink, { weight: 700 }); txt(g, '桜川電鉄 電気区  No.07-3', w / 2, 48, 12, INK.grey, { weight: 500 }); } },
+    { id: 'equipLabel', w: 160, h: 64, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); txt(g, '信号通信機器箱', w / 2, 24, 18, INK.ink, { weight: 700 }); txt(g, 'गुलाबी रेल 電気区  No.07-3', w / 2, 48, 12, INK.grey, { weight: 500 }); } },
     { id: 'platNo1', w: 96, h: 96, draw: (g, w) => { g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, w); g.fillStyle = '#eeede9'; g.beginPath(); g.arc(48, 44, 30, 0, 7); g.fill(); txt(g, '1', 48, 46, 44, '#2b4574', { weight: 900 }); txt(g, '番線', 48, 86, 14, '#eeede9', { weight: 700 }); } },
     { id: 'platNo2', w: 96, h: 96, draw: (g, w) => { g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, w); g.fillStyle = '#eeede9'; g.beginPath(); g.arc(48, 44, 30, 0, 7); g.fill(); txt(g, '2', 48, 46, 44, '#2b4574', { weight: 900 }); txt(g, '番線', 48, 86, 14, '#eeede9', { weight: 700 }); } },
-    { id: 'welcome', w: 256, h: 128, draw: (g, w, h) => { g.fillStyle = '#b48a62'; rr(g, 0, 0, w, h, 16); g.fill(); g.fillStyle = '#ecdcc0'; rr(g, 8, 8, w - 16, h - 16, 12); g.fill(); txt(g, 'ようこそ', w / 2, 40, 30, '#8a4a52', { weight: 700, font: F.hand }); txt(g, '桜ヶ丘駅へ', w / 2, 84, 34, '#5a4032', { weight: 700, font: F.hand }); blossom(g, 30, 30, 12); blossom(g, w - 30, h - 30, 12); } },
-    { id: 'gardenSign', w: 256, h: 110, draw: (g, w, h) => { g.fillStyle = '#ecdcc0'; g.fillRect(0, 0, w, h); txt(g, '駅の花壇', w / 2, 30, 30, '#4d6457', { weight: 700, font: F.round }); txt(g, 'お手入れ：桜ヶ丘小学校', w / 2, 66, 17, '#5a4032', { weight: 500 }); txt(g, '緑化委員会のみなさん', w / 2, 90, 17, '#5a4032', { weight: 500 }); } },
-    { id: 'bikeNotice', w: 200, h: 140, draw: (g, w, h) => { g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.red; g.fillRect(0, 0, w, 30); txt(g, 'おねがい', w / 2, 16, 20, '#ffffff', { weight: 700 }); txt(g, 'ここに自転車を', w / 2, 58, 22, INK.ink, { weight: 700 }); txt(g, 'とめないでください', w / 2, 88, 22, INK.ink, { weight: 700 }); txt(g, '桜ヶ丘駅・桜ヶ丘町', w / 2, 122, 14, INK.grey, { weight: 500 }); } },
-    { id: 'gateBack', w: 1016, h: 100, draw: (g, w, h) => { g.fillStyle = '#e9e6dc'; g.fillRect(0, 0, w, h); g.fillStyle = INK.pink; g.fillRect(0, h - 10, w, 10); txt(g, 'ご乗車ありがとうございました', 340, h / 2 - 5, 42, INK.navy, { weight: 700, maxW: 620 }); txt(g, 'Thank you for riding the Sakuragawa Line', 676, h / 2 - 4, 20, INK.grey, { weight: 500, align: 'left', maxW: 320 }); } },
-    { id: 'wheelPlaque', w: 256, h: 112, draw: (g, w, h) => { g.fillStyle = '#6a5a48'; rr(g, 0, 0, w, h, 8); g.fill(); g.fillStyle = '#d9c9a4'; rr(g, 6, 6, w - 12, h - 12, 6); g.fill(); txt(g, '動輪の記念碑', w / 2, 30, 26, '#4a3a2c', { weight: 700, font: F.serif }); txt(g, 'モハ100形 旧桜川線を走った電車の車輪', w / 2, 62, 14, '#5a4a3a', { weight: 500 }); txt(g, '昭和三十二年～平成八年', w / 2, 86, 14, '#5a4a3a', { weight: 500 }); } },
-    { id: 'staffBike', w: 256, h: 72, draw: (g, w, h) => { g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.navy; g.fillRect(0, 0, w, 14); txt(g, '職員用駐輪場', w / 2, 38, 26, INK.ink, { weight: 700 }); txt(g, '関係者以外の駐輪はご遠慮ください', w / 2, 60, 12, INK.grey, { weight: 500 }); } },
+    { id: 'welcome', w: 256, h: 128, draw: (g, w, h) => { g.fillStyle = '#b48a62'; rr(g, 0, 0, w, h, 16); g.fill(); g.fillStyle = '#ecdcc0'; rr(g, 8, 8, w - 16, h - 16, 12); g.fill(); txt(g, 'ようこそ', w / 2, 40, 30, '#8a4a52', { weight: 700, font: F.hand }); txt(g, 'गुलाबी नगर स्टेशनへ', w / 2, 84, 34, '#5a4032', { weight: 700, font: F.hand }); blossom(g, 30, 30, 12); blossom(g, w - 30, h - 30, 12); } },
+    { id: 'gardenSign', w: 256, h: 110, draw: (g, w, h) => { g.fillStyle = '#ecdcc0'; g.fillRect(0, 0, w, h); txt(g, '駅の花壇', w / 2, 30, 30, '#4d6457', { weight: 700, font: F.round }); txt(g, 'お手入れ：गुलाबी नगर小学校', w / 2, 66, 17, '#5a4032', { weight: 500 }); txt(g, '緑化委員会のみなさん', w / 2, 90, 17, '#5a4032', { weight: 500 }); } },
+    { id: 'bikeNotice', w: 200, h: 140, draw: (g, w, h) => { g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.red; g.fillRect(0, 0, w, 30); txt(g, 'おねがい', w / 2, 16, 20, '#ffffff', { weight: 700 }); txt(g, 'ここにCYCLEを', w / 2, 58, 22, INK.ink, { weight: 700 }); txt(g, 'とめないでください', w / 2, 88, 22, INK.ink, { weight: 700 }); txt(g, 'गुलाबी नगर स्टेशन・Gulabi Nagar', w / 2, 122, 14, INK.grey, { weight: 500 }); } },
+    { id: 'gateBack', w: 1016, h: 100, draw: (g, w, h) => { g.fillStyle = '#e9e6dc'; g.fillRect(0, 0, w, h); g.fillStyle = INK.pink; g.fillRect(0, h - 10, w, 10); txt(g, 'ご乗車ありがとうございました', 340, h / 2 - 5, 42, INK.navy, { weight: 700, maxW: 620 }); txt(g, 'Thank you for riding the Pink City Line', 676, h / 2 - 4, 20, INK.grey, { weight: 500, align: 'left', maxW: 320 }); } },
+    { id: 'wheelPlaque', w: 256, h: 112, draw: (g, w, h) => { g.fillStyle = '#6a5a48'; rr(g, 0, 0, w, h, 8); g.fill(); g.fillStyle = '#d9c9a4'; rr(g, 6, 6, w - 12, h - 12, 6); g.fill(); txt(g, '動輪の記念碑', w / 2, 30, 26, '#4a3a2c', { weight: 700, font: F.serif }); txt(g, 'モハ100形 旧गुलाबी रेलを走った電車の車輪', w / 2, 62, 14, '#5a4a3a', { weight: 500 }); txt(g, '昭和三十二年～平成八年', w / 2, 86, 14, '#5a4a3a', { weight: 500 }); } },
+    { id: 'staffBike', w: 256, h: 72, draw: (g, w, h) => { g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, h); g.fillStyle = INK.navy; g.fillRect(0, 0, w, 14); txt(g, '職員用CYCLE PARKING', w / 2, 38, 26, INK.ink, { weight: 700 }); txt(g, '関係者以外の駐輪はご遠慮ください', w / 2, 60, 12, INK.grey, { weight: 500 }); } },
     { id: 'tapSign', w: 128, h: 64, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); g.fillStyle = INK.blue; g.fillRect(0, 0, 10, h); txt(g, '水飲み・手洗い', w / 2 + 5, 24, 15, INK.ink, { weight: 700 }); txt(g, '節水にご協力を', w / 2 + 5, 46, 12, INK.grey, { weight: 500 }); } },
     { id: 'shedLabel', w: 160, h: 48, draw: (g, w, h) => { g.fillStyle = '#e9e5da'; g.fillRect(0, 0, w, h); txt(g, '駅 用具入れ', w / 2, h / 2 + 1, 22, INK.ink, { weight: 700 }); } },
-    { id: 'shoeMat', w: 256, h: 128, draw: (g, w, h) => { g.fillStyle = '#56545c'; rr(g, 0, 0, w, h, 10); g.fill(); g.strokeStyle = '#6d6b74'; g.lineWidth = 3; for (let x = 12; x < w; x += 12) { g.beginPath(); g.moveTo(x, 10); g.lineTo(x, h - 10); g.stroke(); } txt(g, 'SAKURAGAOKA', w / 2, h / 2, 26, '#8e8b96', { weight: 700 }); } },
+    { id: 'shoeMat', w: 256, h: 128, draw: (g, w, h) => { g.fillStyle = '#56545c'; rr(g, 0, 0, w, h, 10); g.fill(); g.strokeStyle = '#6d6b74'; g.lineWidth = 3; for (let x = 12; x < w; x += 12) { g.beginPath(); g.moveTo(x, 10); g.lineTo(x, h - 10); g.stroke(); } txt(g, 'GULABI NAGAR', w / 2, h / 2, 26, '#8e8b96', { weight: 700 }); } },
   ];
 
   // ------------------------------------------------------------------ POSTERS atlas
@@ -410,32 +411,32 @@ export function createStationTextures(ctx) {
       g.fillStyle = '#8a6a5e'; g.fillRect(0, 150, w, 6);
       g.fillStyle = '#f5f0e6'; rr(g, 30, 190, 190, 40, 12); g.fill(); g.fillStyle = INK.pink; g.fillRect(30, 212, 190, 8); // little train
       g.fillStyle = '#9cc4ea'; for (let i = 0; i < 5; i++) g.fillRect(42 + i * 34, 196, 22, 12);
-      txt(g, '桜ヶ丘', w / 2, 262, 34, '#8a3a52', { weight: 900, font: F.round }); txt(g, 'さくらまつり', w / 2, 298, 32, '#c2456e', { weight: 900, font: F.round });
-      txt(g, '4月4日(土)・5日(日)  会場：桜川堤', w / 2, 326, 14, INK.ink, { weight: 700, maxW: 230 });
-      txt(g, '夜桜ライトアップ 18:00〜21:00 / 桜川電鉄', w / 2, 344, 11, INK.grey, { weight: 500, maxW: 230 });
+      txt(g, 'गुलाबी नगर', w / 2, 262, 34, '#8a3a52', { weight: 900, font: F.round }); txt(g, 'さくらまつり', w / 2, 298, 32, '#c2456e', { weight: 900, font: F.round });
+      txt(g, '4月4日(土)・5日(日)  会場：Gulabi堤', w / 2, 326, 14, INK.ink, { weight: 700, maxW: 230 });
+      txt(g, '夜桜ライトアップ 18:00〜21:00 / गुलाबी रेल', w / 2, 344, 11, INK.grey, { weight: 500, maxW: 230 });
     } },
     { id: 'safety', w: 250, h: 354, draw: (g, w, h) => {
       g.fillStyle = '#e8eef4'; g.fillRect(0, 0, w, h); g.fillStyle = '#3a6fb8'; g.fillRect(0, 0, w, 70);
-      txt(g, 'ホームでの', w / 2, 24, 22, '#ffffff', { weight: 700 }); txt(g, '歩きスマホは危険です', w / 2, 52, 22, '#ffffff', { weight: 900, maxW: 230 });
+      txt(g, 'ホームでの', w / 2, 24, 22, '#ffffff', { weight: 700 }); txt(g, '歩きスマホはDANGERです', w / 2, 52, 22, '#ffffff', { weight: 900, maxW: 230 });
       g.fillStyle = '#c6c5be'; g.fillRect(0, 230, w, 30); g.fillStyle = '#e3b93a'; g.fillRect(0, 222, w, 10); g.fillStyle = '#6c6e73'; g.fillRect(0, 260, w, 16);
       g.fillStyle = '#34507e'; g.beginPath(); g.arc(120, 110, 18, 0, 7); g.fill(); g.fillRect(104, 128, 32, 60); g.fillRect(106, 188, 10, 36); g.fillRect(124, 188, 10, 36);
       g.fillStyle = '#9cc4ea'; g.fillRect(138, 130, 14, 22);
       g.strokeStyle = INK.red; g.lineWidth = 8; g.beginPath(); g.arc(125, 160, 72, 0, 7); g.stroke(); g.beginPath(); g.moveTo(74, 109); g.lineTo(176, 211); g.stroke();
       txt(g, '黄色い線の内側で', w / 2, 300, 20, INK.ink, { weight: 700 }); txt(g, 'お待ちください', w / 2, 326, 20, INK.ink, { weight: 700 });
-      txt(g, '桜川電鉄', w / 2, 346, 12, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी रेल', w / 2, 346, 12, INK.grey, { weight: 500 });
     } },
     { id: 'festival', w: 250, h: 354, draw: (g, w, h) => {
       g.fillStyle = '#f1e7d3'; g.fillRect(0, 0, w, h); g.fillStyle = '#b8403a'; g.fillRect(0, 0, w, 16); g.fillRect(0, h - 16, w, 16);
       for (let i = 0; i < 5; i++) { const x = 30 + i * 47; g.strokeStyle = '#5a4032'; g.lineWidth = 1; g.beginPath(); g.moveTo(x, 16); g.lineTo(x, 34); g.stroke(); g.fillStyle = '#e25b4b'; g.beginPath(); g.ellipse(x, 52, 14, 19, 0, 0, 7); g.fill(); g.fillStyle = '#2f2c34'; g.fillRect(x - 8, 32, 16, 4); g.fillRect(x - 8, 68, 16, 4); }
       T.verticalText(g, '春の例大祭', 190, 90, 40, F.brush, 400);
-      txt(g, '桜ヶ丘町', 80, 110, 26, '#5a4032', { weight: 700, font: F.serif });
+      txt(g, 'Gulabi Nagar', 80, 110, 26, '#5a4032', { weight: 700, font: F.serif });
       txt(g, '神輿渡御', 80, 160, 30, '#b8403a', { weight: 700, font: F.serif });
       txt(g, '4月19日(日)', 80, 210, 22, INK.ink, { weight: 700 }); txt(g, '午前10時〜', 80, 238, 18, INK.ink, { weight: 500 });
-      txt(g, '子ども神輿・露店あり', w / 2, 300, 16, INK.ink, { weight: 700 }); txt(g, '主催 桜ヶ丘町内会', w / 2, 326, 14, INK.grey, { weight: 500 });
+      txt(g, '子ども神輿・露店あり', w / 2, 300, 16, INK.ink, { weight: 700 }); txt(g, '主催 Gulabi Nagar内会', w / 2, 326, 14, INK.grey, { weight: 500 });
     } },
     { id: 'stampRally', w: 250, h: 354, draw: (g, w, h) => {
       g.fillStyle = '#fff1d6'; g.fillRect(0, 0, w, h); g.fillStyle = '#8fd1c1'; g.fillRect(0, 0, w, 90);
-      txt(g, '桜川線', w / 2, 28, 24, '#2d5b52', { weight: 900, font: F.round }); txt(g, '春のスタンプラリー', w / 2, 62, 25, '#2d5b52', { weight: 900, font: F.round, maxW: 236 });
+      txt(g, 'गुलाबी रेल', w / 2, 28, 24, '#2d5b52', { weight: 900, font: F.round }); txt(g, '春のスタンプラリー', w / 2, 62, 25, '#2d5b52', { weight: 900, font: F.round, maxW: 236 });
       for (let i = 0; i < 12; i++) { const x = 34 + (i % 4) * 60, y = 124 + Math.floor(i / 4) * 56; g.strokeStyle = i === 6 ? INK.pinkDeep : '#c9b89a'; g.lineWidth = 3; g.beginPath(); g.arc(x, y, 22, 0, 7); g.stroke(); if (i === 6 || i < 3) { g.fillStyle = 'rgba(217,113,143,0.35)'; g.beginPath(); g.arc(x, y, 18, 0, 7); g.fill(); } txt(g, LINE[i][1], x, y + 1, 12, INK.ink, { weight: 700, maxW: 40 }); }
       txt(g, '全12駅のスタンプを', w / 2, 300, 18, INK.ink, { weight: 700 }); txt(g, 'あつめて記念品をもらおう！', w / 2, 326, 17, '#c2456e', { weight: 700, maxW: 236 });
     } },
@@ -444,7 +445,7 @@ export function createStationTextures(ctx) {
       txt(g, 'かけこみ乗車は', w / 2, 28, 24, '#2f2c34', { weight: 900 }); txt(g, 'おやめください', w / 2, 60, 24, '#2f2c34', { weight: 900 });
       g.fillStyle = '#f5f0e6'; g.fillRect(40, 110, 170, 140); g.fillStyle = '#8e959d'; g.fillRect(120, 110, 10, 140); g.fillStyle = INK.pink; g.fillRect(40, 200, 170, 12);
       g.fillStyle = '#34507e'; g.beginPath(); g.arc(90, 150, 14, 0, 7); g.fill(); g.fillRect(78, 164, 24, 44); g.save(); g.translate(96, 210); g.rotate(0.6); g.fillRect(0, 0, 9, 36); g.restore(); g.save(); g.translate(80, 210); g.rotate(-0.5); g.fillRect(0, 0, 9, 36); g.restore();
-      txt(g, 'ドアにはさまれると', w / 2, 284, 18, INK.ink, { weight: 700 }); txt(g, '大変危険です', w / 2, 310, 18, INK.ink, { weight: 700 }); txt(g, '桜川電鉄', w / 2, 340, 12, INK.grey, { weight: 500 });
+      txt(g, 'ドアにはさまれると', w / 2, 284, 18, INK.ink, { weight: 700 }); txt(g, '大変DANGERです', w / 2, 310, 18, INK.ink, { weight: 700 }); txt(g, 'गुलाबी रेल', w / 2, 340, 12, INK.grey, { weight: 500 });
     } },
     { id: 'hanamiMap', w: 354, h: 250, draw: (g, w, h) => {
       g.fillStyle = '#f3efe2'; g.fillRect(0, 0, w, h);
@@ -454,8 +455,8 @@ export function createStationTextures(ctx) {
       const r = ctx.rng('p-hanami');
       for (let i = 0; i < 18; i++) blossom(g, 10 + i * 19 + r() * 6, 70 + r() * 10, 7);
       for (let i = 0; i < 6; i++) blossom(g, 150 + r() * 70, 140 + r() * 90, 7);
-      g.fillStyle = INK.red; g.beginPath(); g.arc(178, 118, 7, 0, 7); g.fill(); txt(g, '桜ヶ丘駅', 222, 108, 13, INK.ink, { weight: 700 });
-      txt(g, '桜川堤 桜並木 約1.2km', 120, 92, 12, '#8a3a52', { weight: 700 });
+      g.fillStyle = INK.red; g.beginPath(); g.arc(178, 118, 7, 0, 7); g.fill(); txt(g, 'गुलाबी नगर स्टेशन', 222, 108, 13, INK.ink, { weight: 700 });
+      txt(g, 'Gulabi堤 桜並木 約1.2km', 120, 92, 12, '#8a3a52', { weight: 700 });
       txt(g, '神社', 260, 190, 12, INK.ink, { weight: 700 }); g.fillStyle = '#c94a3a'; g.fillRect(252, 168, 16, 10);
       g.fillStyle = 'rgba(255,255,255,0.8)'; rr(g, 8, 186, 138, 56, 8); g.fill();
       txt(g, 'さくら散歩マップ', 77, 204, 16, '#c2456e', { weight: 900, font: F.round }); txt(g, '見ごろ 3月下旬〜4月上旬', 77, 228, 11, INK.ink, { weight: 500 });
@@ -466,17 +467,17 @@ export function createStationTextures(ctx) {
       txt(g, 'ご注意ください', w / 2, 70, 24, INK.navy, { weight: 900 });
       txt(g, '傘・スマートフォン・定期券など', w / 2, 102, 13, INK.ink, { weight: 500 });
       txt(g, 'お忘れ物のお問い合わせは', w / 2, 128, 14, INK.ink, { weight: 700 }); txt(g, '駅係員までお申し出ください', w / 2, 150, 14, INK.ink, { weight: 700 });
-      txt(g, '桜川電鉄 お客さまセンター', w / 2, 169, 10, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी रेल お客さまセンター', w / 2, 169, 10, INK.grey, { weight: 500 });
     } },
     { id: 'noSmoking', w: 176, h: 176, draw: (g, w) => {
       g.fillStyle = '#eeede9'; g.fillRect(0, 0, w, w);
       g.fillStyle = '#6d6b74'; g.fillRect(40, 64, 90, 18); g.fillStyle = '#e8a26a'; g.fillRect(120, 64, 12, 18);
       g.strokeStyle = INK.red; g.lineWidth = 11; g.beginPath(); g.arc(88, 72, 52, 0, 7); g.stroke(); g.beginPath(); g.moveTo(51, 35); g.lineTo(125, 109); g.stroke();
-      txt(g, '禁煙', w / 2, 142, 30, INK.red, { weight: 900 }); txt(g, '駅構内・ホームは全面禁煙', w / 2, 166, 12, INK.ink, { weight: 700 });
+      txt(g, 'NO SMOKING', w / 2, 142, 30, INK.red, { weight: 900 }); txt(g, '駅構内・ホームは全面NO SMOKING', w / 2, 166, 12, INK.ink, { weight: 700 });
     } },
     { id: 'drawings', w: 500, h: 270, draw: (g, w, h) => { // children's drawings board
       g.fillStyle = '#d9c7a4'; g.fillRect(0, 0, w, h);
-      g.fillStyle = '#f4efe0'; g.fillRect(90, 6, 320, 34); txt(g, 'わたしのすきな さくらがおか', w / 2, 20, 20, '#c2456e', { weight: 700, font: F.hand }); txt(g, '〜 桜ヶ丘小学校 2年生 〜', w / 2, 36, 11, INK.ink, { weight: 500 });
+      g.fillStyle = '#f4efe0'; g.fillRect(90, 6, 320, 34); txt(g, 'わたしのすきな गुलाबी नगर', w / 2, 20, 20, '#c2456e', { weight: 700, font: F.hand }); txt(g, '〜 गुलाबी नगर小学校 2年生 〜', w / 2, 36, 11, INK.ink, { weight: 500 });
       const r = ctx.rng('p-draw');
       for (let i = 0; i < 6; i++) {
         const x = 12 + (i % 3) * 162, y = 50 + Math.floor(i / 3) * 110;
@@ -512,13 +513,13 @@ export function createStationTextures(ctx) {
         g.restore();
       };
       txt(g, '掲 示 板', w / 2, 16, 18, '#5a4032', { weight: 700 });
-      note(14, 34, 150, 118, '#f3f1ea', [['ダイヤ改正のお知らせ', 15], ['3月14日(土)より', 12, 22], ['一部列車の時刻が', 12, 18], ['変わります', 12, 18], ['桜川電鉄', 11, 20, INK.grey]], -0.03, '#d94a4a');
+      note(14, 34, 150, 118, '#f3f1ea', [['ダイヤ改正のNOTICE', 15], ['3月14日(土)より', 12, 22], ['一部列車の時刻が', 12, 18], ['変わります', 12, 18], ['गुलाबी रेल', 11, 20, INK.grey]], -0.03, '#d94a4a');
       note(178, 30, 140, 124, '#fdf0c8', [['迷い猫', 20], ['さがしています', 13, 22], ['三毛猫・メス 「みけ」', 12, 20], ['見かけた方は', 12, 18], ['駅員まで', 12, 18]], 0.04, '#3a6fb8');
       g.fillStyle = '#f0b060'; g.beginPath(); g.arc(250, 112, 12, 0, 7); g.fill(); // cat blob
-      note(334, 36, 150, 110, '#e3f0e3', [['清掃ボランティア', 15], ['桜川堤のごみ拾い', 12, 22], ['4月12日(日) 9:00', 12, 18], ['桜ヶ丘町内会', 11, 22, INK.grey]], -0.02, '#3f8f5b');
-      note(20, 170, 170, 110, '#f6e4ea', [['駅長おすすめ', 15, 20, '#c2456e'], ['桜川堤の桜が', 12, 22], ['見ごろです！', 13, 18], ['徒歩12分', 12, 20]], 0.03, '#e28aa6');
+      note(334, 36, 150, 110, '#e3f0e3', [['清掃ボランティア', 15], ['Gulabi堤のごみ拾い', 12, 22], ['4月12日(日) 9:00', 12, 18], ['Gulabi Nagar内会', 11, 22, INK.grey]], -0.02, '#3f8f5b');
+      note(20, 170, 170, 110, '#f6e4ea', [['Stationmasterおすすめ', 15, 20, '#c2456e'], ['Gulabi堤の桜が', 12, 22], ['見ごろです！', 13, 18], ['徒歩12分', 12, 20]], 0.03, '#e28aa6');
       note(206, 174, 124, 108, '#eeede9', [['落とし物', 16], ['水色の水筒', 12, 22], ['4/2 ホームにて', 12, 18], ['駅務室で保管中', 11, 20]], -0.05, '#f0c63a');
-      note(346, 166, 140, 118, '#e8eef7', [['桜ヶ丘図書館', 14], ['春のおはなし会', 13, 22], ['毎週土曜 14時', 12, 18], ['入場無料', 12, 20]], 0.02, '#d94a4a');
+      note(346, 166, 140, 118, '#e8eef7', [['गुलाबी नगर図書館', 14], ['春のおはなし会', 13, 22], ['毎週土曜 14時', 12, 18], ['入場FREE', 12, 20]], 0.02, '#d94a4a');
     } },
     { id: 'stampArt', w: 176, h: 176, draw: (g, w) => { // the station's commemorative stamp design (pink ink)
       g.fillStyle = '#f2efe6'; g.fillRect(0, 0, w, w);
@@ -528,12 +529,12 @@ export function createStationTextures(ctx) {
       g.fillStyle = '#f2efe6'; g.fillRect(c - 10, 88, 20, 16); g.fillRect(c - 36, 88, 14, 10); g.fillRect(c + 22, 88, 14, 10);
       g.fillStyle = col; g.fillRect(c - 60, 106, 120, 4);
       for (const [x, y] of [[40, 56], [134, 52], [52, 36], [124, 34]]) blossom(g, x, y, 11, col, '#f2efe6');
-      txt(g, '桜ヶ丘駅', c, 128, 22, col, { weight: 900, font: F.serif }); txt(g, '桜川電鉄 SK07', c, 150, 12, col, { weight: 700 });
+      txt(g, 'गुलाबी नगर स्टेशन', c, 128, 22, col, { weight: 900, font: F.serif }); txt(g, 'गुलाबी रेल GN07', c, 150, 12, col, { weight: 700 });
     } },
     { id: 'stampSign', w: 250, h: 120, draw: (g, w, h) => {
       g.fillStyle = '#f6e4ea'; rr(g, 0, 0, w, h, 12); g.fill(); g.strokeStyle = INK.pinkDeep; g.lineWidth = 4; rr(g, 4, 4, w - 8, h - 8, 10); g.stroke();
       txt(g, '記念スタンプ', w / 2, 34, 30, '#c2456e', { weight: 900, font: F.round });
-      txt(g, 'ご自由にどうぞ', w / 2, 70, 20, INK.ink, { weight: 700 }); txt(g, '押したあとはフタをしめてね', w / 2, 98, 14, INK.grey, { weight: 500 });
+      txt(g, 'PLEASE USE', w / 2, 70, 20, INK.ink, { weight: 700 }); txt(g, '押したあとはフタをしめてね', w / 2, 98, 14, INK.grey, { weight: 500 });
     } },
     { id: 'notebook', w: 120, h: 90, draw: (g, w, h) => { g.fillStyle = '#e6d3a8'; g.fillRect(0, 0, w, h); g.fillStyle = '#b8403a'; g.fillRect(0, 0, 12, h); txt(g, '来訪記念', 66, 30, 18, '#5a4032', { weight: 700 }); txt(g, 'ノート', 66, 54, 16, '#5a4032', { weight: 700 }); txt(g, 'No.14', 66, 76, 11, INK.grey, { weight: 500 }); } },
     { id: 'notePage', w: 120, h: 90, draw: (g, w, h) => { g.fillStyle = '#f2efe6'; g.fillRect(0, 0, w, h); g.strokeStyle = '#b8c8dc'; g.lineWidth = 1; for (let y = 14; y < h; y += 10) { g.beginPath(); g.moveTo(4, y); g.lineTo(w - 4, y); g.stroke(); } g.strokeStyle = '#555c70'; g.lineWidth = 1.2; const r = ctx.rng('p-notes'); for (let y = 12; y < h - 6; y += 10) { g.beginPath(); let x = 8; g.moveTo(x, y); while (x < w - 10 - r() * 30) { x += 3 + r() * 4; g.lineTo(x, y - 1 - r() * 3); g.lineTo(x + 1, y); } g.stroke(); } g.strokeStyle = 'rgba(196,80,110,0.7)'; g.lineWidth = 2; g.beginPath(); g.arc(90, 58, 14, 0, 7); g.stroke(); } },
@@ -558,13 +559,13 @@ export function createStationTextures(ctx) {
       for (let i = 0; i < 30; i++) { const c = i % 7, rw = Math.floor(i / 7); txt(g, String(i + 1), 14 + c * 15, 104 + rw * 13, 9, c === 0 ? INK.red : INK.ink, { weight: 500 }); }
     } },
     { id: 'freePaper', w: 128, h: 176, draw: (g, w, h) => { g.fillStyle = '#eef6ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#8fd1c1'; g.fillRect(0, 0, w, 44); txt(g, 'さくらライン', w / 2, 22, 18, '#2d5b52', { weight: 900, font: F.round }); txt(g, '4月号', w / 2, 60, 14, INK.ink, { weight: 700 }); blossom(g, 64, 110, 30); txt(g, '沿線おでかけ情報', w / 2, 160, 12, INK.ink, { weight: 700 }); } },
-    { id: 'wantedPoster', w: 176, h: 250, draw: (g, w, h) => { // platform: 桜川線 おでかけ
+    { id: 'wantedPoster', w: 176, h: 250, draw: (g, w, h) => { // platform: गुलाबी रेल おでかけ
       const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#bfe0f2'); gr.addColorStop(1, '#f7e8c9'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
       g.fillStyle = '#a3c48a'; g.beginPath(); g.moveTo(0, 150); g.bezierCurveTo(50, 110, 120, 130, w, 100); g.lineTo(w, h); g.lineTo(0, h); g.fill();
       g.fillStyle = '#f5f0e6'; rr(g, 20, 150, 136, 30, 10); g.fill(); g.fillStyle = INK.pink; g.fillRect(20, 168, 136, 6);
-      txt(g, '春日野の', w / 2, 36, 20, '#2d5b52', { weight: 900, font: F.round }); txt(g, '菜の花畑へ', w / 2, 66, 24, '#c28a1a', { weight: 900, font: F.round });
+      txt(g, 'सांगानेरの', w / 2, 36, 20, '#2d5b52', { weight: 900, font: F.round }); txt(g, '菜の花畑へ', w / 2, 66, 24, '#c28a1a', { weight: 900, font: F.round });
       g.fillStyle = '#f2d24a'; const r = ctx.rng('p-nano'); for (let i = 0; i < 40; i++) { g.beginPath(); g.arc(r() * w, 196 + r() * 50, 3 + r() * 3, 0, 7); g.fill(); }
-      txt(g, '桜ヶ丘から1駅 4分', w / 2, 238, 13, INK.ink, { weight: 700 });
+      txt(g, 'गुलाबी नगरから1駅 4分', w / 2, 238, 13, INK.ink, { weight: 700 });
     } },
   ];
 
@@ -573,7 +574,7 @@ export function createStationTextures(ctx) {
     g.fillStyle = '#eeede8'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#2b4574'; g.fillRect(0, 0, W, 54);
     txt(g, '運賃表', 90, 28, 34, '#f4f2ec', { weight: 900 }); txt(g, 'Fare Chart', 210, 32, 18, '#c9d3e6', { weight: 500 });
-    txt(g, '桜川電鉄 桜川線　（おとな / こどもは半額）', 640, 28, 22, '#f4f2ec', { weight: 700 });
+    txt(g, 'गुलाबी रेल गुलाबी रेल　（ADULT / CHILDは半額）', 640, 28, 22, '#f4f2ec', { weight: 700 });
     const y = 210, x0 = 60, x1 = W - 60, step = (x1 - x0) / 11;
     g.strokeStyle = INK.pink; g.lineWidth = 16; g.lineCap = 'round'; g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke();
     g.strokeStyle = INK.pinkDeep; g.lineWidth = 3; g.beginPath(); g.moveTo(x0, y - 8); g.lineTo(x1, y - 8); g.stroke();
@@ -582,20 +583,20 @@ export function createStationTextures(ctx) {
       g.fillStyle = here ? INK.red : '#ffffff'; g.strokeStyle = INK.navy; g.lineWidth = 4;
       g.beginPath(); g.arc(x, y, here ? 15 : 11, 0, 7); g.fill(); g.stroke();
       // fare bubble above
-      if (!here) { g.fillStyle = '#ffffff'; g.strokeStyle = '#8e959d'; g.lineWidth = 2; rr(g, x - 36, 90, 72, 50, 10); g.fill(); g.stroke(); txt(g, String(FARES[i]), x, 108, 26, INK.navy, { weight: 900 }); txt(g, `こども ${FARES[i] / 2 | 0}`, x, 130, 12, INK.grey, { weight: 500 }); }
+      if (!here) { g.fillStyle = '#ffffff'; g.strokeStyle = '#8e959d'; g.lineWidth = 2; rr(g, x - 36, 90, 72, 50, 10); g.fill(); g.stroke(); txt(g, String(FARES[i]), x, 108, 26, INK.navy, { weight: 900 }); txt(g, `CHILD ${FARES[i] / 2 | 0}`, x, 130, 12, INK.grey, { weight: 500 }); }
       else { g.fillStyle = INK.red; rr(g, x - 44, 88, 88, 54, 10); g.fill(); txt(g, '現在地', x, 106, 20, '#ffffff', { weight: 900 }); txt(g, 'You are here', x, 128, 11, '#ffe8e8', { weight: 500 }); }
       g.save(); g.translate(x, y + 26); g.fillStyle = INK.ink;
       T.verticalText(g, s[1], 0, 0, here ? 30 : 24, F.sans, 700);
       g.restore();
       txt(g, s[0], x, H - 24, 14, INK.grey, { weight: 500 });
     });
-    txt(g, '← 花見台・桜川 方面', 170, 172, 18, INK.navy, { weight: 700 }); txt(g, '春日野・山桜 方面 →', W - 170, 172, 18, INK.navy, { weight: 700 });
-    txt(g, '単位：円', W - 60, 72, 14, INK.grey, { weight: 500 });
-    txt(g, '桜川 のりかえ：湾岸線・バス', 120, H - 52, 13, INK.ink, { align: 'left', weight: 500 });
+    txt(g, '← चाँदपोल・Gulabi BOUND', 170, 172, 18, INK.navy, { weight: 700 }); txt(g, 'सांगानेर・山桜 BOUND →', W - 170, 172, 18, INK.navy, { weight: 700 });
+    txt(g, '単位： Rs', W - 60, 72, 14, INK.grey, { weight: 500 });
+    txt(g, 'Gulabi のりかえ：湾岸線・バス', 120, H - 52, 13, INK.ink, { align: 'left', weight: 500 });
   }
   function routeMap(g, W, H) {
     g.fillStyle = '#f1efe8'; g.fillRect(0, 0, W, H);
-    txt(g, '桜川線 路線図', 120, 30, 28, INK.navy, { weight: 900 }); txt(g, 'Sakuragawa Line  Route Map', 330, 34, 16, INK.grey, { weight: 500 });
+    txt(g, 'गुलाबी रेल 路線図', 120, 30, 28, INK.navy, { weight: 900 }); txt(g, 'Pink City Line  Route Map', 330, 34, 16, INK.grey, { weight: 500 });
     // wavy line with the river
     g.fillStyle = '#b9d6ec'; g.beginPath(); g.moveTo(0, 70); g.bezierCurveTo(300, 50, 600, 100, W, 64); g.lineTo(W, 84); g.bezierCurveTo(600, 118, 300, 70, 0, 90); g.fill();
     txt(g, '桜 川', 520, 82, 14, '#5b86b0', { weight: 700 });
@@ -607,8 +608,8 @@ export function createStationTextures(ctx) {
       txt(g, s[1], x, y + (i % 2 ? -30 : 34), here ? 22 : 17, here ? INK.red : INK.ink, { weight: 700 });
       txt(g, s[0], x, y + (i % 2 ? -52 : 56), 11, INK.grey, { weight: 500 });
     });
-    txt(g, 'SK01 桜川 のりかえ 湾岸線', 150, H - 20, 13, INK.ink, { weight: 500 });
-    txt(g, '全駅 各駅停車 約20分間隔で運転', W - 200, H - 20, 13, INK.ink, { weight: 500 });
+    txt(g, 'GN01 Gulabi のりかえ 湾岸線', 150, H - 20, 13, INK.ink, { weight: 500 });
+    txt(g, '全駅 各駅停車 約20分間隔でSERVICE', W - 200, H - 20, 13, INK.ink, { weight: 500 });
     g.fillStyle = INK.pink; g.fillRect(0, H - 6, W, 6);
   }
   function areaMap(g, W, H) {
@@ -621,13 +622,13 @@ export function createStationTextures(ctx) {
     g.fillStyle = '#e4dccb'; for (let i = 0; i < 26; i++) { const x = 20 + r() * (W - 40), y = 110 + r() * 50; g.fillRect(x, y, 16 + r() * 16, 12 + r() * 8); }
     g.fillStyle = '#ffffff'; g.fillRect(0, 170, W, 12); txt(g, '線路北の道', 440, 176, 11, INK.grey, { weight: 500 });
     g.fillStyle = '#9aa1a8'; g.fillRect(0, 192, W, 16); g.fillStyle = INK.pink; g.fillRect(0, 198, W, 4);
-    g.fillStyle = '#ffffff'; g.fillRect(110, 110, 12, H - 110); txt(g, '踏切', 150, 214, 12, INK.ink, { weight: 700 });
-    g.fillStyle = '#e8c4a8'; g.fillRect(200, 208, 90, 30); txt(g, '桜ヶ丘駅', 245, 224, 15, INK.ink, { weight: 900 });
-    g.fillStyle = '#d8d4c8'; g.fillRect(170, 240, 160, 50); txt(g, '駅前広場', 250, 262, 13, INK.ink, { weight: 700 }); blossom(g, 196, 264, 10);
+    g.fillStyle = '#ffffff'; g.fillRect(110, 110, 12, H - 110); txt(g, 'Level Crossing', 150, 214, 12, INK.ink, { weight: 700 });
+    g.fillStyle = '#e8c4a8'; g.fillRect(200, 208, 90, 30); txt(g, 'गुलाबी नगर स्टेशन', 245, 224, 15, INK.ink, { weight: 900 });
+    g.fillStyle = '#d8d4c8'; g.fillRect(170, 240, 160, 50); txt(g, 'Station Chowk', 250, 262, 13, INK.ink, { weight: 700 }); blossom(g, 196, 264, 10);
     g.fillStyle = '#ffffff'; g.fillRect(0, 292, W, 14); g.fillRect(232, 306, 16, H - 306);
-    txt(g, '駅前通り', 420, 300, 11, INK.grey, { weight: 500 }); txt(g, '商店街', 272, 356, 13, INK.ink, { weight: 700 });
+    txt(g, 'Station Road', 420, 300, 11, INK.grey, { weight: 500 }); txt(g, 'Gulabi Bazaar', 272, 356, 13, INK.ink, { weight: 700 });
     const pin = (x, y, label, col) => { g.fillStyle = col; g.beginPath(); g.arc(x, y, 7, 0, 7); g.fill(); txt(g, label, x + 10, y, 12, INK.ink, { align: 'left', weight: 700 }); };
-    pin(214, 324, 'コンビニ', '#3a6fb8'); pin(262, 318, '喫茶店', '#8a6446'); pin(214, 346, '花屋', '#d9718f'); pin(262, 342, '和菓子', '#c94a3a');
+    pin(214, 324, 'KIRANA', '#3a6fb8'); pin(262, 318, 'चाय店', '#8a6446'); pin(214, 346, 'फूल', '#d9718f'); pin(262, 342, 'MITHAI', '#c94a3a');
     pin(262, 366, '神社', '#c94a3a'); pin(214, 370, '書店', '#3f8f5b'); pin(360, 250, 'バス停', '#3a6fb8'); pin(360, 274, 'タクシー', '#e9a23b');
     pin(60, 140, '北口', '#2b4574');
     g.fillStyle = INK.red; g.beginPath(); g.moveTo(245, 244); g.lineTo(236, 232); g.arc(245, 230, 10, Math.PI * 0.8, Math.PI * 0.2); g.fill(); txt(g, '現在地', 245, 196 - 10, 12, INK.red, { weight: 900 });
@@ -636,7 +637,7 @@ export function createStationTextures(ctx) {
   function timetable(g, W, H, trackNo, dest, seed) {
     g.fillStyle = '#eeede8'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#2b4574'; g.fillRect(0, 0, W, 62);
-    txt(g, `桜ヶ丘駅  ${trackNo}番線`, W / 2, 20, 18, '#f4f2ec', { weight: 700 }); txt(g, `${dest} 方面`, W / 2, 44, 18, '#f4f2ec', { weight: 700 });
+    txt(g, `गुलाबी नगर स्टेशन  ${trackNo}番線`, W / 2, 20, 18, '#f4f2ec', { weight: 700 }); txt(g, `${dest} BOUND`, W / 2, 44, 18, '#f4f2ec', { weight: 700 });
     g.fillStyle = '#f2b5c8'; g.fillRect(0, 62, W, 18); txt(g, '平 日   Weekdays', W / 2, 71, 12, INK.ink, { weight: 700 });
     const r = ctx.rng(seed);
     const rows = []; for (let h = 5; h <= 23; h++) rows.push(h);
@@ -657,16 +658,16 @@ export function createStationTextures(ctx) {
     g.fillStyle = '#b3c3d0'; g.fillRect(0, 0, W, 6);
     // coin slot area
     g.fillStyle = '#e8eef2'; rr(g, 14, 16, 104, 70, 8); g.fill(); txt(g, '硬貨', 66, 30, 14, INK.ink, { weight: 700 });
-    g.fillStyle = '#3b3d46'; rr(g, 30, 44, 72, 12, 5); g.fill(); txt(g, '10・50・100・500円', 66, 72, 10, INK.grey, { weight: 500 });
+    g.fillStyle = '#3b3d46'; rr(g, 30, 44, 72, 12, 5); g.fill(); txt(g, '10・50・100・500 Rs', 66, 72, 10, INK.grey, { weight: 500 });
     // bill slot
     g.fillStyle = '#e8eef2'; rr(g, 134, 16, 108, 70, 8); g.fill(); txt(g, '紙幣', 188, 30, 14, INK.ink, { weight: 700 });
-    g.fillStyle = '#3b3d46'; rr(g, 146, 44, 84, 10, 4); g.fill(); txt(g, '千円・五千円・一万円', 188, 72, 10, INK.grey, { weight: 500 });
+    g.fillStyle = '#3b3d46'; rr(g, 146, 44, 84, 10, 4); g.fill(); txt(g, '千 Rs・五千 Rs・一万 Rs', 188, 72, 10, INK.grey, { weight: 500 });
     // IC card slot
     g.fillStyle = '#e8eef2'; rr(g, 14, 98, 228, 56, 8); g.fill(); g.fillStyle = INK.pink; rr(g, 24, 110, 46, 32, 6); g.fill(); txt(g, 'IC', 47, 127, 18, '#fff', { weight: 900 });
     txt(g, 'さくらパス チャージ', 150, 118, 14, INK.ink, { weight: 700 }); g.fillStyle = '#3b3d46'; rr(g, 96, 132, 108, 8, 3); g.fill();
     // outlets
-    g.fillStyle = '#e8eef2'; rr(g, 14, 166, 228, 30, 8); g.fill(); txt(g, 'きっぷ・領収書 取出口', 128, 181, 14, INK.ink, { weight: 700 });
-    g.fillStyle = '#e8eef2'; rr(g, 14, 236, 228, 30, 8); g.fill(); txt(g, 'おつり・硬貨 取出口', 128, 251, 14, INK.ink, { weight: 700 });
+    g.fillStyle = '#e8eef2'; rr(g, 14, 166, 228, 30, 8); g.fill(); txt(g, 'TICKET・領収書 取EXIT', 128, 181, 14, INK.ink, { weight: 700 });
+    g.fillStyle = '#e8eef2'; rr(g, 14, 236, 228, 30, 8); g.fill(); txt(g, 'おつり・硬貨 取EXIT', 128, 251, 14, INK.ink, { weight: 700 });
     g.fillStyle = '#e1b54a'; g.beginPath(); g.arc(226, 300, 14, 0, 7); g.fill(); txt(g, '呼出', 226, 301, 11, '#2f2c34', { weight: 900 }); txt(g, '係員呼出', 170, 301, 12, INK.ink, { weight: 700 });
     g.fillStyle = '#8fa3b3'; for (let y = 330; y < H - 10; y += 9) g.fillRect(20, y, W - 40, 3);
   }
@@ -676,22 +677,22 @@ export function createStationTextures(ctx) {
     g.strokeStyle = INK.pink; g.lineWidth = 5; g.beginPath(); g.moveTo(12, 48); g.lineTo(W - 12, 48); g.stroke();
     for (let i = 0; i < 12; i++) { const x = 12 + i * ((W - 24) / 11); g.fillStyle = i === 6 ? INK.red : '#ffffff'; g.strokeStyle = INK.navy; g.lineWidth = 1.5; g.beginPath(); g.arc(x, 48, 3.5, 0, 7); g.fill(); g.stroke(); }
     const fares = [140, 170, 200, 230, 260, 290];
-    fares.forEach((f, i) => { const x = 10 + (i % 3) * 80, y = 62 + Math.floor(i / 3) * 42; g.fillStyle = i === 0 ? '#f7c9d6' : '#ffffff'; g.strokeStyle = '#7d94b0'; g.lineWidth = 2; rr(g, x, y, 72, 34, 6); g.fill(); g.stroke(); txt(g, `${f}円`, x + 36, y + 18, 17, INK.navy, { weight: 900 }); });
+    fares.forEach((f, i) => { const x = 10 + (i % 3) * 80, y = 62 + Math.floor(i / 3) * 42; g.fillStyle = i === 0 ? '#f7c9d6' : '#ffffff'; g.strokeStyle = '#7d94b0'; g.lineWidth = 2; rr(g, x, y, 72, 34, 6); g.fill(); g.stroke(); txt(g, `${f} Rs`, x + 36, y + 18, 17, INK.navy, { weight: 900 }); });
     const btn = (x, y, w, t, bg) => { g.fillStyle = bg; rr(g, x, y, w, 26, 6); g.fill(); txt(g, t, x + w / 2, y + 14, 12, '#ffffff', { weight: 700 }); };
-    btn(10, 150, 56, 'おとな', '#3a6fb8'); btn(70, 150, 56, 'こども', '#8e959d'); btn(130, 150, 56, 'チャージ', INK.pinkDeep); btn(190, 150, 56, '取消', '#8e959d');
+    btn(10, 150, 56, 'ADULT', '#3a6fb8'); btn(70, 150, 56, 'CHILD', '#8e959d'); btn(130, 150, 56, 'チャージ', INK.pinkDeep); btn(190, 150, 56, '取消', '#8e959d');
   }
   const infoItems = [
     { id: 'fare', w: 1016, h: 380, draw: fareChart },
     { id: 'route', w: 1016, h: 250, draw: routeMap },
     { id: 'area', w: 500, h: 350, draw: areaMap },
-    { id: 'tt1', w: 250, h: 350, draw: (g, w, h) => timetable(g, w, h, 1, '花見台・桜川', 'tt1') },
-    { id: 'tt2', w: 250, h: 350, draw: (g, w, h) => timetable(g, w, h, 2, '春日野・山桜', 'tt2') },
+    { id: 'tt1', w: 250, h: 350, draw: (g, w, h) => timetable(g, w, h, 1, 'चाँदपोल・Gulabi', 'tt1') },
+    { id: 'tt2', w: 250, h: 350, draw: (g, w, h) => timetable(g, w, h, 2, 'सांगानेर・山桜', 'tt2') },
   ];
   const tvmItems = [
     { id: 'body', w: 250, h: 380, draw: tvmBody },
     { id: 'screen', w: 250, h: 184, draw: tvmScreen },
-    { id: 'depSmall', w: 240, h: 100, draw: (g, w, h) => { g.fillStyle = '#1c1b22'; g.fillRect(0, 0, w, h); txt(g, '普通', 34, 30, 18, '#8fe39a', { weight: 700 }); txt(g, '16:08', 104, 30, 20, '#ffb36b', { weight: 700 }); txt(g, '花見台', 186, 30, 18, '#ffb36b', { weight: 700 }); txt(g, '普通', 34, 72, 18, '#8fe39a', { weight: 700 }); txt(g, '16:28', 104, 72, 20, '#ffb36b', { weight: 700 }); txt(g, '花見台', 186, 72, 18, '#ffb36b', { weight: 700 }); } },
-    { id: 'depSmall2', w: 240, h: 100, draw: (g, w, h) => { g.fillStyle = '#1c1b22'; g.fillRect(0, 0, w, h); txt(g, '普通', 34, 30, 18, '#8fe39a', { weight: 700 }); txt(g, '16:12', 104, 30, 20, '#ffb36b', { weight: 700 }); txt(g, '春日野', 186, 30, 18, '#ffb36b', { weight: 700 }); txt(g, '普通', 34, 72, 18, '#8fe39a', { weight: 700 }); txt(g, '16:32', 104, 72, 20, '#ffb36b', { weight: 700 }); txt(g, '山桜', 186, 72, 18, '#ffb36b', { weight: 700 }); } },
+    { id: 'depSmall', w: 240, h: 100, draw: (g, w, h) => { g.fillStyle = '#1c1b22'; g.fillRect(0, 0, w, h); txt(g, 'LOCAL', 34, 30, 18, '#8fe39a', { weight: 700 }); txt(g, '16:08', 104, 30, 20, '#ffb36b', { weight: 700 }); txt(g, 'चाँदपोल', 186, 30, 18, '#ffb36b', { weight: 700 }); txt(g, 'LOCAL', 34, 72, 18, '#8fe39a', { weight: 700 }); txt(g, '16:28', 104, 72, 20, '#ffb36b', { weight: 700 }); txt(g, 'चाँदपोल', 186, 72, 18, '#ffb36b', { weight: 700 }); } },
+    { id: 'depSmall2', w: 240, h: 100, draw: (g, w, h) => { g.fillStyle = '#1c1b22'; g.fillRect(0, 0, w, h); txt(g, 'LOCAL', 34, 30, 18, '#8fe39a', { weight: 700 }); txt(g, '16:12', 104, 30, 20, '#ffb36b', { weight: 700 }); txt(g, 'सांगानेर', 186, 30, 18, '#ffb36b', { weight: 700 }); txt(g, 'LOCAL', 34, 72, 18, '#8fe39a', { weight: 700 }); txt(g, '16:32', 104, 72, 20, '#ffb36b', { weight: 700 }); txt(g, '山桜', 186, 72, 18, '#ffb36b', { weight: 700 }); } },
     { id: 'doorMark', w: 240, h: 110, draw: (g, w, h) => { // painted boarding-position mark (seen from the platform side)
       g.clearRect(0, 0, w, h);
       g.strokeStyle = 'rgba(236,236,230,0.95)'; g.lineWidth = 7; rr(g, 6, 6, w - 12, h - 12, 12); g.stroke();

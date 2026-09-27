@@ -1,4 +1,4 @@
-// E1 — 喫茶 はるいろ Café Haruiro (corner lot: faces the main street (west) and the plaza (north)).
+// E1 — गुलाबी चाय Gulabi Chai (corner lot: faces the main street (west) and the plaza (north)).
 // Lot-local: +z = street (world -X), +x = south. Cream plaster + dark brown wood, 2 storeys (flat above),
 // gable roof, fabric awning, terrace deck with two bistro tables, enterable interior.
 import * as THREE from 'three';
@@ -117,7 +117,7 @@ export function buildCafe(ctx, C) {
     kd.box(dw, DH - FY - 0.02, 0.05, M.wood('#6b4a37'), [dw / 2, (DH - FY) / 2, -0.03]);
     kd.plane(dw - 0.24, 1.1, M.glass({ opacity: 0.3 }), [dw / 2, 1.35, 0.0]).castShadow = false;
     kd.box(0.03, 0.03, 0.12, M.t('#c8a04a'), [dw - 0.1, 1.0, 0.0]);
-    const rOpen = A.lit.region(120, 64, (g, w, h) => { g.fillStyle = '#f4ecd8'; U.rr(g, 2, 2, w - 4, h - 4, 10); g.fill(); g.strokeStyle = WOOD; g.lineWidth = 3; U.rr(g, 4, 4, w - 8, h - 8, 8); g.stroke(); U.text(g, 'OPEN', w / 2, 26, 26, F.serif, BURG, { weight: 700 }); U.text(g, '営業中', w / 2, 50, 15, F.sans, WOOD, { weight: 700 }); });
+    const rOpen = A.lit.region(120, 64, (g, w, h) => { g.fillStyle = '#f4ecd8'; U.rr(g, 2, 2, w - 4, h - 4, 10); g.fill(); g.strokeStyle = WOOD; g.lineWidth = 3; U.rr(g, 4, 4, w - 8, h - 8, 8); g.stroke(); U.text(g, 'OPEN', w / 2, 26, 26, F.serif, BURG, { weight: 700 }); U.text(g, 'OPEN', w / 2, 50, 15, F.sans, WOOD, { weight: 700 }); });
     S.card(rOpen, 0.3, 0.16, [dw / 2, 1.62, 0.03], null, null, kd);
   }
   // door mat + threshold
@@ -210,7 +210,7 @@ export function buildCafe(ctx, C) {
   P.awning(S, {
     x0: -3.9, x1: 5.05, zWall: ZF, yTop: 3.25, depth: 1.6, drop: 0.55,
     stripe: [MOSS, OFFW], n: 4, valance: BURG, valH: 0.26, scallopW: 0.2,
-    valReg: A.lit.region(900, 32, (g, w, h) => { g.fillStyle = BURG; g.fillRect(0, 0, w, h); U.text(g, 'Café Haruiro  ·  喫茶 はるいろ  ·  COFFEE & SWEETS  ·  since 1987', w / 2, h / 2 + 1, 19, F.serif, '#f4ecd8', { weight: 700, maxW: w - 20 }); }, { bg: BURG }),
+    valReg: A.lit.region(900, 32, (g, w, h) => { g.fillStyle = BURG; g.fillRect(0, 0, w, h); U.text(g, 'Gulabi Chai  ·  गुलाबी चाय  ·  CHAI & KACHORI  ·  since 1987', w / 2, h / 2 + 1, 19, F.serif, '#f4ecd8', { weight: 700, maxW: w - 20 }); }, { bg: BURG }),
   });
   // main wooden board sign above the awning
   {
@@ -218,8 +218,8 @@ export function buildCafe(ctx, C) {
       const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#5e4636'); gr.addColorStop(1, '#4b3729'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
       g.strokeStyle = 'rgba(0,0,0,0.25)'; g.lineWidth = 1; for (let y = 8; y < h; y += 11) { g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y + 3, w * 0.6, y - 3, w, y + 1); g.stroke(); }
       g.strokeStyle = '#c8a04a'; g.lineWidth = 3; g.strokeRect(7, 7, w - 14, h - 14);
-      U.text(g, '喫茶 はるいろ', w * 0.47, h * 0.46, 52, F.serif, '#f4ecd8', { weight: 700 });
-      U.text(g, 'Café Haruiro', w * 0.47, h * 0.82, 16, F.serif, '#e7c98a', { weight: 700 });
+      U.text(g, 'गुलाबी चाय', w * 0.47, h * 0.46, 52, F.serif, '#f4ecd8', { weight: 700 });
+      U.text(g, 'Gulabi Chai', w * 0.47, h * 0.82, 16, F.serif, '#e7c98a', { weight: 700 });
       U.sakura(g, w * 0.1, h * 0.5, 18, '#f2b5c8', '#f6e3a0'); U.sakura(g, w * 0.88, h * 0.5, 14, '#f2b5c8', '#f6e3a0');
     });
     k.box(3.2, 0.62, 0.06, mWood, [0.6, 3.72, ZF + 0.04]);
@@ -236,7 +236,7 @@ export function buildCafe(ctx, C) {
       g.strokeStyle = BURG; g.lineWidth = 7; g.beginPath(); g.arc(132, 88, 13, -1.4, 1.4); g.stroke();
       g.fillStyle = BURG; g.fillRect(52, 124, 90, 7);
       g.strokeStyle = 'rgba(140,100,80,0.8)'; g.lineWidth = 4; for (const x of [80, 96, 112]) { g.beginPath(); g.moveTo(x, 62); g.bezierCurveTo(x - 8, 50, x + 8, 44, x, 32); g.stroke(); }
-      U.text(g, '喫茶 はるいろ', w / 2, 156, 25, F.serif, WOOD, { weight: 700 });
+      U.text(g, 'गुलाबी चाय', w / 2, 156, 25, F.serif, WOOD, { weight: 700 });
       U.sakura(g, 146, 46, 12, '#f2b5c8', '#f6e3a0');
     });
     const sx = 5.15, sy = 3.95;
@@ -252,8 +252,8 @@ export function buildCafe(ctx, C) {
   {
     const rSide = A.lit.region(256, 128, (g, w, h) => {
       g.fillStyle = OFFW; U.rr(g, 2, 2, w - 4, h - 4, 18); g.fill(); g.strokeStyle = MOSS; g.lineWidth = 5; U.rr(g, 8, 8, w - 16, h - 16, 14); g.stroke();
-      U.text(g, 'Café Haruiro', w / 2, 46, 34, F.serif, BURG, { weight: 700 });
-      U.text(g, 'コーヒーと季節のお菓子', w / 2, 86, 19, F.sans, WOOD, { weight: 700 });
+      U.text(g, 'Gulabi Chai', w / 2, 46, 34, F.serif, BURG, { weight: 700 });
+      U.text(g, 'CHAIと季節のSNACKS', w / 2, 86, 19, F.sans, WOOD, { weight: 700 });
     });
     k.box(0.05, 0.64, 1.28, mWood, [X0 - 0.03, FY + 1.6, -7.1]);
     // an old, sun-faded summer festival poster still taped to the plaza-side wall
@@ -263,7 +263,7 @@ export function buildCafe(ctx, C) {
       for (const [x, y, r, c] of [[60, 70, 30, '#e7b4b8'], [140, 56, 22, '#e9d19a'], [110, 110, 36, '#d9a6c0']]) { g.strokeStyle = c; g.lineWidth = 3; for (let i = 0; i < 12; i++) { const a = i * 0.5236; g.beginPath(); g.moveTo(x + Math.cos(a) * r * 0.3, y + Math.sin(a) * r * 0.3); g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r); g.stroke(); } }
       for (let i = 0; i < 6; i++) { g.fillStyle = '#e3a79a'; g.beginPath(); g.ellipse(28 + i * 29, 176, 10, 13, 0, 0, 6.3); g.fill(); g.fillStyle = '#c9b8a0'; g.fillRect(27 + i * 29, 160, 2, 6); }
       U.text(g, '第38回', w / 2, 140, 18, F.brush, '#8a6a70', { weight: 400 });
-      U.text(g, '桜ヶ丘 夏まつり', w / 2, 234, 28, F.brush, '#9a5a60', { weight: 400, maxW: w - 20 });
+      U.text(g, 'गुलाबी नगर 夏まつり', w / 2, 234, 28, F.brush, '#9a5a60', { weight: 400, maxW: w - 20 });
       U.text(g, '8月12日(土)・13日(日)  盆踊り・屋台・花火', w / 2, 262, 11, F.sans, '#7d7a86', { weight: 700, maxW: w - 16 });
       g.fillStyle = 'rgba(255,250,240,0.35)'; g.fillRect(0, 0, w, h);
       g.fillStyle = 'rgba(240,235,220,0.8)'; g.fillRect(w - 34, -6, 44, 22); g.fillRect(-8, h - 16, 40, 22);
@@ -308,8 +308,8 @@ export function buildCafe(ctx, C) {
     const rMenu = A.lit.region(208, 160, (g, w, h) => {
       g.fillStyle = '#fbf6ea'; g.fillRect(0, 0, w, h);
       U.text(g, 'Drink & Sweets', w / 2, 18, 17, F.serif, BURG, { weight: 700 });
-      const lines = [['ブレンドコーヒー', '450'], ['さくらラテ', '550'], ['クリームソーダ', '580'], ['ショートケーキ', '480'], ['小倉トースト', '420'], ['ナポリタン', '780']];
-      lines.forEach(([a, b], i) => { U.text(g, a, 16, 44 + i * 19, 14, F.sans, INK, { weight: 700, align: 'left' }); U.text(g, '¥' + b, w - 14, 44 + i * 19, 14, F.sans, INK, { weight: 700, align: 'right' }); });
+      const lines = [['ブレンドCHAI', '450'], ['さくらラテ', '550'], ['クリームソーダ', '580'], ['ショートケーキ', '480'], ['小倉トースト', '420'], ['ナポリタン', '780']];
+      lines.forEach(([a, b], i) => { U.text(g, a, 16, 44 + i * 19, 14, F.sans, INK, { weight: 700, align: 'left' }); U.text(g, '₹' + b, w - 14, 44 + i * 19, 14, F.sans, INK, { weight: 700, align: 'right' }); });
     });
     S.card(rMenu, 0.46, 0.34, [-1.85, DY + 1.25, -3.495]);
     k.plane(0.48, 0.36, M.glass({ opacity: 0.25 }), [-1.85, DY + 1.25, -3.49]).castShadow = false;
@@ -350,27 +350,27 @@ export function buildCafe(ctx, C) {
       for (let i = 0; i < 30; i++) C.blot(g, w, h, (i * 83) % w, (i * 131) % h, 30, '255,255,255', 0.03);
       const chalkT = (s, x, y, size, c, o = {}) => U.text(g, s, x, y, size, F.hand, c, { weight: 400, ...o });
       if (front) {
-        chalkT('喫茶 はるいろ', w / 2, 36, 28, '#f4efe4');
+        chalkT('गुलाबी चाय', w / 2, 36, 28, '#f4efe4');
         g.strokeStyle = 'rgba(244,239,228,0.7)'; g.lineWidth = 2; g.beginPath(); g.moveTo(30, 58); g.lineTo(w - 30, 58); g.stroke();
         chalkT('〜 春限定 〜', w / 2, 88, 26, '#f7c3d3');
         U.sakura(g, 40, 88, 12, 'rgba(247,195,211,0.9)'); U.sakura(g, w - 40, 88, 12, 'rgba(247,195,211,0.9)');
-        chalkT('さくらラテ', 22, 134, 24, '#f4efe4', { align: 'left' }); chalkT('¥550', w - 18, 134, 24, '#f6e3a0', { align: 'right' });
-        chalkT('いちごのショートケーキ', 22, 186, 19, '#f4efe4', { align: 'left', maxW: 170 }); chalkT('¥480', w - 18, 186, 24, '#f6e3a0', { align: 'right' });
-        chalkT('小倉トースト', 22, 238, 24, '#f4efe4', { align: 'left' }); chalkT('¥420', w - 18, 238, 24, '#f6e3a0', { align: 'right' });
+        chalkT('さくらラテ', 22, 134, 24, '#f4efe4', { align: 'left' }); chalkT('₹550', w - 18, 134, 24, '#f6e3a0', { align: 'right' });
+        chalkT('いちごのショートケーキ', 22, 186, 19, '#f4efe4', { align: 'left', maxW: 170 }); chalkT('₹480', w - 18, 186, 24, '#f6e3a0', { align: 'right' });
+        chalkT('小倉トースト', 22, 238, 24, '#f4efe4', { align: 'left' }); chalkT('₹420', w - 18, 238, 24, '#f6e3a0', { align: 'right' });
         // doodles: latte cup, strawberry shortcake
         g.strokeStyle = '#f4efe4'; g.lineWidth = 3; g.beginPath(); g.moveTo(50, 290); g.lineTo(98, 290); g.lineTo(92, 336); g.lineTo(56, 336); g.closePath(); g.stroke();
         g.beginPath(); g.arc(102, 308, 9, -1.4, 1.4); g.stroke();
         U.sakura(g, 74, 300, 9, '#f7c3d3');
         g.beginPath(); g.moveTo(150, 336); g.lineTo(220, 336); g.lineTo(220, 306); g.lineTo(150, 318); g.closePath(); g.stroke();
         g.fillStyle = '#e8506a'; g.beginPath(); g.arc(200, 300, 9, 0, 6.3); g.fill();
-        chalkT('本日のおすすめ ♪', w / 2, 366, 18, '#bfe3d4');
+        chalkT('TODAY’S SPECIAL ♪', w / 2, 366, 18, '#bfe3d4');
       } else {
         chalkT('Today\'s Coffee', w / 2, 38, 26, '#f4efe4');
-        chalkT('ブレンド', 22, 96, 24, '#f4efe4', { align: 'left' }); chalkT('¥450', w - 18, 96, 24, '#f6e3a0', { align: 'right' });
-        chalkT('自家製プリン', 22, 148, 24, '#f4efe4', { align: 'left' }); chalkT('¥380', w - 18, 148, 24, '#f6e3a0', { align: 'right' });
-        chalkT('クリームソーダ', 22, 200, 22, '#f4efe4', { align: 'left' }); chalkT('¥580', w - 18, 200, 24, '#f6e3a0', { align: 'right' });
+        chalkT('ブレンド', 22, 96, 24, '#f4efe4', { align: 'left' }); chalkT('₹450', w - 18, 96, 24, '#f6e3a0', { align: 'right' });
+        chalkT('自家製プリン', 22, 148, 24, '#f4efe4', { align: 'left' }); chalkT('₹380', w - 18, 148, 24, '#f6e3a0', { align: 'right' });
+        chalkT('クリームソーダ', 22, 200, 22, '#f4efe4', { align: 'left' }); chalkT('₹580', w - 18, 200, 24, '#f6e3a0', { align: 'right' });
         chalkT('OPEN 10:00 – 18:00', w / 2, 270, 20, '#bfe3d4');
-        chalkT('定休日 水曜日', w / 2, 302, 20, '#bfe3d4');
+        chalkT('CLOSED 水曜日', w / 2, 302, 20, '#bfe3d4');
         for (let i = 0; i < 5; i++) U.sakura(g, 40 + i * 44, 350, 10, 'rgba(247,195,211,0.9)');
       }
     });

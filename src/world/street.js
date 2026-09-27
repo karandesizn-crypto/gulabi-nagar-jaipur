@@ -474,7 +474,7 @@ export async function build(ctx) {
   quad(glyphB, GLYPH.tomare, -20.3, -56.38, 1.1, 5.6, [1, 0], GLYPH_LIFT, W);
   quad(glyphB, GLYPH.tomare, -4.2, -71, 1.3, 5.4, [-1, 0], GLYPH_LIFT, W);
   quad(glyphB, GLYPH.tomare, -19.8, -71, 1.3, 5.4, [1, 0], GLYPH_LIFT, W);
-  // white 自転車 pictograms on the R3 shoulders
+  // white CYCLE pictograms on the R3 shoulders
   quad(glyphB, GLYPH.bike, -35, 0.2, 0.95, 0.95, [-1, 0], GLYPH_LIFT, W);
   quad(glyphB, GLYPH.bike, 58, -4.2, 0.95, 0.95, [1, 0], GLYPH_LIFT, W);
   // petals & a few leaves caught on some gratings (and the lid next to them)
@@ -552,7 +552,7 @@ export async function build(ctx) {
   const faceN = (zc) => { const d = northDir(zc); return Math.atan2(d[0], d[1]); };
   const disc = (cell, y, r = 0.3, extra = {}) => ({ kind: 'circle', cell, size: [r], y, ...extra });
   const rect = (cell, y, w, h, extra = {}) => ({ kind: 'rect', cell, size: [w, h], y, ...extra });
-  // R1/R3 junction: 止まれ, 横断歩道 (double-faced), curve mirrors on both corners
+  // R1/R3 junction: STOP, 横断歩道 (double-faced), curve mirrors on both corners
   F.signPost(-3.38, 4.3, swTop(-3.38, 4.3), 2.55, 0, [{ kind: 'tri', cell: SIGN.stop, size: [0.8], y: 2.2, clamps: [0.08, -0.12] }, rect(SIGN.pPriority, 1.72, 0.52, 0.18)]);
   F.signPost(-6.7, 1.45, swTop(-6.7, 1.45), 2.75, -Math.PI / 2, [rect(SIGN.cross, 2.42, 0.6, 0.6, { double: true, clamps: [0.14, -0.14] })]);
   F.signPost(6.7, 1.45, swTop(6.7, 1.45), 2.75, Math.PI / 2, [rect(SIGN.cross, 2.42, 0.6, 0.6, { double: true, clamps: [0.14, -0.14] })]);
@@ -582,7 +582,7 @@ export async function build(ctx) {
   // R2/R4 cross: mirrors on NW and SE corners with 一時停止 plates for R4
   F.curveMirror(-15.4, -58.15, Math.PI / 4, [{ yaw: 0 }], [{ kind: 'rect', cell: SIGN.pStop, size: [0.5, 0.25], y: 1.35, rotY: -Math.PI * 3 / 4 }]);
   F.curveMirror(-8.6, -52.95, -Math.PI * 3 / 4, [{ yaw: 0 }], [{ kind: 'rect', cell: SIGN.pStop, size: [0.5, 0.25], y: 1.35, rotY: Math.PI * 5 / 4 }]);
-  // R2/R6 cross: mirrors (NE, SW) + 止まれ signs for R6 (SE for westbound, NW for eastbound)
+  // R2/R6 cross: mirrors (NE, SW) + STOP signs for R6 (SE for westbound, NW for eastbound)
   F.curveMirror(-8.62, -73.12, -Math.PI / 4);
   F.curveMirror(-15.38, -68.88, Math.PI * 3 / 4);
   F.signPost(-8.6, -68.85, H(-8.6, -68.85), 2.5, Math.PI / 2, [{ kind: 'tri', cell: SIGN.stop, size: [0.75], y: 2.15, clamps: [0.08, -0.12] }]);

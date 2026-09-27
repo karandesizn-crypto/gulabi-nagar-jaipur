@@ -1,4 +1,4 @@
-// E1 喫茶 はるいろ — interior, modelled: bentwood chairs, marble / wood tables with cups, saucers, spoons,
+// E1 गुलाबी चाय — interior, modelled: bentwood chairs, marble / wood tables with cups, saucers, spoons,
 // standing menus, sugar pots and bud vases; counter with siphon bar, pour-over kettle + dripper, retro
 // register, cake dome; back bar with espresso machine (group heads, portafilters, steam wand, gauges),
 // grinder, cup shelves, bean jars, canisters; cake showcase with individual cakes; pendant lamps with
@@ -180,7 +180,7 @@ export function buildCafeInterior(ctx, C, S, D) {
       kr.box(0.4, 0.14, 0.26, M.inner('#b48a62', 0.28), [0, 0.18, -0.04], [-0.35, 0, 0]);
       for (let i = 0; i < 20; i++) G.add('cyl6', rg, [-0.14 + (i % 5) * 0.07, 0.22 + Math.floor(i / 5) * 0.01, -0.12 + Math.floor(i / 5) * 0.045], [0.03, 0.02, 0.03], i % 5 === 4 ? '#d9463b' : '#f4f1e8', [-0.35, 0, 0]);
       kr.box(0.2, 0.12, 0.06, M.inner('#8a8e94', 0.22), [0, 0.32, 0.12]);
-      const rDisp = A.glow.region(64, 24, (g, w, h) => { g.fillStyle = '#1f2a24'; g.fillRect(0, 0, w, h); U.text(g, '¥ 1,030', w / 2, h / 2 + 1, 14, F.en, '#9ff0a0', { weight: 900 }); });
+      const rDisp = A.glow.region(64, 24, (g, w, h) => { g.fillStyle = '#1f2a24'; g.fillRect(0, 0, w, h); U.text(g, '₹ 1,030', w / 2, h / 2 + 1, 14, F.en, '#9ff0a0', { weight: 900 }); });
       S.card(rDisp, 0.16, 0.06, [0, 0.33, 0.151], null, null, kr);
       S.card(rDisp, 0.16, 0.06, [0, 0.33, 0.089], [0, Math.PI, 0], null, kr);
       kr.box(0.38, 0.05, 0.02, M.inner('#6d747c', 0.2), [0, 0.04, 0.205]);
@@ -268,7 +268,7 @@ export function buildCafeInterior(ctx, C, S, D) {
     for (const s of [-1, 1]) k.plane(d - 0.03, 0.5, M.glass({ opacity: 0.18 }), [cx + s * w / 2, FY + 0.9, cz], [0, Math.PI / 2, 0]).castShadow = false;
     k.box(w - 0.05, 0.01, d - 0.08, M.glass({ opacity: 0.3 }), [cx, FY + 0.9, cz]).castShadow = false;
     const kinds = ['short', 'choco', 'cheese', 'roll', 'mont', 'pudding', 'tart', 'mochi'];
-    const rTag = kinds.map((kd, i) => A.inner.region(64, 32, (g, ww, hh) => { g.fillStyle = '#fbf6ea'; g.fillRect(0, 0, ww, hh); U.text(g, ['ショート', 'ガトーショコラ', 'チーズケーキ', 'ロール', 'モンブラン', 'プリン', 'フルーツタルト', '桜もち'][i], ww / 2, 11, 10, F.sans, WOOD, { weight: 700, maxW: ww - 4 }); U.text(g, '¥' + [480, 520, 480, 420, 550, 380, 580, 300][i], ww / 2, 24, 11, F.en, BURG, { weight: 900 }); }));
+    const rTag = kinds.map((kd, i) => A.inner.region(64, 32, (g, ww, hh) => { g.fillStyle = '#fbf6ea'; g.fillRect(0, 0, ww, hh); U.text(g, ['ショート', 'ガトーショコラ', 'チーズケーキ', 'ロール', 'モンブラン', 'プリン', 'フルーツタルト', 'LADDU'][i], ww / 2, 11, 10, F.sans, WOOD, { weight: 700, maxW: ww - 4 }); U.text(g, '₹' + [480, 520, 480, 420, 550, 380, 580, 300][i], ww / 2, 24, 11, F.en, BURG, { weight: 900 }); }));
     for (let lvl = 0; lvl < 2; lvl++) for (let i = 0; i < 6; i++) {
       const idx = (i + lvl * 3) % kinds.length, x = x0 + 0.22 + i * (w - 0.44) / 5, y = FY + 0.652 + lvl * 0.255, z = cz + 0.04;
       G.add('cyl', S, [x, y, z], [0.13, 0.003, 0.13], '#fbf8f0');
@@ -285,7 +285,7 @@ export function buildCafeInterior(ctx, C, S, D) {
     const rMB = A.inner.region(320, 180, (g, w, h) => {
       g.fillStyle = '#2f3a35'; g.fillRect(0, 0, w, h); g.strokeStyle = '#8a6446'; g.lineWidth = 10; g.strokeRect(0, 0, w, h);
       U.text(g, 'MENU', w / 2, 30, 28, F.hand, '#f4efe4', { weight: 400 });
-      [['ブレンド', '450'], ['カフェラテ', '500'], ['さくらラテ', '550'], ['紅茶', '450'], ['ケーキセット', '850']].forEach(([a, b], i) => { U.text(g, a, 28, 64 + i * 22, 17, F.hand, '#f4efe4', { weight: 400, align: 'left' }); U.text(g, b, w - 26, 64 + i * 22, 17, F.hand, '#f6e3a0', { weight: 400, align: 'right' }); });
+      [['ブレンド', '450'], ['カフェラテ', '500'], ['さくらラテ', '550'], ['CHAI', '450'], ['ケーキセット', '850']].forEach(([a, b], i) => { U.text(g, a, 28, 64 + i * 22, 17, F.hand, '#f4efe4', { weight: 400, align: 'left' }); U.text(g, b, w - 26, 64 + i * 22, 17, F.hand, '#f6e3a0', { weight: 400, align: 'right' }); });
       U.sakura(g, w - 40, 30, 12, '#f7c3d3');
     });
     k.box(1.66, 0.8, 0.04, mWoodD, [2.0, FY + 2.52, IZ0 + 0.02]);

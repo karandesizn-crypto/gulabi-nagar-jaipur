@@ -45,7 +45,7 @@ export function buildFurniture(ctx, root, T, S, P) {
     PH.addBox(x, z, 1.95, 0.24, rotY, 0, 2.3);
   }
 
-  // ================================================================ 桜ヶ丘 観光案内 (wooden tourist board with a small roof)
+  // ================================================================ गुलाबी नगर 観光案内 (wooden tourist board with a small roof)
   {
     const { x, z, rotY } = P.tourBoard;
     const g = group(x, z, rotY), k = ctx.kit(g);
@@ -298,11 +298,11 @@ export function buildFurniture(ctx, root, T, S, P) {
     for (let i = 1; i < 9; i++) k.box(0.03, 0.02, zF - zP + 0.3, post, [xa - 0.1 + (xb - xa + 0.2) * i / 9, (hB + hF) / 2 + 0.075, (zP + zF) / 2], [slope, 0, 0]);
     k.box(xb - xa + 0.24, 0.12, 0.06, post, [(xa + xb) / 2, hF - 0.02, zF + 0.14]);   // front gutter
     k.box(xb - xa + 0.24, 0.1, 0.06, post, [(xa + xb) / 2, hB + 0.02, zP - 0.16]);
-    // 放置自転車禁止 notice on the west post
+    // 放置CYCLE禁止 notice on the west post
     const ng = group(pxs[0] - 0.056, zP, -Math.PI / 2); face(ng, 0.34, 0.425, S.bikeNotice, [0, 1.35, 0]);
     ctx.kit(ng).box(0.36, 0.445, 0.01, M.white, [0, 1.35, -0.006]);
   }
-  // 駐輪場 sign on its own post at the south-west corner of the bike area
+  // CYCLE PARKING sign on its own post at the south-west corner of the bike area
   {
     const { x, z, rotY } = P.bikeSign;
     const g = group(x, z, rotY), k = ctx.kit(g);
@@ -409,7 +409,7 @@ export function buildFurniture(ctx, root, T, S, P) {
     PH.addBox(x, z, 0.46, 0.46, rotY, 0, 4.0);
   }
 
-  // ================================================================ 桜ヶ丘駅開業九十周年 monument stone
+  // ================================================================ गुलाबी नगर स्टेशन開業九十周年 monument stone
   {
     const { x, z, rotY } = P.monument;
     const g = group(x, z, rotY), k = ctx.kit(g);
@@ -491,12 +491,12 @@ export function buildFurniture(ctx, root, T, S, P) {
       c.fillStyle = '#f7f3ea'; c.textAlign = 'center'; c.textBaseline = 'middle';
       c.font = `900 26px ${ctx.tex.FONTS.en}`; c.fillText('SK', 59, 70); c.font = `900 34px ${ctx.tex.FONTS.en}`; c.fillText('07', 59, 102);
       c.fillStyle = '#3a3346'; c.textAlign = 'left';
-      ctx.tex.fitText(c, '桜ヶ丘駅', 116, 78, 228, 66, ctx.tex.FONTS.sans, 900);
-      c.fillStyle = '#6a6272'; ctx.tex.fitText(c, 'さくらがおか', 120, 130, 170, 24, ctx.tex.FONTS.round, 700);
-      c.textAlign = 'right'; c.fillStyle = '#6a6272'; ctx.tex.fitText(c, 'Sakuragaoka Sta.', 494, 130, 180, 24, ctx.tex.FONTS.en, 600);
-      c.fillStyle = L.NAMES.lineColorDeep; ctx.tex.fitText(c, '桜川線', 494, 64, 96, 30, ctx.tex.FONTS.sans, 800);
+      ctx.tex.fitText(c, 'गुलाबी नगर स्टेशन', 116, 78, 228, 66, ctx.tex.FONTS.sans, 900);
+      c.fillStyle = '#6a6272'; ctx.tex.fitText(c, 'गुलाबी नगर', 120, 130, 170, 24, ctx.tex.FONTS.round, 700);
+      c.textAlign = 'right'; c.fillStyle = '#6a6272'; ctx.tex.fitText(c, 'Gulabi Nagar Sta.', 494, 130, 180, 24, ctx.tex.FONTS.en, 600);
+      c.fillStyle = L.NAMES.lineColorDeep; ctx.tex.fitText(c, 'गुलाबी रेल', 494, 64, 96, 30, ctx.tex.FONTS.sans, 800);
       T.sakuraIcon(c, 382, 64, 14, '#f2b5c8', '#dd7f9d');
-      c.fillStyle = '#8a8290'; ctx.tex.fitText(c, '駅前広場', 494, 96, 96, 20, ctx.tex.FONTS.sans, 700);
+      c.fillStyle = '#8a8290'; ctx.tex.fitText(c, 'Station Chowk', 494, 96, 96, 20, ctx.tex.FONTS.sans, 700);
     }, { key: 'plaza-name-sign' });
     for (const s of [-1, 1]) { k.boxB(0.07, 1.0, 0.07, post, [s * 0.62, 0.2, 0]); }
     k.rbox(1.5, 0.5, 0.07, 0.02, post, [0, 0.8, 0]);
@@ -561,7 +561,7 @@ function newspaperTex(ctx) {
   _news = ctx.tex.draw(256, 176, (g, w, h) => {
     g.fillStyle = '#ece8dd'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#3a3346'; g.textAlign = 'right'; g.textBaseline = 'top';
-    g.font = `900 30px ${ctx.tex.FONTS.serif}`; g.fillText('桜ヶ丘新聞', w - 10, 8);
+    g.font = `900 30px ${ctx.tex.FONTS.serif}`; g.fillText('गुलाबी नगरNEWS', w - 10, 8);
     g.font = `700 16px ${ctx.tex.FONTS.serif}`; g.fillText('春まつり 今週末に開催', w - 10, 48);
     g.fillStyle = 'rgba(58,51,70,0.45)';
     for (let c = 0; c < 9; c++) for (let r = 0; r < 7; r++) g.fillRect(w - 20 - c * 24, 76 + r * 13, 16, 3);

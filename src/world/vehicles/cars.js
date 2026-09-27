@@ -1,4 +1,4 @@
-// Parked cars: 軽バン (white kei van), pastel 軽自動車 (retro two-tone), retro taxi (桜ヶ丘タクシー),
+// Parked cars: 軽バン (white kei van), pastel 軽自動車 (retro two-tone), retro taxi (गुलाबी नगरタクシー),
 // and a small compact waiting at the crossing (driver + lit brake lamps).
 // Car-local frame: forward +Z, origin on the ground midway between the axles, +X = car's LEFT side
 // (Japan: right-hand drive => driver sits at -X).
@@ -240,7 +240,7 @@ export function makeKeiCar(ctx, o = {}) {
   return g;
 }
 
-// ============================================================================ retro taxi (桜ヶ丘タクシー)
+// ============================================================================ retro taxi (गुलाबी नगरタクシー)
 export function makeTaxi(ctx) {
   const A = getAtlas(ctx), M = getMats(ctx);
   const s = { W: 1.695, wb: 2.68, R: 0.30, tw: 0.185, track: 1.40, yb: 0.22, Ra: 0.355, sill: 0.40, bev: 0.03, cap: 'capTaxi', capK: 0.72 };
@@ -293,7 +293,7 @@ export function makeTaxi(ctx) {
   }
   plate(V, D, A, AR.plTaxi, 0, 0.62, -2.46, Math.PI);
   D.add(PLANE(), '#ffffff', mtx([0, 0.80, -2.462], [0, Math.PI, 0], [0.40, 0.10, 1]), null, A.uvInto(AR.taxiRear));
-  D.add(PLANE(), '#ffffff', mtx([0.42, 1.03, -1.21], [-0.8, Math.PI, 0], [0.12, 0.06, 1]), null, A.uvInto(AR.kinen));   // 禁煙車 on the rear glass (inside)
+  D.add(PLANE(), '#ffffff', mtx([0.42, 1.03, -1.21], [-0.8, Math.PI, 0], [0.12, 0.06, 1]), null, A.uvInto(AR.kinen));   // NO SMOKING車 on the rear glass (inside)
   V.box(1.5, 0.004, 0.006, '#57545e', [0, 0.972, -1.52]);                               // trunk seam
   V.rod([-0.60, 0.97, -2.15], [-0.62, 1.75, -2.25], 0.004, DARK, 4);                    // antenna
   // doors

@@ -18,7 +18,7 @@ function textures(ctx) {
   t.bench = T.draw(512, 64, (g, w, h) => {
     g.fillStyle = '#b8845a'; g.fillRect(0, 0, w, h);
     for (let i = 0; i < 16; i++) { g.strokeStyle = `rgba(110,70,44,${0.1 + (i % 4) * 0.04})`; g.lineWidth = 1.5; g.beginPath(); const y = (i * 13) % h; g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y + 2, w * 0.7, y - 2, w, y + 1); g.stroke(); }
-    ftext(g, '桜ヶ丘駅前商店街', w * 0.42, h / 2 + 3, w * 0.62, 40, F.round, 900, 'rgba(250,240,226,0.72)');
+    ftext(g, 'Gulabi Bazaar', w * 0.42, h / 2 + 3, w * 0.62, 40, F.round, 900, 'rgba(250,240,226,0.72)');
     sakuraFlower(g, w * 0.86, h / 2, 20, 'rgba(242,181,200,0.8)', 'rgba(250,240,226,0.8)');
   }, { key: 'props.bench.ad' });
   t.wood = T.draw(256, 64, (g, w, h) => {
@@ -34,26 +34,26 @@ function textures(ctx) {
       const cat = (x, y, c) => { g.fillStyle = c; g.beginPath(); g.ellipse(x, y, 26, 16, 0, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(x - 20, y - 8, 12, 0, Math.PI * 2); g.fill(); g.beginPath(); g.moveTo(x - 30, y - 14); g.lineTo(x - 28, y - 26); g.lineTo(x - 20, y - 18); g.fill(); g.beginPath(); g.moveTo(x - 18, y - 18); g.lineTo(x - 12, y - 26); g.lineTo(x - 10, y - 14); g.fill(); };
       cat(70, 84, '#f2a65a'); cat(150, 92, '#f4f1ea'); cat(214, 80, '#6d6a80');
       ftext(g, 'マスコット 全5種', w / 2, 122, w * 0.9, 18, F.sans, 900, '#6b4a3a');
-      g.fillStyle = '#e2465c'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 200円', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
+      g.fillStyle = '#e2465c'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 200 Rs', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
     }),
     card('train', (g, w, h) => {
       g.fillStyle = '#e8f3fb'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#ef9fbe'; g.fillRect(0, 0, w, 34);
-      ftext(g, '桜川線 ミニ電車', w / 2, 18, w * 0.9, 24, F.round, 900, '#ffffff');
+      ftext(g, 'गुलाबी रेल ミニ電車', w / 2, 18, w * 0.9, 24, F.round, 900, '#ffffff');
       for (const [x, y] of [[20, 58], [132, 66]]) { g.fillStyle = '#f5f0e6'; rr(g, x, y, 104, 40, 12); g.fill(); g.fillStyle = '#ef9fbe'; g.fillRect(x, y + 24, 104, 6); g.fillStyle = '#9cc4ea'; for (let i = 0; i < 4; i++) rr(g, x + 10 + i * 23, y + 7, 16, 12, 3); g.fill(); g.fillStyle = '#4b4d55'; g.beginPath(); g.arc(x + 22, y + 42, 6, 0, Math.PI * 2); g.arc(x + 82, y + 42, 6, 0, Math.PI * 2); g.fill(); }
       ftext(g, 'コレクション 全6種', w / 2, 122, w * 0.9, 18, F.sans, 900, '#3a5a8a');
-      g.fillStyle = '#2f6fc9'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 300円', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
+      g.fillStyle = '#2f6fc9'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 300 Rs', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
     }),
     card('wagashi', (g, w, h) => {
       g.fillStyle = '#fbf3ea'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#9ad7a8'; g.fillRect(0, 0, w, 34);
-      ftext(g, '和菓子ミニチュア', w / 2, 18, w * 0.9, 24, F.round, 900, '#2f6b3f');
+      ftext(g, 'MITHAIミニチュア', w / 2, 18, w * 0.9, 24, F.round, 900, '#2f6b3f');
       g.strokeStyle = '#8a6446'; g.lineWidth = 3; g.beginPath(); g.moveTo(40, 110); g.lineTo(80, 50); g.stroke();
       for (const [i, c] of [[0, '#f7c6d3'], [1, '#fbf6ee'], [2, '#a7d49a']]) { g.fillStyle = c; g.beginPath(); g.arc(50 + i * 13, 96 - i * 19, 12, 0, Math.PI * 2); g.fill(); }
       g.fillStyle = '#f2b5c8'; g.beginPath(); g.ellipse(150, 90, 34, 20, 0, 0, Math.PI * 2); g.fill(); g.fillStyle = '#7fae55'; g.beginPath(); g.ellipse(150, 76, 30, 10, 0.1, 0, Math.PI); g.fill();
       g.fillStyle = '#6b3a3a'; g.beginPath(); g.ellipse(214, 92, 22, 18, 0, 0, Math.PI * 2); g.fill();
       ftext(g, 'チャーム 全8種', w / 2, 122, w * 0.9, 18, F.sans, 900, '#2f6b3f');
-      g.fillStyle = '#3f8a55'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 200円', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
+      g.fillStyle = '#3f8a55'; rr(g, 70, 134, 116, 22, 6); g.fill(); ftext(g, '1回 200 Rs', w / 2, 146, 110, 16, F.sans, 900, '#ffffff');
     }),
   ];
   t.gachaHead = T.draw(512, 64, (g, w, h) => {
@@ -73,7 +73,7 @@ function textures(ctx) {
     g.fillStyle = '#fbf8f2'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#d9463b'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
     ftext(g, '防 災 倉 庫', w / 2, 56, w * 0.86, 70, F.sans, 900, '#d9463b');
-    ftext(g, '桜ヶ丘町 自主防災会', w / 2, 104, w * 0.8, 22, F.sans, 700, '#3a3346');
+    ftext(g, 'Gulabi Nagar 自主防災会', w / 2, 104, w * 0.8, 22, F.sans, 700, '#3a3346');
   }, { key: 'props.cab.label' });
   t.cabList = T.draw(192, 160, (g, w, h) => {
     g.fillStyle = '#fbf8f2'; g.fillRect(0, 0, w, h);
@@ -93,7 +93,7 @@ function textures(ctx) {
     g.beginPath(); g.moveTo(108, 62); g.lineTo(136, 78); g.stroke(); g.beginPath(); g.moveTo(106, 64); g.lineTo(80, 74); g.stroke();
     g.fillStyle = '#fbf8f2'; g.beginPath(); g.moveTo(20, 40); g.lineTo(50, 20); g.lineTo(50, 60); g.fill(); g.fillRect(48, 32, 20, 16);
     ftext(g, '一時避難場所', w / 2, 172, w * 0.9, 26, F.sans, 900, '#2f8a57');
-    ftext(g, '← 駅前広場', w / 2, 206, w * 0.9, 26, F.sans, 900, '#3a3346');
+    ftext(g, '← Station Chowk', w / 2, 206, w * 0.9, 26, F.sans, 900, '#3a3346');
     ftext(g, 'Evacuation Area', w / 2, 236, w * 0.8, 15, F.en, 700, '#6d6a80');
   }, { key: 'props.evac' });
   t.works = T.draw(256, 384, (g, w, h) => {
@@ -110,7 +110,7 @@ function textures(ctx) {
     ftext(g, 'ご迷惑をおかけします', w / 2, 256, w * 0.92, 26, F.sans, 900, '#d9463b');
     ftext(g, '下水道管の点検をしています', w / 2, 290, w * 0.92, 18, F.sans, 700, '#3a3346');
     ftext(g, '期間 4月13日〜4月24日', w / 2, 318, w * 0.9, 17, F.sans, 700, '#3a3346');
-    ftext(g, '桜ヶ丘町 上下水道課', w / 2, 350, w * 0.9, 17, F.sans, 900, '#2f64b5');
+    ftext(g, 'Gulabi Nagar 上下水道課', w / 2, 350, w * 0.9, 17, F.sans, 900, '#2f64b5');
   }, { key: 'props.works' });
   t.manhole = T.draw(256, 256, (g, w, h) => {
     g.fillStyle = '#8a8680'; g.fillRect(0, 0, w, h);
@@ -121,7 +121,7 @@ function textures(ctx) {
     sakuraFlower(g, 0, 0, 34, '#a6a29a', '#77736c');
     g.restore();
     g.fillStyle = '#6a6660'; g.font = `900 16px ${F.sans}`; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText('桜ヶ丘町', w / 2, 30); g.fillText('下 水', w / 2, h - 30);
+    g.fillText('Gulabi Nagar', w / 2, 30); g.fillText('下 水', w / 2, h - 30);
   }, { key: 'props.manhole' });
   t.bar = T.draw(128, 16, (g, w, h) => { for (let i = 0; i < 8; i++) { g.fillStyle = i % 2 ? '#3f3a48' : '#f2c230'; g.beginPath(); g.moveTo(i * 16 - 8, h); g.lineTo(i * 16 + 8, 0); g.lineTo(i * 16 + 24, 0); g.lineTo(i * 16 + 8, h); g.fill(); } }, { key: 'props.conebar', repeat: [4, 1] });
   t.mesh = T.draw(128, 128, (g, w, h) => {
@@ -140,7 +140,7 @@ function textures(ctx) {
       ftext(g, k, 100, 61 + i * 28, 150, 16, F.sans, 700, '#3a3346', 'left');
     });
     ftext(g, '収集日の朝8時30分までに', w / 2, 170, w * 0.92, 14, F.sans, 900, '#d9463b');
-    ftext(g, '桜ヶ丘町内会 北町班', w / 2, 186, w * 0.9, 10, F.sans, 700, '#6d6a80');
+    ftext(g, 'Gulabi Nagar内会 北町班', w / 2, 186, w * 0.9, 10, F.sans, 700, '#6d6a80');
   }, { key: 'props.garbage.sign' });
   _tex = t;
   return t;

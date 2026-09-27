@@ -1,7 +1,7 @@
 // Both platforms: concrete bodies + wear, edge coping / white line / tactile strip / door marks,
 // shelters (steel columns, light roof, fluorescent tubes, hanging boards), 駅名標 (orientation-correct),
-// benches, bins, clocks, speakers, timetables, fences, platform ends (立入禁止, departure indicator,
-// equipment box, number plate, crew mirror, safety gate), east ramps + 構内踏切 walkway, north exit.
+// benches, bins, clocks, speakers, timetables, fences, platform ends (NO ENTRY, departure indicator,
+// equipment box, number plate, crew mirror, safety gate), east ramps + 構内Level Crossing walkway, north exit.
 import * as THREE from 'three';
 
 export function buildPlatforms(A) {
@@ -69,7 +69,7 @@ export function buildPlatforms(A) {
     const dust = k.plane(len - 1, 0.25, M.grime, [cx, PY + 0.003, bz + p.t * 0.2], [-PI / 2, 0, 0]); dust.receiveShadow = true;
   }
 
-  // ------------------------------------------------------------------ east ramps (x 40..46 → y 0.15) + 構内踏切 walkway
+  // ------------------------------------------------------------------ east ramps (x 40..46 → y 0.15) + 構内Level Crossing walkway
   const RX0 = L.PLATFORM.rampX0, RX1 = L.PLATFORM.rampX1, WX0 = L.PLATFORM.walkCrossing.x0, WX1 = L.PLATFORM.walkCrossing.x1;
   const WY = L.RAIL.railTopY;
   for (const p of [S, N]) {
@@ -184,7 +184,7 @@ export function buildPlatforms(A) {
     { const kk = ctx.kit(k.group([p.x0 + 0.75, PY, ez], p.name === 'S' ? PI : 0)); kk.box(0.7, 1.0, 0.42, M.equip, [0, 0.62, 0]); kk.box(0.74, 0.04, 0.46, M.equipDark, [0, 1.13, 0]); for (const dx of [-0.3, 0.3]) kk.box(0.05, 0.12, 0.4, M.equipDark, [dx, 0.06, 0]); kk.box(0.01, 0.8, 0.02, M.equipDark, [0, 0.62, 0.215]); const lb = new THREE.Mesh(U.rectPlane(0.3, 0.12, A.tx.misc.r('equipLabel')), A.signMat('misc', false)); lb.position.set(0, 0.95, 0.213); kk.parent.add(lb); }
     P.addBox(p.x0 + 0.75, ez, 0.74, 0.46, 0, -1, 3);
   }
-  // departure indicators (出発反応標識): A leaves westward (west end of 1番線), B eastward (east end of 2番線)
+  // departure indicators (出発反応標識): A leaves westward (west end of Platform 1), B eastward (east end of Platform 2)
   const depInd = (x, z, rot, fn) => {
     k.cyl(0.05, 0.05, 2.4, M.steelDark, [x, PY + 1.2, z], null, 10);
     const g = k.group([x, PY + 2.4, z], rot); const kk = ctx.kit(g);
@@ -258,8 +258,8 @@ export function buildPlatforms(A) {
   for (let x = -2.6; x < 12; x += 2.8) { k.box(1.3, 0.06, 0.16, M.shelterFascia, [x, 4.06, -36.1]); const tb = k.box(1.22, 0.025, 0.07, M.tube, [x, 4.025, -36.1]); tb.castShadow = false; }
 
   // ------------------------------------------------------------------ 駅名標 (standing ×2 + hanging ×1 per platform)
-  // South platform boards face north (read looking south: east=春日野 on the LEFT, west=花見台 on the RIGHT → 'ekiS').
-  // North platform boards face south (read looking north: west=花見台 on the left → 'ekiN'). Physically correct.
+  // South platform boards face north (read looking south: east=सांगानेर on the LEFT, west=चाँदपोल on the RIGHT → 'ekiS').
+  // North platform boards face south (read looking north: west=चाँदपोल on the left → 'ekiN'). Physically correct.
   const standing = (x, p) => {
     const faceN = p.name === 'S';
     const z = backZ(p) + p.t * 0.32, rot = faceN ? PI : 0, id = faceN ? 'ekiS' : 'ekiN';
@@ -311,7 +311,7 @@ export function buildPlatforms(A) {
   // timetables on columns (facing the walkers from the building / west side)
   A.board('I', 'tt1', 0.44, 0.616, [13.3 - 0.085, PY + 1.55, shS.zCol], -PI / 2, { frame: M.shelterFascia, border: 0.02 });
   A.board('I', 'tt2', 0.44, 0.616, [6.0 - 0.085, PY + 1.55, shN.zCol], -PI / 2, { frame: M.shelterFascia, border: 0.02 });
-  // building north wall (platform side): timetable, poster, 1番線 plate
+  // building north wall (platform side): timetable, poster, Platform 1 plate
   A.board('I', 'tt1', 0.5, 0.7, [0.2, PY + 1.5, -35.52], PI, { frame: M.fascia, border: 0.02 });
   A.board('P', 'safety', 0.42, 0.595, [-3.45, PY + 1.55, -35.52], PI, { frame: null });
   A.board('P', 'wantedPoster', 0.42, 0.6, [5.2, PY + 1.55, -35.52], PI, { frame: null });

@@ -1,4 +1,4 @@
-// W6 サイクル丸山 — workshop interior: workbench with vise, bench grinder, toolbox, truing stand with
+// W6 शर्मा साइकिल — workshop interior: workbench with vise, bench grinder, toolbox, truing stand with
 // a wheel, clamp lamp, oil can & spray cans; pegboard with modelled spanners, screwdrivers, pliers,
 // hammer, hacksaw, allen keys, tyre levers, cable coils; steel parts-drawer cabinet; parts shelf with
 // tyres, tube boxes, helmets, locks, baskets; tyre rack + hanging inner tubes; wheels hung from the
@@ -7,7 +7,7 @@
 import * as THREE from 'three';
 import * as PR from './props.js';
 
-export const TEXTS = ['タイヤ各種', '24・26・27インチ', 'チューブ', '新車', '¥24,800', '¥21,800', '¥14,800', '修理受付', 'ベル', 'ライト', 'カギ', '部品', '整備済み', 'お気軽にどうぞ', '丸山', '4月'];
+export const TEXTS = ['タイヤ各種', '24・26・27インチ', 'チューブ', '新車', '₹24,800', '₹21,800', '₹14,800', '修理受付', 'ベル', 'ライト', 'カギ', '部品', '整備済み', 'お気軽にどうぞ', 'Sharma', '4月'];
 
 /** Wheel lying in its local XY plane (axle = local Z), built from instanced tyre, rim, hub and spokes. */
 export function wheel(p, K, x, y, z, R, rotY = 0, o = {}) {
@@ -212,7 +212,7 @@ export function buildBikeInterior(ctx, K, S, P) {
     S.box(0.48, -5.83, 1.02, -5.47, FL, FL + 0.45);
   }
   // bikes for sale along the partition (+ price tags)
-  [['#e9e2cf', '¥24,800', -4.4], ['#f2b5c8', '¥21,800', -6.3]].forEach(([c, pr, bz], i) => {
+  [['#e9e2cf', '₹24,800', -4.4], ['#f2b5c8', '₹21,800', -6.3]].forEach(([c, pr, bz], i) => {
     bicycle(g, K, 1.95, FL, bz, i ? 0.06 : -0.04, { frame: c, basket: true, light: true });
     K.plane(g, 0.14, 0.1, K.im('#ffffff', 0.35, { map: K.card(['新車', pr], { w: 160, h: 112, bg: '#fbf6ea', fg: '#c9463e', fg2: '#3a3346', border: '#c9463e' }) }), [2.07, FL + 1.0, bz + 0.64], 0, -0.2);
     S.box(1.62, bz - 0.9, 2.3, bz + 0.9, FL, FL + 1.1);
@@ -329,7 +329,7 @@ function calTex(K) {
   return K.tex.draw(160, 224, (g, w, h) => {
     g.fillStyle = '#f5f0e6'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#9cc4ea'; g.fillRect(6, 6, w - 12, 76);
-    K.text(g, '丸山', w / 2, 44, 100, 30, K.F.round, 900, '#fdf8ee');
+    K.text(g, 'Sharma', w / 2, 44, 100, 30, K.F.round, 900, '#fdf8ee');
     K.text(g, '4月', w / 2, 100, 80, 24, K.F.serif, 700, '#3a3346');
     for (let d = 1; d <= 30; d++) { const c = (d + 2) % 7, rr = Math.floor((d + 2) / 7); K.text(g, String(d), 14 + c * 22, 124 + rr * 19, 20, 12, K.F.sans, 500, c === 0 ? '#c9463e' : '#3a3346'); }
   }, { key: 'sb-bike-cal' });

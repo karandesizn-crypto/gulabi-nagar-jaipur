@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', process.env.STATIC_DIR || '.');
 const port = Number(process.argv[2] || process.env.PORT || 5173);
 
 const TYPES = {
@@ -34,4 +34,4 @@ http.createServer((req, res) => {
     });
     res.end(data);
   });
-}).listen(port, () => console.log(`serving ${root} on http://localhost:${port}`));
+}).listen(port, '127.0.0.1', () => console.log(`serving ${root} on http://localhost:${port}`));

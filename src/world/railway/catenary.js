@@ -118,12 +118,12 @@ export function buildCatenary(ctx, root, T, E) {
       for (const zf of [-42.65, -43.35]) { pipe([x, 8.02, zf], [x, 8.06, zf], 0.02, M.dark, 6); insulator([x, 8.04, zf], [x, FEEDER_Y - 0.01, zf], M.insW); }
       colliders.push({ x, z: zc, r: 0.27 });
       // number plate (south face) + track number plates near the station
-      texPlate(T.sign.plate([{ t: '桜川線', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zc + 0.125], 0);
+      texPlate(T.sign.plate([{ t: 'गुलाबी रेल', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zc + 0.125], 0);
       if (Math.abs(x) < 130) texPlate(T.sign.hv, 0.24, 0.18, [x, 2.65, zc + 0.125], 0, mat.toon('#35303c'));
       if (x === -25 || x === 20) {
         texPlate(T.sign.num('1', '#f4f2ec', '#35303c', '番線'), 0.26, 0.26, [x, 3.3, zc + 0.125], 0);
         texPlate(T.sign.num('2', '#f4f2ec', '#35303c', '番線'), 0.26, 0.26, [x, 3.3, zc - 0.125], Math.PI);
-        texPlate(T.sign.plate([{ t: '桜川線', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zc - 0.125], Math.PI);
+        texPlate(T.sign.plate([{ t: 'गुलाबी रेल', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zc - 0.125], Math.PI);
       }
     } else {
       // portal: two outside poles + lattice truss beam
@@ -164,7 +164,7 @@ export function buildCatenary(ctx, root, T, E) {
       pipe([x, yt, -43], [x, GROUND_WIRE_Y + 0.05, -43], 0.075, M.pole, 10);
       for (const s of [-1, 1]) bar([x, yt, -43 + s * 1.1], [x, yt + 1.1, -43 + s * 0.06], 0.045, M.pole);
       topCrossarm(x, -43);
-      texPlate(T.sign.plate([{ t: '桜川線', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zSouthPole + 0.155], 0);
+      texPlate(T.sign.plate([{ t: 'गुलाबी रेल', s: 26, wt: 700 }, { t: 'No.' + plateNo(P), s: 44 }], 'pole' + plateNo(P), 256, 128), 0.24, 0.12, [x, 1.9, zSouthPole + 0.155], 0);
       if (Math.abs(x) < 130) texPlate(T.sign.hv, 0.24, 0.18, [x, 2.65, zSouthPole + 0.155], 0, mat.toon('#35303c'));
     }
   }

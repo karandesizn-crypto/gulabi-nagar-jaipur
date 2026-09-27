@@ -252,37 +252,37 @@ export function makeRailTextures(ctx) {
     g.fillStyle = '#f6f4ee'; g.textAlign = 'center'; g.textBaseline = 'middle';
     tex.fitText(g, '緊急連絡先', w / 2, 62, w - 60, 78, FONTS.sans, 900);
     g.fillStyle = '#35303c';
-    tex.fitText(g, '踏切や線路内で', w / 2, 170, w - 60, 40, FONTS.sans, 700);
+    tex.fitText(g, 'Level Crossingや線路内で', w / 2, 170, w - 60, 40, FONTS.sans, 700);
     tex.fitText(g, '異常を見つけたときは', w / 2, 220, w - 60, 40, FONTS.sans, 700);
     tex.fitText(g, 'すぐにご連絡ください', w / 2, 270, w - 60, 40, FONTS.sans, 700);
     g.fillStyle = '#c93a34'; tex.roundRect(g, 36, 312, w - 72, 120, 12); g.fill();
     g.fillStyle = '#f6f4ee'; tex.fitText(g, '☎ 0120-390-783', w / 2, 356, w - 100, 58, FONTS.sans, 900);
     tex.fitText(g, '24時間受付', w / 2, 410, w - 100, 28, FONTS.sans, 700);
     g.fillStyle = '#35303c';
-    tex.fitText(g, '桜川電鉄 桜ヶ丘駅', w / 2, 482, w - 60, 42, FONTS.sans, 900);
-    tex.fitText(g, '桜川線 第1踏切 付近  8K562M', w / 2, 540, w - 60, 28, FONTS.sans, 500);
+    tex.fitText(g, 'गुलाबी रेल गुलाबी नगर स्टेशन', w / 2, 482, w - 60, 42, FONTS.sans, 900);
+    tex.fitText(g, 'गुलाबी रेल 第1Level Crossing 付近  8K562M', w / 2, 540, w - 60, 28, FONTS.sans, 500);
     g.fillStyle = '#2f5ea8'; g.fillRect(0, h - 40, w, 40);
-    g.fillStyle = '#f6f4ee'; tex.fitText(g, 'EMERGENCY CONTACT · SAKURAGAWA RAILWAY', w / 2, h - 20, w - 40, 20, FONTS.en, 700);
+    g.fillStyle = '#f6f4ee'; tex.fitText(g, 'EMERGENCY CONTACT · GULABI RAIL • RAJASTHAN', w / 2, h - 20, w - 40, 20, FONTS.en, 700);
   });
   S.kiken = region('kiken', 336, 252, 512, 384, (g, w, h) => {
     g.fillStyle = '#f3f1ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#c93a34'; tex.roundRect(g, 18, 18, w - 36, 96, 10); g.fill();
     g.fillStyle = '#f6f2ea'; g.textAlign = 'center'; g.textBaseline = 'middle';
     tex.fitText(g, '危　険', w / 2, 68, w - 80, 66, FONTS.sans, 900);
-    g.fillStyle = '#c93a34'; tex.fitText(g, '線路内立入禁止', w / 2, 178, w - 60, 74, FONTS.sans, 900);
-    g.fillStyle = '#35303c'; tex.fitText(g, '列車にはねられる危険があります', w / 2, 252, w - 70, 30, FONTS.sans, 700);
+    g.fillStyle = '#c93a34'; tex.fitText(g, '線路内NO ENTRY', w / 2, 178, w - 60, 74, FONTS.sans, 900);
+    g.fillStyle = '#35303c'; tex.fitText(g, '列車にはねられるDANGERがあります', w / 2, 252, w - 70, 30, FONTS.sans, 700);
     g.fillStyle = '#35303c'; g.fillRect(40, 290, w - 80, 3);
-    tex.fitText(g, '桜川電鉄', w / 2, 334, w - 80, 38, FONTS.sans, 700);
+    tex.fitText(g, 'गुलाबी रेल', w / 2, 334, w - 80, 38, FONTS.sans, 700);
     g.strokeStyle = '#c93a34'; g.lineWidth = 6; tex.roundRect(g, 5, 5, w - 10, h - 10, 12); g.stroke();
   });
   S.tachiiri = region('tachiiri', 336, 252, 512, 384, (g, w, h) => {
     g.fillStyle = '#f3f1ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#35303c'; g.textAlign = 'center'; g.textBaseline = 'middle';
     tex.fitText(g, '関係者以外', w / 2, 70, w - 90, 54, FONTS.sans, 900);
-    g.fillStyle = '#c93a34'; tex.fitText(g, '立入禁止', w / 2, 170, w - 70, 118, FONTS.sans, 900);
+    g.fillStyle = '#c93a34'; tex.fitText(g, 'NO ENTRY', w / 2, 170, w - 70, 118, FONTS.sans, 900);
     g.fillStyle = '#35303c'; tex.fitText(g, 'KEEP OUT', w / 2, 256, w - 90, 34, FONTS.en, 700);
     g.fillRect(40, 290, w - 80, 3);
-    tex.fitText(g, '桜川電鉄 保線区', w / 2, 334, w - 80, 36, FONTS.sans, 700);
+    tex.fitText(g, 'गुलाबी रेल 保線区', w / 2, 334, w - 80, 36, FONTS.sans, 700);
     g.strokeStyle = '#35303c'; g.lineWidth = 5; tex.roundRect(g, 5, 5, w - 10, h - 10, 12); g.stroke();
   });
   S.hv = region('hv', 160, 120, 256, 192, (g, w, h) => {
@@ -290,7 +290,7 @@ export function makeRailTextures(ctx) {
     g.fillStyle = '#35303c'; g.beginPath(); g.moveTo(w / 2, 14); g.lineTo(w / 2 + 44, 90); g.lineTo(w / 2 - 44, 90); g.closePath(); g.fill();
     g.fillStyle = '#f0c93a'; g.beginPath(); g.moveTo(w / 2 + 4, 34); g.lineTo(w / 2 - 12, 62); g.lineTo(w / 2 + 2, 62); g.lineTo(w / 2 - 6, 84); g.lineTo(w / 2 + 14, 54); g.lineTo(w / 2 + 1, 54); g.closePath(); g.fill();
     g.fillStyle = '#35303c'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    tex.fitText(g, '高電圧危険', w / 2, 124, w - 30, 40, FONTS.sans, 900);
+    tex.fitText(g, '高電圧DANGER', w / 2, 124, w - 30, 40, FONTS.sans, 900);
     tex.fitText(g, 'さわるな', w / 2, 166, w - 40, 30, FONTS.sans, 700);
     g.strokeStyle = '#35303c'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
   });
@@ -325,7 +325,7 @@ export function makeRailTextures(ctx) {
     g.fillStyle = '#f2f0ea'; g.fillRect(34, 44, w - 68, 70); g.strokeStyle = '#35303c'; g.lineWidth = 2; g.strokeRect(34, 44, w - 68, 70);
     g.fillStyle = '#35303c'; g.textAlign = 'center'; g.textBaseline = 'middle';
     tex.fitText(g, '信号機器箱', w / 2, 68, w - 90, 30, FONTS.sans, 900);
-    tex.fitText(g, '桜川電鉄 電気区', w / 2, 98, w - 90, 20, FONTS.sans, 700);
+    tex.fitText(g, 'गुलाबी रेल 電気区', w / 2, 98, w - 90, 20, FONTS.sans, 700);
     g.fillStyle = '#f0c93a'; g.fillRect(58, 132, w - 116, 50); g.fillStyle = '#35303c'; tex.fitText(g, '⚡ 高電圧注意', w / 2, 158, w - 130, 26, FONTS.sans, 900);
     for (let i = 0; i < 6; i++) { g.fillStyle = `rgba(150,110,86,${0.12 + r() * 0.12})`; g.fillRect(20 + r() * (w - 40), 0, 2 + r() * 3, 30 + r() * 80); }
   });

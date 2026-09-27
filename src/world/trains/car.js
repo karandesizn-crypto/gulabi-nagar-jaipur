@@ -22,9 +22,9 @@ export const CAB_BACK = 7.02;
 export const BOGIE_X = 6.1, WHEEL_R = 0.43, WHEELBASE = 2.1;
 
 export const COL = {
-  cream: '#f2ece0', pink: '#ee9dbb', mint: '#86cdbb', roof: '#b7bcc3', roofDark: '#9ca2aa', reveal: '#ddd6ca', mask: '#3b3a4c',
+  cream: '#507fac', pink: '#f2d8a6', mint: '#c18346', roof: '#b7bcc3', roofDark: '#9ca2aa', reveal: '#ddd6ca', mask: '#3b3a4c',
   metal: '#c6ccd3', metalDark: '#7e858e', under: '#595e67', bogie: '#50545c', rubber: '#3e3c47', spring: '#6e747d',
-  wallIn: '#ece7dd', floor: '#a9a196', floorDoor: '#c3b8a2', ceiling: '#f0eee8', seat: '#c46a86', seatPri: '#5f80b2', seatBase: '#8f959c',
+  wallIn: '#ece7dd', floor: '#a9a196', floorDoor: '#c3b8a2', ceiling: '#f0eee8', seat: '#4e7a9c', seatPri: '#5f80b2', seatBase: '#8f959c',
   partition: '#dfe2e4', yellow: '#f2c230', cabIn: '#5d6674', console: '#4b5463', leafIn: '#d8d6d0', ring: '#f1eee6', ringPri: '#f0a441',
 };
 

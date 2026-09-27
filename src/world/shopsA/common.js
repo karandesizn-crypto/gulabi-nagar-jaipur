@@ -421,7 +421,7 @@ export function makeCommon(ctx) {
     k.cyl(0.02, 0.02, 0.5, M.t('#d6b64f'), [0.07, -0.36, 0.06]);
     return gq;
   };
-  /** two LPG cylinders with a chain (プロパンガス) pos = bottom centre between them, backs to -z */
+  /** two LPG cylinders with a chain (プロBREADガス) pos = bottom centre between them, backs to -z */
   P.propane = (S, x, y, z, rotY = 0) => {
     const gq = S.k.group([x, y, z], rotY); const k = ctx.kit(gq);
     const m = M.t('#aeb3b8');

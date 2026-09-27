@@ -1,4 +1,4 @@
-// environment — base terrain of the whole world, ground colouring, the 桜堤 levee, the 桜川 river,
+// environment — base terrain of the whole world, ground colouring, the 桜堤 levee, the Gulabi river,
 // far fields / hills / mountains with aerial perspective, wildflowers & weeds, and a small green park.
 import { createEnvTextures } from './environment/textures.js';
 import { distantMaterial } from './environment/shaders.js';

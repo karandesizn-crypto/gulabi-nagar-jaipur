@@ -61,14 +61,14 @@ export function getAtlas(ctx) {
       g.fillStyle = center; g.beginPath(); g.arc(cx, cy, r * 0.18, 0, Math.PI * 2); g.fill();
     };
 
-    // ------------------------------------------------------------ number plates (fictional 桜ヶ丘 region)
+    // ------------------------------------------------------------ number plates (fictional गुलाबी नगर region)
     const plate = (r, bg, fg, cls, kana, num) => box(r, (w, h) => {
       g.fillStyle = bg; rr(2, 2, w - 4, h - 4, 10); g.fill();
       g.lineWidth = 3; g.strokeStyle = fg; g.globalAlpha = 0.55; rr(6, 6, w - 12, h - 12, 8); g.stroke(); g.globalAlpha = 1;
       g.fillStyle = fg; g.globalAlpha = 0.5;
       for (const bx of [w * 0.2, w * 0.8]) { g.beginPath(); g.arc(bx, 17, 5, 0, Math.PI * 2); g.fill(); }
       g.globalAlpha = 1;
-      txt('桜ヶ丘', w * 0.43, 30, 30, F.sans, fg, 700, 'center', 90);
+      txt('गुलाबी नगर', w * 0.43, 30, 30, F.sans, fg, 700, 'center', 90);
       txt(cls, w * 0.68, 30, 30, F.sans, fg, 700, 'center', 70);
       txt(kana, 30, 88, 34, F.sans, fg, 500, 'center', 40);
       txt(num, w * 0.58, 86, 66, F.sans, fg, 700, 'center', 180);
@@ -81,8 +81,8 @@ export function getAtlas(ctx) {
     // ------------------------------------------------------------ taxi door livery
     box(R.taxiDoor, (w, h) => {
       sakura(58, 64, 44, '#e78aa6');
-      txt('桜ヶ丘タクシー', 290, 54, 70, F.round, '#9a4760', 700, 'center', 380);
-      txt('SAKURAGAOKA TAXI  ☎ 25-1188', 290, 106, 24, F.en, '#9a4760', 700, 'center', 380);
+      txt('गुलाबी नगरタクシー', 290, 54, 70, F.round, '#9a4760', 700, 'center', 380);
+      txt('GULABI NAGAR TAXI  ☎ 25-1188', 290, 106, 24, F.en, '#9a4760', 700, 'center', 380);
     });
     // ------------------------------------------------------------ van side lettering
     box(R.vanSide, (w, h) => {
@@ -96,7 +96,7 @@ export function getAtlas(ctx) {
       g.fillStyle = '#f3ecdc'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#c96b86'; g.fillRect(0, h - 22, w, 22);
       sakura(48, 54, 34, '#e68ea8');
-      txt('桜ヶ丘', 160, 36, 34, F.round, '#8a3f58', 700, 'center', 150);
+      txt('गुलाबी नगर', 160, 36, 34, F.round, '#8a3f58', 700, 'center', 150);
       txt('TAXI', 160, 78, 40, F.en, '#8a3f58', 900, 'center', 150);
     });
     box(R.kusha, (w, h) => {
@@ -107,7 +107,7 @@ export function getAtlas(ctx) {
       g.fillStyle = '#f2f0ea'; rr(2, 2, w - 4, h - 4, 10); g.fill();
       g.strokeStyle = '#d9463b'; g.lineWidth = 5; g.beginPath(); g.arc(30, 32, 20, 0, Math.PI * 2); g.stroke();
       g.beginPath(); g.moveTo(16, 18); g.lineTo(44, 46); g.stroke();
-      txt('禁煙車', 86, 33, 30, F.sans, '#3a3346', 700, 'center', 76);
+      txt('NO SMOKING車', 86, 33, 30, F.sans, '#3a3346', 700, 'center', 76);
     });
     // ------------------------------------------------------------ price tags (bike shop new bikes)
     const tag = (r, price, l1, l2) => box(r, (w, h) => {
@@ -119,9 +119,9 @@ export function getAtlas(ctx) {
       txt(l2, w / 2, 106, 15, F.sans, '#3a3346', 500, 'center', w - 12);
       g.fillStyle = '#9a94a0'; g.beginPath(); g.arc(w / 2, 44, 0, 0, 1); g.fill();
     });
-    tag(R.tag1, '¥29,800', '27インチ 3段変速', 'オートライト 税込');
-    tag(R.tag2, '¥32,800', '26インチ 内装3段', 'ステンレスカゴ 税込');
-    tag(R.tag3, '¥24,800', '24インチ 通学に', '防犯登録料別 税込');
+    tag(R.tag1, '₹29,800', '27インチ 3段変速', 'オートライト INC. TAX');
+    tag(R.tag2, '₹32,800', '26インチ 内装3段', 'ステンレスカゴ INC. TAX');
+    tag(R.tag3, '₹24,800', '24インチ 通学に', '防犯登録料別 INC. TAX');
     // ------------------------------------------------------------ small stickers
     box(R.beginner, (w, h) => { // 初心者マーク (green/yellow chevron)
       g.beginPath(); g.moveTo(8, 4); g.lineTo(32, 18); g.lineTo(56, 4); g.lineTo(56, 44); g.lineTo(32, 60); g.lineTo(8, 44); g.closePath();
@@ -137,11 +137,11 @@ export function getAtlas(ctx) {
     box(R.reg, (w, h) => {
       g.fillStyle = '#f2d34a'; rr(2, 2, w - 4, h - 4, 8); g.fill();
       txt('防犯登録', w / 2, 20, 22, F.sans, '#2e2c33', 900, 'center', w - 12);
-      txt('桜ヶ丘署 482113', w / 2, 46, 17, F.sans, '#2e2c33', 700, 'center', w - 12);
+      txt('गुलाबी नगर署 482113', w / 2, 46, 17, F.sans, '#2e2c33', 700, 'center', w - 12);
     });
     box(R.park, (w, h) => {
       g.fillStyle = '#5b86c4'; rr(2, 2, w - 4, h - 4, 8); g.fill();
-      txt('桜ヶ丘駅 駐輪場', w / 2, 20, 19, F.sans, '#f4f2ea', 900, 'center', w - 12);
+      txt('गुलाबी नगर स्टेशन CYCLE PARKING', w / 2, 20, 19, F.sans, '#f4f2ea', 900, 'center', w - 12);
       txt('定期 2026', w / 2, 46, 20, F.sans, '#f4f2ea', 700, 'center', w - 12);
     });
     // ------------------------------------------------------------ bicycle brand decals (fictional)
@@ -159,7 +159,7 @@ export function getAtlas(ctx) {
     brand(R.brandD3, 'e-Hana', 'ASSIST  電動アシスト', '#3d3a48');
     box(R.taxiRear, (w, h) => {
       g.fillStyle = 'rgba(245,240,230,0.95)'; rr(2, 4, w - 4, h - 8, 10); g.fill();
-      txt('桜ヶ丘タクシー  ☎ 25-1188', w / 2, h / 2, 26, F.sans, '#8a3f58', 700, 'center', w - 16);
+      txt('गुलाबी नगरタクシー  ☎ 25-1188', w / 2, h / 2, 26, F.sans, '#8a3f58', 700, 'center', w - 16);
     });
     box(R.vanRear, (w, h) => {
       txt('さくら設備  ☎ 25-3321', w / 2, h / 2, 30, F.round, '#2f5d95', 700, 'center', w - 16);

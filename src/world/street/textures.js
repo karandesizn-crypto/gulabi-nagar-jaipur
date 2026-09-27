@@ -14,7 +14,7 @@ export const GLYPH = {
   kids: { x: 768, y: 512, w: 256, h: 256 },
   diamond: { x: 640, y: 768, w: 128, h: 256 },
   bike: { x: 0, y: 768, w: 256, h: 256 },
-  tomareS: { x: 256, y: 768, w: 256, h: 256 }, // 止まれ in one line (narrow alleys, across)
+  tomareS: { x: 256, y: 768, w: 256, h: 256 }, // STOP in one line (narrow alleys, across)
   arrowUp: { x: 768, y: 768, w: 128, h: 256 },
   bus: { x: 896, y: 768, w: 128, h: 256 },
   litter: { x: 512, y: 896, w: 128, h: 128 }, // coloured: petals + leaves (use with a white vertex colour)
@@ -295,7 +295,7 @@ export function makeStreetTextures(ctx) {
       });
     };
     stack(GLYPH.tomare, ['止', 'ま', 'れ'], 238);
-    stack(GLYPH.jokou, ['徐', '行'], 238);
+    stack(GLYPH.jokou, ['徐', 'TO'], 238);
     // 30 (two digits, condensed)
     g.save(); g.fillStyle = W; g.font = `900 250px ${F.sans}`; g.translate(GLYPH.n30.x + 128, GLYPH.n30.y + 136); g.scale(0.56, 1); g.fillText('30', 0, 0); g.restore();
     const twoLines = (cell, a, b, size) => {
@@ -304,10 +304,10 @@ export function makeStreetTextures(ctx) {
       T.fitText(g, b, cell.x + cell.w / 2, cell.y + cell.h * 0.76, cell.w * 0.96, size, F.sans, 900);
     };
     twoLines(GLYPH.school, 'スクール', 'ゾーン', 118);
-    twoLines(GLYPH.hokou, '歩行者', '優先', 118);
+    twoLines(GLYPH.hokou, '歩TO者', '優先', 118);
     stack(GLYPH.tsugaku, ['通', '学', '路'], 116);
-    // one-line 止まれ (for narrow alleys, text across the lane, stretched along travel)
-    g.save(); g.fillStyle = W; g.font = `900 120px ${F.sans}`; g.translate(GLYPH.tomareS.x + 128, GLYPH.tomareS.y + 128); g.scale(0.62, 1.9); g.fillText('止まれ', 0, 4); g.restore();
+    // one-line STOP (for narrow alleys, text across the lane, stretched along travel)
+    g.save(); g.fillStyle = W; g.font = `900 120px ${F.sans}`; g.translate(GLYPH.tomareS.x + 128, GLYPH.tomareS.y + 128); g.scale(0.62, 1.9); g.fillText('STOP', 0, 4); g.restore();
     // ◇ crosswalk-ahead diamond (outline)
     { const c = GLYPH.diamond; g.strokeStyle = W; g.lineWidth = 11; g.lineJoin = 'miter';
       g.beginPath(); g.moveTo(c.x + 64, c.y + 8); g.lineTo(c.x + 120, c.y + 128); g.lineTo(c.x + 64, c.y + 248); g.lineTo(c.x + 8, c.y + 128); g.closePath(); g.stroke(); }
@@ -323,7 +323,7 @@ export function makeStreetTextures(ctx) {
       g.beginPath(); g.moveTo(26, 10); g.lineTo(16, -22); g.lineTo(24, -26); g.stroke();
       g.restore();
     };
-    // 自転車ナビマーク: blue arrow + white bicycle
+    // CYCLEナビマーク: blue arrow + white bicycle
     { const c = GLYPH.navi; g.fillStyle = '#4a86c8';
       g.beginPath(); g.moveTo(c.x + 64, c.y + 4); g.lineTo(c.x + 124, c.y + 78); g.lineTo(c.x + 98, c.y + 78); g.lineTo(c.x + 98, c.y + 252); g.lineTo(c.x + 30, c.y + 252); g.lineTo(c.x + 30, c.y + 78); g.lineTo(c.x + 4, c.y + 78); g.closePath(); g.fill();
       g.save(); g.translate(c.x + 64, c.y + 168); g.rotate(-Math.PI / 2); bicycle(0, 0, 1.05, W, 7); g.restore(); }
@@ -401,7 +401,7 @@ export function makeStreetTextures(ctx) {
       for (let i = 0; i < 9; i++) { g.fillStyle = '#f5c3d2'; ellipse(g, cx - 60 + R() * 150, cy - 20 + R() * 60, 4, 2.5, R() * 3); }
       g.restore();
       g.strokeStyle = '#48474e'; g.lineWidth = 4; g.beginPath(); g.arc(cx, cy, 98, 0, TAU); g.stroke();
-      arcText('さくらがおか', cx, cy, 109, -Math.PI * 0.82, -Math.PI * 0.18, 17, '#d8d6dc');
+      arcText('गुलाबी नगर', cx, cy, 109, -Math.PI * 0.82, -Math.PI * 0.18, 17, '#d8d6dc');
       arcText('おすい', cx, cy, 109, Math.PI * 0.64, Math.PI * 0.36, 17, '#d8d6dc', true);
       g.fillStyle = 'rgba(40,38,44,0.25)'; g.beginPath(); g.arc(cx, cy, 124, 0, TAU); g.lineWidth = 3; g.strokeStyle = 'rgba(40,38,44,0.4)'; g.stroke();
     }
@@ -417,7 +417,7 @@ export function makeStreetTextures(ctx) {
       g.fillStyle = '#6c6b72'; circle(g, cx, cy, 34);
       flower(cx, cy, 44, '#85848b', '#6c6b72', 0.3);
       for (let i = 0; i < 90; i++) { const a = R() * TAU, r = 96 + R() * 18; g.fillStyle = 'rgba(140,140,150,0.35)'; g.fillRect(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 3, 3); }
-      arcText('桜ヶ丘町', cx, cy, 104, -Math.PI * 0.75, -Math.PI * 0.25, 18, '#9a99a0');
+      arcText('Gulabi Nagar', cx, cy, 104, -Math.PI * 0.75, -Math.PI * 0.25, 18, '#9a99a0');
       arcText(label, cx, cy, 104, Math.PI * 0.6, Math.PI * 0.4, 18, '#9a99a0', true);
       g.lineWidth = 3; g.strokeStyle = 'rgba(40,38,44,0.45)'; g.beginPath(); g.arc(cx, cy, 124, 0, TAU); g.stroke();
       speckle(g, c.x + 20, c.y + 20, 216, 216, 300, ['rgba(40,40,46,0.25)', 'rgba(160,160,168,0.2)']);
@@ -521,11 +521,11 @@ export function makeStreetTextures(ctx) {
     { const c = SIGN.noPark, cx = c.x + 128, cy = c.y + 128;
       disc(c, WHITE); g.fillStyle = RED; circle(g, cx, cy, 116); g.fillStyle = BLUE; circle(g, cx, cy, 90);
       g.save(); g.beginPath(); g.arc(cx, cy, 90, 0, TAU); g.clip(); g.strokeStyle = RED; g.lineWidth = 26; g.beginPath(); g.moveTo(cx - 70, cy - 70); g.lineTo(cx + 70, cy + 70); g.stroke(); g.restore(); }
-    // 止まれ (inverted triangle)
+    // STOP (inverted triangle)
     { const c = SIGN.stop; const P = [[c.x + 6, c.y + 14], [c.x + 250, c.y + 14], [c.x + 128, c.y + 242]];
       const tri = (inset, fill) => { const cx = c.x + 128, cy = c.y + 90; g.fillStyle = fill; g.beginPath(); P.forEach(([x, y], i) => { const X = cx + (x - cx) * inset, Y = cy + (y - cy) * inset; i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath(); g.fill(); };
       tri(1, WHITE); tri(0.9, RED);
-      g.fillStyle = WHITE; g.font = `900 54px ${F.sans}`; g.fillText('止まれ', c.x + 128, c.y + 72);
+      g.fillStyle = WHITE; g.font = `900 54px ${F.sans}`; g.fillText('STOP', c.x + 128, c.y + 72);
       g.font = `700 26px ${F.en}`; g.fillText('STOP', c.x + 128, c.y + 122); }
     // 横断歩道 (blue square, white triangle, pedestrian)
     { const c = SIGN.cross;
@@ -559,7 +559,7 @@ export function makeStreetTextures(ctx) {
       g.fillStyle = RED; T.fitText(g, '一時停止', c.x + 128, c.y + 56, 200, 58, F.sans, 900); g.fillStyle = INK; T.fitText(g, 'STOP', c.x + 128, c.y + 100, 150, 28, F.en, 700); }
     plate(SIGN.pPriority, ['前方優先道路']);
     plate(SIGN.pSchool, ['スクールゾーン', '7:30 - 9:00']);
-    { const c = SIGN.pTown; g.fillStyle = WHITE; g.fillRect(c.x, c.y, c.w, c.h); g.fillStyle = INK; T.fitText(g, '桜ヶ丘町  No.12', c.x + 128, c.y + 33, 230, 30, F.sans, 700); }
+    { const c = SIGN.pTown; g.fillStyle = WHITE; g.fillRect(c.x, c.y, c.w, c.h); g.fillStyle = INK; T.fitText(g, 'Gulabi Nagar  No.12', c.x + 128, c.y + 33, 230, 30, F.sans, 700); }
     // blue guide sign: T junction diagram
     { const c = SIGN.guide, x0 = c.x, y0 = c.y;
       g.fillStyle = WHITE; T.roundRect(g, x0 + 2, y0 + 2, 508, 380, 26); g.fill();
@@ -573,12 +573,12 @@ export function makeStreetTextures(ctx) {
       // station pictogram
       g.fillStyle = WHITE; T.roundRect(g, cx + 22, y0 + 104, 40, 34, 6); g.fill(); g.fillStyle = '#2c5fae'; g.fillRect(cx + 28, y0 + 110, 28, 12); g.fillRect(cx + 26, y0 + 128, 8, 6); g.fillRect(cx + 50, y0 + 128, 8, 6);
       g.fillStyle = WHITE; g.textAlign = 'center'; g.textBaseline = 'middle';
-      T.fitText(g, '桜ヶ丘駅', cx, y0 + 56, 300, 58, F.sans, 900);
-      T.fitText(g, 'Sakuragaoka Sta.', cx, y0 + 98, 190, 22, F.en, 700);
-      T.fitText(g, '桜川堤', x0 + 90, jy - 56, 160, 44, F.sans, 900);
+      T.fitText(g, 'गुलाबी नगर स्टेशन', cx, y0 + 56, 300, 58, F.sans, 900);
+      T.fitText(g, 'Gulabi Nagar Sta.', cx, y0 + 98, 190, 22, F.en, 700);
+      T.fitText(g, 'Gulabi堤', x0 + 90, jy - 56, 160, 44, F.sans, 900);
       T.fitText(g, 'Sakuragawa Bank', x0 + 94, jy + 44, 170, 19, F.en, 700);
-      T.fitText(g, '春日野', x0 + 422, jy - 56, 160, 44, F.sans, 900);
-      T.fitText(g, 'Kasugano', x0 + 420, jy + 44, 150, 19, F.en, 700);
+      T.fitText(g, 'सांगानेर', x0 + 422, jy - 56, 160, 44, F.sans, 900);
+      T.fitText(g, 'Sanganer', x0 + 420, jy + 44, 150, 19, F.en, 700);
       g.textAlign = 'left'; T.fitText(g, '1.5km', x0 + 30, jy + 82, 90, 20, F.en, 700); g.textAlign = 'right'; T.fitText(g, '2.8km', x0 + 482, jy + 82, 90, 20, F.en, 700); g.textAlign = 'center'; }
     // 消火栓 sign
     { const c = SIGN.hydrant; g.fillStyle = WHITE; g.fillRect(c.x + 2, c.y + 2, c.w - 4, c.h - 4); g.fillStyle = RED; g.fillRect(c.x + 10, c.y + 10, c.w - 20, c.h - 20);

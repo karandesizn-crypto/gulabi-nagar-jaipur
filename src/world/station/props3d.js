@@ -1,4 +1,4 @@
-// Modelled interior props for 桜ヶ丘駅 — real geometry for every object (textures only for genuine flat
+// Modelled interior props for गुलाबी नगर स्टेशन — real geometry for every object (textures only for genuine flat
 // graphics: screens, printed labels, notices). Each factory builds a Group at world (x, y, z) facing
 // local +Z (rotY like three.js) under A.root, so the core batcher merges everything by material.
 // Colliders are added here for floor-standing furniture (callers pass { col: false } to skip).
@@ -409,7 +409,7 @@ export function createProps(A) {
     return g;
   }
 
-  // ================================================================ bookshelf (えきなか文庫) with individual books
+  // ================================================================ bookshelf (えきなかBOOKS) with individual books
   const bookCols = ['#c9504a', '#3f6fb0', '#e8c24a', '#4f8f5f', '#ef9fbe', '#8a6446', '#ebe8e0', '#6d747c', '#9cc4ea', '#d9718f', '#b48a62', '#2f4068'].map(h => ic(h));
   function fillBooks(kk, r, x0, x1, y, depth, hmax, z = 0) {
     let bx = x0 + 0.01;

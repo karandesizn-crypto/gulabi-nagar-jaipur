@@ -1,4 +1,4 @@
-// Canvas textures for the level crossing (踏切). Everything is cached by key and drawn with a
+// Canvas textures for the level crossing (Level Crossing). Everything is cached by key and drawn with a
 // seeded RNG so screenshots are deterministic. Kept small (total well under 2 Mpx).
 
 export const INK = '#3a3346';          // "black" of the yellow/black hazard stripes (never pure black)
@@ -54,7 +54,7 @@ export function makeCrossingTextures(ctx) {
     { key: 'crossing.machStripe', repeat: [1, 2.4] });
 
 
-  // crossbuck boards (踏切警標): yellow with black diagonal stripes, thin dark border
+  // crossbuck boards (Level Crossing警標): yellow with black diagonal stripes, thin dark border
   const buck = (flip) => (g, w, h) => {
     g.fillStyle = HAZ_YELLOW; g.fillRect(0, 0, w, h);
     g.fillStyle = INK;
@@ -72,7 +72,7 @@ export function makeCrossingTextures(ctx) {
   item('sign', 'buckB', 256, 40, buck(true));
 
   // ------------------------------------------------------------ deck surfaces
-  // rubber crossing panel (ゴム踏切板): greyscale, tinted by the material colour
+  // rubber crossing panel (ゴムLevel Crossing板): greyscale, tinted by the material colour
   T.rubber = tex.draw(256, 256, (g, w, h) => {
     const rnd = rngFor('rubber');
     g.fillStyle = '#c9c9cb'; g.fillRect(0, 0, w, h);
@@ -167,7 +167,7 @@ export function makeCrossingTextures(ctx) {
     for (let i = 0; i < n; i++) { g.fillStyle = `rgba(0,0,0,${0.2 + rnd() * 0.5})`; blob(g, rnd() * w, rnd() * h, 1.5 + rnd() * 5, rnd); }
     g.globalCompositeOperation = 'source-over';
   };
-  // 止まれ: characters written across the lane, stretched ~2.9x along the travel direction
+  // STOP: characters written across the lane, stretched ~2.9x along the travel direction
   item('road', 'tomare', 512, 512, (g, w, h) => {
     const rnd = rngFor('tomare');
     g.clearRect(0, 0, w, h);
@@ -216,7 +216,7 @@ export function makeCrossingTextures(ctx) {
     g.closePath(); g.fill();
     wearOut(g, w, h, rnd, 40);
   });
-  // 自転車ナビマーク: white bicycle + arrow on a blue rounded plate
+  // CYCLEナビマーク: white bicycle + arrow on a blue rounded plate
   item('road', 'navi', 128, 256, (g, w, h) => {
     const rnd = rngFor('navi');
     g.clearRect(0, 0, w, h);
@@ -240,17 +240,17 @@ export function makeCrossingTextures(ctx) {
     g.fillStyle = '#f6f3ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#2f5fa8'; g.fillRect(0, 0, w, 52);
     g.fillStyle = '#ffffff'; g.textBaseline = 'middle'; g.textAlign = 'left';
-    tex.fitText(g, '踏切名', 16, 27, 120, 30, F.sans, 700);
-    g.textAlign = 'right'; tex.fitText(g, '桜川線', w - 16, 27, 140, 28, F.sans, 700);
+    tex.fitText(g, 'Level Crossing名', 16, 27, 120, 30, F.sans, 700);
+    g.textAlign = 'right'; tex.fitText(g, 'गुलाबी रेल', w - 16, 27, 140, 28, F.sans, 700);
     g.fillStyle = '#2d2a38'; g.textAlign = 'center';
-    tex.fitText(g, '桜ヶ丘第1踏切', w / 2, 96, w - 30, 56, F.sans, 900);
-    g.fillStyle = '#5b5868'; tex.fitText(g, 'さくらがおか だい１ ふみきり', w / 2, 136, w - 40, 20, F.sans, 500);
+    tex.fitText(g, 'गुलाबी नगर第1Level Crossing', w / 2, 96, w - 30, 56, F.sans, 900);
+    g.fillStyle = '#5b5868'; tex.fitText(g, 'गुलाबी नगर だい１ ふみきり', w / 2, 136, w - 40, 20, F.sans, 500);
     g.fillStyle = '#d9463b'; g.fillRect(14, 158, w - 28, 34);
     g.fillStyle = '#ffffff'; tex.fitText(g, '緊急連絡先　非常の際はご連絡ください', w / 2, 176, w - 44, 21, F.sans, 700);
     g.fillStyle = '#2d2a38';
-    tex.fitText(g, '桜川電鉄 運輸指令所', w / 2, 214, w - 40, 26, F.sans, 700);
+    tex.fitText(g, 'गुलाबी रेल 運輸指令所', w / 2, 214, w - 40, 26, F.sans, 700);
     tex.fitText(g, '☎ 0120-000-315（24時間）', w / 2, 250, w - 40, 30, F.sans, 900);
-    g.fillStyle = '#6d6a78'; tex.fitText(g, '花見台起点 12k350m　踏切番号 第47号', w / 2, 283, w - 40, 17, F.sans, 500);
+    g.fillStyle = '#6d6a78'; tex.fitText(g, 'चाँदपोल起点 12k350m　Level Crossing番号 第47号', w / 2, 283, w - 40, 17, F.sans, 500);
     g.strokeStyle = '#2f5fa8'; g.lineWidth = 5; g.strokeRect(2.5, 2.5, w - 5, h - 5);
   });
 
@@ -263,9 +263,9 @@ export function makeCrossingTextures(ctx) {
     g.fillStyle = '#d8d2c4'; g.beginPath(); g.arc(w / 2, 142, 52, 0, Math.PI * 2); g.fill();
     g.strokeStyle = '#b9b2a2'; g.lineWidth = 4; g.stroke();
     g.fillStyle = '#2d2a38';
-    tex.fitText(g, '踏切支障報知装置', w / 2, 222, w - 24, 24, F.sans, 700);
+    tex.fitText(g, 'Level Crossing支障報知装置', w / 2, 222, w - 24, 24, F.sans, 700);
     g.fillStyle = '#4a4656';
-    tex.fitText(g, '踏切内で車が動けなく', w / 2, 256, w - 24, 18, F.sans, 500);
+    tex.fitText(g, 'Level Crossing内で車が動けなく', w / 2, 256, w - 24, 18, F.sans, 500);
     tex.fitText(g, 'なった時などに押してください', w / 2, 280, w - 24, 18, F.sans, 500);
     g.strokeStyle = '#d9463b'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
   });
@@ -276,14 +276,14 @@ export function makeCrossingTextures(ctx) {
     g.textAlign = 'center'; g.textBaseline = 'middle';
     g.fillStyle = '#d23f36'; tex.fitText(g, 'とまれ', w / 2, 82, w - 30, 64, F.sans, 900);
     g.fillStyle = '#2d2a38'; tex.fitText(g, 'みよ', w / 2, 170, w - 50, 66, F.sans, 900);
-    g.fillStyle = '#6d6a78'; tex.fitText(g, '桜川電鉄', w / 2, 228, w - 60, 18, F.sans, 700);
+    g.fillStyle = '#6d6a78'; tex.fitText(g, 'गुलाबी रेल', w / 2, 228, w - 60, 18, F.sans, 700);
   });
 
   item('sign', 'chui', 256, 160, (g, w, h) => {
     g.fillStyle = '#f2c73e'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#2d2a38'; g.lineWidth = 7; g.strokeRect(6, 6, w - 12, h - 12);
     g.fillStyle = '#2d2a38'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    tex.fitText(g, '踏切注意', w / 2, 66, w - 40, 64, F.sans, 900);
+    tex.fitText(g, 'Level Crossing注意', w / 2, 66, w - 40, 64, F.sans, 900);
     tex.fitText(g, '一時停止・左右確認', w / 2, 122, w - 44, 24, F.sans, 700);
   });
 
@@ -292,12 +292,12 @@ export function makeCrossingTextures(ctx) {
     g.fillStyle = '#d9463b'; g.fillRect(0, 0, w, 50);
     g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
     tex.fitText(g, '危 険', w / 2, 27, w - 40, 38, F.sans, 900);
-    g.fillStyle = '#d23f36'; tex.fitText(g, '線路内立入禁止', w / 2, 90, w - 28, 40, F.sans, 900);
-    g.fillStyle = '#2d2a38'; tex.fitText(g, '桜川電鉄', w / 2, 136, w - 90, 22, F.sans, 700);
+    g.fillStyle = '#d23f36'; tex.fitText(g, '線路内NO ENTRY', w / 2, 90, w - 28, 40, F.sans, 900);
+    g.fillStyle = '#2d2a38'; tex.fitText(g, 'गुलाबी रेल', w / 2, 136, w - 90, 22, F.sans, 700);
     g.strokeStyle = '#d9463b'; g.lineWidth = 5; g.strokeRect(2.5, 2.5, w - 5, h - 5);
   });
 
-  // control cabinet door (踏切制御器)
+  // control cabinet door (Level Crossing制御器)
   item('sign', 'cabinet', 256, 400, (g, w, h) => {
     const rnd = rngFor('cab');
     g.fillStyle = '#e4e6e6'; g.fillRect(0, 0, w, h);
@@ -311,8 +311,8 @@ export function makeCrossingTextures(ctx) {
     // label plate
     g.fillStyle = '#f7f6f0'; g.fillRect(34, 46, w - 68, 70); g.strokeStyle = '#6f7479'; g.lineWidth = 2; g.strokeRect(34, 46, w - 68, 70);
     g.fillStyle = '#2d2a38'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    tex.fitText(g, '踏切制御器', w / 2, 70, w - 90, 26, F.sans, 900);
-    tex.fitText(g, '桜ヶ丘第1踏切  SK07-1', w / 2, 100, w - 90, 16, F.sans, 700);
+    tex.fitText(g, 'Level Crossing制御器', w / 2, 70, w - 90, 26, F.sans, 900);
+    tex.fitText(g, 'गुलाबी नगर第1Level Crossing  GN07-1', w / 2, 100, w - 90, 16, F.sans, 700);
     // yellow warning triangle
     g.fillStyle = '#f2c230'; g.beginPath(); g.moveTo(w / 2, 142); g.lineTo(w / 2 + 34, 200); g.lineTo(w / 2 - 34, 200); g.closePath(); g.fill();
     g.strokeStyle = '#2d2a38'; g.lineWidth = 4; g.stroke();
@@ -329,7 +329,7 @@ export function makeCrossingTextures(ctx) {
     g.strokeStyle = '#8f969c'; g.lineWidth = 4; g.strokeRect(12, 12, w - 24, h - 24);
     g.fillStyle = '#f7f6f0'; g.fillRect(28, 36, w - 56, 50);
     g.fillStyle = '#2d2a38'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    tex.fitText(g, '踏切器具箱', w / 2, 61, w - 70, 24, F.sans, 900);
+    tex.fitText(g, 'Level Crossing器具箱', w / 2, 61, w - 70, 24, F.sans, 900);
     g.fillStyle = '#d9463b'; tex.fitText(g, '関係者以外 開扉禁止', w / 2, 118, w - 50, 16, F.sans, 700);
     for (let i = 0; i < 5; i++) { g.fillStyle = '#9ba2a8'; g.fillRect(36, h - 90 + i * 12, w - 72, 5); }
   });

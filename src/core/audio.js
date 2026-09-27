@@ -373,7 +373,7 @@ function departNotes() {
   return out;
 }
 const DEPART = departNotes();
-const CHIME_NOTES = [[0, 'vib', 72, 0.8], [0.34, 'vib', 76, 0.8], [0.68, 'vib', 79, 0.82], [1.02, 'vib', 84, 0.9]];   // ピンポンパンポーン
+const CHIME_NOTES = [[0, 'vib', 72, 0.8], [0.34, 'vib', 76, 0.8], [0.68, 'vib', 79, 0.82], [1.02, 'vib', 84, 0.9]];   // ピンポンBREADポーン
 const DOOR_NOTES = [[0, 'vib', 83, 0.85], [0.4, 'vib', 79, 0.9]];                                                   // ピン・ポーン
 /** café music box waltz「午後の窓辺」— original, G major, 3/4, 92 bpm, 16 bars (~31 s loop). events {b (beats), inst, midi, vel} */
 function cafeSong() {
@@ -620,9 +620,9 @@ export function createAudio(options = {}) {
   // ------------------------------------------------------------ speech (announce)
   function pickVoice() {
     const ss = globalThis.speechSynthesis; if (!ss || !ss.getVoices) return null;
-    const ja = (ss.getVoices() || []).filter((v) => /^ja/i.test(v.lang || ''));
+    const ja = (ss.getVoices() || []).filter((v) => /^hi/i.test(v.lang || ''));
     if (!ja.length) return null;
-    for (const re of [/nanami/i, /haruka/i, /ayumi/i, /kyoko/i, /mizuki/i, /google/i, /female/i]) { const v = ja.find((x) => re.test(x.name || '')); if (v) return v; }
+    for (const re of [/hindi/i, /india/i, /google/i, /female/i]) { const v = ja.find((x) => re.test(x.name || '')); if (v) return v; }
     return ja[0];
   }
   function initSpeech() {
@@ -644,7 +644,7 @@ export function createAudio(options = {}) {
         const v = jaVoice || (jaVoice = pickVoice()); if (!v) return;       // no Japanese voice -> silent
         const d = p ? distTo(p) : 0, att = p ? 10 / (10 + Math.max(0, d - 10)) : 1;
         const g = clamp(vol * masterVol * att * 0.7, 0, 0.55); if (g < 0.04) return;
-        const u = new U(text); u.voice = v; u.lang = v.lang || 'ja-JP'; u.rate = 0.96; u.pitch = 1.08; u.volume = g;
+        const u = new U(text); u.voice = v; u.lang = v.lang || 'hi-IN'; u.rate = 0.96; u.pitch = 1.08; u.volume = g;
         if (ss.speaking || ss.pending) ss.cancel();
         ss.speak(u);
       } catch (e) { /* fail silently */ }

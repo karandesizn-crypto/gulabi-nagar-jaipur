@@ -1,6 +1,7 @@
 node_modules/
 shots/
 dist/
+art/verification/
 .claude/
 *.mp4
 *.log

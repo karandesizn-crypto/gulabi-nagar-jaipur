@@ -60,8 +60,8 @@ export function makeSigns(ctx, T) {
     // header
     g.fillStyle = '#33507a'; g.fillRect(0, 0, W, 92);
     txt(g, '駅周辺案内図', 34, 48, 54, F.sans, '#f3f1ea', 900, 'left');
-    txt(g, 'Sakuragaoka Station Area Map', 380, 60, 24, F.en, '#cfdcef', 500, 'left');
-    rr(g, 770, 22, 230, 50, 25, '#ef9fbe'); txt(g, '桜川線  桜ヶ丘駅', 885, 48, 25, F.sans, '#3a3346', 900);
+    txt(g, 'Gulabi Nagar Station Area Map', 380, 60, 24, F.en, '#cfdcef', 500, 'left');
+    rr(g, 770, 22, 230, 50, 25, '#ef9fbe'); txt(g, 'गुलाबी रेल  गुलाबी नगर स्टेशन', 885, 48, 25, F.sans, '#3a3346', 900);
     // map frame
     const mx0 = 24, my0 = 108, mw = 700, mh = 640;
     g.save(); g.beginPath(); g.rect(mx0, my0, mw, mh); g.clip();
@@ -78,7 +78,7 @@ export function makeSigns(ctx, T) {
     R(-120, -101, 120, -84, '#cfe3b6');
     R(-120, -94.5, 120, -91.5, '#efe6cf');
     for (let x = -88; x <= 88; x += 7) { T.sakuraIcon(g, X(x), Y(-97.5), 7); T.sakuraIcon(g, X(x + 3.5), Y(-88), 7); }
-    txt(g, '桜川堤 桜並木', X(34), Y(-84.5) + 14, 20, F.sans, '#b24a70', 900);
+    txt(g, 'Gulabi堤 桜並木', X(34), Y(-84.5) + 14, 20, F.sans, '#b24a70', 900);
     // houses
     const house = '#f4e6c3';
     for (const b of L.BLOCKS) {
@@ -105,14 +105,14 @@ export function makeSigns(ctx, T) {
     // crossing
     R(-14.75, -48, -9.25, -38, '#ffffff');
     g.strokeStyle = '#d9463b'; g.lineWidth = 3; g.beginPath(); g.moveTo(X(-17), Y(-38)); g.lineTo(X(-19.5), Y(-35.5)); g.moveTo(X(-19.5), Y(-38)); g.lineTo(X(-17), Y(-35.5)); g.stroke();
-    txt(g, '踏切', X(-24), Y(-36.5), 17, F.sans, '#9a3a33', 900);
+    txt(g, 'Level Crossing', X(-24), Y(-36.5), 17, F.sans, '#9a3a33', 900);
     // station
     g.fillStyle = '#ef9fbe'; g.fillRect(X(-4), Y(-35.5), 16 * k, 10.5 * k);
     g.strokeStyle = '#c96b8c'; g.lineWidth = 2; g.strokeRect(X(-4), Y(-35.5), 16 * k, 10.5 * k);
-    txt(g, '桜ヶ丘駅', X(4), Y(-30.3), 17, F.sans, '#3a3346', 900);
-    txt(g, '← 花見台', X(-58), Y(-47.5) - 6, 17, F.sans, '#4a4453', 700);
-    txt(g, '春日野 →', X(62), Y(-38.5) + 6, 17, F.sans, '#4a4453', 700);
-    txt(g, '桜川線', X(-40), Y(-37.5) + 3, 16, F.sans, '#b24a70', 900);
+    txt(g, 'गुलाबी नगर स्टेशन', X(4), Y(-30.3), 17, F.sans, '#3a3346', 900);
+    txt(g, '← चाँदपोल', X(-58), Y(-47.5) - 6, 17, F.sans, '#4a4453', 700);
+    txt(g, 'सांगानेर →', X(62), Y(-38.5) + 6, 17, F.sans, '#4a4453', 700);
+    txt(g, 'गुलाबी रेल', X(-40), Y(-37.5) + 3, 16, F.sans, '#b24a70', 900);
     // plaza
     g.fillStyle = '#e4e0d4'; g.fillRect(X(-9.25), Y(-25), 35.25 * k, 20 * k);
     g.fillStyle = '#dcd6c8'; g.fillRect(X(-4), Y(-25), 18 * k, 4.5 * k);
@@ -133,16 +133,16 @@ export function makeSigns(ctx, T) {
     rr(g, hx + 8, hy - 42, 94, 30, 8, '#d9463b');
     txt(g, '現在地', hx + 55, hy - 27, 19, F.sans, '#f7f3ea', 900);
     // street names & shops
-    g.save(); g.translate(X(0), Y(33)); g.fillStyle = '#6a5a52'; tex.verticalText(g, '駅前商店街', 0, -45, 15, F.sans, 900, 1.05); g.restore();
-    txt(g, '駅前通り', X(-45), Y(-2), 15, F.sans, '#6a5a52', 900);
+    g.save(); g.translate(X(0), Y(33)); g.fillStyle = '#6a5a52'; tex.verticalText(g, '駅前Gulabi Bazaar', 0, -45, 15, F.sans, 900, 1.05); g.restore();
+    txt(g, 'Station Road', X(-45), Y(-2), 15, F.sans, '#6a5a52', 900);
     const shopLabel = (id, name) => {
       const lot = L.lotById(id); const zc = (lot.z0 + lot.z1) / 2;
       const x = lot.side < 0 ? X(-11.8) : X(11.8);
       txt(g, name, x, Y(zc), 15, F.sans, '#6a4a3c', 900);
     };
-    shopLabel('W1', 'コンビニ'); shopLabel('W2', '花屋'); shopLabel('W4', '書店'); shopLabel('E1', '喫茶'); shopLabel('E2', '和菓子'); shopLabel('E3', 'よろず屋');
+    shopLabel('W1', 'KIRANA'); shopLabel('W2', 'फूल'); shopLabel('W4', '書店'); shopLabel('E1', 'चाय'); shopLabel('E2', 'MITHAI'); shopLabel('E3', 'KIRANA');
     T.sakuraIcon(g, X(-7), Y(25.2), 7);
-    txt(g, '↓ 桜ヶ丘神社・自転車店・ラーメン', X(0) + 90, my0 + mh - 16, 15, F.sans, '#6a4a3c', 700);
+    txt(g, '↓ Neighbourhood Mandir・CYCLE店・DHABA', X(0) + 90, my0 + mh - 16, 15, F.sans, '#6a4a3c', 700);
     g.restore();
     g.strokeStyle = '#8a8478'; g.lineWidth = 3; g.strokeRect(mx0, my0, mw, mh);
     // north arrow
@@ -159,25 +159,25 @@ export function makeSigns(ctx, T) {
     txt(g, '凡 例', lx + 127, ly + 22, 24, F.sans, '#33507a', 900); ly += 58;
     const row = (draw, label, en) => { draw(g, lx + 26, ly, 30); txt(g, label, lx + 58, ly - 5, 21, F.sans, '#3a3346', 900, 'left'); txt(g, en, lx + 58, ly + 16, 13, F.en, '#6a6470', 500, 'left'); ly += 56; };
     row((g2, x, y, s) => { g2.fillStyle = '#ef9fbe'; g2.fillRect(x - 17, y - 12, 34, 24); g2.strokeStyle = '#c96b8c'; g2.lineWidth = 2; g2.strokeRect(x - 17, y - 12, 34, 24); }, '駅', 'Station');
-    row((g2, x, y, s) => busIcon(g2, x, y, s, '#ffffff', '#e0799c'), 'バスのりば', 'Bus Stop');
-    row((g2, x, y, s) => taxiIcon(g2, x, y, s, '#ffffff', '#33507a'), 'タクシーのりば', 'Taxi');
-    row((g2, x, y, s) => pIcon(g2, x, y, s * 0.9), '駐輪場', 'Bicycle Parking');
+    row((g2, x, y, s) => busIcon(g2, x, y, s, '#ffffff', '#e0799c'), 'バスPLATFORM', 'Bus Stop');
+    row((g2, x, y, s) => taxiIcon(g2, x, y, s, '#ffffff', '#33507a'), 'タクシーPLATFORM', 'Taxi');
+    row((g2, x, y, s) => pIcon(g2, x, y, s * 0.9), 'CYCLE PARKING', 'Bicycle Parking');
     row((g2, x, y, s) => postIcon(g2, x, y, s * 0.9), '郵便ポスト', 'Post Box');
     row((g2, x, y, s) => telIcon(g2, x, y, s * 0.9), '公衆電話', 'Public Phone');
     row((g2, x, y, s) => wcIcon(g2, x, y, s * 0.9), 'トイレ（駅構内）', 'Toilet');
     row((g2, x, y, s) => T.sakuraIcon(g2, x, y, 14), '桜の名所', 'Cherry Blossoms');
     rr(g, lx - 8, 652, 270, 96, 10, '#33507a');
-    txt(g, '← 花見台  3分', lx + 127, 680, 20, F.sans, '#f3f1ea', 700);
-    txt(g, '春日野  4分 →', lx + 127, 712, 20, F.sans, '#f3f1ea', 700);
-    txt(g, '桜ヶ丘町', lx + 127, 738, 13, F.sans, '#cfdcef', 500);
+    txt(g, '← चाँदपोल  3分', lx + 127, 680, 20, F.sans, '#f3f1ea', 700);
+    txt(g, 'सांगानेर  4分 →', lx + 127, 712, 20, F.sans, '#f3f1ea', 700);
+    txt(g, 'Gulabi Nagar', lx + 127, 738, 13, F.sans, '#cfdcef', 500);
   }, { key: 'plaza-map' });
 
   // =============================================================== back of the map board: plaza guide
   S.plazaGuide = tex.draw(512, 384, (g, W, H) => {
     g.fillStyle = '#eeeadf'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#33507a'; g.fillRect(0, 0, W, 70);
-    txt(g, '駅前広場のご案内', W / 2, 38, 36, F.sans, '#f3f1ea', 900);
-    const items = [['#d9463b', '広場内では自転車を降りて', '押して歩きましょう'], ['#3f8f5b', 'ごみは分別して', 'ごみ箱へ入れてください'], ['#e0799c', '花壇の花や桜の木を', '大切にしましょう'], ['#8a8478', '路上喫煙禁止区域', 'No smoking on the street']];
+    txt(g, 'Station Chowkのご案内', W / 2, 38, 36, F.sans, '#f3f1ea', 900);
+    const items = [['#d9463b', '広場内ではCYCLEを降りて', '押して歩きましょう'], ['#3f8f5b', 'ごみは分別して', 'ごみ箱へ入れてください'], ['#e0799c', '花壇の花や桜の木を', '大切にしましょう'], ['#8a8478', '路上喫煙禁止区域', 'No smoking on the street']];
     let y = 104;
     for (const [c, a, b] of items) {
       g.fillStyle = c; g.beginPath(); g.arc(46, y + 12, 20, 0, 7); g.fill();
@@ -185,18 +185,18 @@ export function makeSigns(ctx, T) {
       txt(g, a, 82, y, 25, F.sans, '#3a3346', 900, 'left'); txt(g, b, 82, y + 28, 20, F.sans, '#5a5460', 500, 'left');
       y += 66;
     }
-    txt(g, '桜ヶ丘町 ・ 桜ヶ丘駅前商店会', W / 2, H - 16, 16, F.sans, '#6a6470', 700);
+    txt(g, 'Gulabi Nagar ・ गुलाबी नगर स्टेशन前商店会', W / 2, H - 16, 16, F.sans, '#6a6470', 700);
   }, { key: 'plaza-guide' });
 
-  // =============================================================== 桜ヶ丘 観光案内 (tourist board)
+  // =============================================================== गुलाबी नगर 観光案内 (tourist board)
   S.tourist = tex.draw(1024, 768, (g, W, H) => {
     g.fillStyle = '#f3ead8'; g.fillRect(0, 0, W, H);
     const r = ctx.rng('tour');
     for (let i = 0; i < 40; i++) { g.fillStyle = `rgba(200,170,130,${r.range(0.03, 0.07)})`; g.beginPath(); g.arc(r() * W, r() * H, r.range(20, 90), 0, 7); g.fill(); }
     // title
     for (let i = 0; i < 7; i++) T.sakuraIcon(g, 40 + i * 20 + r.range(-8, 8), 30 + r.range(-12, 18), r.range(8, 13), '#f2b5c8', '#dd7f9d');
-    txt(g, '桜ヶ丘 観光案内', W / 2, 62, 70, F.brush, '#4a3438', 400);
-    txt(g, 'Sakuragaoka Sightseeing Guide', W / 2, 114, 22, F.en, '#8a6a60', 500);
+    txt(g, 'गुलाबी नगर 観光案内', W / 2, 62, 70, F.brush, '#4a3438', 400);
+    txt(g, 'Gulabi Nagar Sightseeing Guide', W / 2, 114, 22, F.en, '#8a6a60', 500);
     for (let i = 0; i < 7; i++) T.sakuraIcon(g, W - 40 - i * 20 + r.range(-8, 8), 34 + r.range(-12, 18), r.range(8, 13), '#f2b5c8', '#dd7f9d');
     g.strokeStyle = '#c9a98a'; g.lineWidth = 2; g.beginPath(); g.moveTo(40, 136); g.lineTo(W - 40, 136); g.stroke();
     // hand-drawn map (left)
@@ -204,16 +204,16 @@ export function makeSigns(ctx, T) {
     rr(g, mx, my, mw, mh, 16, '#f7f1e2', '#c9a98a', 3);
     g.save(); tex.roundRect(g, mx, my, mw, mh, 16); g.clip();
     g.fillStyle = '#bcdcea'; g.beginPath(); g.moveTo(mx, my + 40); g.bezierCurveTo(mx + 150, my + 70, mx + 300, my + 20, mx + mw, my + 60); g.lineTo(mx + mw, my + 110); g.bezierCurveTo(mx + 300, my + 70, mx + 150, my + 120, mx, my + 92); g.closePath(); g.fill();
-    txt(g, '桜川', mx + 70, my + 72, 24, F.hand, '#3c6f96', 400);
+    txt(g, 'Gulabi', mx + 70, my + 72, 24, F.hand, '#3c6f96', 400);
     g.fillStyle = '#d5e8c0'; g.beginPath(); g.moveTo(mx, my + 96); g.bezierCurveTo(mx + 150, my + 124, mx + 300, my + 74, mx + mw, my + 114); g.lineTo(mx + mw, my + 150); g.bezierCurveTo(mx + 300, my + 110, mx + 150, my + 160, mx, my + 132); g.closePath(); g.fill();
     for (let i = 0; i < 16; i++) { const x = mx + 12 + i * 28, y = my + 118 + Math.sin(i * 0.7) * 10 - (i > 8 ? 12 : 0); g.fillStyle = '#f2b5c8'; g.beginPath(); g.arc(x, y, 12, 0, 7); g.fill(); g.fillStyle = '#eb9db6'; g.beginPath(); g.arc(x + 4, y + 3, 6, 0, 7); g.fill(); }
     g.strokeStyle = '#6a6470'; g.lineWidth = 6; g.beginPath(); g.moveTo(mx, my + 250); g.lineTo(mx + mw, my + 236); g.stroke();
     g.strokeStyle = '#ef9fbe'; g.lineWidth = 3; g.beginPath(); g.moveTo(mx, my + 250); g.lineTo(mx + mw, my + 236); g.stroke();
     for (let i = 0; i < 8; i++) { const x = mx + 30 + i * 22; g.fillStyle = '#f2b5c8'; g.beginPath(); g.arc(x, my + 222 - i * 0.6, 9, 0, 7); g.fill(); }
-    rr(g, mx + 200, my + 254, 80, 40, 6, '#ef9fbe', '#c96b8c', 2); txt(g, '桜ヶ丘駅', mx + 240, my + 275, 17, F.sans, '#3a3346', 900);
+    rr(g, mx + 200, my + 254, 80, 40, 6, '#ef9fbe', '#c96b8c', 2); txt(g, 'गुलाबी नगर स्टेशन', mx + 240, my + 275, 17, F.sans, '#3a3346', 900);
     g.fillStyle = '#ffffff'; g.fillRect(mx + 226, my + 300, 26, mh); g.fillRect(mx, my + 318, mw, 18);
     g.fillStyle = '#f2b5c8'; g.beginPath(); g.arc(mx + 190, my + 312, 20, 0, 7); g.fill();
-    toriiIcon(g, mx + 330, my + 420, 34); txt(g, '桜ヶ丘神社', mx + 330, my + 456, 17, F.sans, '#6a4a3c', 900);
+    toriiIcon(g, mx + 330, my + 420, 34); txt(g, 'Neighbourhood Mandir', mx + 330, my + 456, 17, F.sans, '#6a4a3c', 900);
     g.fillStyle = '#f2b5c8'; g.beginPath(); g.arc(mx + 380, my + 404, 18, 0, 7); g.fill();
     const mark = (n, x, y) => { g.fillStyle = '#d9718f'; g.beginPath(); g.arc(x, y, 17, 0, 7); g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 2.5; g.stroke(); txt(g, String(n), x, y + 1, 21, F.sans, '#ffffff', 900); };
     mark(1, mx + 176, my + 342); mark(2, mx + 300, my + 158); mark(3, mx + 402, my + 380); mark(4, mx + 100, my + 205);
@@ -223,8 +223,8 @@ export function makeSigns(ctx, T) {
     // spots (right)
     const spots = [
       ['駅前の大桜', '樹齢およそ八十年のソメイヨシノ。', '丸いベンチでひと休みできます。'],
-      ['桜川堤の桜並木', '約1.2kmつづく桜のトンネル。', '堤防の上は散歩道です。'],
-      ['桜ヶ丘神社のしだれ桜', '境内の枝垂れ桜は町の自慢。', '夕方は灯籠に灯りがともります。'],
+      ['Gulabi堤の桜並木', '約1.2kmつづく桜のトンネル。', '堤防の上は散歩道です。'],
+      ['Neighbourhood Mandirのしだれ桜', '境内の枝垂れ桜は町の自慢。', '夕方は灯籠に灯りがともります。'],
       ['線路沿いの桜', '電車と桜をいっしょに撮れる', '人気の撮影スポットです。'],
     ];
     let y = 160;
@@ -241,8 +241,8 @@ export function makeSigns(ctx, T) {
     });
     rr(g, 36, 652, 954, 92, 14, '#e8a6bb');
     txt(g, '見頃  3月下旬〜4月上旬', 270, 684, 28, F.sans, '#ffffff', 900);
-    txt(g, '桜ヶ丘 春まつり  4月6日(土)・7日(日)', 700, 684, 28, F.sans, '#ffffff', 900);
-    txt(g, '桜ヶ丘町観光協会 ・ 桜川電鉄', W / 2, 724, 20, F.sans, '#fff4f7', 700);
+    txt(g, 'गुलाबी नगर 春まつり  4月6日(土)・7日(日)', 700, 684, 28, F.sans, '#ffffff', 900);
+    txt(g, 'Gulabi Nagar観光協会 ・ गुलाबी रेल', W / 2, 724, 20, F.sans, '#fff4f7', 700);
   }, { key: 'plaza-tourist' });
 
   // =============================================================== community notice board face + header
@@ -266,14 +266,14 @@ export function makeSigns(ctx, T) {
       g.fillStyle = '#ef9fbe'; g.fillRect(0, 0, w, 96);
       for (let i = 0; i < 6; i++) { const x = 26 + i * 50; g.strokeStyle = '#7a4a40'; g.lineWidth = 2; g.beginPath(); g.moveTo(x - 25, 18); g.lineTo(x + 25, 18); g.stroke(); rr(g, x - 14, 22, 28, 38, 12, '#d9463b'); g.fillStyle = '#f7d36a'; g.fillRect(x - 10, 38, 20, 4); }
       txt(g, '第三十八回', w / 2, 76, 22, F.sans, '#fff', 900);
-      txt(g, '桜ヶ丘', w / 2, 140, 52, F.brush, '#c24a6e', 400);
+      txt(g, 'गुलाबी नगर', w / 2, 140, 52, F.brush, '#c24a6e', 400);
       txt(g, '春まつり', w / 2, 204, 64, F.brush, '#c24a6e', 400);
       for (let i = 0; i < 9; i++) T.sakuraIcon(g, 20 + r() * (w - 40), 240 + r() * 30, r.range(7, 12));
       txt(g, '4月6日(土)・7日(日)', w / 2, 292, 28, F.sans, '#4a3438', 900);
       txt(g, '午前10時〜午後4時', w / 2, 326, 20, F.sans, '#4a3438', 700);
-      txt(g, '会場  駅前広場・桜川堤', w / 2, 358, 20, F.sans, '#4a3438', 700);
+      txt(g, '会場  Station Chowk・Gulabi堤', w / 2, 358, 20, F.sans, '#4a3438', 700);
       txt(g, '模擬店・和太鼓・野点・スタンプラリー', w / 2, 388, 15, F.sans, '#7a5a58', 700, 'center', 'middle', w - 20);
-      txt(g, '主催  桜ヶ丘町内会', w / 2, 410, 14, F.sans, '#7a5a58', 500);
+      txt(g, '主催  Gulabi Nagar内会', w / 2, 410, 14, F.sans, '#7a5a58', 500);
     });
     // 2: lost cat
     poster(354, 34, 236, 300, 0.035, '#f6f4ee', (w, h) => {
@@ -294,7 +294,7 @@ export function makeSigns(ctx, T) {
       txt(g, '名前：こはる  3さい', w / 2, 222, 17, F.sans, '#3a3346', 700);
       txt(g, '赤い首輪に鈴をつけています', w / 2, 246, 14, F.sans, '#3a3346', 500, 'center', 'middle', w - 16);
       txt(g, 'お心当たりの方は', w / 2, 270, 14, F.sans, '#5a5460', 500);
-      txt(g, '桜ヶ丘三丁目  田中まで', w / 2, 290, 15, F.sans, '#3a3346', 900);
+      txt(g, 'गुलाबी नगर三丁目  田中まで', w / 2, 290, 15, F.sans, '#3a3346', 900);
     }, '#2f64b5');
     // 3: calligraphy class
     poster(620, 26, 196, 290, -0.03, '#f6f0df', (w, h) => {
@@ -304,13 +304,13 @@ export function makeSigns(ctx, T) {
       txt(g, '書道教室', w / 2, 172, 34, F.serif, '#2f2a33', 700);
       txt(g, '生徒募集中', w / 2, 206, 22, F.serif, '#b03a2e', 700);
       txt(g, '毎週水曜 午後4時〜', w / 2, 238, 16, F.sans, '#3a3346', 700);
-      txt(g, '桜ヶ丘公民館 二階', w / 2, 260, 15, F.sans, '#3a3346', 500);
-      txt(g, '子どもから大人まで', w / 2, 280, 13, F.sans, '#5a5460', 500);
+      txt(g, 'गुलाबी नगर公民館 二階', w / 2, 260, 15, F.sans, '#3a3346', 500);
+      txt(g, '子どもからADULTまで', w / 2, 280, 13, F.sans, '#5a5460', 500);
     }, '#3f8f5b');
     // 4: garbage chart
     poster(352, 362, 452, 252, 0.012, '#f7f7f2', (w, h) => {
       g.fillStyle = '#3f8f5b'; g.fillRect(0, 0, w, 50);
-      txt(g, 'ごみ収集日のお知らせ', w / 2, 26, 28, F.sans, '#fff', 900);
+      txt(g, 'ごみ収集日のNOTICE', w / 2, 26, 28, F.sans, '#fff', 900);
       const rows = [['月', 'もやすごみ', '#d9463b'], ['火', 'プラスチック', '#e9a23b'], ['水', 'びん・かん・ペットボトル', '#2f64b5'], ['木', 'もやすごみ', '#d9463b'], ['金', '古紙・布（第2・第4）', '#6a9a4a'], ['土・日', '収集はありません', '#8a8478']];
       rows.forEach(([d, t, c], i) => {
         const y = 60 + i * 28;
@@ -318,7 +318,7 @@ export function makeSigns(ctx, T) {
         rr(g, 12, y + 3, 70, 22, 5, c); txt(g, d, 47, y + 15, 17, F.sans, '#fff', 900);
         txt(g, t, 96, y + 15, 19, F.sans, '#3a3346', 700, 'left');
       });
-      txt(g, '朝8時30分までに、決められた場所へ出しましょう。  桜ヶ丘町内会 環境部', w / 2, h - 14, 13, F.sans, '#5a5460', 500, 'center', 'middle', w - 20);
+      txt(g, '朝8時30分までに、決められた場所へ出しましょう。  Gulabi Nagar内会 環境部', w / 2, h - 14, 13, F.sans, '#5a5460', 500, 'center', 'middle', w - 20);
     }, '#e9a23b');
     // 5: last summer's faded festival poster
     poster(838, 44, 164, 250, 0.05, '#e6e4dc', (w, h) => {
@@ -327,7 +327,7 @@ export function makeSigns(ctx, T) {
       txt(g, '盆踊り大会', w / 2, 110, 24, F.brush, 'rgba(60,70,110,0.45)', 400);
       for (let i = 0; i < 5; i++) { g.fillStyle = 'rgba(230,180,90,0.45)'; g.beginPath(); g.arc(20 + i * 30, 150, 10, 0, 7); g.fill(); }
       txt(g, '8月17日（土）', w / 2, 190, 18, F.sans, 'rgba(60,60,70,0.4)', 700);
-      txt(g, '桜ヶ丘公園', w / 2, 214, 15, F.sans, 'rgba(60,60,70,0.35)', 700);
+      txt(g, 'गुलाबी नगर公園', w / 2, 214, 15, F.sans, 'rgba(60,60,70,0.35)', 700);
       g.fillStyle = '#e4dcc6'; g.beginPath(); g.moveTo(w, h - 40); g.lineTo(w, h); g.lineTo(w - 50, h); g.closePath(); g.fill();
     }, '#8a8478');
     // 6: disaster drill
@@ -335,7 +335,7 @@ export function makeSigns(ctx, T) {
       g.fillStyle = '#e9a23b'; g.fillRect(0, 0, w, 36);
       txt(g, '防災訓練', w / 2, 19, 22, F.sans, '#fff', 900);
       txt(g, '5月19日（日）', w / 2, 60, 17, F.sans, '#3a3346', 900);
-      txt(g, '午前9時  駅前広場集合', w / 2, 86, 13, F.sans, '#3a3346', 700);
+      txt(g, '午前9時  Station Chowk集合', w / 2, 86, 13, F.sans, '#3a3346', 700);
       txt(g, '消火器・AEDの体験', w / 2, 108, 13, F.sans, '#3a3346', 500);
       txt(g, 'ご家族でご参加ください', w / 2, 130, 12, F.sans, '#5a5460', 500);
     }, '#2f64b5');
@@ -352,24 +352,24 @@ export function makeSigns(ctx, T) {
   S.noticeHeader = tex.draw(512, 80, (g, W, H) => {
     g.fillStyle = '#6b4c38'; g.fillRect(0, 0, W, H);
     g.strokeStyle = 'rgba(40,25,20,0.3)'; g.lineWidth = 2; for (let i = 0; i < 6; i++) { g.beginPath(); g.moveTo(0, 8 + i * 13); g.bezierCurveTo(W * 0.3, 4 + i * 13, W * 0.6, 14 + i * 13, W, 8 + i * 13); g.stroke(); }
-    txt(g, '桜ヶ丘町内会  掲示板', W / 2, H / 2 + 2, 44, F.serif, '#f1e6cf', 700);
+    txt(g, 'Gulabi Nagar内会  掲示板', W / 2, H / 2 + 2, 44, F.serif, '#f1e6cf', 700);
   }, { key: 'plaza-notice-hdr' });
 
   // =============================================================== bus stop
   S.busRound = tex.draw(256, 256, (g, W, H) => {
     g.fillStyle = '#e78fae'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#f3f1ec'; g.beginPath(); g.arc(W / 2, H / 2, 104, 0, 7); g.fill();
-    txt(g, '桜川バス', W / 2, 62, 24, F.sans, '#d9718f', 900);
-    txt(g, '桜ヶ丘駅前', W / 2, 122, 40, F.sans, '#2f3a58', 900, 'center', 'middle', 190);
-    txt(g, 'さくらがおかえきまえ', W / 2, 160, 17, F.sans, '#2f3a58', 700);
-    txt(g, 'Sakuragaoka Sta.', W / 2, 188, 15, F.en, '#6a6470', 500);
+    txt(g, 'Gulabiバス', W / 2, 62, 24, F.sans, '#d9718f', 900);
+    txt(g, 'गुलाबी नगर स्टेशन前', W / 2, 122, 40, F.sans, '#2f3a58', 900, 'center', 'middle', 190);
+    txt(g, 'गुलाबी नगरえきまえ', W / 2, 160, 17, F.sans, '#2f3a58', 700);
+    txt(g, 'Gulabi Nagar Sta.', W / 2, 188, 15, F.en, '#6a6470', 500);
   }, { key: 'plaza-busround' });
   S.busTable = tex.draw(256, 448, (g, W, H) => {
     const r = ctx.rng('bustable');
     g.fillStyle = '#f2f0ea'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#e78fae'; g.fillRect(0, 0, W, 58);
-    txt(g, '桜ヶ丘駅前  時刻表', W / 2, 20, 21, F.sans, '#fff', 900);
-    txt(g, '桜01  市民病院・花見台駅 行', W / 2, 44, 14, F.sans, '#fff', 700);
+    txt(g, 'गुलाबी नगर स्टेशन前  時刻表', W / 2, 20, 21, F.sans, '#fff', 900);
+    txt(g, '桜01  市民病院・चाँदपोल駅 TO', W / 2, 44, 14, F.sans, '#fff', 700);
     g.fillStyle = '#d9d6ce'; g.fillRect(0, 58, W, 22);
     txt(g, '時', 20, 69, 13, F.sans, '#3a3346', 900); txt(g, '平 日', 96, 69, 13, F.sans, '#3a3346', 900); txt(g, '土・休日', 198, 69, 13, F.sans, '#c24a6e', 900);
     for (let hr = 6; hr <= 21; hr++) {
@@ -383,16 +383,16 @@ export function makeSigns(ctx, T) {
       txt(g, we.join(' '), 198, y + 11, 14, F.en, '#c24a6e', 700);
     }
     g.strokeStyle = '#bdb8ad'; g.lineWidth = 1; g.beginPath(); g.moveTo(40, 58); g.lineTo(40, 432); g.moveTo(150, 58); g.lineTo(150, 432); g.stroke();
-    txt(g, '桜川バス株式会社  営業所 桜ヶ丘', W / 2, 438, 11, F.sans, '#6a6470', 500);
+    txt(g, 'Gulabiバス株式会社  営業所 गुलाबी नगर', W / 2, 438, 11, F.sans, '#6a6470', 500);
   }, { key: 'plaza-bustable' });
   S.shelterFascia = tex.draw(1024, 96, (g, W, H) => {
     g.fillStyle = '#f1ede4'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#e78fae'; g.fillRect(0, H - 12, W, 12);
     busIcon(g, 56, 44, 50, '#ffffff', '#e0799c');
-    txt(g, '桜ヶ丘駅前', 110, 46, 50, F.sans, '#2f3a58', 900, 'left');
+    txt(g, 'गुलाबी नगर स्टेशन前', 110, 46, 50, F.sans, '#2f3a58', 900, 'left');
     txt(g, 'バス停', 400, 50, 34, F.sans, '#2f3a58', 700, 'left');
-    txt(g, 'Sakuragaoka Sta. Bus Stop', 530, 54, 22, F.en, '#6a6470', 500, 'left');
-    rr(g, 852, 18, 150, 52, 26, '#e78fae'); txt(g, '桜川バス', 927, 45, 26, F.sans, '#fff', 900);
+    txt(g, 'Gulabi Nagar Sta. Bus Stop', 530, 54, 22, F.en, '#6a6470', 500, 'left');
+    rr(g, 852, 18, 150, 52, 26, '#e78fae'); txt(g, 'Gulabiバス', 927, 45, 26, F.sans, '#fff', 900);
   }, { key: 'plaza-shelter-fascia' });
   S.shelterAd = tex.draw(256, 512, (g, W, H) => {
     const r = ctx.rng('ad');
@@ -403,16 +403,16 @@ export function makeSigns(ctx, T) {
     rr(g, 30, 372, 196, 44, 16, '#f5f0e6', '#8e959d', 2); g.fillStyle = '#ef9fbe'; g.fillRect(30, 396, 196, 7);
     g.fillStyle = '#6d8fb0'; for (let i = 0; i < 6; i++) g.fillRect(44 + i * 30, 380, 20, 12);
     txt(g, '春、', 60, 70, 44, F.brush, '#3a3346', 400);
-    txt(g, '桜川線で', 128, 128, 44, F.brush, '#3a3346', 400);
+    txt(g, 'गुलाबी रेलで', 128, 128, 44, F.brush, '#3a3346', 400);
     txt(g, 'いこう。', 150, 184, 44, F.brush, '#3a3346', 400);
     txt(g, '沿線 さくらめぐり', W / 2, 440, 22, F.sans, '#c24a6e', 900);
-    txt(g, '桜川電鉄', W / 2, 486, 20, F.sans, '#3a3346', 900);
+    txt(g, 'गुलाबी रेल', W / 2, 486, 20, F.sans, '#3a3346', 900);
   }, { key: 'plaza-shelter-ad' });
   S.routeMap = tex.draw(512, 224, (g, W, H) => {
     g.fillStyle = '#f2f0ea'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#2f3a58'; g.fillRect(0, 0, W, 40);
-    txt(g, '桜川バス  路線図', 20, 21, 22, F.sans, '#fff', 900, 'left'); txt(g, 'Route Map', W - 16, 22, 15, F.en, '#cfdcef', 500, 'right');
-    const lines = [['#e78fae', '桜01', ['桜ヶ丘駅前', '三丁目', '市民病院前', '花見台駅']], ['#5a9bd5', '桜02', ['桜ヶ丘駅前', '桜川堤', '運動公園', '桜川温泉']]];
+    txt(g, 'Gulabiバス  路線図', 20, 21, 22, F.sans, '#fff', 900, 'left'); txt(g, 'Route Map', W - 16, 22, 15, F.en, '#cfdcef', 500, 'right');
+    const lines = [['#e78fae', '桜01', ['गुलाबी नगर स्टेशन前', '三丁目', '市民病院前', 'चाँदपोल駅']], ['#5a9bd5', '桜02', ['गुलाबी नगर स्टेशन前', 'Gulabi堤', '運動公園', 'Gulabi温泉']]];
     lines.forEach(([c, id, stops], i) => {
       const y = 92 + i * 80;
       rr(g, 14, y - 16, 60, 32, 8, c); txt(g, id, 44, y, 18, F.sans, '#fff', 900);
@@ -427,7 +427,7 @@ export function makeSigns(ctx, T) {
     g.strokeStyle = '#f3f1ea'; g.lineWidth = 6; g.strokeRect(10, 10, W - 20, H - 20);
     taxiIcon(g, W / 2, 86, 120, '#f3f1ea', null);
     txt(g, 'タクシー', W / 2, 176, 50, F.sans, '#f3f1ea', 900);
-    txt(g, 'のりば', W / 2, 232, 44, F.sans, '#f3f1ea', 900);
+    txt(g, 'PLATFORM', W / 2, 232, 44, F.sans, '#f3f1ea', 900);
     txt(g, 'TAXI', W / 2, 282, 34, F.en, '#f2c230', 900);
   }, { key: 'plaza-taxi' });
 
@@ -435,20 +435,20 @@ export function makeSigns(ctx, T) {
   S.bikeSign = tex.draw(512, 144, (g, W, H) => {
     g.fillStyle = '#f2f0ea'; g.fillRect(0, 0, W, H);
     rr(g, 12, 12, 120, 120, 14, '#2f64b5'); bikeIcon(g, 72, 76, 100, '#f3f1ea');
-    txt(g, '駐輪場', 316, 62, 66, F.sans, '#2f3a58', 900);
-    txt(g, 'Bicycle Parking  ・  桜ヶ丘駅前', 316, 116, 20, F.en, '#5a5460', 700, 'center', 'middle', 350);
+    txt(g, 'CYCLE PARKING', 316, 62, 66, F.sans, '#2f3a58', 900);
+    txt(g, 'Bicycle Parking  ・  गुलाबी नगर स्टेशन前', 316, 116, 20, F.en, '#5a5460', 700, 'center', 'middle', 350);
   }, { key: 'plaza-bikesign' });
   S.bikeNotice = tex.draw(256, 320, (g, W, H) => {
     g.fillStyle = '#f5f3ec'; g.fillRect(0, 0, W, H);
     g.strokeStyle = '#d9463b'; g.lineWidth = 10; g.strokeRect(8, 8, W - 16, H - 16);
     g.fillStyle = '#d9463b'; g.fillRect(8, 8, W - 16, 78);
-    txt(g, '放置自転車', W / 2, 36, 38, F.sans, '#fff', 900);
+    txt(g, '放置CYCLE', W / 2, 36, 38, F.sans, '#fff', 900);
     txt(g, '禁止', W / 2, 72, 30, F.sans, '#fff', 900);
     g.save(); g.translate(W / 2, 140); bikeIcon(g, 0, 0, 80, '#3a3346'); g.strokeStyle = '#d9463b'; g.lineWidth = 7; g.beginPath(); g.arc(0, 0, 40, 0, 7); g.moveTo(-28, -28); g.lineTo(28, 28); g.stroke(); g.restore();
-    txt(g, 'ここに自転車を', W / 2, 206, 20, F.sans, '#3a3346', 900);
+    txt(g, 'ここにCYCLEを', W / 2, 206, 20, F.sans, '#3a3346', 900);
     txt(g, '放置しないでください', W / 2, 232, 20, F.sans, '#3a3346', 900);
-    txt(g, '放置自転車は撤去します', W / 2, 262, 15, F.sans, '#d9463b', 700);
-    txt(g, '桜ヶ丘町', W / 2, 290, 16, F.sans, '#3a3346', 700);
+    txt(g, '放置CYCLEは撤去します', W / 2, 262, 15, F.sans, '#d9463b', 700);
+    txt(g, 'Gulabi Nagar', W / 2, 290, 16, F.sans, '#3a3346', 700);
   }, { key: 'plaza-bikenotice' });
   S.slotNums = tex.draw(512, 64, (g, W, H) => {
     g.fillStyle = '#e9e7e0'; g.fillRect(0, 0, W, H);
@@ -461,7 +461,7 @@ export function makeSigns(ctx, T) {
     const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, 'rgba(255,255,255,0.1)'); gr.addColorStop(0.5, 'rgba(255,255,255,0)'); gr.addColorStop(1, 'rgba(255,255,255,0.06)');
     g.fillStyle = gr; g.fillRect(0, 0, W, H);
     g.strokeStyle = 'rgba(210,200,180,0.5)'; g.lineWidth = 2; g.strokeRect(9, 9, W - 18, H - 18);
-    txt(g, '桜ヶ丘駅開業九十周年', W / 2, 70, 50, F.brush, '#ddd3bd', 400, 'center', 'middle', W - 50);
+    txt(g, 'गुलाबी नगर स्टेशन開業九十周年', W / 2, 70, 50, F.brush, '#ddd3bd', 400, 'center', 'middle', W - 50);
     txt(g, '〜 桜とともに九十年 〜', W / 2, 132, 26, F.brush, '#cfc5ae', 400, 'center', 'middle', W - 80);
   }, { key: 'plaza-monument' });
   S.monumentPlate = tex.draw(256, 112, (g, W, H) => {
@@ -469,7 +469,7 @@ export function makeSigns(ctx, T) {
     g.strokeStyle = '#8a7450'; g.lineWidth = 4; g.strokeRect(4, 4, W - 8, H - 8);
     txt(g, '昭和十年四月一日 開業', W / 2, 30, 20, F.serif, '#4a3a2a', 700);
     txt(g, '令和七年四月吉日', W / 2, 60, 18, F.serif, '#4a3a2a', 700);
-    txt(g, '桜ヶ丘町 ・ 桜川電鉄', W / 2, 88, 17, F.serif, '#4a3a2a', 700);
+    txt(g, 'Gulabi Nagar ・ गुलाबी रेल', W / 2, 88, 17, F.serif, '#4a3a2a', 700);
   }, { key: 'plaza-monument-plate' });
 
   // =============================================================== postbox
@@ -498,14 +498,14 @@ export function makeSigns(ctx, T) {
     g.fillStyle = '#e8c547'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#2f64b5'; g.fillRect(0, H - 22, W, 22);
     txt(g, '電話帳', W / 2, 30, 26, F.sans, '#2f3a58', 900);
-    txt(g, '桜ヶ丘地区', W / 2, 60, 16, F.sans, '#2f3a58', 700);
+    txt(g, 'गुलाबी नगर地区', W / 2, 60, 16, F.sans, '#2f3a58', 700);
   }, { key: 'plaza-phonebook' });
   S.phoneNotice = tex.draw(128, 128, (g, W, H) => {
     g.fillStyle = '#f2f0ea'; g.fillRect(0, 0, W, H);
     txt(g, '緊急通報', W / 2, 18, 18, F.sans, '#d9463b', 900);
     txt(g, '110  警察', W / 2, 48, 18, F.en, '#3a3346', 900);
     txt(g, '119  消防・救急', W / 2, 74, 15, F.sans, '#3a3346', 900);
-    txt(g, '通話は無料です', W / 2, 104, 13, F.sans, '#5a5460', 700);
+    txt(g, '通話はFREEです', W / 2, 104, 13, F.sans, '#5a5460', 700);
   }, { key: 'plaza-phonenotice' });
 
   // =============================================================== sorted bins
@@ -530,11 +530,11 @@ export function makeSigns(ctx, T) {
     }
     for (let i = 1; i <= 12; i++) { const a = i / 12 * Math.PI * 2; txt(g, String(i), W / 2 + Math.sin(a) * 78, H / 2 - Math.cos(a) * 78 + 2, 24, F.en, '#3a3346', 700); }
     T.sakuraIcon(g, W / 2, H / 2 - 40, 12);
-    txt(g, 'SAKURAGAOKA', W / 2, H / 2 + 44, 13, F.en, '#6a6470', 700);
+    txt(g, 'GULABI NAGAR', W / 2, H / 2 + 44, 13, F.en, '#6a6470', 700);
   }, { key: 'plaza-clock' });
   S.clockPlate = tex.draw(256, 64, (g, W, H) => {
     g.fillStyle = '#b8a27a'; g.fillRect(0, 0, W, H);
-    txt(g, '寄贈  桜ヶ丘駅前商店会', W / 2, H / 2 + 1, 22, F.serif, '#3f3226', 700);
+    txt(g, '寄贈  गुलाबी नगर स्टेशन前商店会', W / 2, H / 2 + 1, 22, F.serif, '#3f3226', 700);
   }, { key: 'plaza-clockplate' });
 
   // =============================================================== manhole / drain
@@ -547,7 +547,7 @@ export function makeSigns(ctx, T) {
     g.fillStyle = '#6f6e72'; g.beginPath(); g.arc(0, 0, 16, 0, 7); g.fill();
     g.restore();
     g.fillStyle = '#5d5c60'; g.font = `900 17px ${F.sans}`; g.textAlign = 'center'; g.textBaseline = 'middle';
-    const s = 'さくらがおか・うすい・'; const n = [...s].length;
+    const s = 'गुलाबी नगर・うすい・'; const n = [...s].length;
     [...s].forEach((ch, i) => { const a = -Math.PI / 2 + (i - n / 2 + 0.5) * 0.27; g.save(); g.translate(W / 2 + Math.cos(a) * 99, H / 2 + Math.sin(a) * 99); g.rotate(a + Math.PI / 2); g.fillText(ch, 0, 0); g.restore(); });
   }, { key: 'plaza-manhole' });
   S.grate = tex.draw(128, 128, (g, W, H) => {

@@ -2,7 +2,7 @@
 // T-bar ceiling with 逆富士 fixtures, cassette AC, detectors, speakers, CCTV domes, exit signs; skirting,
 // wainscot, door / opening casings; 2 touch-screen ticket machines with recessed screens, slots and trays;
 // raised-frame fare chart; staffed window; 改札ラッチ booth; 4 IC gate cabinets with reader heads,
-// displays, flaps and sensors; waiting room with benches round a kerosene stove, えきなか文庫 bookshelf,
+// displays, flaps and sensors; waiting room with benches round a kerosene stove, えきなかBOOKS bookshelf,
 // pamphlet rack, potted plants, vending machine, stamp stand + stamp desk; umbrella rack, sorted bins,
 // AED, extinguishers, notice boards with pinned sheets, 伝言板; modelled tactile paving; warm light pools.
 import * as THREE from 'three';
@@ -262,7 +262,7 @@ export function buildInterior(A) {
     X.lab(g, 'B', 'binCan', 0.13, 0.065, [0, 0.52, 0.156], null, 0.85);
     P.addCylinder(-0.8, -35.02, 0.18, -1, 3);
   }
-  // ---- south part: えきなか文庫 bookshelf under the window, pamphlet rack, plant; AED + extinguisher by the door
+  // ---- south part: えきなかBOOKS bookshelf under the window, pamphlet rack, plant; AED + extinguisher by the door
   {
     const { kk, top } = X.bookshelf(-2.65, -25.39, PI, { w: 1.6, h: 0.86, d: 0.3, seed: 'ekinaka' });
     // acrylic sign stand, newspapers, a little plant on top

@@ -1,4 +1,4 @@
-// trains — two 2-car 桜川電鉄 EMUs (5000形), timetable traffic, doors, lights, interiors,
+// trains — two 2-car गुलाबी रेल EMUs (5000形), timetable traffic, doors, lights, interiors,
 // passenger silhouettes, petals resting on the roof, dynamic colliders and services.rail.
 import * as THREE from 'three';
 import { Buckets, M, GEO } from './trains/builder.js';
@@ -205,22 +205,22 @@ export async function build(ctx) {
   const play = (name, opts) => safe(() => au && au.play && au.play(name, opts));
   const trainPos = (id) => trains.find(T => T.id === id).sound.clone();
   const events = [
-    // Train A (1番線, 花見台行き)
-    { at: 0.8, fn: () => play('announce', { text: 'さくらがおか、さくらがおかです。ご乗車ありがとうございます。', position: PLAT.A }) },
+    // Train A (Platform 1, चाँदपोलTOき)
+    { at: 0.8, fn: () => play('announce', { text: 'गुलाबी नगर स्टेशन। आपकी यात्रा मंगलमय हो।', position: PLAT.A }) },
     { at: CFG.A.doors[0], fn: () => play('doorOpen', { position: doorPos('A') }) },
     { at: 36, fn: () => play('departMelody', { position: PLAT.A }) },
-    { at: 40.2, fn: () => play('announce', { text: '1番線、ドアが閉まります。ご注意ください。', position: PLAT.A }) },
+    { at: 40.2, fn: () => play('announce', { text: 'प्लेटफॉर्म एक। दरवाज़े बंद हो रहे हैं। कृपया सावधान रहें।', position: PLAT.A }) },
     { at: 42, fn: () => play('doorChime', { position: doorPos('A') }) },
     { at: CFG.A.doors[1], fn: () => play('doorClose', { position: doorPos('A') }) },
-    { at: 108, fn: () => play('announce', { text: 'まもなく、1番線に、花見台行きの電車がまいります。黄色い線の内側でお待ちください。', position: PLAT.A }) },
+    { at: 108, fn: () => play('announce', { text: 'प्लेटफॉर्म एक पर चाँदपोल जाने वाली गाड़ी आ रही है। पीली रेखा के पीछे रहें।', position: PLAT.A }) },
     { at: mod(CFG.A.arriveT - 8 / CFG.A.brake, PERIOD), fn: () => play('trainBrake', { position: trainPos('A') }) },
-    // Train B (2番線, 春日野行き)
-    { at: 12, fn: () => play('announce', { text: 'まもなく、2番線に、春日野行きの電車がまいります。黄色い線の内側でお待ちください。', position: PLAT.B }) },
+    // Train B (Platform 2, सांगानेरTOき)
+    { at: 12, fn: () => play('announce', { text: 'प्लेटफॉर्म दो पर सांगानेर जाने वाली गाड़ी आ रही है। पीली रेखा के पीछे रहें।', position: PLAT.B }) },
     { at: mod(CFG.B.arriveT - 8 / CFG.B.brake, PERIOD), fn: () => play('trainBrake', { position: trainPos('B') }) },
-    { at: 32.8, fn: () => play('announce', { text: 'さくらがおか、さくらがおかです。春日野行きです。', position: PLAT.B }) },
+    { at: 32.8, fn: () => play('announce', { text: 'गुलाबी नगर स्टेशन। यह गाड़ी सांगानेर जाएगी।', position: PLAT.B }) },
     { at: CFG.B.doors[0], fn: () => play('doorOpen', { position: doorPos('B') }) },
     { at: 64, fn: () => play('departMelody', { position: PLAT.B }) },
-    { at: 66.2, fn: () => play('announce', { text: '2番線、ドアが閉まります。ご注意ください。', position: PLAT.B }) },
+    { at: 66.2, fn: () => play('announce', { text: 'प्लेटफॉर्म दो। दरवाज़े बंद हो रहे हैं। कृपया सावधान रहें।', position: PLAT.B }) },
     { at: 68, fn: () => play('doorChime', { position: doorPos('B') }) },
     { at: CFG.B.doors[1], fn: () => play('doorClose', { position: doorPos('B') }) },
   ];

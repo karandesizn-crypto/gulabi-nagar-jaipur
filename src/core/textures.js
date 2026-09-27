@@ -2,12 +2,12 @@
 import * as THREE from 'three';
 
 export const FONTS = {
-  sans: '"Noto Sans JP", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Hiragino Sans", sans-serif',
-  serif: '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif',
-  round: '"Zen Maru Gothic", "Noto Sans JP", "Yu Gothic", sans-serif',
-  hand: '"Yusei Magic", "Zen Maru Gothic", "Noto Sans JP", sans-serif',   // chalkboard / handwritten
-  brush: '"Yuji Syuku", "Noto Serif JP", "Yu Mincho", serif',               // noren / traditional
-  en: '"Noto Sans JP", "Segoe UI", Arial, sans-serif',
+  sans: '"Noto Sans Devanagari", "Arial Unicode MS", Arial, sans-serif',
+  serif: '"Noto Sans Devanagari", Georgia, serif',
+  round: '"Noto Sans Devanagari", Arial, sans-serif',
+  hand: '"Noto Sans Devanagari", Georgia, serif',
+  brush: '"Noto Sans Devanagari", Georgia, serif',
+  en: 'Arial, sans-serif',
 };
 
 export function createTextures() {
@@ -57,6 +57,10 @@ export function createTextures() {
   function verticalText(g, text, x, y, size, font, weight = 700, gap = 1.05) {
     g.font = `${weight} ${size}px ${font}`;
     g.textAlign = 'center'; g.textBaseline = 'top';
+    if (/[\u0900-\u097f]/.test(text)) {
+      fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, font, weight);
+      return y + size * 2;
+    }
     let yy = y;
     for (const ch of text) { g.fillText(ch, x, yy); yy += size * gap; }
     return yy;

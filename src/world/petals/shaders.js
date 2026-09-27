@@ -301,7 +301,7 @@ void main(){
   float lit = max(toonBand(ndl), toonBand(-ndl) * 0.5);
   vec3 col = alb * (amb + sun * lit);
   float fwd = pow(clamp(dot(-V, uSunDir), 0.0, 1.0), 3.0);
-  col += alb * vec3(1.0, 0.78, 0.84) * sun * (0.12 * sqrt(back) + 0.42 * back * fwd);
+  col += alb * vec3(1.0, 0.76, 0.45) * sun * (0.12 * sqrt(back) + 0.42 * back * fwd);
   col += uGlowCol * sun * tx.g * fwd * (0.35 + 0.65 * back) * 0.55;
   col *= 1.0 + vGlint * 0.22;
   gl_FragColor = vec4(col, a);

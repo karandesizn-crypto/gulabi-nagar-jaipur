@@ -1,4 +1,4 @@
-// W1 — ひだまりマート HIDAMARI MART (corner konbini, faces the main street (east) and R3 (north)).
+// W1 — गुलाबी मार्ट GULABI MART (corner konbini, faces the main street (east) and R3 (north)).
 // Lot-local: +z = street (east), +x = north (R3 side). Enterable: automatic doors open as you approach.
 import * as THREE from 'three';
 import { buildKonbiniInterior } from './intKonbini.js';
@@ -174,10 +174,10 @@ export function buildKonbini(ctx, C) {
   };
   const bandLogo = (g, w, h) => {
     bandStripes(g, w, h);
-    U.text(g, 'HIDAMARI MART', w * 0.5, h * 0.14, h * 0.19, F.en, '#f6f3ea', { weight: 900 });
+    U.text(g, 'GULABI MART', w * 0.5, h * 0.14, h * 0.19, F.en, '#f6f3ea', { weight: 900 });
     const s = h * 0.56;
     logo(g, w * 0.08, h * 0.35, s);
-    U.text(g, 'ひだまりマート', w * 0.58, h * 0.64, h * 0.46, F.round, TEAL_D, { weight: 900, maxW: w * 0.72 });
+    U.text(g, 'गुलाबी मार्ट', w * 0.58, h * 0.64, h * 0.46, F.round, TEAL_D, { weight: 900, maxW: w * 0.72 });
   };
   const band24 = (g, w, h) => {
     bandStripes(g, w, h);
@@ -308,9 +308,9 @@ export function buildKonbini(ctx, C) {
     g.fillStyle = '#f2b5c8'; g.fillRect(w * 0.58, h * 0.22, w * 0.12, h * 0.1); g.fillStyle = '#fbf8f0'; g.fillRect(w * 0.57, h * 0.19, w * 0.14, h * 0.04);
     g.fillStyle = '#fbf8f0'; g.fillRect(w * 0.5, h * 0.46, w * 0.28, h * 0.14); U.sakura(g, w * 0.64, h * 0.53, 12, '#eb9db6', '#f2c230');
     g.fillStyle = 'rgba(255,255,255,0.6)'; g.fillRect(w * 0.53, h * 0.33, 6, h * 0.4);
-    U.vtext(g, '春色さくらソーダ', w * 0.24, h * 0.2, 22, F.round, '#c2476a', 900, 1.0);
-    U.text(g, '¥160', w * 0.64, h * 0.9, 34, F.round, '#c2476a', { weight: 900 });
-    U.text(g, '(税込)', w * 0.88, h * 0.93, 12, F.sans, '#c2476a', { weight: 700 });
+    U.vtext(g, 'NIMBU SODA', w * 0.24, h * 0.2, 22, F.round, '#c2476a', 900, 1.0);
+    U.text(g, '₹160', w * 0.64, h * 0.9, 34, F.round, '#c2476a', { weight: 900 });
+    U.text(g, '(INC. TAX)', w * 0.88, h * 0.93, 12, F.sans, '#c2476a', { weight: 700 });
   });
   const pBento = poster(220, 310, (g, w, h) => {
     g.fillStyle = '#fbf1dc'; g.fillRect(0, 0, w, h);
@@ -321,7 +321,7 @@ export function buildKonbini(ctx, C) {
     g.fillStyle = '#b86a3a'; U.rr(g, 118, 96, 70, 46, 12); g.fill();
     g.fillStyle = '#f2c230'; g.fillRect(118, 148, 32, 48); g.fillStyle = '#6fa55a'; g.fillRect(156, 148, 32, 48);
     U.text(g, '春の彩り弁当', w / 2, 236, 28, F.round, '#8a4b2a', { weight: 900, maxW: w - 20 });
-    U.text(g, '¥498', w / 2, 278, 36, F.round, '#d9463b', { weight: 900 });
+    U.text(g, '₹498', w / 2, 278, 36, F.round, '#d9463b', { weight: 900 });
   });
   const pIce = poster(220, 310, (g, w, h) => {
     g.fillStyle = '#cfeee4'; g.fillRect(0, 0, w, h);
@@ -332,17 +332,17 @@ export function buildKonbini(ctx, C) {
     g.fillStyle = '#f7d3de'; g.beginPath(); g.arc(w * 0.5, h * 0.44, w * 0.17, 0, 6.3); g.fill();
     g.fillStyle = '#fbf3e8'; g.beginPath(); g.arc(w * 0.5, h * 0.33, w * 0.13, 0, 6.3); g.fill();
     U.sakura(g, w * 0.6, h * 0.3, 11, '#eb9db6', '#f2c230');
-    U.text(g, '新作 さくらもち味', w / 2, h * 0.9, 24, F.round, '#2c8a7e', { weight: 900, maxW: w - 16 });
+    U.text(g, 'NEW KESAR SWEETS', w / 2, h * 0.9, 24, F.round, '#2c8a7e', { weight: 900, maxW: w - 16 });
   });
   const pFair = poster(220, 310, (g, w, h) => {
     g.fillStyle = '#fbe3ea'; g.fillRect(0, 0, w, h);
     for (let i = 0; i < 16; i++) U.sakura(g, (i * 61 + 13) % w, (i * 37 + 9) % h, 9 + (i % 4) * 5, i % 2 ? '#f2b5c8' : '#f7d3de', '#f6e3a0');
     g.fillStyle = 'rgba(255,255,255,0.85)'; U.rr(g, 16, 70, w - 32, 170, 18); g.fill();
     U.text(g, '春の', w / 2, 100, 30, F.round, '#d9718f', { weight: 900 });
-    U.text(g, 'さくらフェア', w / 2, 146, 40, F.round, '#c2476a', { weight: 900, maxW: w - 44 });
+    U.text(g, 'LOCAL SPECIAL', w / 2, 146, 40, F.round, '#c2476a', { weight: 900, maxW: w - 44 });
     U.text(g, '3/15〜4/20', w / 2, 192, 24, F.en, '#6d6a80', { weight: 700 });
     U.text(g, '対象商品でポイント2倍', w / 2, 222, 17, F.sans, '#c2476a', { weight: 700, maxW: w - 44 });
-    g.fillStyle = TEAL; g.fillRect(0, h - 40, w, 40); U.text(g, 'ひだまりマート', w / 2, h - 19, 22, F.round, '#fff', { weight: 900 });
+    g.fillStyle = TEAL; g.fillRect(0, h - 40, w, 40); U.text(g, 'गुलाबी मार्ट', w / 2, h - 19, 22, F.round, '#fff', { weight: 900 });
   });
   const pKaraage = poster(220, 310, (g, w, h) => {
     g.fillStyle = '#fff4c8'; g.fillRect(0, 0, w, h);
@@ -351,7 +351,7 @@ export function buildKonbini(ctx, C) {
     for (const [x, y] of [[-24, -10], [20, -16], [0, 18], [-30, 26], [30, 22]]) { g.fillStyle = '#b86a3a'; g.beginPath(); g.ellipse(w / 2 + x, h * 0.45 + y, 26, 21, x * 0.02, 0, 6.3); g.fill(); g.fillStyle = 'rgba(255,220,150,0.6)'; g.beginPath(); g.arc(w / 2 + x - 8, h * 0.45 + y - 8, 6, 0, 6.3); g.fill(); }
     U.text(g, 'からあげ', w / 2, 40, 44, F.round, '#d9463b', { weight: 900, stroke: 6, strokeColor: '#fff' });
     U.text(g, '増量中!', w / 2, h * 0.78, 42, F.round, '#d9463b', { weight: 900, stroke: 6, strokeColor: '#fff' });
-    U.text(g, '5個入り ¥238', w / 2, h * 0.92, 22, F.round, INK, { weight: 700 });
+    U.text(g, '5個入り ₹238', w / 2, h * 0.92, 22, F.round, INK, { weight: 700 });
   });
   const pz = gz + 0.012;
   S.card(pDrink, 0.55, 0.78, [-4.9, FY + 1.55, pz]);
@@ -420,20 +420,20 @@ export function buildKonbini(ctx, C) {
       U.vtext(g, txt, w / 2, 24, 40, F.round, fg, 900, 1.0);
       if (sub) { g.fillStyle = fg; g.fillRect(6, h - 70, w - 12, 50); U.text(g, sub, w / 2, h - 45, 20, F.round, bg, { weight: 900, maxW: w - 16 }); }
     });
-    const fSakura = flag('さくらフェア', '開催中', '#fbe3ea', '#c2476a');
+    const fSakura = flag('LOCAL SPECIAL', '開催中', '#fbe3ea', '#c2476a');
     const fIce = flag('ソフトクリーム', null, '#f6f3ea', '#3f7fb5');
     P.nobori(S, -6.15, S.gy(-6.15, -0.45), -0.45, 0.25, fSakura, { w: 0.42, h: 1.55 });
     P.nobori(S, 2.95, S.gy(2.95, -0.3), -0.3, -0.35, fIce, { w: 0.42, h: 1.55 });
     S.cyl(-6.15, -0.45, 0.17, -1, 2.2); S.cyl(2.95, -0.3, 0.17, -1, 2.2);
     // bicycle parking sign on the corner pier
-    const rBikeSign = A.lit.region(120, 96, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 30); U.text(g, '駐輪場', w / 2, 16, 20, F.sans, '#fff', { weight: 900 }); U.text(g, '自転車は', w / 2, 50, 15, F.sans, INK, { weight: 700 }); U.text(g, '枠内にお願いします', w / 2, 72, 12, F.sans, INK, { weight: 700, maxW: w - 8 }); });
+    const rBikeSign = A.lit.region(120, 96, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 30); U.text(g, 'CYCLE PARKING', w / 2, 16, 20, F.sans, '#fff', { weight: 900 }); U.text(g, 'CYCLEは', w / 2, 50, 15, F.sans, INK, { weight: 700 }); U.text(g, '枠内にお願いします', w / 2, 72, 12, F.sans, INK, { weight: 700, maxW: w - 8 }); });
     S.card(rBikeSign, 0.3, 0.24, [X1 - 0.15, FY + 1.5, ZF + 0.005]);
     // ATM lit box sign on the north wall
     k.box(0.12, 0.5, 0.9, M.t('#e6e5e0'), [X1 + 0.06, 2.3, -10.4]);
     const rATMbox = A.glow.region(180, 100, (g, w, h) => { g.fillStyle = '#3f7fb5'; g.fillRect(0, 0, w, h); U.text(g, 'ATM', w / 2, 40, 48, F.en, '#fff', { weight: 900 }); U.text(g, '24時間 · 年中無休', w / 2, 80, 17, F.sans, '#fff', { weight: 700 }); });
     S.card(rATMbox, 0.84, 0.46, [X1 + 0.125, 2.3, -10.4], [0, Math.PI / 2, 0]);
-    // 営業時間 plate by the door
-    const rHours = A.lit.region(100, 130, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 26); U.text(g, '営業時間', w / 2, 14, 15, F.sans, '#fff', { weight: 900 }); U.text(g, '24', w / 2, 62, 40, F.en, TEAL_D, { weight: 900 }); U.text(g, '時間', w / 2, 96, 17, F.sans, TEAL_D, { weight: 900 }); U.text(g, '年中無休', w / 2, 118, 13, F.sans, INK, { weight: 700 }); });
+    // HOURS plate by the door
+    const rHours = A.lit.region(100, 130, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 26); U.text(g, 'HOURS', w / 2, 14, 15, F.sans, '#fff', { weight: 900 }); U.text(g, '24', w / 2, 62, 40, F.en, TEAL_D, { weight: 900 }); U.text(g, '時間', w / 2, 96, 17, F.sans, TEAL_D, { weight: 900 }); U.text(g, '年中無休', w / 2, 118, 13, F.sans, INK, { weight: 700 }); });
     S.card(rHours, 0.2, 0.26, [-0.25, FY + 1.7, pz]);
   }
 
@@ -443,7 +443,7 @@ export function buildKonbini(ctx, C) {
     const bdX = -1.2;
     const bST = FY - 0.15, bSB = S.gy(bdX, -12.3) - 0.2;
     S.ubox(1.3, bST - bSB, 0.55, M.concrete('#c4c2bb'), [bdX, (bST + bSB) / 2, ZB - 0.27], null, 2);
-    const rStaffD = A.lit.region(96, 32, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); U.text(g, '従業員出入口', w / 2, h / 2 + 1, 14, F.sans, INK, { weight: 700 }); });
+    const rStaffD = A.lit.region(96, 32, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); U.text(g, '従業員出ENTRY', w / 2, h / 2 + 1, 14, F.sans, INK, { weight: 700 }); });
     P.backDoor(S, bdX, FY, ZB, Math.PI, '#9aa6ad', { label: rStaffD });
     S.walk(bdX, ZB - 0.27, 1.3, 0.55, bST);
     // AC outdoor units (業務用) against the back wall

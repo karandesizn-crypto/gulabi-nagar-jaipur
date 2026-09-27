@@ -364,7 +364,7 @@ function plot(H, r, x0, x1, z0, z1, kind) {
       for (let z = gz0; z <= gz1 + 0.01; z += 1.2) F.cyl(M.plain, '#c9ccd1', 1.31, 0.03, gx, g, z, { rx: Math.PI / 2, seg: 10, open: true });
     }
     for (let k = 0; k < 4; k++) { const x = x0 + 1 + r() * (x1 - x0 - 2), z = z0 + 1 + r() * (z1 - z0 - 2); F.boxB(M.plain, '#b48a62', 0.03, 0.9, 0.03, x, L.heightAt(x, z), z); }
-  } else if (kind === 'parking') { // 月極駐車場 (gravel, rope lines, sign)
+  } else if (kind === 'parking') { // 月極PARKING (gravel, rope lines, sign)
     H.groundRect(F, x0, z0, x1, z1, M.gravel, '#cfc9bd', 0.025, 1.5);
     const along = (x1 - x0) > (z1 - z0);
     const n = Math.floor((along ? x1 - x0 : z1 - z0) / 2.6);

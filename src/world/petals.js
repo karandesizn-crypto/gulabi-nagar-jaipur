@@ -24,9 +24,9 @@ import { createSurfaceIndex } from './petals/surface.js';
 import { planGround } from './petals/plan.js';
 
 const COL = {
-  airA: '#f3dde5', airB: '#eeb4c6', airBase: '#dd8aa5', glow: '#ffd3de',
-  pale: '#f5e2e9', pink: '#f0bfcf', deep: '#e49db4', old: '#c9a79d',
-  raftA: '#f9eef2', raftB: '#f4d2dc',
+  airA: '#e6a454', airB: '#c95839', airBase: '#ce6a36', glow: '#ffc471',
+  pale: '#f2bc72', pink: '#e68e4b', deep: '#bd6541', old: '#b89b62',
+  raftA: '#f6d095', raftB: '#deab6f',
 };
 
 function makeNoise(r) {
@@ -236,7 +236,7 @@ export async function build(ctx) {
     return true;
   };
   const planStats = planGround(ctx, G, { r, Q, trees, SI, dens, noise, gauss, edges, grates, surf, surfRaw, surfP, patch });
-  const groundMat = ctx.mat.toon('#ffffff', { map: TX.colorTex, alphaTest: 0.5, side: 'double', paint: 0.03, emissive: '#f0c6d3', emissiveIntensity: 0.2 });
+  const groundMat = ctx.mat.toon('#ffffff', { map: TX.colorTex, alphaTest: 0.5, side: 'double', paint: 0.03, emissive: '#df9959', emissiveIntensity: 0.2 });
   groundMat.alphaToCoverage = true;
   const ground = G.build(groundMat);
   ground.frustumCulled = false; // instances span the whole town
@@ -260,7 +260,7 @@ export async function build(ctx) {
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
     g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setAttribute('color', new THREE.BufferAttribute(col, 3));
     g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeBoundingSphere();
-    const pm = ctx.mat.toon('#ffffff', { map: TX.patchTex, alphaTest: 0.5, vertexColors: true, polygonOffset: -2, paint: 0.02, emissive: '#f0c6d3', emissiveIntensity: 0.18 });
+    const pm = ctx.mat.toon('#ffffff', { map: TX.patchTex, alphaTest: 0.5, vertexColors: true, polygonOffset: -2, paint: 0.02, emissive: '#df9959', emissiveIntensity: 0.18 });
     pm.alphaToCoverage = true;
     const mesh = new THREE.Mesh(g, pm); mesh.name = 'petals-carpet'; mesh.receiveShadow = true; mesh.castShadow = false;
     root.add(mesh);

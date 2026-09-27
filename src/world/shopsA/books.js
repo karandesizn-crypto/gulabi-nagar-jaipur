@@ -1,4 +1,4 @@
-// W4 — こもれび書店 KOMOREBI BOOKS (small 2-storey bookstore with a 看板建築 false front).
+// W4 — किताब घर KITAB GHAR (small 2-storey bookstore with a 看板建築 false front).
 // Lot-local: +z = street (east), +x = north. Sliding glass doors (one slid open, enterable), outdoor
 // magazine rack, rotating postcard stand, 本日発売 stand sign, shelves of book spines, manga poster.
 import * as THREE from 'three';
@@ -140,7 +140,7 @@ export function buildBooks(ctx, C) {
     };
     panel(D1 - pw / 2, fz - 0.03);            // fixed right leaf
     panel(D1 - pw / 2 - 0.12, fz + 0.03);     // left leaf slid open (outer track)
-    const rHours = A.lit.region(128, 96, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = GREEN; g.fillRect(0, 0, w, 24); U.text(g, '営業時間', w / 2, 13, 15, F.sans, CREAM, { weight: 700 }); U.text(g, '10:00 〜 20:00', w / 2, 46, 17, F.en, INK, { weight: 700 }); U.text(g, '定休日 木曜', w / 2, 74, 15, F.sans, INK, { weight: 700 }); });
+    const rHours = A.lit.region(128, 96, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = GREEN; g.fillRect(0, 0, w, 24); U.text(g, 'HOURS', w / 2, 13, 15, F.sans, CREAM, { weight: 700 }); U.text(g, '10:00 〜 20:00', w / 2, 46, 17, F.en, INK, { weight: 700 }); U.text(g, 'CLOSED 木曜', w / 2, 74, 15, F.sans, INK, { weight: 700 }); });
     S.card(rHours, 0.22, 0.165, [0.55, FY + 1.4, fz + 0.06]);
   }
   const rCur = A.lit.region(128, 128, (g, w, h) => { g.fillStyle = '#e9e2d0'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(120,100,90,0.22)'; for (let y = 0; y < h * 0.55; y += 6) g.fillRect(0, y, w, 2); g.fillStyle = '#6d6478'; g.fillRect(0, h * 0.55, w, h * 0.45); g.fillStyle = 'rgba(255,238,210,0.45)'; g.fillRect(w * 0.55, h * 0.62, w * 0.3, h * 0.38); g.fillStyle = '#6f9a5a'; g.beginPath(); g.arc(w * 0.25, h * 0.95, 14, Math.PI, 0); g.fill(); });
@@ -152,7 +152,7 @@ export function buildBooks(ctx, C) {
     const cy = 2.72, cd = 0.85;
     k.box(X1 - X0 + 0.2, 0.06, cd, mC, [0, cy, ZF + cd / 2], [0.06, 0, 0]);
     k.box(X1 - X0 + 0.2, 0.2, 0.04, mC, [0, cy - 0.1, ZF + cd]);
-    const rFas = A.lit.region(1024, 26, (g, w, h) => { g.fillStyle = '#4d6457'; g.fillRect(0, 0, w, h); U.text(g, '本 · 雑誌 · コミック · 文庫 · 参考書 · 文具 · 絵本 · ご注文承ります', w / 2, h / 2 + 1, 17, F.sans, CREAM, { weight: 700, maxW: w - 20 }); }, { bg: '#4d6457' });
+    const rFas = A.lit.region(1024, 26, (g, w, h) => { g.fillStyle = '#4d6457'; g.fillRect(0, 0, w, h); U.text(g, '本 · MAGAZINES · コミック · BOOKS · 参考書 · 文具 · 絵本 · ご注文承ります', w / 2, h / 2 + 1, 17, F.sans, CREAM, { weight: 700, maxW: w - 20 }); }, { bg: '#4d6457' });
     S.card(rFas, X1 - X0, 0.16, [0, cy - 0.1, ZF + cd + 0.022]);
     for (const x of [-2.5, 0, 2.5]) k.box(0.03, 0.03, cd * 1.05, M.t('#3f3d45'), [x, cy + 0.14, ZF + cd / 2], [-0.3, 0, 0]);
     for (const x of [-2.0, 2.0]) k.cyl(0.07, 0.07, 0.01, M.glow('#fff1d8', 1.2), [x, cy - 0.04, ZF + 0.5], null, 10);
@@ -163,8 +163,8 @@ export function buildBooks(ctx, C) {
       // komorebi: sunlight through leaves
       for (let i = 0; i < 7; i++) { const a = i * 0.9; g.fillStyle = i % 2 ? '#86ad68' : '#6f9a5a'; g.beginPath(); g.ellipse(70 + Math.cos(a) * 26, 52 + Math.sin(a) * 18, 18, 9, a, 0, 6.3); g.fill(); }
       U.sun(g, 70, 52, 10, '#f2c230', true);
-      U.text(g, 'こもれび書店', w * 0.5, h * 0.45, 64, F.serif, GREEN, { weight: 700 });
-      U.text(g, 'KOMOREBI BOOKS · since 1962', w * 0.5, h * 0.83, 17, F.en, '#8a6446', { weight: 700 });
+      U.text(g, 'किताब घर', w * 0.5, h * 0.45, 64, F.serif, GREEN, { weight: 700 });
+      U.text(g, 'KITAB GHAR · since 1962', w * 0.5, h * 0.83, 17, F.en, '#8a6446', { weight: 700 });
       for (let i = 0; i < 7; i++) { const a = i * 0.9 + 1; g.fillStyle = i % 2 ? '#86ad68' : '#6f9a5a'; g.beginPath(); g.ellipse(w - 70 + Math.cos(a) * 26, 52 + Math.sin(a) * 18, 18, 9, a, 0, 6.3); g.fill(); }
       U.sun(g, w - 70, 52, 8, '#f2c230', true);
     });
@@ -174,7 +174,7 @@ export function buildBooks(ctx, C) {
     const rV = A.glow.region(96, 400, (g, w, h) => {
       g.fillStyle = '#f7f2e6'; g.fillRect(0, 0, w, h); g.fillStyle = GREEN; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 10, w, 10);
       g.fillStyle = '#d9463b'; g.beginPath(); g.arc(w / 2, 62, 40, 0, 6.3); g.fill(); U.text(g, '本', w / 2, 64, 56, F.serif, '#fbf8f0', { weight: 700 });
-      U.vtext(g, 'こもれび書店', w / 2, 118, 42, F.serif, GREEN, 700, 1.02);
+      U.vtext(g, 'किताब घर', w / 2, 118, 42, F.serif, GREEN, 700, 1.02);
     });
     const vx = X1 + 0.04, vz = ZF + 0.42, vy = 4.9;
     k.box(0.16, 1.9, 0.48, M.t('#e8e4d8'), [vx, vy, vz]);
@@ -210,7 +210,7 @@ export function buildBooks(ctx, C) {
     g.fillStyle = '#fbf8f0'; g.fillRect(2, 3, 24, 24); U.text(g, kind, 14, 15, 11, F.sans, c, { weight: 900 });
     U.text(g, t, w / 2 + 12, 15, 15, F.sans, '#fbf8f0', { weight: 900, maxW: w - 32 });
     g.fillStyle = INK; g.fillRect(6, h - 20, w * 0.5, 3); g.fillRect(6, h - 13, w * 0.35, 3);
-    U.text(g, '¥' + (380 + (i % 4) * 110), w - 20, h - 11, 11, F.en, INK, { weight: 700 });
+    U.text(g, '₹' + (380 + (i % 4) * 110), w - 20, h - 11, 11, F.en, INK, { weight: 700 });
   }, { bg: '#fbf8f0' }));
   // magazine rack
   {
@@ -240,7 +240,7 @@ export function buildBooks(ctx, C) {
       else if (i % 4 === 1) { g.fillStyle = '#3a3346'; g.beginPath(); g.ellipse(32, 52, 14, 10, 0, 0, 6.3); g.fill(); g.beginPath(); g.moveTo(22, 46); g.lineTo(24, 34); g.lineTo(30, 44); g.fill(); g.beginPath(); g.moveTo(42, 46); g.lineTo(40, 34); g.lineTo(34, 44); g.fill(); }
       else if (i % 4 === 2) { g.fillStyle = '#e9a23b'; g.beginPath(); g.arc(32, 44, 12, 0, 6.3); g.fill(); g.fillStyle = '#7fa6c9'; g.fillRect(4, 50, w - 8, 20); }
       else { for (let j = 0; j < 6; j++) U.sakura(g, 12 + (j * 17) % 44, 16 + (j * 23) % 48, 7, '#eb9db6', '#f6e3a0'); }
-      U.text(g, ['桜ヶ丘', 'ねこ', '夕焼け', '春'][i % 4], w / 2, h - 9, 11, F.sans, INK, { weight: 700 });
+      U.text(g, ['गुलाबी नगर', 'ねこ', '夕焼け', '春'][i % 4], w / 2, h - 9, 11, F.sans, INK, { weight: 700 });
     }));
     k.cyl(0.25, 0.28, 0.05, M.t('#6d747c'), [x, y + 0.025, z], null, 14);
     k.cyl(0.02, 0.02, 1.7, M.t('#9aa1a8'), [x, y + 0.87, z], null, 6);
@@ -270,7 +270,7 @@ export function buildBooks(ctx, C) {
       U.text(g, '週刊少年ソラ', w / 2, 234, 24, F.sans, INK, { weight: 900 });
       U.text(g, '21号', w / 2, 262, 22, F.sans, '#d9463b', { weight: 900 });
       g.fillStyle = GREEN; g.fillRect(12, 286, w - 24, 2);
-      U.text(g, 'コミックス新刊', w / 2, 310, 20, F.sans, INK, { weight: 700 });
+      U.text(g, 'コミックスNEW BOOKS', w / 2, 310, 20, F.sans, INK, { weight: 700 });
       U.text(g, '入荷しました!', w / 2, 338, 20, F.sans, INK, { weight: 700 });
     });
     const sx = 0.55, sz = -0.95;

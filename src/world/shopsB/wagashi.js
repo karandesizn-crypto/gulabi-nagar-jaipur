@@ -1,11 +1,11 @@
-// E2 和菓子処 桜月堂 (おうげつどう) — Showa-era wooden confectioner with plaster upper floor,
+// E2 SWEETS मिष्ठान (おうげつどう) — Showa-era wooden confectioner with plaster upper floor,
 // tiled pent roof, carved sign, indigo noren, lit showcase of sweets, enterable interior.
 import * as THREE from 'three';
 import { buildWagashiInterior } from './wagashiInt.js';
 
-export const TEXTS = ['和菓子処', '桜月堂', 'おうげつどう', '創業昭和廿八年', '御菓子司', '和菓子', '春季限定', '桜もち', 'さくらもち', '一個', '円', '三色だんご', 'どら焼き', '柏もち', '豆大福', '草もち', 'みたらし', '煉羊羹',
-  '一八〇円', '一五〇円', '二〇〇円', '一六〇円', '一三〇円', '八〇〇円', 'たい焼き', '焼きたて', 'あつあつ', 'つぶあん', 'お花見だんご', 'はじめました', '9:00〜18:00', '定休日 水曜日', '煎茶', '玄米茶', 'ほうじ茶', '抹茶', '贈答用', '詰め合わせ',
-  'ご予約承ります', '4月', '卯月', '日月火水木金土', '桜', '三個入', '540円', '480円', '180円', '150円', 'お茶', '器'];
+export const TEXTS = ['SWEETS', 'मिष्ठान', 'おうげつどう', 'SINCE 1953', 'MITHAI', 'MITHAI', 'SEASONAL SPECIAL', 'LADDU', 'さくらもち', '一個', ' Rs', 'BARFI', 'GHEWAR', 'PEDA', 'KALAKAND', 'PISTA BARFI', 'みたらし', 'KAJU KATLI',
+  '一八〇 Rs', '一五〇 Rs', '二〇〇 Rs', '一六〇 Rs', '一三〇 Rs', '八〇〇 Rs', 'KACHORI', 'FRESH & HOT', 'あつあつ', 'つぶあん', 'お花見だんご', 'はじめました', '9:00〜18:00', 'CLOSED 水曜日', '煎茶', '玄米茶', 'ほうじ茶', '抹茶', '贈答用', '詰め合わせ',
+  'ORDERS WELCOME', '4月', '卯月', '日月火水木金土', '桜', '三個入', '540 Rs', '480 Rs', '180 Rs', '150 Rs', 'CHAI', '器'];
 
 export function buildWagashi(ctx, K, lot) {
   const { THREE: T3, mat } = ctx; const { C, T, F } = K;
@@ -143,10 +143,10 @@ export function buildWagashi(ctx, K, lot) {
   // noren (暖簾) at the door
   K.noren(S, { x: (openB.a0 + openB.a1) / 2, y: FL + 2.55, z: ZF + 0.1, w: 2.05, h: 0.92, n: 3, tex: norenTex(K, 2.05, 3), rodColor: '#5a4032' });
   for (const x of [openB.a0 - 0.05, openB.a1 + 0.05]) B(0.04, 0.12, 0.12, mFrame, [x, FL + 2.57, ZF + 0.05]);
-  // hand-written 営業中 plate + stickers on the fixed door
-  K.eigyoPlate(g, leftDoor.position.x, FL + 1.52, ZF + 0.0, 0, '営業中', '');
+  // hand-written OPEN plate + stickers on the fixed door
+  K.eigyoPlate(g, leftDoor.position.x, FL + 1.52, ZF + 0.0, 0, 'OPEN', '');
   ctx.wires.add([S.w2(leftDoor.position.x - 0.1, ZF - 0.003), S.w2(leftDoor.position.x, ZF - 0.003), S.w2(leftDoor.position.x + 0.1, ZF - 0.003)].map((p, i) => [p.x, S.f.y + FL + 1.6 + (i === 1 ? 0.12 : 0), p.z]), { width: 0.006, color: '#5a4032' });
-  K.decal(g, K.hoursSticker(['9:00〜18:00', '定休日 水曜日'], '#d9718f'), 0.2, 0.15, [leftDoor.position.x + 0.22, FL + 0.95, ZF - 0.004]);
+  K.decal(g, K.hoursSticker(['9:00〜18:00', 'CLOSED 水曜日'], '#d9718f'), 0.2, 0.15, [leftDoor.position.x + 0.22, FL + 0.95, ZF - 0.004]);
   K.decal(rightDoor, K.cashless(), 0.34, 0.106, [0.0, 0.95, 0.024]);
   K.decal(g, springPosterTex(K, 'glass'), 0.36, 0.5, [-1.62, FL + 1.12, ZF - 0.045]);
 
@@ -212,7 +212,7 @@ export function buildWagashi(ctx, K, lot) {
     platter(g, K, 'kashiwa', -1.75, FL + 0.97, dz0 - 0.4, rnd);
     giftBox(g, K, -2.25, FL + 1.2, dz0 - 0.55, 0.4, 0.14, 0.2, 23);
     sakuraSpray(g, K, -1.3, FL + 1.2, dz0 - 0.55, 0.75, rnd);
-    K.plane(g, 0.2, 0.1, K.im('#ffffff', 0.3, { map: K.card(['桜もち', '三個入 540円'], { w: 192, h: 96, font: F.serif, fg: '#4a2e2a', fg2: '#a33a36' }) }), [-2.2, FL + 0.8, dz0 - 0.02], 0, -0.2);
+    K.plane(g, 0.2, 0.1, K.im('#ffffff', 0.3, { map: K.card(['LADDU', '三個入 540 Rs'], { w: 192, h: 96, font: F.serif, fg: '#4a2e2a', fg2: '#a33a36' }) }), [-2.2, FL + 0.8, dz0 - 0.02], 0, -0.2);
   }
 
   // ---------------------------------------------------------------- outside furniture
@@ -257,8 +257,8 @@ export function buildWagashi(ctx, K, lot) {
     }
     for (let i = 0; i < 3; i++) giftBox(sg, K, -0.45 + i * 0.45, 0.94, -0.14, 0.34, 0.1, 0.2, 30 + i);
     for (let i = 0; i < 3; i++) K.box(sg, 0.14, 0.004, 0.14, K.m('#f7f3ea'), [-0.55 + i * 0.52, 0.745, -0.07]);
-    K.plane(sg, 0.26, 0.14, K.mt('#ffffff', K.card(['桜もち', '三個入 540円'], { w: 192, h: 104, font: F.serif, fg: '#4a2e2a', fg2: '#a33a36', bg: '#fbeef2', border: '#e38aa6' })), [0.52, 1.03, 0.0], 0, -0.3);
-    K.plane(sg, 0.26, 0.14, K.mt('#ffffff', K.card(['柏もち', '一個 160円'], { w: 192, h: 104, font: F.serif, fg: '#35502e', fg2: '#35502e', bg: '#eef2e4', border: '#7fa36b' })), [-0.52, 1.03, 0.0], 0, -0.3);
+    K.plane(sg, 0.26, 0.14, K.mt('#ffffff', K.card(['LADDU', '三個入 540 Rs'], { w: 192, h: 104, font: F.serif, fg: '#4a2e2a', fg2: '#a33a36', bg: '#fbeef2', border: '#e38aa6' })), [0.52, 1.03, 0.0], 0, -0.3);
+    K.plane(sg, 0.26, 0.14, K.mt('#ffffff', K.card(['PEDA', '一個 160 Rs'], { w: 192, h: 104, font: F.serif, fg: '#35502e', fg2: '#35502e', bg: '#eef2e4', border: '#7fa36b' })), [-0.52, 1.03, 0.0], 0, -0.3);
     S.box(x - w / 2, z - dep / 2, x + w / 2, z + dep / 2, y0, y0 + 1.0);
   }
   // maneki-neko by the door on a small stool
@@ -271,7 +271,7 @@ export function buildWagashi(ctx, K, lot) {
     manekiNeko(g, K, x, y0 + 0.45, z, 0.35, 0.3);
     S.box(x - 0.16, z - 0.16, x + 0.16, z + 0.16, y0, y0 + 0.8);
   }
-  // pink standing poster 春季限定 桜もち
+  // pink standing poster SEASONAL SPECIAL LADDU
   {
     const x = -3.45, z = -0.32, y0 = ag(x, z), rot = 0.55;
     const pg = new T3.Group(); pg.position.set(x, y0, z); pg.rotation.y = rot; g.add(pg);
@@ -300,8 +300,8 @@ export function buildWagashi(ctx, K, lot) {
 }
 
 // ============================================================================ sweets & small goods
-function sweetName(k) { return { sakura: '桜もち', dango: '三色だんご', dora: 'どら焼き', kashiwa: '柏もち', daifuku: '豆大福', kusa: '草もち' }[k]; }
-function sweetPrice(k) { return { sakura: '一八〇円', dango: '一五〇円', dora: '二〇〇円', kashiwa: '一六〇円', daifuku: '一八〇円', kusa: '一六〇円' }[k]; }
+function sweetName(k) { return { sakura: 'LADDU', dango: 'BARFI', dora: 'GHEWAR', kashiwa: 'PEDA', daifuku: 'KALAKAND', kusa: 'PISTA BARFI' }[k]; }
+function sweetPrice(k) { return { sakura: '一八〇 Rs', dango: '一五〇 Rs', dora: '二〇〇 Rs', kashiwa: '一六〇 Rs', daifuku: '一八〇 Rs', kusa: '一六〇 Rs' }[k]; }
 
 function sakuraMochi(p, K, x, y, z, rot = 0, interior = false) {
   const pink = interior ? K.im('#f1a9bd', 0.3) : K.m('#f1a9bd'), leaf = interior ? K.im('#8c8f4c', 0.25) : K.m('#8c8f4c');
@@ -422,11 +422,11 @@ function signTex(K) {
     for (let i = 0; i < 40; i++) { const y = r() * h; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y + r() * 12 - 6, w * 0.7, y + r() * 12 - 6, w, y + r() * 8 - 4); g.stroke(); }
     g.strokeStyle = 'rgba(20,10,5,0.5)'; g.lineWidth = 8; g.strokeRect(14, 14, w - 28, h - 28);
     g.strokeStyle = 'rgba(230,200,140,0.35)'; g.lineWidth = 2; g.strokeRect(22, 22, w - 44, h - 44);
-    K.carve(g, '桜月堂', w * 0.5, h * 0.54, 168, K.F.brush, '#ead7a4', 400);
+    K.carve(g, 'मिष्ठान', w * 0.5, h * 0.54, 168, K.F.brush, '#ead7a4', 400);
     g.font = `700 30px ${K.F.serif}`; g.fillStyle = '#e2cc93';
-    K.vtext(g, '和菓子処', w * 0.9, h * 0.14, 38, 1.0);
+    K.vtext(g, 'SWEETS', w * 0.9, h * 0.14, 38, 1.0);
     g.font = `700 22px ${K.F.serif}`; g.fillStyle = 'rgba(226,204,147,0.85)';
-    K.vtext(g, '創業昭和廿八年', w * 0.09, h * 0.1, 26, 1.0);
+    K.vtext(g, 'SINCE 1953', w * 0.09, h * 0.1, 26, 1.0);
     // small sakura crest
     sakuraFlower(g, w * 0.2, h * 0.5, 16, '#e9a3b8');
   }, { key: 'sb-oug-sign' });
@@ -437,8 +437,8 @@ function sodeTex(K) {
     g.fillStyle = '#e9a3b8'; g.fillRect(0, 0, w, 60);
     sakuraFlower(g, w / 2, 30, 14, '#fbf4f0');
     g.strokeStyle = '#8e3b36'; g.lineWidth = 5; g.strokeRect(8, 68, w - 16, h - 76);
-    g.fillStyle = '#8e3b36'; g.font = `400 100px ${K.F.brush}`; K.vtext(g, '和菓子', w / 2, 84, 100, 1.02);
-    g.fillStyle = '#3a3346'; g.font = `700 44px ${K.F.serif}`; K.vtext(g, '桜月堂', w / 2, 402, 46, 1.02);
+    g.fillStyle = '#8e3b36'; g.font = `400 100px ${K.F.brush}`; K.vtext(g, 'MITHAI', w / 2, 84, 100, 1.02);
+    g.fillStyle = '#3a3346'; g.font = `700 44px ${K.F.serif}`; K.vtext(g, 'मिष्ठान', w / 2, 402, 46, 1.02);
   }, { key: 'sb-oug-sode' });
 }
 function lightboxTex(K) {
@@ -446,7 +446,7 @@ function lightboxTex(K) {
     g.fillStyle = '#f6efe0'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#e9a3b8'; g.fillRect(0, h - 14, w, 14);
     sakuraFlower(g, 50, h / 2 - 6, 18, '#e38aa6');
-    K.text(g, '御菓子司 桜月堂', w * 0.56, h * 0.46, w * 0.78, 64, K.F.serif, 700, '#6b2e2a');
+    K.text(g, 'गुलाबी मिष्ठान', w * 0.56, h * 0.46, w * 0.78, 64, K.F.serif, 700, '#6b2e2a');
   }, { key: 'sb-oug-lightbox' });
 }
 function norenTex(K, W, n) {
@@ -462,7 +462,7 @@ function norenTex(K, W, n) {
       K.text(g, chars[i], cx, h * 0.5, w / n * 0.9, 170, K.F.brush, 400, '#f3eee2');
     }
     sakuraFlower(g, w * 0.86, h * 0.86, 13, '#f2b5c8');
-    K.text(g, '桜月堂', w * 0.72, h * 0.87, 140, 28, K.F.serif, 700, '#f3eee2');
+    K.text(g, 'मिष्ठान', w * 0.72, h * 0.87, 140, 28, K.F.serif, 700, '#f3eee2');
   }, { key: 'sb-oug-noren' });
 }
 function innerNorenTex(K) {
@@ -479,22 +479,22 @@ function springPosterTex(K, variant) {
     const r = K.ctx.rng('sb-spring' + variant);
     for (let i = 0; i < 14; i++) sakuraFlower(g, r() * w, r() * h, 6 + r() * 7, 'rgba(255,255,255,0.55)');
     g.fillStyle = '#d9718f'; K.rr(g, 18, 18, w - 36, 52, 26); g.fill();
-    K.text(g, '春季限定', w / 2, 45, w - 60, 36, K.F.round, 900, '#fff8f4');
+    K.text(g, 'SEASONAL SPECIAL', w / 2, 45, w - 60, 36, K.F.round, 900, '#fff8f4');
     if (variant === 'glass') {
       K.text(g, 'お花見だんご', w / 2, 118, w - 30, 40, K.F.round, 900, '#8e3b36');
       K.text(g, 'はじめました', w / 2, 160, w - 30, 30, K.F.round, 700, '#8e3b36');
       // dango drawing
       g.strokeStyle = '#b08a5a'; g.lineWidth = 5; g.beginPath(); g.moveTo(60, 300); g.lineTo(200, 200); g.stroke();
       [['#f2a7bb', 90, 278], ['#f7f2ea', 125, 253], ['#9cc27a', 160, 228]].forEach(([c, x, y]) => { g.fillStyle = c; g.beginPath(); g.arc(x, y, 24, 0, 7); g.fill(); g.strokeStyle = 'rgba(90,60,70,0.4)'; g.lineWidth = 2; g.stroke(); });
-      K.text(g, '一本 150円', w / 2, 340, w - 40, 28, K.F.round, 700, '#6b2e2a');
+      K.text(g, '一本 150 Rs', w / 2, 340, w - 40, 28, K.F.round, 700, '#6b2e2a');
     } else {
-      g.fillStyle = '#8e3b36'; g.font = `400 88px ${K.F.brush}`; K.vtext(g, '桜もち', w * 0.7, 86, 88, 0.98);
+      g.fillStyle = '#8e3b36'; g.font = `400 88px ${K.F.brush}`; K.vtext(g, 'LADDU', w * 0.7, 86, 88, 0.98);
       // sakura-mochi drawing
       g.fillStyle = '#8c8f4c'; g.beginPath(); g.ellipse(88, 214, 62, 40, -0.3, 0, 7); g.fill();
       g.fillStyle = '#f1a0b8'; g.beginPath(); g.ellipse(96, 206, 48, 32, -0.2, 0, 7); g.fill();
       g.strokeStyle = 'rgba(110,70,40,0.35)'; g.lineWidth = 2; for (let k = -2; k <= 2; k++) { g.beginPath(); g.moveTo(40, 230 + k * 6); g.lineTo(140, 190 + k * 10); g.stroke(); }
-      K.text(g, '一個 180円', w * 0.4, 300, w * 0.7, 30, K.F.round, 900, '#6b2e2a');
-      K.text(g, 'ご予約承ります', w / 2, 342, w - 40, 22, K.F.round, 700, '#6b2e2a');
+      K.text(g, '一個 180 Rs', w * 0.4, 300, w * 0.7, 30, K.F.round, 900, '#6b2e2a');
+      K.text(g, 'ORDERS WELCOME', w / 2, 342, w - 40, 22, K.F.round, 700, '#6b2e2a');
     }
   }, { key: 'sb-spring-' + variant });
 }
@@ -503,8 +503,8 @@ function taiyakiNoboriTex(K) {
     g.fillStyle = '#f4ead2'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#f7f3ea'; g.fillRect(w - 18, 0, 18, h);        // sleeve side (pole on the right)
     g.fillStyle = '#c9463e'; g.fillRect(0, 0, w - 18, 70);
-    K.text(g, '焼きたて', (w - 18) / 2, 36, w - 30, 34, K.F.round, 900, '#fff6ea');
-    g.fillStyle = '#2f3f6e'; g.font = `400 112px ${K.F.brush}`; K.vtext(g, 'たい焼き', (w - 18) / 2, 84, 104, 0.98);
+    K.text(g, 'FRESH & HOT', (w - 18) / 2, 36, w - 30, 34, K.F.round, 900, '#fff6ea');
+    g.fillStyle = '#2f3f6e'; g.font = `400 112px ${K.F.brush}`; K.vtext(g, 'KACHORI', (w - 18) / 2, 84, 104, 0.98);
     // little taiyaki
     const fx = (w - 18) / 2, fy = 520;
     g.fillStyle = '#c98a4e'; g.beginPath(); g.ellipse(fx - 8, fy, 44, 24, 0, 0, 7); g.fill();
@@ -518,7 +518,7 @@ function taiyakiNoboriTex(K) {
 function menuTagsTex(K) {
   return K.tex.draw(1024, 228, (g, w, h) => {
     g.fillStyle = '#6e5040'; g.fillRect(0, 0, w, h);
-    const items = [['桜もち', '一八〇円'], ['三色だんご', '一五〇円'], ['どら焼き', '二〇〇円'], ['柏もち', '一六〇円'], ['豆大福', '一八〇円'], ['草もち', '一六〇円'], ['みたらし', '一三〇円'], ['煉羊羹', '八〇〇円']];
+    const items = [['LADDU', '一八〇 Rs'], ['BARFI', '一五〇 Rs'], ['GHEWAR', '二〇〇 Rs'], ['PEDA', '一六〇 Rs'], ['KALAKAND', '一八〇 Rs'], ['PISTA BARFI', '一六〇 Rs'], ['みたらし', '一三〇 Rs'], ['KAJU KATLI', '八〇〇 Rs']];
     const n = items.length, tw = (w - 40) / n;
     items.forEach(([a, b], i) => {
       const x = 20 + i * tw + 6, cw = tw - 12;

@@ -31,9 +31,9 @@ const SUN = (() => { const l = Math.hypot(...SUN_DIR); return SUN_DIR.map(v => v
 // -> near-white). The pad shader quantises a per-vertex tone value into these bands (see
 // materials.js BANDS — keep in sync); cards use the same bands on the CPU (bandColor).
 export const BANDS = {
-  normal: ['#e597b2', '#f3bccd', '#f9d8e2', '#fce9ef'],
-  weeping: ['#dc81a1', '#e99db7', '#f2c0d0', '#f8dde6'],
-  peach: '#f6c7b8',
+  normal: ['#638850', '#84a45b', '#a8ba70', '#c7cd8b'],
+  weeping: ['#c95c38', '#e88142', '#eeaa57', '#f8c376'],
+  peach: '#e39b50',
 };
 const PAL = {
   normal: BANDS.normal.map(hex),

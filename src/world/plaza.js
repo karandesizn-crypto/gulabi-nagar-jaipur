@@ -1,4 +1,4 @@
-// 駅前広場 — station-front plaza (plaza module).
+// Station Chowk — station-front plaza (plaza module).
 // Paving + curbs + tactile paths, tree pit & ring bench around the big sakura (tree itself = sakura module),
 // boards, bus stop + shelter, taxi stand, postbox, phone booth, bicycle racks (bikes = vehicles module),
 // flower beds, hedge, bollards, chains, bins, lamps, clock, monument.  Publishes ctx.services.plaza.

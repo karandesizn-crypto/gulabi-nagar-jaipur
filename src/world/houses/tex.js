@@ -2,10 +2,8 @@
 // tint them (one material serves every wall colour).
 import * as THREE from 'three';
 
-export const SURNAMES = ['佐藤', '鈴木', '高橋', '田中', '渡辺', '伊藤', '山本', '中村', '小林', '加藤', '吉田', '山田', '佐々木', '山口', '松本', '井上',
-  '木村', '清水', '山崎', '森', '池田', '橋本', '阿部', '石川', '前田', '藤田', '小川', '岡田', '後藤', '長谷川', '村上', '近藤', '坂本', '遠藤', '青木', '西村',
-  '福田', '太田', '三浦', '藤原', '岡本', '中川', '原田', '小野', '田村', '竹内', '和田', '中山', '石田', '上田', '森田', '柴田', '宮本', '内田', '桜井', '野口'];
-export const ROMAJI = { '佐藤': 'SATO', '鈴木': 'SUZUKI', '高橋': 'TAKAHASHI', '田中': 'TANAKA', '渡辺': 'WATANABE', '伊藤': 'ITO', '山本': 'YAMAMOTO', '中村': 'NAKAMURA', '小林': 'KOBAYASHI', '加藤': 'KATO', '吉田': 'YOSHIDA', '山田': 'YAMADA', '佐々木': 'SASAKI', '山口': 'YAMAGUCHI', '松本': 'MATSUMOTO', '井上': 'INOUE' };
+export const SURNAMES = ['शर्मा', 'गुप्ता', 'मेहता', 'सिंह', 'जैन', 'राठौड़', 'अग्रवाल', 'जोशी', 'पारीक', 'खण्डेलवाल', 'चौधरी', 'सैनी', 'मिश्रा', 'शेखावत', 'भाटी', 'कुमार', 'सोनी', 'गोयल', 'चतुर्वेदी', 'व्यास'];
+export const ROMAJI = {'शर्मा': 'SHARMA', 'गुप्ता': 'GUPTA', 'मेहता': 'MEHTA', 'सिंह': 'SINGH', 'जैन': 'JAIN', 'राठौड़': 'RATHORE', 'अग्रवाल': 'AGARWAL', 'जोशी': 'JOSHI', 'पारीक': 'PAREEK', 'खण्डेलवाल': 'KHANDELWAL', 'चौधरी': 'CHAUDHARY', 'सैनी': 'SAINI', 'मिश्रा': 'MISHRA', 'शेखावत': 'SHEKHAWAT', 'भाटी': 'BHATI', 'कुमार': 'KUMAR', 'सोनी': 'SONI', 'गोयल': 'GOYAL', 'चतुर्वेदी': 'CHATURVEDI', 'व्यास': 'VYAS'};
 
 function hashRng(seed) { let s = seed >>> 0 || 1; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
 
@@ -275,7 +273,7 @@ function makeAtlas(ctx) {
     else add('plateH' + i, 112, 44, (g, w, h) => { g.fillStyle = st.bg; T.roundRect(g, 0, 0, w, h, 4); g.fill(); g.strokeStyle = st.border; g.lineWidth = 3; T.roundRect(g, 2, 2, w - 4, h - 4, 3); g.stroke(); g.fillStyle = st.fg; g.textAlign = 'center'; g.textBaseline = 'middle'; const ro = ROMAJI[nm]; if (ro && i % 2 === 0) { T.fitText(g, nm, w / 2, h * 0.4, w - 16, 24, st.font, 700); g.globalAlpha = 0.8; T.fitText(g, ro, w / 2, h * 0.8, w - 20, 9, F.en, 500); g.globalAlpha = 1; } else T.fitText(g, nm, w / 2, h * 0.54, w - 16, 30, st.font, 700); });
   }
   // --- 住居表示 address plates (blue)
-  for (let i = 0; i < 6; i++) add('addr' + i, 96, 40, (g, w, h) => { g.fillStyle = '#2f5fa0'; T.roundRect(g, 0, 0, w, h, 5); g.fill(); g.fillStyle = '#f4f4f4'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, '桜ヶ丘町', w / 2, h * 0.3, w - 10, 12, F.sans, 700); T.fitText(g, `${['一', '二', '三'][i % 3]}丁目 ${[3, 7, 12, 15, 21, 26][i]}`, w / 2, h * 0.72, w - 10, 16, F.sans, 700); });
+  for (let i = 0; i < 6; i++) add('addr' + i, 96, 40, (g, w, h) => { g.fillStyle = '#2f5fa0'; T.roundRect(g, 0, 0, w, h, 5); g.fill(); g.fillStyle = '#f4f4f4'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'Gulabi Nagar', w / 2, h * 0.3, w - 10, 12, F.sans, 700); T.fitText(g, `गली ${i % 3 + 1} · ${[3, 7, 12, 15, 21, 26][i]}`, w / 2, h * 0.72, w - 10, 16, F.sans, 700); });
   // --- equipment faces
   add('ac_front', 128, 88, (g, w, h) => { // 室外機: fan grille + side panel
     g.fillStyle = '#ecebe6'; g.fillRect(0, 0, w, h);
@@ -291,14 +289,14 @@ function makeAtlas(ctx) {
   add('mailbox', 96, 72, (g, w, h) => { g.fillStyle = '#e9e6de'; g.fillRect(0, 0, w, h); g.fillStyle = '#4b4a4f'; g.fillRect(14, 14, w - 28, 8); g.fillStyle = '#6b6a70'; g.font = `700 12px ${F.en}`; g.textAlign = 'center'; g.fillText('POST', w / 2, 48); g.strokeStyle = '#9b988f'; g.lineWidth = 2; g.strokeRect(1, 1, w - 2, h - 2); });
   add('mailbox_red', 96, 72, (g, w, h) => { g.fillStyle = '#b8483e'; g.fillRect(0, 0, w, h); g.fillStyle = '#3b2a2a'; g.fillRect(14, 14, w - 28, 8); g.fillStyle = '#f1e4d6'; g.font = `700 16px ${F.serif}`; g.textAlign = 'center'; g.fillText('〒 郵便', w / 2, 50); });
   add('mailbox_dark', 96, 72, (g, w, h) => { g.fillStyle = '#56544f'; g.fillRect(0, 0, w, h); g.fillStyle = '#26262a'; g.fillRect(14, 14, w - 28, 8); g.fillStyle = '#d9d2c2'; g.font = `500 11px ${F.sans}`; g.textAlign = 'center'; g.fillText('郵便受', w / 2, 48); });
-  add('milk', 72, 56, (g, w, h) => { g.fillStyle = '#f0ebe0'; g.fillRect(0, 0, w, h); g.fillStyle = '#3f74b8'; g.fillRect(0, 0, w, 16); g.fillStyle = '#fff'; g.font = `700 11px ${F.sans}`; g.textAlign = 'center'; g.fillText('さくら牧場', w / 2, 12); g.fillStyle = '#3f74b8'; g.font = `700 20px ${F.serif}`; g.fillText('牛乳', w / 2, 44); });
+  add('milk', 72, 56, (g, w, h) => { g.fillStyle = '#f0ebe0'; g.fillRect(0, 0, w, h); g.fillStyle = '#3f74b8'; g.fillRect(0, 0, w, 16); g.fillStyle = '#fff'; g.font = `700 11px ${F.sans}`; g.textAlign = 'center'; g.fillText('さくら牧場', w / 2, 12); g.fillStyle = '#3f74b8'; g.font = `700 20px ${F.serif}`; g.fillText('MILK', w / 2, 44); });
   add('parcel_box', 96, 64, (g, w, h) => { g.fillStyle = '#e6e2d8'; g.fillRect(0, 0, w, h); g.fillStyle = '#4a6a8a'; g.font = `700 13px ${F.sans}`; g.textAlign = 'center'; g.fillText('宅配ボックス', w / 2, 24); g.fillStyle = '#777'; g.fillRect(w * 0.7, 36, 14, 14); });
   add('cardboard', 96, 64, (g, w, h) => { g.fillStyle = '#d8b88c'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(230,220,190,0.9)'; g.fillRect(w * 0.44, 0, 10, h); g.fillStyle = '#6b8f5c'; g.font = `700 10px ${F.sans}`; g.textAlign = 'left'; g.fillText('ワレモノ注意', 6, h - 8); g.fillStyle = '#f5f2ea'; g.fillRect(8, 10, 28, 18); });
   const binLabel = (name, bg, text) => add(name, 96, 40, (g, w, h) => { g.fillStyle = bg; g.fillRect(0, 0, w, h); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, text, w / 2, h / 2 + 1, w - 10, 20, F.round, 700); });
   binLabel('bin_burn', '#d0634f', 'もえるごみ');
   binLabel('bin_res', '#3f7fb8', '資源ごみ');
   binLabel('bin_pla', '#4f9a66', 'プラスチック');
-  add('gomi_sign', 160, 96, (g, w, h) => { g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#2f7a4f'; g.fillRect(0, 0, w, 26); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'ごみ集積所', w / 2, 14, w - 10, 18, F.sans, 700); g.fillStyle = '#333'; T.fitText(g, '収集日の朝8時までに', w / 2, 44, w - 12, 13, F.sans, 700); T.fitText(g, '出してください', w / 2, 62, w - 12, 13, F.sans, 700); g.fillStyle = '#c44'; T.fitText(g, '桜ヶ丘町内会', w / 2, 84, w - 12, 11, F.sans, 700); });
+  add('gomi_sign', 160, 96, (g, w, h) => { g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#2f7a4f'; g.fillRect(0, 0, w, 26); g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'ごみ集積所', w / 2, 14, w - 10, 18, F.sans, 700); g.fillStyle = '#333'; T.fitText(g, '収集日の朝8時までに', w / 2, 44, w - 12, 13, F.sans, 700); T.fitText(g, '出してください', w / 2, 62, w - 12, 13, F.sans, 700); g.fillStyle = '#c44'; T.fitText(g, 'Gulabi Nagar内会', w / 2, 84, w - 12, 11, F.sans, 700); });
   add('sticker_dog', 64, 40, (g, w, h) => { g.fillStyle = '#f2d23d'; g.fillRect(0, 0, w, h); g.fillStyle = '#222'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, '猛犬注意', w / 2, h / 2, w - 6, 16, F.sans, 900); });
   add('sticker_nosale', 72, 32, (g, w, h) => { g.fillStyle = '#f5f5f0'; g.fillRect(0, 0, w, h); g.fillStyle = '#b33'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, '押し売りお断り', w / 2, h / 2, w - 6, 12, F.sans, 700); });
   add('vent', 64, 24, (g, w, h) => { g.fillStyle = '#9d9c97'; g.fillRect(0, 0, w, h); g.fillStyle = '#4e4e56'; for (let x = 6; x < w - 4; x += 7) g.fillRect(x, 4, 4, h - 8); });
@@ -308,7 +306,7 @@ function makeAtlas(ctx) {
     g.fillStyle = '#8a8f86'; g.fillRect(w / 2 - 2, 0, 4, h); g.fillRect(0, 0, w, 8); g.fillRect(0, h - 8, w, 8);
     g.fillStyle = '#555'; g.fillRect(w / 2 - 14, h * 0.45, 8, 20); g.fillRect(w / 2 + 6, h * 0.45, 8, 20);
   });
-  add('apt_sign', 256, 64, (g, w, h) => { g.fillStyle = '#f3efe6'; g.fillRect(0, 0, w, h); g.fillStyle = '#5a4a3e'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'コーポ桜ヶ丘', w / 2, h * 0.42, w - 20, 34, F.serif, 700); g.globalAlpha = 0.8; T.fitText(g, 'CORPO SAKURAGAOKA', w / 2, h * 0.82, w - 40, 11, F.en, 500); g.globalAlpha = 1; });
+  add('apt_sign', 256, 64, (g, w, h) => { g.fillStyle = '#f3efe6'; g.fillRect(0, 0, w, h); g.fillStyle = '#5a4a3e'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, 'コーポगुलाबी नगर', w / 2, h * 0.42, w - 20, 34, F.serif, 700); g.globalAlpha = 0.8; T.fitText(g, 'CORPO GULABI NAGAR', w / 2, h * 0.82, w - 40, 11, F.en, 500); g.globalAlpha = 1; });
   for (const n of [101, 102, 103, 104, 201, 202, 203, 204]) add('room' + n, 48, 24, (g, w, h) => { g.fillStyle = '#f4f1ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#333'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, String(n), w / 2, h / 2 + 1, w - 6, 16, F.en, 700); });
   add('posts', 192, 96, (g, w, h) => { // apartment mailbox bank 集合ポスト (2×4)
     g.fillStyle = '#c9c6bd'; g.fillRect(0, 0, w, h);
@@ -321,7 +319,7 @@ function makeAtlas(ctx) {
   add('futon_b', 128, 96, (g, w, h) => { g.fillStyle = '#dfe7f0'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fb7d3'; for (let x = 0; x < w; x += 16) g.fillRect(x, 0, 6, h); g.strokeStyle = 'rgba(90,110,140,0.5)'; g.lineWidth = 2; g.strokeRect(3, 3, w - 6, h - 6); });
   add('futon_c', 128, 96, (g, w, h) => { g.fillStyle = '#f1ead8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#c9a86c'; g.lineWidth = 2; for (let y = 8; y < h; y += 14) { g.beginPath(); for (let x = 0; x <= w; x += 8) g.lineTo(x, y + Math.sin(x * 0.2) * 3); g.stroke(); } });
   add('solar', 128, 64, (g, w, h) => { g.fillStyle = '#2f3d5c'; g.fillRect(0, 0, w, h); g.strokeStyle = '#8fa2c4'; g.lineWidth = 1.5; for (let x = 0; x <= w; x += 16) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } for (let y = 0; y <= h; y += 16) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); } g.fillStyle = 'rgba(255,255,255,0.18)'; g.fillRect(0, 0, w * 0.4, h); });
-  add('kotatsu_sign', 128, 48, (g, w, h) => { g.fillStyle = '#f3efe4'; g.fillRect(0, 0, w, h); g.fillStyle = '#3d6b4f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, '月極駐車場', w / 2, h * 0.36, w - 10, 18, F.sans, 700); g.fillStyle = '#c33'; T.fitText(g, '空き有り 桜ヶ丘不動産', w / 2, h * 0.76, w - 10, 11, F.sans, 700); });
+  add('kotatsu_sign', 128, 48, (g, w, h) => { g.fillStyle = '#f3efe4'; g.fillRect(0, 0, w, h); g.fillStyle = '#3d6b4f'; g.textAlign = 'center'; g.textBaseline = 'middle'; T.fitText(g, '月極PARKING', w / 2, h * 0.36, w - 10, 18, F.sans, 700); g.fillStyle = '#c33'; T.fitText(g, '空き有り गुलाबी नगर不動産', w / 2, h * 0.76, w - 10, 11, F.sans, 700); });
   add('greenhouse', 128, 64, (g, w, h) => { g.fillStyle = 'rgba(230,236,238,1)'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(160,170,175,0.9)'; g.lineWidth = 2; for (let x = 0; x < w; x += 16) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } });
 
   // ---- pack (shelf, tallest first)

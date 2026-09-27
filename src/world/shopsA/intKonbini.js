@@ -24,7 +24,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
   // printed price rail (flat graphic) — one strip reused on every shelf edge
   const rRail = A.inner.region(512, 24, (g, w, h) => {
     g.fillStyle = '#f7f5ef'; g.fillRect(0, 0, w, h);
-    for (let i = 0; i < 9; i++) { const x = 8 + i * 56; g.fillStyle = i % 3 === 1 ? '#f2d774' : '#ffffff'; g.fillRect(x, 3, 40, h - 6); g.strokeStyle = 'rgba(60,60,80,0.35)'; g.lineWidth = 1; g.strokeRect(x, 3, 40, h - 6); U.text(g, '¥' + (98 + ((i * 37) % 9) * 20), x + 20, h / 2 + 1, 11, F.en, i % 3 === 1 ? '#d9463b' : INK, { weight: 900 }); }
+    for (let i = 0; i < 9; i++) { const x = 8 + i * 56; g.fillStyle = i % 3 === 1 ? '#f2d774' : '#ffffff'; g.fillRect(x, 3, 40, h - 6); g.strokeStyle = 'rgba(60,60,80,0.35)'; g.lineWidth = 1; g.strokeRect(x, 3, 40, h - 6); U.text(g, '₹' + (98 + ((i * 37) % 9) * 20), x + 20, h / 2 + 1, 11, F.en, i % 3 === 1 ? '#d9463b' : INK, { weight: 900 }); }
   }, { bg: '#f7f5ef' });
   const rail = (kk, len, y, z) => { for (let x = -len / 2; x < len / 2 - 0.05; x += 1.2) { const w = Math.min(1.2, len / 2 - x); S.card(rRail, w - 0.01, 0.036, [x + w / 2, y, z], null, null, kk); } };
 
@@ -96,7 +96,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     }
     // entrance mat (woven, raised a little)
     k.box(1.7, 0.012, 0.75, M.inner('#4f5a66', 0.12), [1.0, FY + 0.012, -3.25]);
-    const rMat = A.inner.region(200, 80, (g, w, h) => { g.fillStyle = '#4f5a66'; g.fillRect(0, 0, w, h); g.strokeStyle = '#7d8a96'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); U.text(g, 'いらっしゃいませ', w / 2, h / 2 + 1, 24, F.round, '#e8e6df', { weight: 700 }); });
+    const rMat = A.inner.region(200, 80, (g, w, h) => { g.fillStyle = '#4f5a66'; g.fillRect(0, 0, w, h); g.strokeStyle = '#7d8a96'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); U.text(g, 'WELCOME', w / 2, h / 2 + 1, 24, F.round, '#e8e6df', { weight: 700 }); });
     S.card(rMat, 1.6, 0.64, [1.0, FY + 0.0185, -3.25], [-Math.PI / 2, 0, 0]);
   }
 
@@ -201,7 +201,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
 
   // hanging category signs (printed boards on wires)
   const catSign = (t, c) => A.inner.region(256, 64, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = c; g.fillRect(0, 0, 18, h); g.fillRect(w - 18, 0, 18, h); U.text(g, t, w / 2, h / 2 + 2, 30, F.round, c, { weight: 900, maxW: w - 50 }); });
-  for (const [t, c, x, z] of [['お菓子', '#e8506a', -1.45, -6.6], ['日用品・食品', TEAL, 1.05, -6.6], ['ドリンク', '#3f7fb5', 1.6, -10.5], ['お弁当・おにぎり', '#e9a23b', -3.6, -10.5]]) {
+  for (const [t, c, x, z] of [['SNACKS', '#e8506a', -1.45, -6.6], ['日用品・食品', TEAL, 1.05, -6.6], ['ドリンク', '#3f7fb5', 1.6, -10.5], ['THALI・SAMOSA', '#e9a23b', -3.6, -10.5]]) {
     const reg = catSign(t, c);
     k.box(1.12, 0.3, 0.02, mWhite, [x, 2.62, z - 0.005]);
     S.card(reg, 1.1, 0.28, [x, 2.62, z + 0.007]); S.card(reg, 1.1, 0.28, [x, 2.62, z - 0.017], [0, Math.PI, 0]);
@@ -211,7 +211,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
   // ---------------- reach-in coolers (back wall): 8 glass doors
   {
     const x0 = -1.4, x1 = 4.6, n = 8, dw = (x1 - x0) / n, FZ = -11.02, zb = IZ0, cx = (x0 + x1) / 2, depth = FZ - zb;
-    const sets = ['お茶', '紙パック', '水・炭酸', 'ジュース', 'スポーツ', '乳飲料', 'コーヒー', 'エナジー'];
+    const sets = ['CHAI', '紙パック', '水・炭酸', 'ジュース', 'スポーツ', '乳飲料', 'CHAI', 'エナジー'];
     const mCab = M.inner('#dcdfe2', 0.3);
     k.box(x1 - x0 + 0.1, 0.2, depth + 0.04, mKick, [cx, FY + 0.1, (FZ + zb) / 2 + 0.02]);
     k.box(x1 - x0 + 0.1, 0.4, depth + 0.1, mCab, [cx, FY + 2.42, (FZ + zb) / 2 + 0.05]);
@@ -220,8 +220,8 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     k.box(x1 - x0, 0.03, depth, M.inner('#c9ced3', 0.3), [cx, FY + 0.215, (FZ + zb) / 2]);
     const hReg = {};
     for (const nm of new Set(sets)) hReg[nm] = A.glow.region(128, 28, (g, w, h) => { g.fillStyle = TEAL; g.fillRect(0, 0, w, h); U.text(g, nm, w / 2, h / 2 + 1, 17, F.round, '#fff', { weight: 900 }); });
-    const PETV = { 'お茶': [0, 1, 2, 11], '水・炭酸': [3, 4, 15, 10], 'ジュース': [5, 8, 13, 14], 'スポーツ': [7, 3, 12, 4], '乳飲料': [12, 6], 'コーヒー': [9, 6], 'エナジー': [10, 8] };
-    const CANV = { '水・炭酸': [8, 7, 1], 'ジュース': [9, 6, 5, 14], 'コーヒー': [2, 3, 10, 11], 'エナジー': [4, 0, 1, 15, 12], 'スポーツ': [7, 8] };
+    const PETV = { 'CHAI': [0, 1, 2, 11], '水・炭酸': [3, 4, 15, 10], 'ジュース': [5, 8, 13, 14], 'スポーツ': [7, 3, 12, 4], '乳飲料': [12, 6], 'CHAI': [9, 6], 'エナジー': [10, 8] };
+    const CANV = { '水・炭酸': [8, 7, 1], 'ジュース': [9, 6, 5, 14], 'CHAI': [2, 3, 10, 11], 'エナジー': [4, 0, 1, 15, 12], 'スポーツ': [7, 8] };
     for (let i = 0; i < n; i++) {
       const xc = x0 + dw * (i + 0.5), nm = sets[i];
       const dg = S.k.group([xc, FY, FZ], 0); const kd = ctx.kit(dg);
@@ -244,7 +244,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
         const hMax = 0.36;
         let tp;
         if (nm === '乳飲料') tp = s < 2 ? [TPL.carton] : s < 4 ? [TPL.cartonS] : [{ ...TPL.pet, vars: PETV[nm] }];
-        else if (nm === 'コーヒー' || nm === 'エナジー') tp = s === 0 ? [{ ...TPL.pet, vars: PETV[nm] }] : s < 3 ? [{ ...TPL.canL, vars: CANV[nm] }] : [{ ...TPL.can, vars: CANV[nm] }];
+        else if (nm === 'CHAI' || nm === 'エナジー') tp = s === 0 ? [{ ...TPL.pet, vars: PETV[nm] }] : s < 3 ? [{ ...TPL.canL, vars: CANV[nm] }] : [{ ...TPL.can, vars: CANV[nm] }];
         else if (nm === 'ジュース') tp = s === 4 ? [{ ...TPL.carton, vars: [3, 4, 5] }] : s === 3 ? [{ ...TPL.can, vars: CANV[nm] }] : [{ ...TPL.pet, vars: PETV[nm] }];
         else if (nm === '水・炭酸') tp = s === 4 ? [{ ...TPL.can, vars: CANV[nm] }] : [{ ...TPL.pet, vars: PETV[nm] }];
         else if (nm === '紙パック') tp = s < 2 ? [{ ...TPL.bottleL, vars: [0, 2, 3] }] : s < 4 ? [{ ...TPL.carton, vars: [5, 6, 0] }] : [{ ...TPL.cartonS, vars: [0, 1, 2, 6] }];
@@ -266,7 +266,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     k.box(w, 1.55, 0.1, mBody, [cx, FY + 0.55 + 0.775, z0 + 0.05]);
     for (const x of [x0 + 0.025, x1 - 0.025]) k.box(0.05, 1.9, z1 - z0, mBody, [x, FY + 0.55 + 0.95 - 0.2, (z0 + z1) / 2]);
     k.box(w + 0.02, 0.22, 0.68, mTealI, [cx, FY + 2.12, z0 + 0.34]);
-    const rOpenH = A.glow.region(360, 40, (g, W, Hh) => { g.fillStyle = TEAL; g.fillRect(0, 0, W, Hh); U.text(g, 'お弁当 · おにぎり · サンドイッチ', W / 2, Hh / 2 + 1, 22, F.round, '#fff', { weight: 900, maxW: W - 20 }); });
+    const rOpenH = A.glow.region(360, 40, (g, W, Hh) => { g.fillStyle = TEAL; g.fillRect(0, 0, W, Hh); U.text(g, 'THALI · SAMOSA · SANDWICH', W / 2, Hh / 2 + 1, 22, F.round, '#fff', { weight: 900, maxW: W - 20 }); });
     S.card(rOpenH, 2.6, 0.2, [cx, FY + 2.12, z0 + 0.685]);
     k.box(w - 0.1, 0.02, 0.06, mLed, [cx, FY + 2.0, z0 + 0.6]);
     const shelves = [[0.98, 0.5], [1.34, 0.43], [1.7, 0.36]];
@@ -295,8 +295,8 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     k.box(0.04, 0.1, len, mKick, [x1 - 0.02, FY + 0.05, cz]);
     k.rbox(x1 - x0 + 0.14, 0.05, len + 0.08, 0.02, mTop, [cx + 0.05, FY + 0.985, cz]);
     const ty = FY + 1.01;
-    const rScreen = A.glow.region(96, 64, (g, w, h) => { g.fillStyle = '#dff1ee'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 14); U.text(g, 'いらっしゃいませ', w / 2, 36, 11, F.sans, INK, { weight: 700 }); U.text(g, '¥ 0', w / 2, 54, 12, F.en, INK, { weight: 700 }); });
-    const rCust = A.glow.region(96, 48, (g, w, h) => { g.fillStyle = '#10282a'; g.fillRect(0, 0, w, h); U.text(g, '合計', 20, 16, 12, F.sans, '#9ff0e0', { weight: 700 }); U.text(g, '¥498', w - 30, 30, 20, F.en, '#9ff0e0', { weight: 900 }); });
+    const rScreen = A.glow.region(96, 64, (g, w, h) => { g.fillStyle = '#dff1ee'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 14); U.text(g, 'WELCOME', w / 2, 36, 11, F.sans, INK, { weight: 700 }); U.text(g, '₹ 0', w / 2, 54, 12, F.en, INK, { weight: 700 }); });
+    const rCust = A.glow.region(96, 48, (g, w, h) => { g.fillStyle = '#10282a'; g.fillRect(0, 0, w, h); U.text(g, '合計', 20, 16, 12, F.sans, '#9ff0e0', { weight: 700 }); U.text(g, '₹498', w - 30, 30, 20, F.en, '#9ff0e0', { weight: 900 }); });
     const rPad = A.inner.region(64, 96, (g, w, h) => { g.fillStyle = '#3a3346'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fd6e8'; g.fillRect(8, 8, w - 16, 26); for (let i = 0; i < 12; i++) { g.fillStyle = i === 11 ? '#5a9e58' : i === 9 ? '#d9463b' : '#d9d6ce'; U.rr(g, 9 + (i % 3) * 16, 42 + Math.floor(i / 3) * 13, 13, 10, 2); g.fill(); } });
     const rEM = A.glow.region(64, 64, (g, w, h) => { g.fillStyle = '#2f64b5'; U.rr(g, 0, 0, w, h, 10); g.fill(); g.strokeStyle = '#fbf8f0'; g.lineWidth = 3; for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(24, 32, 8 + i * 8, -0.8, 0.8); g.stroke(); } });
     for (const z of [-5.9, -7.6]) {
@@ -462,7 +462,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     kd.box(0.3, 0.3, 0.01, mMetal, [0.18, 1.55, 0.055]); kd.plane(0.24, 0.24, M.glass({ opacity: 0.45, frost: true }), [0.18, 1.55, 0.061]).castShadow = false;
     kd.box(0.1, 0.3, 0.006, M.inner('#dfe3e5', 0.4), [-0.3, 1.05, 0.053]);
     kd.box(0.8, 0.22, 0.006, M.inner('#dfe3e5', 0.4), [0, 0.13, 0.053]);
-    const rStaff = A.inner.region(160, 48, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); U.text(g, 'STAFF ONLY', w / 2, 17, 20, F.en, INK, { weight: 900 }); U.text(g, '関係者以外立入禁止', w / 2, 36, 12, F.sans, '#d9463b', { weight: 700 }); });
+    const rStaff = A.inner.region(160, 48, (g, w, h) => { g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); U.text(g, 'STAFF ONLY', w / 2, 17, 20, F.en, INK, { weight: 900 }); U.text(g, '関係者以外NO ENTRY', w / 2, 36, 12, F.sans, '#d9463b', { weight: 700 }); });
     S.card(rStaff, 0.4, 0.12, [0.18, 1.85, 0.056], null, null, kd);
   }
 
@@ -501,7 +501,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
     kt.rbox(0.5, 1.02, 0.42, 0.03, M.inner('#e6e8ea', 0.34), [0, 0.51, 0]);
     kt.box(0.5, 0.06, 0.5, M.inner(TEAL, 0.28), [0, 1.35, -0.02]);
     kt.box(0.46, 0.3, 0.1, M.inner('#e6e8ea', 0.34), [0, 1.14, 0.08], [-0.6, 0, 0]);
-    const rKi = A.glow.region(128, 96, (g, w, h) => { g.fillStyle = '#e8f4f2'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 20); U.text(g, 'チケット・各種お支払い', w / 2, 11, 11, F.sans, '#fff', { weight: 900, maxW: w - 6 }); [['コンサート', '#e8506a'], ['スポーツ', '#3f7fb5'], ['公共料金', '#5a9e58'], ['マルチコピー', '#e9a23b']].forEach(([t, c], i) => { g.fillStyle = c; U.rr(g, 6 + (i % 2) * 60, 28 + Math.floor(i / 2) * 32, 56, 26, 5); g.fill(); U.text(g, t, 34 + (i % 2) * 60, 41 + Math.floor(i / 2) * 32, 11, F.sans, '#fff', { weight: 900, maxW: 52 }); }); });
+    const rKi = A.glow.region(128, 96, (g, w, h) => { g.fillStyle = '#e8f4f2'; g.fillRect(0, 0, w, h); g.fillStyle = TEAL; g.fillRect(0, 0, w, 20); U.text(g, 'チケット・各種お支払い', w / 2, 11, 11, F.sans, '#fff', { weight: 900, maxW: w - 6 }); [['コンサート', '#e8506a'], ['スポーツ', '#3f7fb5'], ['公共FARE', '#5a9e58'], ['マルチコピー', '#e9a23b']].forEach(([t, c], i) => { g.fillStyle = c; U.rr(g, 6 + (i % 2) * 60, 28 + Math.floor(i / 2) * 32, 56, 26, 5); g.fill(); U.text(g, t, 34 + (i % 2) * 60, 41 + Math.floor(i / 2) * 32, 11, F.sans, '#fff', { weight: 900, maxW: 52 }); }); });
     S.card(rKi, 0.36, 0.26, [0, 1.15, 0.135], [-0.6, 0, 0], null, kt);
     kt.box(0.2, 0.02, 0.02, mInk, [0, 0.82, 0.211]); kt.box(0.12, 0.04, 0.02, mInk, [0.12, 0.95, 0.211]);
     kt.box(0.3, 0.08, 0.04, M.inner('#b8bdc2', 0.28), [0, 0.62, 0.22]);
@@ -557,7 +557,7 @@ export function buildKonbiniInterior(ctx, C, S, D) {
       }
     }
     for (let i = 0; i < n; i++) { const v = r.int(0, 31); for (let j = 0; j < 3; j++) G.add('cover', rg, [-w / 2 + 0.03 + sp * (i + 0.5), 0.12, 0.14 - j * 0.03], [0.13, 0.16, 0.028], white(r), [-0.1, 0, 0], v); }
-    const rMagSign = A.inner.region(160, 40, (g, w2, h2) => { g.fillStyle = TEAL; g.fillRect(0, 0, w2, h2); U.text(g, '雑誌・コミック', w2 / 2, h2 / 2 + 1, 22, F.sans, '#fff', { weight: 700 }); });
+    const rMagSign = A.inner.region(160, 40, (g, w2, h2) => { g.fillStyle = TEAL; g.fillRect(0, 0, w2, h2); U.text(g, 'MAGAZINES・コミック', w2 / 2, h2 / 2 + 1, 22, F.sans, '#fff', { weight: 700 }); });
     kr.box(0.84, 0.22, 0.02, mTealI, [0, 1.16, -0.18]);
     S.card(rMagSign, 0.8, 0.2, [0, 1.16, -0.168], null, null, kr);
     S.box(cx, z, w, 0.46, -1, FY + 1.05);

@@ -148,7 +148,7 @@ export class Human {
   }
   _head() {
     const { P, b } = this; const sp = this.spec;
-    const skin = sp.skin || '#f6dccb';
+    const skin = sp.skin || '#c38f6b';
     // neck
     const nr = P.neckR;
     this.add(rings([{ y: -0.045 * P.k, a: nr * 1.25, b: nr * 1.1 }, { y: 0, a: nr, b: nr }, { y: (P.headB - P.neck) * 0.6, a: nr * 0.96, b: nr * 0.96 }, { y: (P.headB - P.neck) + 0.03 * P.k, a: nr * 0.94, b: nr * 0.94 }], 10), { bone: b.neck, color: skin });
@@ -183,7 +183,7 @@ export class Human {
   // -------------------------------------------------------------- body (skin parts + limbs)
   _body() {
     const { P, b } = this; const sp = this.spec; const o = sp.outfit || {};
-    const skin = sp.skin || '#f6dccb';
+    const skin = sp.skin || '#c38f6b';
     for (const s of [1, -1]) {
       const n = s > 0 ? 'L' : 'R';
       // hands (mitten style with thumb); gloves recolour them

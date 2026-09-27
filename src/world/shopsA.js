@@ -1,4 +1,4 @@
-// shopsA — konbini ひだまりマート (W1), 花屋 はなのわ (W2), こもれび書店 (W4), 喫茶 はるいろ (E1).
+// shopsA — konbini ひだまりマート (W1), फूल भंडार (W2), किताब घर (W4), गुलाबी चाय (E1).
 // Each shop is built in its lot-local frame (L.lotFrame): +Z faces the street, x in [-w/2, w/2], z in [-14, 0].
 // Publishes ctx.services.shopsA = { cafeWindow:{x,y,z,rotY,w,h}, cafeTables:[{x,z,y}] }.
 import { makeCommon } from './shopsA/common.js';

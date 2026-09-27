@@ -253,7 +253,7 @@ function shoppingBag(ctx, grp, T) {
     g.clearRect(0, 0, w, h);
     T.sakuraIcon(g, 64, 30, 20, '#f7f3ea', '#e0c8cf');
     g.fillStyle = '#f7f3ea'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.font = `900 17px ${ctx.tex.FONTS.round}`; g.fillText('桜ヶ丘', 64, 64); g.font = `700 13px ${ctx.tex.FONTS.round}`; g.fillText('駅前商店街', 64, 84);
+    g.font = `900 17px ${ctx.tex.FONTS.round}`; g.fillText('गुलाबी नगर', 64, 64); g.font = `700 13px ${ctx.tex.FONTS.round}`; g.fillText('駅前Gulabi Bazaar', 64, 84);
   }, { key: 'plaza-bag-logo' });
   k.plane(0.2, 0.15, mat.decal('#ffffff', { map: logo }), [0, 0.15, D / 2 + 0.004]);
   // leeks (長ネギ) poking out, leaning outward

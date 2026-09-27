@@ -1,4 +1,4 @@
-// The people of 桜ヶ丘: specs (look) + behaviours (deterministic idle / gestures / walking).
+// The people of गुलाबी नगर: specs (look) + behaviours (deterministic idle / gestures / walking).
 import * as THREE from 'three';
 import { Human } from './human.js';
 import { Driver, rot, rotMul } from './anim.js';
@@ -14,7 +14,7 @@ const HAIR = {
   gray: { top: '#bdb9c3', base: '#aca8b4', tip: '#a19dab', hi: '#dbd8e0', hi2: '#e6e3ea' },
   black: { top: '#49404a', base: '#403840', tip: '#3c343e', hi: '#6f6470', hi2: '#948896' },
 };
-const SKIN = { fair: '#f6dccb', warm: '#f3d5c1', tan: '#ebc8b0', old: '#efd2c1' };
+const SKIN = { fair: '#dcae88', warm: '#c38f6b', tan: '#a97551', old: '#bd916f' };
 
 function faceF(o = {}) {
   return { skin: SKIN.fair, ink: '#3b3144', eyeP: 24, eyeT: -12, eyeW: 20, eyeH: 22, irisDark: '#4a3346', irisMid: '#7d5b62', irisLight: '#c69f8f',
@@ -485,22 +485,22 @@ export function makeCast(ctx) {
         hair: { fringe: { n: 7, span: 60, tip: 2, skew: 5, w: 0.05 }, side: { long: 0.1, w: 0.032 }, back: { len: 0.3, n: 7, span: 108, w: 0.075, spread: 0.2 }, hairlineBack: -62,
           accessory: (hh) => gear.hairClip(hh, 44, 36, '#f0c46a') },
         hairTex: HAIR.dark, stripes: STRIPES,
-        outfit: { top: 'sailor', topColor: '#eeebe6', scarf: '#c9707c', bottom: 'pleats', bottomColor: '#4b5576', hem: 0.54, pleats: 18, socks: { color: '#454d6a', top: 0.78 }, shoes: { color: '#5b4336', sole: '#4a3a36' } },
+        outfit: { top: 'blouse', topColor: '#e9d4aa', collar: '#e9d4aa', tucked: true, bottom: 'pleats', bottomColor: '#5f785d', hem: 0.54, pleats: 18, socks: { color: '#454d6a', top: 0.78 }, shoes: { color: '#5b4336', sole: '#4a3a36' } },
         hands: { L: 'relax', R: 'hold' },
         props: [(hh) => gear.handBag(hh, 'R', { w: 0.36, h: 0.26, d: 0.09, color: '#5b5062', handle: '#4e4555', drop: 0.0, yaw: 0 })] },
       { key: 'stuB', sex: 'f', height: 1.59, seed: 82, skin: SKIN.warm, variants: ['open', 'blink', 'talk', 'laugh'],
         face: faceF({ irisMid: '#5d6480', irisLight: '#a3abc6', eyeH: 21, smile: 0.5 }),
         hair: { fringe: { n: 7, span: 60, tip: 4, skew: -8, w: 0.052 }, hairlineSide: -62, hairlineBack: -72, flare: 0.16, side: { w: 0.036 } },
         hairTex: HAIR.soft, plaid: PLAID,
-        outfit: { top: 'blazer', topColor: '#5a6380', lapel: '#535c78', shirt: '#eeebe6', ribbon: '#b85f6c', buttons: '#c9b27a', emblem: '#c9b27a', vAng: 30, vY: 0.95, jHemY: 0.8,
-          bottom: 'pleats', plaid: true, bottomColor: '#6c7690', hem: 0.53, pleats: 16, socks: { color: '#454d6a', top: 0.78 }, shoes: { color: '#5b4336', sole: '#4a3a36' } },
+        outfit: { top: 'blouse', topColor: '#e9d4aa', collar: '#e9d4aa', tucked: true, ribbon: '#a9442f', buttons: '#c9b27a', emblem: '#c9b27a', vAng: 30, vY: 0.95, jHemY: 0.8,
+          bottom: 'pleats', plaid: true, bottomColor: '#5f785d', hem: 0.53, pleats: 16, socks: { color: '#454d6a', top: 0.78 }, shoes: { color: '#5b4336', sole: '#4a3a36' } },
         hands: { L: 'relax', R: 'relax' },
         props: [(hh) => gear.shoulderBag(hh, { color: '#6a6f86', flap: '#61667c' })] },
       { key: 'stuC', sex: 'm', height: 1.7, seed: 83, skin: SKIN.fair, ears: true, variants: ['open', 'blink', 'talk', 'laugh'],
         face: faceM({ irisMid: '#4f4a5e', irisLight: '#86809a', eyeH: 15 }),
         hair: { fringe: { n: 6, span: 58, tip: 5, skew: 12, w: 0.06, edgeDrop: 14 }, hairlineSide: -20, hairlineBack: -68, volume: 1.11, crown: [[160, 5, 25, 0.065], [-160, 0, -25, 0.065], [110, -5, 30, 0.05], [-115, -5, -30, 0.05]], ahoge: true, side: { w: 0.026 } },
         hairTex: HAIR.blue,
-        outfit: { top: 'blazer', topColor: '#5a6380', lapel: '#535c78', shirt: '#eeebe6', tie: '#8a5260', buttons: '#c9b27a', emblem: '#c9b27a', vAng: 30, vY: 0.75, bottom: 'trousers', bottomColor: '#555c70', belt: '#3f3a40',
+        outfit: { top: 'shirt', topColor: '#e9d4aa', collar: '#e9d4aa', tucked: true, tie: '#a9442f', buttons: '#c9b27a', emblem: '#c9b27a', vAng: 30, vY: 0.75, bottom: 'trousers', bottomColor: '#5f785d', belt: '#3f3a40',
           shoes: { color: '#4f4444', sole: '#3f3838' } },
         hands: { L: 'fist', R: 'relax' } },
     ];

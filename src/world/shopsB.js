@@ -1,6 +1,6 @@
-// shopsB — traditional Showa-era shops on the main street (桜ヶ丘駅前商店街):
-//   E2 和菓子処 桜月堂 (wagashi), E3 よろず屋 山田商店 (general store),
-//   E5 らーめん 春風 (ramen), W6 サイクル丸山 (bicycle shop).
+// shopsB — traditional Showa-era shops on the main street (Gulabi Bazaar):
+//   E2 SWEETS मिष्ठान (wagashi), E3 KIRANA शर्मा किराना (general store),
+//   E5 ढाबा शर्मा (ramen), W6 शर्मा साइकिल (bicycle shop).
 // Everything is built in lot-local frames (layout.js lotFrame); see src/world/shopsB/*.js.
 import { createKit } from './shopsB/common.js';
 import * as wagashi from './shopsB/wagashi.js';
@@ -14,12 +14,12 @@ import * as generalInt from './shopsB/generalInt.js';
 import * as ramenInt from './shopsB/ramenInt.js';
 import * as bikeInt from './shopsB/bikeInt.js';
 
-const FONT_FACES = ['400 32px "Yuji Syuku"', '700 32px "Noto Serif JP"', '700 32px "Noto Sans JP"', '900 32px "Noto Sans JP"', '500 32px "Noto Sans JP"',
-  '700 32px "Zen Maru Gothic"', '900 32px "Zen Maru Gothic"', '400 32px "Yusei Magic"'];
+const FONT_FACES = ['400 32px "Noto Sans Devanagari"', '700 32px "Noto Sans Devanagari"', '700 32px "Noto Sans Devanagari"', '900 32px "Noto Sans Devanagari"', '500 32px "Noto Sans Devanagari"',
+  '700 32px "Noto Sans Devanagari"', '900 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"'];
 
 async function preloadFonts(texts) {
   if (typeof document === 'undefined' || !document.fonts || !document.fonts.load) return;
-  const chars = [...new Set(texts.join('') + '0123456789¥円〜・：:ー')].join('');
+  const chars = [...new Set(texts.join('') + '0123456789₹ Rs〜・：:ー')].join('');
   const all = Promise.all(FONT_FACES.map(f => document.fonts.load(f, chars).catch(() => null)));
   await Promise.race([all, new Promise(r => setTimeout(r, 5000))]);
 }

@@ -1,4 +1,4 @@
-// 電柱と電線 — utility poles of 桜ヶ丘町 (桜川電力), everything mounted on them, and every street wire:
+// 電柱と電線 — utility poles of Gulabi Nagar (Gulabi電力), everything mounted on them, and every street wire:
 // 6.6 kV conductors on crossarms, overhead ground wire, low-voltage racks, telecom cables with
 // closures, cross-street zigzag spans, service drops (引込線) to the facades, guy wires with guards.
 // Publishes ctx.services.poles = { poles:[{x,z,y,top,id}], spans:[{points,kind}], drops } (service-drop spans are
@@ -106,12 +106,12 @@ export async function build(ctx) {
   };
   const PR = L.POLE_RUNS;
   const R1WH = [12, 11.5, 12, 11.5, 12], R1EH = [11.5, 12, 11.5, 12];
-  PR.R1W.forEach((q, i) => mk('W' + i, q.x, q.z, { run: 'R1W', H: R1WH[i] ?? 12, road: [1, 0], gw: true, plate: { line: '桜ヶ丘幹', num: 12 + i } }));
+  PR.R1W.forEach((q, i) => mk('W' + i, q.x, q.z, { run: 'R1W', H: R1WH[i] ?? 12, road: [1, 0], gw: true, plate: { line: 'गुलाबी नगर幹', num: 12 + i } }));
   PR.R1E.forEach((q, i) => mk('E' + i, q.x, q.z, { run: 'R1E', H: R1EH[i] ?? 12, road: [-1, 0], gw: true, plate: { line: '駅前支', num: 1 + i } }));
   const r3w = PR.R3S.filter(q => q.x < 0).sort((a, b) => b.x - a.x), r3e = PR.R3S.filter(q => q.x >= 0).sort((a, b) => a.x - b.x);
-  r3w.forEach((q, i) => mk('S' + q.x, q.x, q.z, { run: 'R3S', road: [0, -1], gw: true, plate: { line: '桜ヶ丘幹', num: 11 - i } }));
+  r3w.forEach((q, i) => mk('S' + q.x, q.x, q.z, { run: 'R3S', road: [0, -1], gw: true, plate: { line: 'गुलाबी नगर幹', num: 11 - i } }));
   r3e.forEach((q, i) => mk('S' + q.x, q.x, q.z, { run: 'R3S', road: [0, -1], gw: true, plate: { line: '東町支', num: 1 + i } }));
-  PR.R2W.forEach((q, i) => mk('K' + i, q.x, q.z, { run: 'R2W', road: [1, 0], gw: i > 0, plate: { line: '踏切支', num: 1 + i } }));
+  PR.R2W.forEach((q, i) => mk('K' + i, q.x, q.z, { run: 'R2W', road: [1, 0], gw: i > 0, plate: { line: 'Level Crossing支', num: 1 + i } }));
   PR.R4S.forEach((q, i) => mk('N' + i, q.x, q.z, { run: 'R4S', cls: 'low', H: 8.5, road: [0, -1], plate: { line: '線路北', num: 1 + i } }));
   PR.R6S.forEach((q, i) => mk('A' + i, q.x, q.z, { run: 'R6S', cls: 'alley', H: 10.5, road: [0, -1], plate: { line: '北町支', num: 1 + i } }));
   // extensions beyond the play area + far-town lines (simplified)
@@ -188,7 +188,7 @@ export async function build(ctx) {
   // ================================================================ 4. atlases & materials
   const plates = [], telPlates = [];
   for (const p of poles) if (p.detail === 'full') { p.plateIdx = plates.length; plates.push({ line: p.plate.line, num: p.plate.num, sub: R() < 0.4 ? (R() < 0.5 ? '左' : '右') + (1 + (R() * 3 | 0)) : '' }); }
-  for (let i = 0; i < 15; i++) telPlates.push({ line: ['桜ヶ丘', '駅前', '北町', '東町', '川原'][i % 5], num: String(101 + i * 7) });
+  for (let i = 0; i < 15; i++) telPlates.push({ line: ['गुलाबी नगर', '駅前', '北町', '東町', '川原'][i % 5], num: String(101 + i * 7) });
   const atlas = makeAtlases(ctx, { plates, telPlates });
   const mA = mat.toon('#ffffff', { map: atlas.A, vertexColors: true, paint: 0.05 });
   const mB = mat.toon('#ffffff', { map: atlas.B, vertexColors: true, alphaTest: 0.5, paint: 0.02, polygonOffset: -1 });
@@ -456,7 +456,7 @@ export async function build(ctx) {
       busy.push({ y0: y - 0.25, y1: y + 0.15, face: phi, w: 0.8 });
     }
 
-    // --- pole-mounted signs (通学路, 桜ヶ丘駅→, 消火栓)
+    // --- pole-mounted signs (通学路, गुलाबी नगर स्टेशन→, 消火栓)
     if (!far) for (const [key, face, yc] of f.sign || []) {
       const phi = faceL(p, face), r0 = rAt(yc), [sw, sh] = SIGN[key], dd = r0 + 0.075;
       band(yc + sh * 0.28, 0.01, 0.03, COL.steelDark); band(yc - sh * 0.28, 0.01, 0.03, COL.steelDark);
@@ -472,7 +472,7 @@ export async function build(ctx) {
       busy.push({ y0: yc - sh / 2 - 0.06, y1: yc + sh / 2 + 0.06, face: phi, w: 0.9 });
     }
 
-    // --- step bolts (足場ボルト) on the two faces free of ads, "危険 のぼるな" plate below them
+    // --- step bolts (足場ボルト) on the two faces free of ads, "DANGER のぼるな" plate below them
     if (!far) {
       const bf = f.ad ? faceL(p, f.ad[1]) + HALF : HALF;
       {

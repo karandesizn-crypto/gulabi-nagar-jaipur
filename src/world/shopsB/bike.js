@@ -1,12 +1,12 @@
-// W6 サイクル丸山 — town bicycle shop: gable-front building with a wide garage opening behind a
+// W6 शर्मा साइकिल — town bicycle shop: gable-front building with a wide garage opening behind a
 // half-raised roll-up shutter, repair stand, tyre racks, pegboard tools, wheels hanging from the
-// ceiling; outside a free air pump (空気入れ ご自由にどうぞ), 修理承ります sign, パンク修理 nobori.
+// ceiling; outside a free air pump (AIR PUMP PLEASE USE), REPAIRS HERE sign, BREADク修理 nobori.
 // SPOTS.bikeShopBikes (lx -3.2/-2.4/-1.6, lz -1.0) are kept clear for the vehicles module.
 import * as THREE from 'three';
 import { buildBikeInterior } from './bikeInt.js';
 
-export const TEXTS = ['サイクル丸山', 'MARUYAMA CYCLE', '自転車', '丸山', '空気入れ', 'ご自由にどうぞ', '修理承ります', 'パンク修理', 'タイヤ交換', 'ブレーキ調整', '点検', '防犯登録', '新車', '中古車', '¥1,000〜', '¥3,500〜', '¥800〜', '¥19,800〜', '¥8,000〜', '¥24,800', '¥21,800',
-  '9:00〜19:00', '定休日 第2・第4火曜', '自転車は車道の左側を', '安全運転', 'ヘルメットをかぶろう', '桜ヶ丘警察署', '修理中', '整備済み', '事務所', 'お気軽にどうぞ', 'TEL 25-8812', '交通安全', 'チューブ', '各種', 'サイズ', '26インチ', '27インチ', '24インチ'];
+export const TEXTS = ['शर्मा साइकिल', 'SHARMA CYCLES', 'CYCLE', 'Sharma', 'AIR PUMP', 'PLEASE USE', 'REPAIRS HERE', 'BREADク修理', 'タイヤ交換', 'ブレーキ調整', '点検', '防犯登録', '新車', '中古車', '₹1,000〜', '₹3,500〜', '₹800〜', '₹19,800〜', '₹8,000〜', '₹24,800', '₹21,800',
+  '9:00〜19:00', 'CLOSED 第2・第4火曜', 'CYCLEは車道の左側を', '安全SERVICE', 'ヘルメットをかぶろう', 'गुलाबी नगर警察署', '修理中', '整備済み', '事務所', 'お気軽にどうぞ', 'TEL 25-8812', '交通安全', 'チューブ', '各種', 'サイズ', '26インチ', '27インチ', '24インチ'];
 
 export function buildBike(ctx, K, lot) {
   const { mat } = ctx; const { C, T, F } = K;
@@ -85,9 +85,9 @@ export function buildBike(ctx, K, lot) {
     d.position.set(cx, FL + 0.01, ZF - 0.05);
     B(0.03, 0.18, 0.04, K.m('#6d747c'), [cx - w / 2 + 0.1, FL + 1.0, ZF - 0.01]);
     K.window(g, { x: cx, y0: openOW.y0, z: ZF - 0.07, w, h: openOW.y1 - openOW.y0, frame: mAluDark, glass: mFrost, panes: 1, sill: false });
-    K.decal(g, K.hoursSticker(['9:00〜19:00', '定休日 第2・第4火曜'], '#2f64b5'), 0.22, 0.165, [cx + 0.18, FL + 1.35, ZF - 0.024]);
+    K.decal(g, K.hoursSticker(['9:00〜19:00', 'CLOSED 第2・第4火曜'], '#2f64b5'), 0.22, 0.165, [cx + 0.18, FL + 1.35, ZF - 0.024]);
     K.decal(g, K.cashless(), 0.34, 0.107, [cx, FL + 0.95, ZF - 0.024]);
-    K.eigyoPlate(g, cx, FL + 1.62, ZF - 0.022, 0, '営業中', '');
+    K.eigyoPlate(g, cx, FL + 1.62, ZF - 0.022, 0, 'OPEN', '');
     S.box(openO.a0, ZF - WT, openO.a1, ZF, FL, FL + 2.05);
   }
   S.box(X0, ZF - WT, openG.a0, ZF, FL - 0.1, Y1);
@@ -186,7 +186,7 @@ export function buildBike(ctx, K, lot) {
     ctx.wires.add([[S.w2(px + 0.22, pz - 0.18).x, S.f.y + y0 + 0.4, S.w2(px + 0.22, pz - 0.18).z], [S.w2(px - 0.08, pz + 0.02).x, S.f.y + y0 + 0.3, S.w2(px - 0.08, pz + 0.02).z]], { width: 0.008, color: '#8d949b' });
     S.box(px - 0.3, pz - 0.3, px + 0.35, pz + 0.15, y0, y0 + 1.4);
   }
-  // 修理承ります stand sign
+  // REPAIRS HERE stand sign
   {
     const x = 2.35, z = -0.55, y0 = ag(x, z);
     const sg = new THREE.Group(); sg.position.set(x, y0, z); sg.rotation.y = -0.35; g.add(sg);
@@ -233,9 +233,9 @@ function signTex(K) {
     g.fillStyle = '#f4f0e6'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#2f4f86'; g.fillRect(0, 0, 150, h);
     bikeIcon(g, 75, h / 2 + 2, 54, '#f4f0e6');
-    K.text(g, '自転車', 238, h * 0.54, 150, 42, K.F.sans, 900, '#2f4f86');
-    K.text(g, 'サイクル丸山', w * 0.56, h * 0.48, 420, 70, K.F.round, 900, '#2a3550');
-    K.text(g, 'MARUYAMA CYCLE', w * 0.56, h * 0.86, 300, 16, K.F.en, 700, '#5a6680');
+    K.text(g, 'CYCLE', 238, h * 0.54, 150, 42, K.F.sans, 900, '#2f4f86');
+    K.text(g, 'शर्मा साइकिल', w * 0.56, h * 0.48, 420, 70, K.F.round, 900, '#2a3550');
+    K.text(g, 'SHARMA CYCLES', w * 0.56, h * 0.86, 300, 16, K.F.en, 700, '#5a6680');
     K.text(g, 'TEL 25-8812', w * 0.88, h * 0.55, 190, 26, K.F.en, 700, '#c9463e');
   }, { key: 'sb-bike-sign' });
 }
@@ -244,25 +244,25 @@ function sodeTex(K) {
     g.fillStyle = '#f4f0e6'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#2f4f86'; g.fillRect(0, 0, w, 110);
     bikeIcon(g, w / 2, 58, 56, '#f4f0e6');
-    g.fillStyle = '#2f4f86'; g.font = `900 84px ${K.F.round}`; K.vtext(g, '自転車', w / 2, 128, 84, 1.02);
-    K.text(g, '丸山', w / 2, h - 36, w - 30, 40, K.F.round, 900, '#c9463e');
+    g.fillStyle = '#2f4f86'; g.font = `900 84px ${K.F.round}`; K.vtext(g, 'CYCLE', w / 2, 128, 84, 1.02);
+    K.text(g, 'Sharma', w / 2, h - 36, w - 30, 40, K.F.round, 900, '#c9463e');
   }, { key: 'sb-bike-sode' });
 }
 function pumpSignTex(K) {
   return K.tex.draw(256, 168, (g, w, h) => {
     g.fillStyle = '#f7f3ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#3f7fb5'; g.fillRect(0, 0, w, 64);
-    K.text(g, '空気入れ', w / 2, 34, w - 24, 44, K.F.round, 900, '#fdf8ee');
-    K.text(g, 'ご自由にどうぞ', w / 2, 104, w - 24, 32, K.F.round, 900, '#3a3346');
-    K.text(g, 'サイクル丸山', w / 2, 146, w - 60, 18, K.F.sans, 700, '#6d6a80');
+    K.text(g, 'AIR PUMP', w / 2, 34, w - 24, 44, K.F.round, 900, '#fdf8ee');
+    K.text(g, 'PLEASE USE', w / 2, 104, w - 24, 32, K.F.round, 900, '#3a3346');
+    K.text(g, 'शर्मा साइकिल', w / 2, 146, w - 60, 18, K.F.sans, 700, '#6d6a80');
   }, { key: 'sb-bike-pump' });
 }
 function repairSignTex(K) {
   return K.tex.draw(256, 512, (g, w, h) => {
     g.fillStyle = '#f7f3ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#c9463e'; g.fillRect(0, 0, w, 250);
-    g.fillStyle = '#fdf8ee'; g.font = `400 62px ${K.F.brush}`; K.vtext(g, '修理承ります', w * 0.5, 14, 38, 0.98);
-    const rows = [['パンク修理', '¥1,000〜'], ['タイヤ交換', '¥3,500〜'], ['ブレーキ調整', '¥800〜'], ['防犯登録', '承ります']];
+    g.fillStyle = '#fdf8ee'; g.font = `400 62px ${K.F.brush}`; K.vtext(g, 'REPAIRS HERE', w * 0.5, 14, 38, 0.98);
+    const rows = [['BREADク修理', '₹1,000〜'], ['タイヤ交換', '₹3,500〜'], ['ブレーキ調整', '₹800〜'], ['防犯登録', '承ります']];
     rows.forEach(([a, b], i) => { K.text(g, a, w * 0.36, 282 + i * 52, w * 0.6, 26, K.F.sans, 900, '#2a3550'); K.text(g, b, w * 0.8, 282 + i * 52, w * 0.38, 22, K.F.sans, 900, '#c9463e'); });
     K.text(g, 'お気軽にどうぞ', w / 2, h - 20, w - 30, 22, K.F.round, 700, '#3a3346');
   }, { key: 'sb-bike-repair' });
@@ -273,7 +273,7 @@ function punkNoboriTex(K) {
     g.fillStyle = '#f7f3ea'; g.fillRect(w - 18, 0, 18, h);
     g.fillStyle = '#2f4f86'; g.fillRect(0, 0, w - 18, 70);
     bikeIcon(g, (w - 18) / 2, 36, 40, '#fdf8ee');
-    g.fillStyle = '#c9463e'; g.font = `900 80px ${K.F.round}`; K.vtext(g, 'パンク修理', (w - 18) / 2, 88, 80, 1.0);
+    g.fillStyle = '#c9463e'; g.font = `900 80px ${K.F.round}`; K.vtext(g, 'BREADク修理', (w - 18) / 2, 88, 80, 1.0);
     g.fillStyle = '#2f4f86'; g.fillRect(0, h - 30, w - 18, 30);
     K.text(g, '即日OK', (w - 18) / 2, h - 15, w - 30, 20, K.F.round, 900, '#fdf8ee');
   }, { key: 'sb-bike-nobori' });
@@ -283,9 +283,9 @@ function priceBoardTex(K) {
     g.fillStyle = '#2f4f86'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#f7f3ea'; g.fillRect(8, 8, w - 16, h - 16);
     K.text(g, '新車', 60, 50, 90, 36, K.F.round, 900, '#c9463e');
-    K.text(g, '¥19,800〜', 170, 52, 150, 32, K.F.sans, 900, '#2a3550');
+    K.text(g, '₹19,800〜', 170, 52, 150, 32, K.F.sans, 900, '#2a3550');
     K.text(g, '中古車', 60, 108, 100, 30, K.F.round, 900, '#3f8f5b');
-    K.text(g, '¥8,000〜', 170, 110, 150, 30, K.F.sans, 900, '#2a3550');
+    K.text(g, '₹8,000〜', 170, 110, 150, 30, K.F.sans, 900, '#2a3550');
     K.text(g, '整備済み・防犯登録', w / 2, 148, w - 30, 18, K.F.sans, 700, '#6d6a80');
   }, { key: 'sb-bike-price' });
 }
@@ -296,8 +296,8 @@ function safetyPosterTex(K) {
     K.text(g, '交通安全', w / 2, 23, w - 20, 28, K.F.round, 900, '#fdf8ee');
     bikeIcon(g, w / 2, 124, 60, '#2f4f86');
     g.fillStyle = '#e8c547'; g.beginPath(); g.arc(w / 2 - 6, 80, 16, Math.PI, 0); g.fill();
-    K.text(g, '自転車は車道の左側を', w / 2, 196, w - 16, 18, K.F.sans, 900, '#2a3550');
+    K.text(g, 'CYCLEは車道の左側を', w / 2, 196, w - 16, 18, K.F.sans, 900, '#2a3550');
     K.text(g, 'ヘルメットをかぶろう', w / 2, 226, w - 16, 18, K.F.sans, 900, '#c9463e');
-    K.text(g, '桜ヶ丘警察署', w / 2, 262, w - 60, 14, K.F.sans, 700, '#6d6a80');
+    K.text(g, 'गुलाबी नगर警察署', w / 2, 262, w - 60, 14, K.F.sans, 700, '#6d6a80');
   }, { key: 'sb-bike-safety' });
 }

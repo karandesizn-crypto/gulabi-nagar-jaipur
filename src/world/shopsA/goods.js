@@ -139,17 +139,17 @@ export function makeGoods(ctx, C) {
   const sak = (g, x, y, r, c) => { g.fillStyle = c; for (let i = 0; i < 5; i++) { const a = -Math.PI / 2 + i * 1.2566; g.beginPath(); g.ellipse(x + Math.cos(a) * r * 0.55, y + Math.sin(a) * r * 0.55, r * 0.5, r * 0.36, a, 0, 6.3); g.fill(); } };
 
   // ---- palettes
-  const BOXP = [['#e36b5d', '#fbf3e6', '#f2c230', 'クッキー'], ['#8a5a44', '#f4e3c8', '#e8506a', 'ミルクチョコ'], ['#3f7fb5', '#eef4f8', '#f2c230', 'ビスケット'], ['#f2b53b', '#fff6dc', '#e36b5d', 'じゃがスティック'],
+  const BOXP = [['#e36b5d', '#fbf3e6', '#f2c230', 'クッキー'], ['#8a5a44', '#f4e3c8', '#e8506a', 'MILKチョコ'], ['#3f7fb5', '#eef4f8', '#f2c230', 'ビスケット'], ['#f2b53b', '#fff6dc', '#e36b5d', 'じゃがスティック'],
     ['#5a9e58', '#eef6e8', '#f4f1e8', '抹茶ラング'], ['#f28db2', '#fdeef3', '#8a5a44', 'いちごチョコ'], ['#8e7cc3', '#f1ecf8', '#f2c230', 'ぶどうグミ'], ['#e9a23b', '#fff1d8', '#8a4b2a', 'レトルトカレー'],
-    ['#58a8d8', '#eef7fc', '#3f7fb5', 'やわらかティッシュ'], ['#e8e4d8', '#58a8d8', '#e36b5d', 'ふわマスク'], ['#7cc576', '#f4f9ee', '#3f8f5b', 'ハミガキ'], ['#d9463b', '#fbe9e4', '#f2c230', '即席ラーメン'],
-    ['#f2b5c8', '#fbe9ef', '#dd7f9d', 'さくらクッキー'], ['#eb9db6', '#fdf0f4', '#8a4b5a', 'さくらもち'], ['#c9a060', '#f6ecd8', '#5a4032', 'おせんべい'], ['#4a4552', '#e9e4d8', '#f2c230', 'ドリップ珈琲']];
+    ['#58a8d8', '#eef7fc', '#3f7fb5', 'やわらかティッシュ'], ['#e8e4d8', '#58a8d8', '#e36b5d', 'ふわマスク'], ['#7cc576', '#f4f9ee', '#3f8f5b', 'ハミガキ'], ['#d9463b', '#fbe9e4', '#f2c230', '即席DHABA'],
+    ['#f2b5c8', '#fbe9ef', '#dd7f9d', 'さくらクッキー'], ['#eb9db6', '#fdf0f4', '#8a4b5a', 'さくらもち'], ['#c9a060', '#f6ecd8', '#5a4032', 'おせんべい'], ['#4a4552', '#e9e4d8', '#f2c230', 'ドリップCHAI']];
   const BAGP = [['#f2c230', '#e36b5d', 'ポテトチップス', 'うすしお'], ['#58a8d8', '#fbf8f0', 'ポテトチップス', 'のりしお'], ['#e36b5d', '#f2c230', 'えびせん', 'しお味'], ['#7cc576', '#fbf8f0', 'わさびチップ', '辛口'],
     ['#8e7cc3', '#f2b5c8', 'ラムネグミ', 'ぶどう'], ['#f28db2', '#fbf8f0', 'いちごマシュマロ', 'ふわふわ'], ['#e9a23b', '#5a4032', 'コーンスナック', 'チーズ'], ['#3f7fb5', '#f2c230', 'ポップコーン', 'バター醤油'],
-    ['#8a5a44', '#f4e3c8', 'チョコクランチ', 'ミルク'], ['#f08a4b', '#fbf8f0', 'カラムーチョ風', 'ホット'], ['#f2b5c8', '#dd7f9d', 'さくらポテト', '春限定'], ['#d9c9a0', '#8a5a44', 'ミックスナッツ', '素焼き'],
-    ['#f3e3bf', '#b86a3a', 'メロンパン', 'ふんわり'], ['#efe3c8', '#e36b5d', 'あんぱん', 'こしあん'], ['#f6ecd8', '#3f7fb5', '食パン', '6枚切'], ['#f7d3de', '#c2476a', 'いちごサンド', '春']];
-  const PETP = [['#c9d98a', '#3f8f5b', '#f4f1e8', '緑茶'], ['#bcd48a', '#2f6f4b', '#f4f1e8', '濃い茶'], ['#e2d08a', '#8a6a2a', '#f4f1e8', '麦茶'], ['#dfeef5', '#3f7fb5', '#58a8d8', '天然水'],
-    ['#e8f2f5', '#58a8d8', '#e8e8e8', '炭酸水'], ['#f2b56a', '#e36b5d', '#f2c230', 'オレンジ'], ['#e8d6b8', '#8a5a44', '#e36b5d', 'ミルクティー'], ['#d9e8f2', '#2f64b5', '#3f7fb5', 'スポーツ'],
-    ['#f2e27a', '#d99a1f', '#e9e4d8', 'レモン'], ['#b88a5a', '#4a4552', '#3a3346', '微糖コーヒー'], ['#f7d3de', '#dd7f9d', '#fbe9ef', 'さくらソーダ'], ['#c9e0b0', '#5a9e58', '#e8e8e8', 'ジャスミン'],
+    ['#8a5a44', '#f4e3c8', 'チョコクランチ', 'MILK'], ['#f08a4b', '#fbf8f0', 'カラムーチョ風', 'ホット'], ['#f2b5c8', '#dd7f9d', 'さくらポテト', '春限定'], ['#d9c9a0', '#8a5a44', 'ミックスナッツ', '素焼き'],
+    ['#f3e3bf', '#b86a3a', 'メロンBREAD', 'ふんわり'], ['#efe3c8', '#e36b5d', 'あんぱん', 'こしあん'], ['#f6ecd8', '#3f7fb5', '食BREAD', '6枚切'], ['#f7d3de', '#c2476a', 'いちごサンド', '春']];
+  const PETP = [['#c9d98a', '#3f8f5b', '#f4f1e8', 'CHAI'], ['#bcd48a', '#2f6f4b', '#f4f1e8', '濃い茶'], ['#e2d08a', '#8a6a2a', '#f4f1e8', '麦茶'], ['#dfeef5', '#3f7fb5', '#58a8d8', 'WATER'],
+    ['#e8f2f5', '#58a8d8', '#e8e8e8', '炭酸水'], ['#f2b56a', '#e36b5d', '#f2c230', 'オレンジ'], ['#e8d6b8', '#8a5a44', '#e36b5d', 'MILKティー'], ['#d9e8f2', '#2f64b5', '#3f7fb5', 'スポーツ'],
+    ['#f2e27a', '#d99a1f', '#e9e4d8', 'レモン'], ['#b88a5a', '#4a4552', '#3a3346', '微糖CHAI'], ['#f7d3de', '#dd7f9d', '#fbe9ef', 'さくらソーダ'], ['#c9e0b0', '#5a9e58', '#e8e8e8', 'ジャスミン'],
     ['#f4f1ea', '#58a8d8', '#e9e4d8', 'のむヨーグルト'], ['#f0a3a0', '#d9463b', '#f4f1e8', 'トマト'], ['#dcc6e8', '#8e7cc3', '#f4f1e8', 'ぶどう'], ['#b8e0d8', '#2c9a91', '#e8e8e8', 'ミネラル']];
   const CANP = [['#e36b5d', '#fbf8f0', 'COLA風'], ['#3f7fb5', '#fbf8f0', 'ソーダ'], ['#5a4032', '#e9c98a', 'ブラック'], ['#e9e4d8', '#8a5a44', 'カフェオレ'], ['#f2c230', '#e36b5d', 'エナジー'], ['#7cc576', '#fbf8f0', 'メロン'],
     ['#f28db2', '#fbf8f0', 'ピーチ'], ['#58a8d8', '#fbf8f0', 'サイダー'], ['#c9ced3', '#3f7fb5', '炭酸水'], ['#f08a4b', '#fbf8f0', 'みかん'], ['#4a4552', '#f2c230', '微糖'], ['#e8d6b8', '#5a4032', 'ラテ'],
@@ -207,7 +207,7 @@ export function makeGoods(ctx, C) {
       g.fillStyle = '#9aa1a8'; g.fillRect(0, Y(0.99), w, 2);
     } },
     cupmen: { cols: 8, rows: 1, cw: 128, ch: 128, paint(g, i, w, h) {
-      const P = [['#e36b5d', '#fbf8f0', 'しょうゆ'], ['#f2c230', '#e36b5d', 'カレー'], ['#3f7fb5', '#fbf8f0', 'シーフード'], ['#fbf8f0', '#d9463b', 'きつね'], ['#5a9e58', '#fbf8f0', 'たぬき'], ['#8a5a44', '#f2c230', 'やきそば'], ['#f08a4b', '#fbf8f0', 'みそ'], ['#f2b5c8', '#c2476a', 'さくらえび']][i % 8];
+      const P = [['#e36b5d', '#fbf8f0', 'CURRY'], ['#f2c230', '#e36b5d', 'カレー'], ['#3f7fb5', '#fbf8f0', 'シーフード'], ['#fbf8f0', '#d9463b', 'きつね'], ['#5a9e58', '#fbf8f0', 'たぬき'], ['#8a5a44', '#f2c230', 'やきそば'], ['#f08a4b', '#fbf8f0', 'DAL'], ['#f2b5c8', '#c2476a', 'さくらえび']][i % 8];
       const Y = (v) => h * (1 - v);
       g.fillStyle = P[0]; g.fillRect(0, 0, w, h);
       g.fillStyle = P[1]; g.fillRect(0, Y(0.62), w, Y(0.36) - Y(0.62));
@@ -219,7 +219,7 @@ export function makeGoods(ctx, C) {
       g.fillStyle = '#e8e4d8'; g.fillRect(0, Y(0.04), w, h - Y(0.04));
     } },
     carton: { cols: 8, rows: 1, cw: 96, ch: 160, paint(g, i, w, h) {
-      const P = [['#f4f1ea', '#3f7fb5', '牛乳'], ['#fbe9ef', '#dd7f9d', 'いちごミルク'], ['#e8d6b8', '#8a5a44', 'コーヒー牛乳'], ['#f6e3a0', '#d99a1f', 'バナナ'], ['#f2c28a', '#e36b5d', 'オレンジ'], ['#dff0d8', '#3f8f5b', '野菜ジュース'], ['#eef4f8', '#58a8d8', 'のむヨーグルト'], ['#f7d3de', '#c2476a', 'さくらラテ']][i % 8];
+      const P = [['#f4f1ea', '#3f7fb5', 'MILK'], ['#fbe9ef', '#dd7f9d', 'いちごMILK'], ['#e8d6b8', '#8a5a44', 'CHAIMILK'], ['#f6e3a0', '#d99a1f', 'バナナ'], ['#f2c28a', '#e36b5d', 'オレンジ'], ['#dff0d8', '#3f8f5b', '野菜ジュース'], ['#eef4f8', '#58a8d8', 'のむヨーグルト'], ['#f7d3de', '#c2476a', 'さくらラテ']][i % 8];
       const H = h * 0.9; g.fillStyle = P[0]; g.fillRect(0, 0, w, H);
       g.fillStyle = P[1]; g.fillRect(0, H * 0.18, w, 10); g.beginPath(); g.moveTo(0, H); g.bezierCurveTo(w * 0.3, H * 0.6, w * 0.7, H * 0.95, w, H * 0.62); g.lineTo(w, H); g.fill();
       T(g, P[2], w / 2, H * 0.42, 20, F.round, P[1], { maxW: w - 8 });
@@ -244,7 +244,7 @@ export function makeGoods(ctx, C) {
       g.fillStyle = '#fbf8f0'; g.fillRect(0, h * 0.62, w, h * 0.27);
       g.fillStyle = ['#e36b5d', '#3f8f5b', '#e9a23b', '#dd7f9d', '#8a5a44', '#3f7fb5', '#e36b5d', '#e9a23b'][i]; g.fillRect(0, h * 0.62, 12, h * 0.27);
       T(g, names[i], w / 2 + 6, h * 0.72, 18, F.round, '#3a3346', { maxW: w - 24 });
-      T(g, '¥' + [498, 398, 530, 598, 550, 580, 460, 520][i], w / 2 + 6, h * 0.83, 15, F.en, '#d9463b');
+      T(g, '₹' + [498, 398, 530, 598, 550, 580, 460, 520][i], w / 2 + 6, h * 0.83, 15, F.en, '#d9463b');
       swatches(g, w, h, ['#3a3346', '#f4f1ea', '#3a3346', '#d9463b']);
     } },
     onigiri: { cols: 8, rows: 1, cw: 96, ch: 112, paint(g, i, w, h) {
@@ -267,7 +267,7 @@ export function makeGoods(ctx, C) {
     mag: { cols: 8, rows: 4, cw: 128, ch: 176, paint(g, i, w, h) {
       const titles = [['週刊少年ソラ', '#e8506a'], ['月刊ねこびより', '#f2b53b'], ['まちあるき', '#58a8d8'], ['鉄道のたび', '#3f7fb5'], ['週刊はるかぜ', '#7cc576'], ['CAFE TIME', '#b48a62'], ['コミックさくら', '#f28db2'], ['ゲーム通信', '#8e7cc3'],
         ['おうちごはん', '#e9a23b'], ['週刊まちかど', '#e36b5d'], ['Spring Style', '#dd7f9d'], ['釣りの友', '#2c9a91'], ['テレビ桜', '#5a9e58'], ['ガーデン', '#6f8455'], ['カメラ散歩', '#4a4f58'], ['ヤング桜', '#dd7f9d'],
-        ['旅と温泉', '#c2476a'], ['クルマの本', '#3a3346'], ['月刊ピアノ', '#8a5a44'], ['将棋世界風', '#6d5a50'], ['こども図鑑', '#f08a4b'], ['手芸と暮らし', '#e9a0b0'], ['週刊ベースボール', '#2f64b5'], ['星空ガイド', '#3f4a6a'],
+        ['旅と温泉', '#c2476a'], ['クルマの本', '#3a3346'], ['月刊ピアノ', '#8a5a44'], ['将棋世界風', '#6d5a50'], ['CHILD図鑑', '#f08a4b'], ['手芸と暮らし', '#e9a0b0'], ['週刊ベースボール', '#2f64b5'], ['星空ガイド', '#3f4a6a'],
         ['パズル王', '#f2c230'], ['レシピ100', '#e36b5d'], ['ねこ日和', '#c9a060'], ['放課後通信', '#8e7cc3'], ['山と川', '#3f8f5b'], ['月刊アニメ', '#e8506a'], ['家電ナビ', '#58a8d8'], ['春の京都', '#dd7f9d']];
       const [t, c] = titles[i % titles.length]; const H = h * 0.9; const r = ctx.rng('mag' + i);
       g.fillStyle = mix(c, '#fbf8f0', 0.72); g.fillRect(0, 0, w, H);
@@ -284,13 +284,13 @@ export function makeGoods(ctx, C) {
       T(g, t, w / 2, H * 0.1, 22, F.sans, '#fbf8f0', { maxW: w - 8 });
       g.fillStyle = '#fbf8f0'; rr(g, 6, H * 0.23, 50, 16, 8); g.fill(); T(g, (i % 2 ? '春' : '最新') + '号', 31, H * 0.23 + 8, 11, F.sans, c);
       g.fillStyle = '#3a3346'; g.fillRect(8, H * 0.86, w * 0.4, 4); g.fillRect(8, H * 0.92, w * 0.28, 4);
-      T(g, '¥' + (380 + (i % 5) * 110), w - 22, H * 0.9, 13, F.en, '#3a3346');
+      T(g, '₹' + (380 + (i % 5) * 110), w - 22, H * 0.9, 13, F.en, '#3a3346');
       swatches(g, w, h, ['#f1efe9', '#f1efe9', mix(c, '#fbf8f0', 0.5), c]);
     } },
     // book spines: row 0 = tintable (grey/white designs × instance colour), row 1 = full colour (instance colour ~white)
     spine: { cols: 16, rows: 2, cw: 64, ch: 512, paint(g, i, w, h) {
       const H = h * 0.9, r = ctx.rng('spine' + i);
-      const titles = ['さくら坂の約束', '風の手紙', '夜行列車', '猫と暮らす', '春の庭', '星を数えて', '海辺の町', '青い傘', 'ひだまり日記', '旅する本屋', '雨上がり', '花冷え', '空色ノート', '遠い灯', '鉄道の歴史', '和菓子の本',
+      const titles = ['さくら坂の約束', '風の手紙', '夜TO列車', '猫と暮らす', '春の庭', '星を数えて', '海辺の町', '青い傘', 'ひだまり日記', '旅する本屋', '雨上がり', '花冷え', '空色ノート', '遠い灯', '鉄道の歴史', 'MITHAIの本',
         '放課後さくら通信', 'ソラの冒険', '魔法学園', '探偵ミナト', '宇宙の果て', 'ねこ侍', '料理の達人', '青春ブルー', '竜の騎士', '恋する電車', 'ひみつ基地', '異世界食堂', 'バスケの王', '刀と桜', 'ロボ研', '山の家'];
       const vt = (s, x, y0, size, color, font = F.serif) => { g.fillStyle = color; g.font = `700 ${size}px ${font}`; g.textAlign = 'center'; g.textBaseline = 'top'; let y = y0; for (const ch of s) { if (y > H * 0.8) break; g.fillText(ch, x, y); y += size * 1.04; } };
       if (i < 16) {
@@ -301,7 +301,7 @@ export function makeGoods(ctx, C) {
         else if (st === 2) { g.fillStyle = '#f4ecd8'; rr(g, 8, H * 0.1, w - 16, H * 0.55, 6); g.fill(); g.strokeStyle = dark; g.lineWidth = 2; rr(g, 8, H * 0.1, w - 16, H * 0.55, 6); g.stroke(); }
         else { g.fillStyle = mid; for (let k = 0; k < 3; k++) g.fillRect(0, H * (0.72 + k * 0.05), w, 5); }
         vt(titles[i], w / 2, H * 0.14, 26, st === 2 ? '#3a3346' : dark);
-        g.fillStyle = dark; g.font = `700 14px ${F.sans}`; g.textAlign = 'center'; g.fillText(['文庫', '新書', '単行本', '選書'][st], w / 2, H * 0.92 - 30);
+        g.fillStyle = dark; g.font = `700 14px ${F.sans}`; g.textAlign = 'center'; g.fillText(['BOOKS', '新書', '単TO本', '選書'][st], w / 2, H * 0.92 - 30);
         g.fillStyle = mid; g.beginPath(); g.arc(w / 2, H * 0.94 - 8, 8, 0, 6.3); g.fill();
         swatches(g, w, h, ['#ffffff', '#f1e8d2', '#ffffff', '#ffffff']);
       } else {
@@ -325,7 +325,7 @@ export function makeGoods(ctx, C) {
       else if (st === 1) { g.fillStyle = dark ? '#e7c98a' : '#6d6478'; g.beginPath(); g.moveTo(0, H * 0.75); g.lineTo(w * 0.35, H * 0.45); g.lineTo(w * 0.6, H * 0.62); g.lineTo(w, H * 0.38); g.lineTo(w, H * 0.75); g.fill(); g.fillStyle = '#f6e3a0'; g.beginPath(); g.arc(w * 0.72, H * 0.24, 12, 0, 6.3); g.fill(); }
       else if (st === 2) { g.fillStyle = '#4a4f7a'; g.beginPath(); g.arc(w / 2, H * 0.5, 30, Math.PI, 0); g.fill(); g.fillRect(w / 2 - 30, H * 0.5, 60, 36); g.fillStyle = '#f7dcc8'; g.beginPath(); g.arc(w / 2, H * 0.54, 21, 0, 6.3); g.fill(); g.fillStyle = r.pick(['#e8506a', '#3f7fb5', '#f2c230']); g.beginPath(); g.moveTo(w / 2 - 40, H); g.lineTo(w / 2, H * 0.68); g.lineTo(w / 2 + 40, H); g.fill(); }
       else { g.strokeStyle = dark ? '#e7c98a' : '#8a6446'; g.lineWidth = 3; g.strokeRect(10, 10, w - 20, H - 20); g.fillStyle = dark ? '#e7c98a' : '#8a6446'; g.beginPath(); g.arc(w / 2, H * 0.55, 16, 0, 6.3); g.fill(); }
-      const tt = ['さくら坂の約束', '夜行列車', '猫と暮らす', '放課後さくら通信', '旅する本屋', '星を数えて', 'ひだまり日記', '春の庭', '海辺の町', '青い傘', 'ソラの冒険', '和菓子の本', '空色ノート', 'ねこ侍', '雨上がり', '花冷え'][i % 16];
+      const tt = ['さくら坂の約束', '夜TO列車', '猫と暮らす', '放課後さくら通信', '旅する本屋', '星を数えて', 'ひだまり日記', '春の庭', '海辺の町', '青い傘', 'ソラの冒険', 'MITHAIの本', '空色ノート', 'ねこ侍', '雨上がり', '花冷え'][i % 16];
       g.fillStyle = dark ? 'rgba(250,245,235,0.92)' : 'rgba(255,255,255,0.8)'; g.fillRect(0, H * 0.06, w, 36);
       T(g, tt, w / 2, H * 0.06 + 18, 18, st === 2 ? F.round : F.serif, dark ? bg : '#3a3346', { maxW: w - 10, weight: 700 });
       if (i % 3 === 0) { g.fillStyle = '#d9463b'; g.fillRect(0, H * 0.82, w, H * 0.18); T(g, i % 2 ? '本屋大賞ノミネート' : '重版出来!', w / 2, H * 0.91, 14, F.sans, '#fbf8f0', { maxW: w - 8 }); }
@@ -345,7 +345,7 @@ export function makeGoods(ctx, C) {
       g.fillStyle = bg; g.fillRect(0, 0, w, H);
       if (i % 2) for (let k = 0; k < 4; k++) sak(g, w / 2 + (k % 2 ? 8 : -8), 30 + k * 26, 8, dark ? '#f7d3de' : '#dd7f9d'); else { g.fillStyle = dark ? '#e7c98a' : '#6f9a5a'; for (let k = 0; k < 5; k++) { g.beginPath(); g.ellipse(w / 2, 26 + k * 20, 9, 5, k, 0, 6.3); g.fill(); } }
       g.fillStyle = '#fbf8f0'; g.beginPath(); g.arc(w / 2, 10, 4, 0, 6.3); g.fill();
-      g.save(); g.translate(w / 2, H - 30); g.rotate(-Math.PI / 2); T(g, 'こもれび書店', 0, 0, 11, F.serif, dark ? '#fbf8f0' : '#3f5f4f', { weight: 700 }); g.restore();
+      g.save(); g.translate(w / 2, H - 30); g.rotate(-Math.PI / 2); T(g, 'किताब घर', 0, 0, 11, F.serif, dark ? '#fbf8f0' : '#3f5f4f', { weight: 700 }); g.restore();
       swatches(g, w, h, [bg, bg, bg, bg]);
     } },
     blister: { cols: 8, rows: 2, cw: 96, ch: 144, paint(g, i, w, h) {

@@ -33,14 +33,14 @@ export const WHITE_UV = [(RA.white[0] + 16) / AW, 1 - (RA.white[1] + 16) / AW];
 // ---------------------------------------------------------------- ad content (fictional advertisers)
 export const ADS = [
   { band: '一丁目', bg: '#fbf5ee', fg: '#c64a6e', main: 'さくら内科', sub: '内科・小児科', foot: 'この先100m', arrow: 1 },
-  { band: '一丁目', bg: '#2f6fb5', fg: '#ffffff', main: '水道修理', sub: '桜ヶ丘水道サービス', foot: '24時間受付' },
+  { band: '一丁目', bg: '#2f6fb5', fg: '#ffffff', main: '水道修理', sub: 'गुलाबी नगर水道サービス', foot: '24時間受付' },
   { band: '二丁目', bg: '#f5f0dc', fg: '#2f7a4f', main: 'はるかぜ不動産', sub: '賃貸・売買・管理', foot: '駅前 徒歩2分' },
-  { band: '二丁目', bg: '#ef9a47', fg: '#ffffff', main: '学習塾さくらゼミ', sub: '小・中・高 個別指導', foot: '無料体験' },
+  { band: '二丁目', bg: '#ef9a47', fg: '#ffffff', main: '学習塾さくらゼミ', sub: '小・中・高 個別指導', foot: 'FREE体験' },
   { band: '三丁目', bg: '#fff3cf', fg: '#8a5a1f', main: '山吹歯科医院', sub: '予約優先', foot: '50m', arrow: -1 },
   { band: '一丁目', bg: '#e6f1f6', fg: '#2d5d86', main: '白鳥クリーニング', sub: 'ワイシャツ一枚から', foot: '駅前店' },
-  { band: '二丁目', bg: '#6d5690', fg: '#ffffff', main: '桜川整骨院', sub: '各種保険取扱', foot: 'この先右折', arrow: 1 },
+  { band: '二丁目', bg: '#6d5690', fg: '#ffffff', main: 'Gulabi整骨院', sub: '各種保険取扱', foot: 'この先右折', arrow: 1 },
   { band: '三丁目', bg: '#f3ece0', fg: '#8c3b2e', main: '御食事処はな', sub: '定食・丼もの', foot: 'この先30m', arrow: 1 },
-  { band: '二丁目', bg: '#3f8f5b', fg: '#ffffff', main: 'はなまる薬局', sub: '処方せん受付', foot: '駐車場有' },
+  { band: '二丁目', bg: '#3f8f5b', fg: '#ffffff', main: 'はなまる薬局', sub: '処方せん受付', foot: 'PARKING有' },
   { band: '一丁目', bg: '#fbe4ec', fg: '#b3445f', main: '美容室ひだまり', sub: 'カット・カラー', foot: '予約制' },
   { band: '四丁目', bg: '#f7f3e8', fg: '#2f64b5', main: 'ことり保育園', sub: '園児募集中', foot: '見学随時' },
   { band: '三丁目', bg: '#394a6b', fg: '#f7e6b0', main: 'ピアノ教室', sub: 'ドルチェ音楽院', foot: '体験レッスン' },
@@ -215,9 +215,9 @@ function drawTrans(g, rnd, F, ox, oy) {
   g.fillStyle = '#eeeee8'; rr(g, 134, 176, 52, 40, 4); g.fill();
   g.strokeStyle = '#6d747c'; g.lineWidth = 1.5; rr(g, 134, 176, 52, 40, 4); g.stroke();
   g.fillStyle = '#3a3346'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  fit(g, '桜川電力', 160, 188, 46, 10, F.sans, 700);
+  fit(g, 'Gulabi電力', 160, 188, 46, 10, F.sans, 700);
   fit(g, '6600V/210V', 160, 204, 46, 8, F.sans, 500);
-  // yellow 高圧注意 sticker beside it
+  // yellow HIGH VOLTAGE sticker beside it
   g.fillStyle = '#f2c230'; g.fillRect(196, 70, 30, 44);
   g.fillStyle = '#3a3346'; g.fillRect(196, 70, 30, 12);
   g.fillStyle = '#f2c230'; fit(g, '注意', 211, 76, 26, 10, F.sans, 900);
@@ -235,7 +235,7 @@ function drawAd(g, rect, ad, F, rnd) {
   // address band (住居表示)
   g.fillStyle = '#2d5189'; rr(g, 2, 2, w - 4, 64, 6); g.fill(); g.fillRect(2, 40, w - 4, 26);
   g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  fit(g, '桜ヶ丘町', w / 2, 20, 76, 18, F.sans, 700);
+  fit(g, 'Gulabi Nagar', w / 2, 20, 76, 18, F.sans, 700);
   fit(g, ad.band, w / 2, 46, 76, 22, F.sans, 900);
   // body
   const top = 78, bodyH = 292;
@@ -255,7 +255,7 @@ function drawAd(g, rect, ad, F, rnd) {
     g.save(); g.translate(w / 2, 428); g.scale(ad.arrow, 1);
     g.beginPath(); g.moveTo(-24, -4); g.lineTo(8, -4); g.lineTo(8, -11); g.lineTo(24, 0); g.lineTo(8, 11); g.lineTo(8, 4); g.lineTo(-24, 4); g.closePath(); g.fill();
     g.restore();
-  } else { g.globalAlpha = 0.6; fit(g, '桜ヶ丘駅前', w / 2, 428, 76, 12, F.sans, 500); g.globalAlpha = 1; }
+  } else { g.globalAlpha = 0.6; fit(g, 'गुलाबी नगर स्टेशन前', w / 2, 428, 76, 12, F.sans, 500); g.globalAlpha = 1; }
   // enamel gloss & wear
   g.fillStyle = 'rgba(255,255,255,0.10)'; g.fillRect(10, 4, 6, h - 8);
   for (let i = 0; i < 6; i++) { g.fillStyle = 'rgba(138,90,68,0.35)'; g.beginPath(); g.arc(rnd() < 0.5 ? 5 + rnd() * 6 : w - 5 - rnd() * 6, rnd() < 0.5 ? 5 + rnd() * 20 : h - 5 - rnd() * 20, 1 + rnd() * 2, 0, TAU); g.fill(); }
@@ -285,7 +285,7 @@ function drawPlate(g, rect, p, F) {
   g.fillStyle = '#f4f2ea'; rr(g, 2, 2, w - 4, h - 4, 5); g.fill();
   flower(g, w / 2, 15, 9, '#ea87a3', '#f5d76e');
   g.fillStyle = '#44587f'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  fit(g, '桜川電力', w / 2, 32, 42, 10, F.sans, 700);
+  fit(g, 'Gulabi電力', w / 2, 32, 42, 10, F.sans, 700);
   g.fillStyle = '#2f3a52';
   const n = vlen(p.line), s = Math.min(26, 96 / n);
   vtext(g, p.line, w / 2, 42, s, F.sans, 900, 1.02);
@@ -333,7 +333,7 @@ function drawMascot(g, rect, v, F) {
   // name ribbon
   g.fillStyle = v === 1 ? '#4f86c6' : '#e0507a'; rr(g, 14, 115, 132, 34, 15); g.fill();
   g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  fit(g, v === 1 ? '桜ヶ丘町' : 'さくらぽん', 80, 133, 120, 24, F.round, 700);
+  fit(g, v === 1 ? 'Gulabi Nagar' : 'さくらぽん', 80, 133, 120, 24, F.round, 700);
   if (v === 1) { g.fillStyle = '#e0507a'; fit(g, 'ようこそ!', 34, 30, 56, 15, F.round, 700); }
   if (v === 2) { g.fillStyle = '#3f8f5b'; fit(g, 'ゴミは', 124, 20, 60, 13, F.round, 700); fit(g, '持ちかえろ', 124, 36, 62, 12, F.round, 700); }
   g.restore();
@@ -351,21 +351,21 @@ function drawStickers(g, F, rnd) {
   g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle'; fit(g, '防犯カメラ', w / 2, 17, w - 14, 20, F.sans, 900);
   g.fillStyle = '#3a3346'; fit(g, '作動中', w / 2 + 14, 55, 80, 26, F.sans, 900);
   g.fillRect(12, 46, 22, 14); g.beginPath(); g.moveTo(34, 50); g.lineTo(42, 45); g.lineTo(42, 61); g.lineTo(34, 56); g.fill(); g.fillRect(20, 60, 4, 8);
-  fit(g, '桜ヶ丘町防犯協会', w / 2, 82, w - 12, 12, F.sans, 700);
+  fit(g, 'Gulabi Nagar防犯協会', w / 2, 82, w - 12, 12, F.sans, 700);
   C();
   // 水のトラブル (classic plumbing sticker)
   [w, h] = T(RB.suido);
   g.fillStyle = '#f7d23a'; rr(g, 1, 1, w - 2, h - 2, 5); g.fill();
   g.fillStyle = '#2458a8'; fit(g, '水のトラブル', w / 2, 18, w - 12, 20, F.sans, 900);
-  g.fillStyle = '#d9463b'; fit(g, 'すぐ行きます!', w / 2, 38, w - 14, 15, F.sans, 900);
-  g.fillStyle = '#2458a8'; fit(g, '桜ヶ丘水道 0467-00-7171', w / 2, 54, w - 10, 10, F.sans, 700);
+  g.fillStyle = '#d9463b'; fit(g, 'すぐTOきます!', w / 2, 38, w - 14, 15, F.sans, 900);
+  g.fillStyle = '#2458a8'; fit(g, 'गुलाबी नगर水道 0467-00-7171', w / 2, 54, w - 10, 10, F.sans, 700);
   C();
   // はり紙禁止
   [w, h] = T(RB.harigami);
   g.fillStyle = '#fbfaf5'; g.fillRect(1, 1, w - 2, h - 2);
   g.strokeStyle = '#d9463b'; g.lineWidth = 4; g.strokeRect(4, 4, w - 8, h - 8);
   g.fillStyle = '#d9463b'; vtext(g, 'はり紙禁止', w / 2, 12, 22, F.sans, 900, 1.02);
-  g.fillStyle = '#44587f'; fit(g, '桜川電力', w / 2, h - 14, w - 12, 10, F.sans, 700);
+  g.fillStyle = '#44587f'; fit(g, 'Gulabi電力', w / 2, h - 14, w - 12, 10, F.sans, 700);
   C();
   // ポイ捨て禁止
   [w, h] = T(RB.poisute);
@@ -374,7 +374,7 @@ function drawStickers(g, F, rnd) {
   g.beginPath(); g.arc(w / 2, 84, 20, 0, TAU); g.lineWidth = 4; g.strokeStyle = '#ffffff'; g.stroke();
   g.fillStyle = '#ffffff'; g.fillRect(w / 2 - 6, 74, 12, 20); g.fillRect(w / 2 - 4, 70, 8, 4);
   g.save(); g.translate(w / 2, 84); g.rotate(-0.8); g.fillRect(-20, -2, 40, 4); g.restore();
-  fit(g, '桜ヶ丘町', w / 2, 116, w - 12, 12, F.sans, 700);
+  fit(g, 'Gulabi Nagar', w / 2, 116, w - 12, 12, F.sans, 700);
   C();
   // ひったくり注意
   [w, h] = T(RB.hittakuri);
@@ -382,8 +382,8 @@ function drawStickers(g, F, rnd) {
   g.fillStyle = '#d9463b'; rr(g, 1, 1, w - 2, 30, 4); g.fill(); g.fillRect(1, 20, w - 2, 11);
   g.fillStyle = '#ffffff'; fit(g, '注意!', w / 2, 16, w - 12, 22, F.sans, 900);
   g.fillStyle = '#3a3346'; fit(g, 'ひったくり', w / 2, 46, w - 10, 17, F.sans, 900);
-  g.fillStyle = '#44587f'; fit(g, '自転車のカゴに', w / 2, 70, w - 10, 11, F.sans, 700); fit(g, 'ネットをかけよう', w / 2, 86, w - 10, 11, F.sans, 700);
-  g.fillStyle = '#6d747c'; fit(g, '桜ヶ丘防犯協会', w / 2, 112, w - 10, 10, F.sans, 700);
+  g.fillStyle = '#44587f'; fit(g, 'CYCLEのカゴに', w / 2, 70, w - 10, 11, F.sans, 700); fit(g, 'ネットをかけよう', w / 2, 86, w - 10, 11, F.sans, 700);
+  g.fillStyle = '#6d747c'; fit(g, 'गुलाबी नगर防犯協会', w / 2, 112, w - 10, 10, F.sans, 700);
   C();
   // たこあげ・つり注意 (near the river)
   [w, h] = T(RB.tako);
@@ -394,7 +394,7 @@ function drawStickers(g, F, rnd) {
   g.strokeStyle = '#d9463b'; g.lineWidth = 4; g.beginPath(); g.arc(w / 2, 36, 26, 0, TAU); g.moveTo(w / 2 - 18, 18); g.lineTo(w / 2 + 18, 54); g.stroke();
   g.fillStyle = '#d9463b'; fit(g, 'でんせんの', w / 2, 94, w - 12, 13, F.round, 700); fit(g, 'ちかくで', w / 2, 109, w - 12, 13, F.round, 700);
   fit(g, 'たこあげ・つり', w / 2, 124, w - 10, 12, F.round, 700);
-  g.fillStyle = '#44587f'; fit(g, 'しないでね 桜川電力', w / 2, 137, w - 10, 9, F.sans, 700);
+  g.fillStyle = '#44587f'; fit(g, 'しないでね Gulabi電力', w / 2, 137, w - 10, 9, F.sans, 700);
   C();
   // old sticker scraps (torn paper remains)
   for (const r of [RB.scrap, RB.scrap2]) {
@@ -429,14 +429,14 @@ function drawStickers(g, F, rnd) {
   g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h);
   g.strokeStyle = '#2f3a52'; g.lineWidth = 4; g.strokeRect(4, 4, w - 8, h - 8);
   g.fillStyle = '#2f3a52'; fit(g, '通学路', w / 2, 27, w - 30, 32, F.sans, 900);
-  fit(g, '桜ヶ丘小学校', w / 2, 51, w - 40, 12, F.sans, 700);
+  fit(g, 'गुलाबी नगर小学校', w / 2, 51, w - 40, 12, F.sans, 700);
   C();
-  // 桜ヶ丘駅 → pedestrian guide plate
+  // गुलाबी नगर स्टेशन → pedestrian guide plate
   [w, h] = T(RB.station);
   g.fillStyle = '#f4f2ea'; rr(g, 0, 0, w, h, 10); g.fill();
   g.fillStyle = '#2f64b5'; rr(g, 4, 4, w - 8, h - 8, 8); g.fill();
-  g.fillStyle = '#ffffff'; g.textAlign = 'left'; fit(g, '桜ヶ丘駅', 16, 38, 150, 38, F.sans, 900);
-  g.globalAlpha = 0.9; fit(g, 'Sakuragaoka Sta.', 18, 72, 150, 15, F.en, 700); g.globalAlpha = 1;
+  g.fillStyle = '#ffffff'; g.textAlign = 'left'; fit(g, 'गुलाबी नगर स्टेशन', 16, 38, 150, 38, F.sans, 900);
+  g.globalAlpha = 0.9; fit(g, 'Gulabi Nagar Sta.', 18, 72, 150, 15, F.en, 700); g.globalAlpha = 1;
   g.textAlign = 'center';
   g.beginPath(); g.moveTo(178, 38); g.lineTo(212, 38); g.lineTo(212, 22); g.lineTo(242, 48); g.lineTo(212, 74); g.lineTo(212, 58); g.lineTo(178, 58); g.closePath(); g.fill();
   C();
@@ -445,7 +445,7 @@ function drawStickers(g, F, rnd) {
   g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h);
   g.fillStyle = '#d9463b'; g.fillRect(4, 4, w - 8, 112);
   g.fillStyle = '#ffffff'; vtext(g, '消火栓', w / 2, 12, 30, F.sans, 900, 1.05);
-  g.fillStyle = '#d9463b'; fit(g, '桜ヶ丘町', w / 2, 132, w - 12, 15, F.sans, 700); fit(g, '駐車禁止', w / 2, 150, w - 14, 13, F.sans, 900);
+  g.fillStyle = '#d9463b'; fit(g, 'Gulabi Nagar', w / 2, 132, w - 12, 15, F.sans, 700); fit(g, '駐車禁止', w / 2, 150, w - 14, 13, F.sans, 900);
   C();
   // 犬のフン (round die-cut)
   [w, h] = T(RB.dog);
@@ -458,23 +458,23 @@ function drawStickers(g, F, rnd) {
   g.beginPath(); g.ellipse(w / 2 + 27, 30, 4, 7, 0.5, 0, TAU); g.fill();
   g.fillStyle = '#2f7a4f'; fit(g, 'フンは', w / 2, 76, 80, 15, F.round, 700); fit(g, '持ち帰ろう', w / 2, 93, 86, 14, F.round, 700);
   C();
-  // 高圧危険
+  // 高圧DANGER
   [w, h] = T(RB.koatsu);
   g.fillStyle = '#f2c230'; g.fillRect(0, 0, w, h);
   g.fillStyle = '#3a3346'; g.fillRect(0, 0, w, 4); g.fillRect(0, h - 4, w, 4);
   g.beginPath(); g.moveTo(22, 8); g.lineTo(12, 34); g.lineTo(22, 32); g.lineTo(16, 56); g.lineTo(34, 24); g.lineTo(24, 26); g.lineTo(32, 8); g.closePath(); g.fill();
-  fit(g, '高圧危険', 82, 26, 84, 22, F.sans, 900); fit(g, 'さわるな', 82, 48, 80, 13, F.sans, 700);
+  fit(g, '高圧DANGER', 82, 26, 84, 22, F.sans, 900); fit(g, 'さわるな', 82, 48, 80, 13, F.sans, 700);
   C();
-  // 危険 のぼるな
+  // DANGER のぼるな
   [w, h] = T(RB.noboruna);
   g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h);
   g.fillStyle = '#d9463b'; g.fillRect(3, 3, w - 6, 42);
-  g.fillStyle = '#ffffff'; fit(g, '危険', w / 2, 25, w - 16, 32, F.sans, 900);
+  g.fillStyle = '#ffffff'; fit(g, 'DANGER', w / 2, 25, w - 16, 32, F.sans, 900);
   g.fillStyle = '#3a3346'; fit(g, 'のぼるな', w / 2, 68, w - 14, 20, F.sans, 900);
-  g.fillStyle = '#44587f'; fit(g, '桜川電力', w / 2, 104, w - 20, 13, F.sans, 700);
+  g.fillStyle = '#44587f'; fit(g, 'Gulabi電力', w / 2, 104, w - 20, 13, F.sans, 700);
   g.strokeStyle = '#3a3346'; g.lineWidth = 2; g.strokeRect(1, 1, w - 2, h - 2);
   C();
-  // こども110番 style "見守り" sticker
+  // CHILD110番 style "見守り" sticker
   [w, h] = T(RB.kodomo);
   g.fillStyle = '#fbfaf5'; rr(g, 1, 1, w - 2, h - 2, 10); g.fill();
   g.fillStyle = '#ef9a47'; rr(g, 6, 6, w - 12, 46, 8); g.fill();
@@ -487,7 +487,7 @@ function drawStickers(g, F, rnd) {
   g.fillStyle = '#f4f2ea'; g.fillRect(0, 0, w, h);
   g.fillStyle = '#3a3346'; g.fillRect(0, 0, 34, h);
   g.fillStyle = '#ffffff'; fit(g, '防犯灯', 17, h / 2, 30, 12, F.sans, 900);
-  g.fillStyle = '#3a3346'; fit(g, '桜ヶ丘 No.23', 81, h / 2, 88, 13, F.sans, 700);
+  g.fillStyle = '#3a3346'; fit(g, 'गुलाबी नगर No.23', 81, h / 2, 88, 13, F.sans, 700);
   C();
 }
 

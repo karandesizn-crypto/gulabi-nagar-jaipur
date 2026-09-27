@@ -1,6 +1,6 @@
 // environment/levee.js — 桜堤: the pale levee-top path (R5) with painted edge lines, concrete stairs
 // on the town-side slope (x≈-12 at the end of R2, x≈40 with handrails), benches, the wooden
-// 桜川堤 さくら並木 signboard, lamp posts every ~40 m, river km posts and a small notice sign.
+// Gulabi堤 さくら並木 signboard, lamp posts every ~40 m, river km posts and a small notice sign.
 import * as L from '../layout.js';
 import { smoothstep, clamp } from './common.js';
 
@@ -60,10 +60,10 @@ export function buildLevee(ctx, tx) {
         x += len + (r() < 0.25 ? 0.3 + r() * 0.5 : 0.02);
       }
     }
-    // painted 歩行者優先 markings (read along the path)
+    // painted 歩TO者優先 markings (read along the path)
     const mark = ctx.tex.draw(512, 128, (gg, w, h) => {
       gg.clearRect(0, 0, w, h); gg.fillStyle = '#f4f2ea'; gg.textAlign = 'center'; gg.textBaseline = 'middle';
-      ctx.tex.fitText(gg, '歩行者優先', w / 2, h * 0.55, w * 0.94, 104, ctx.tex.FONTS.sans, 900);
+      ctx.tex.fitText(gg, '歩TO者優先', w / 2, h * 0.55, w * 0.94, 104, ctx.tex.FONTS.sans, 900);
     }, { key: 'env-r5-mark' });
     const mm = ctx.mat.decal('#ffffff', { map: mark, paint: 0.02 });
     for (const [x, rot] of [[-30, -Math.PI / 2], [72, Math.PI / 2]]) {
@@ -103,7 +103,7 @@ export function buildLevee(ctx, tx) {
       const gg = ctx.geo.extrude(shp, 0.2); gg.rotateY(Math.PI / 2);
       const cw = new THREE.Mesh(gg, conc); cw.position.set(S.x + s * (S.w / 2 + 0.1), 0, 0); cw.castShadow = true; cw.receiveShadow = true; grp.add(cw);
     }
-    // bicycle groove (自転車用スロープ) along the east edge
+    // bicycle groove (CYCLE用スロープ) along the east edge
     if (S.bike) {
       const pos = [], idx = [];
       const xs0 = S.x + S.w / 2 - 0.45, xs1 = S.x + S.w / 2 - 0.05;
@@ -163,7 +163,7 @@ export function buildLevee(ctx, tx) {
     benchInfo.push({ x: b.x, z, y: y + 0.44, rotY: Math.PI, len: 1.78 });
   }
 
-  // ---------------------------------------------------------------- 桜川堤 さくら並木 wooden signboard at the top of the R2 stairs
+  // ---------------------------------------------------------------- Gulabi堤 さくら並木 wooden signboard at the top of the R2 stairs
   {
     const board = ctx.tex.draw(1024, 512, (g, w, h) => {
       const r = ctx.rng('env-signwood');
@@ -175,12 +175,12 @@ export function buildLevee(ctx, tx) {
       for (let i = 0; i < 14; i++) { const x = 40 + r() * (w - 80), y = 30 + r() * 60; g.fillStyle = r() < 0.5 ? '#f3c3d3' : '#f8dce6'; g.beginPath(); g.ellipse(x, y, 11, 7, r() * 3, 0, 7); g.fill(); }
       g.textAlign = 'center'; g.textBaseline = 'middle';
       g.fillStyle = '#fbf3e4';
-      ctx.tex.fitText(g, '桜川堤 さくら並木', w / 2, h * 0.42, w * 0.88, 150, ctx.tex.FONTS.brush, 400);
+      ctx.tex.fitText(g, 'Gulabi堤 さくら並木', w / 2, h * 0.42, w * 0.88, 150, ctx.tex.FONTS.brush, 400);
       g.fillStyle = '#f4e3cf';
       ctx.tex.fitText(g, 'さくらがわづつみ さくらなみき', w / 2, h * 0.66, w * 0.7, 40, ctx.tex.FONTS.serif, 700);
       g.globalAlpha = 0.9;
       ctx.tex.fitText(g, 'Sakuragawa-zutsumi Cherry Blossom Promenade', w / 2, h * 0.77, w * 0.8, 30, ctx.tex.FONTS.en, 500);
-      ctx.tex.fitText(g, 'ソメイヨシノ 約160本・全長 約1.2km　　桜ヶ丘町観光協会', w / 2, h * 0.88, w * 0.84, 28, ctx.tex.FONTS.sans, 500);
+      ctx.tex.fitText(g, 'ソメイヨシノ 約160本・全長 約1.2km　　Gulabi Nagar観光協会', w / 2, h * 0.88, w * 0.84, 28, ctx.tex.FONTS.sans, 500);
       g.globalAlpha = 1;
     }, { key: 'env-levee-sign' });
     const sx = -8.9, sz = R5.z - R5.halfW + 0.35, y = PATH_Y;
@@ -217,7 +217,7 @@ export function buildLevee(ctx, tx) {
     g.fillStyle = '#f2f1ec'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#2f4f8f'; g.fillRect(0, 0, w, 44);
     g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    ctx.tex.fitText(g, '桜川', w / 2, 23, w * 0.9, 30, ctx.tex.FONTS.sans, 900);
+    ctx.tex.fitText(g, 'Gulabi', w / 2, 23, w * 0.9, 30, ctx.tex.FONTS.sans, 900);
     g.fillStyle = '#2f3a52';
     ctx.tex.fitText(g, '右岸', w / 2, 80, w * 0.9, 30, ctx.tex.FONTS.sans, 700);
     ctx.tex.fitText(g, label, w / 2, 150, w * 0.92, 46, ctx.tex.FONTS.sans, 900);
@@ -240,7 +240,7 @@ export function buildLevee(ctx, tx) {
       ctx.tex.fitText(g, 'やめましょう', w / 2, 88, w * 0.86, 34, ctx.tex.FONTS.sans, 900);
       g.fillStyle = '#2f3a52';
       ctx.tex.fitText(g, 'ペットのフンは持ち帰りましょう', w / 2, 132, w * 0.88, 18, ctx.tex.FONTS.sans, 700);
-      ctx.tex.fitText(g, '桜ヶ丘町　河川愛護会', w / 2, 164, w * 0.8, 17, ctx.tex.FONTS.sans, 500);
+      ctx.tex.fitText(g, 'Gulabi Nagar　河川愛護会', w / 2, 164, w * 0.8, 17, ctx.tex.FONTS.sans, 500);
     }, { key: 'env-notice' });
     const x = 43.2, z = R5.z + R5.halfW - 0.18;
     const g = k.group([x, PATH_Y, z], -0.1);

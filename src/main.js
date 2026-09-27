@@ -11,7 +11,7 @@ import { createAudio } from './core/audio.js';
 
 export const MODULES = [
   'environment', 'street', 'poles', 'railway', 'station', 'plaza', 'shopsA', 'shopsB', 'houses',
-  'sakura', 'trains', 'crossing', 'props', 'vehicles', 'characters', 'petals',
+  'sakura', 'trains', 'crossing', 'props', 'vehicles', 'characters', 'petals', 'jaipur',
 ];
 
 const params = new URLSearchParams(location.search);
@@ -25,7 +25,7 @@ const QUALITY = {
   medium: { name: 'medium', pixelRatio: Math.min(devicePixelRatio, 1.0), msaa: 4, shadowMap: 2048, shadowSize: 60, petals: 0.6 },
   low: { name: 'low', pixelRatio: Math.min(devicePixelRatio, 0.75), msaa: 0, shadowMap: 2048, shadowSize: 45, petals: 0.35 },
 };
-let qName = params.get('q') || (() => { try { return localStorage.getItem('sakura.q'); } catch (e) { return null; } })() || (isTouch ? 'medium' : 'high');
+let qName = params.get('q') || (() => { try { return localStorage.getItem('gulabi.q'); } catch (e) { return null; } })() || (isTouch ? 'medium' : 'high');
 if (!QUALITY[qName]) qName = 'high';
 const quality = { ...QUALITY[qName] };
 if (SHOT) { quality.pixelRatio = 1; }
@@ -63,9 +63,9 @@ resize();
 // ------------------------------------------------------------------ fonts
 async function loadFonts() {
   if (!document.fonts || !document.fonts.load) return;
-  const faces = ['700 32px "Noto Sans JP"', '400 32px "Noto Sans JP"', '900 32px "Noto Sans JP"', '700 32px "Noto Serif JP"',
-    '700 32px "Zen Maru Gothic"', '400 32px "Yusei Magic"', '400 32px "Yuji Syuku"'];
-  const jp = '桜ヶ丘駅さくらがおかSakuragaoka和菓子花屋書店喫茶止まれ';
+  const faces = ['700 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"', '900 32px "Noto Sans Devanagari"', '700 32px "Noto Sans Devanagari"',
+    '700 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"'];
+  const jp = 'गुलाबी नगर स्टेशनगुलाबी नगरGulabi NagarMITHAIफूल書店चायSTOP';
   await Promise.race([Promise.all(faces.map(f => document.fonts.load(f, jp).catch(() => null))), new Promise(r => setTimeout(r, 6000))]);
 }
 
@@ -77,9 +77,9 @@ function setProgress(frac, label) {
   const lab = $('loadlabel'); if (lab && label) lab.textContent = label;
 }
 const LABELS = {
-  environment: '地形と河川敷', street: '商店街の道', poles: '電柱と電線', railway: '線路と架線', station: '駅舎とホーム', plaza: '駅前広場',
-  shopsA: 'コンビニ・喫茶・花屋・書店', shopsB: '和菓子・よろず屋・ラーメン・自転車店', houses: '住宅街', sakura: '桜並木', trains: '電車',
-  crossing: '踏切', props: '自販機と小物', vehicles: '自転車と車', characters: '町の人々', petals: '花びら',
+  environment: 'Aravalli landscape', street: 'Bazaar streets', poles: 'Overhead wires', railway: 'Railway tracks', station: 'Gulabi Nagar station', plaza: 'Station chowk',
+  shopsA: 'Chai, flowers & books', shopsB: 'Mithai & neighbourhood shops', houses: 'Pink city houses', sakura: 'Gulmohar avenue', trains: 'Local trains',
+  crossing: 'Railway crossing', props: 'Street details', vehicles: 'Cycles & taxis', characters: 'People of Gulabi Nagar', petals: 'Drifting blossoms', jaipur: 'Havelis, rickshaws & the chai cart',
 };
 
 async function build() {
@@ -87,7 +87,7 @@ async function build() {
   const list = ONLY ? MODULES.filter(m => ONLY.includes(m)).concat(ONLY.filter(m => !MODULES.includes(m))) : MODULES;
   let i = 0;
   for (const name of list) {
-    setProgress(i / (list.length + 1), `${LABELS[name] || name} を準備中…`);
+    setProgress(i / (list.length + 1), `${LABELS[name] || name} をCLOSED…`);
     await new Promise(r => setTimeout(r, 0));
     const t0 = performance.now();
     try {
@@ -102,7 +102,7 @@ async function build() {
     }
     i++;
   }
-  setProgress(list.length / (list.length + 1), '仕上げ中…');
+  setProgress(list.length / (list.length + 1), 'Finishing the neighbourhood…');
   await new Promise(r => setTimeout(r, 0));
   const wm = ctx.wires.build(); if (wm) { scene.add(wm); ctx.wires.setResolution(pipeline.size.x, pipeline.size.y); }
   const b = params.get('batch') === '1' ? batchStatic(ctx.staticRoot) : batchStatic2(ctx.staticRoot, { mat: ctx.mat });
@@ -122,11 +122,11 @@ function parseCam(s) {
 window.__setCam = (x, y, z, yaw, pitch) => { if (y === null || y === undefined) player.setPose(x, z, yaw, pitch); else player.setPose(x, z, yaw, pitch, y); };
 
 const VIEWS = {
-  Digit1: { ...L.HERO, label: '商店街' },
-  Digit2: { x: 9.5, z: -9.0, yaw: 12, pitch: 6, label: '駅前広場' },
-  Digit3: { x: 20.0, z: -37.6, yaw: 95, pitch: 0, label: '1番線ホーム' },
-  Digit4: { x: -12.8, z: -31.5, yaw: -8, pitch: 3, label: '踏切' },
-  Digit5: { x: -20.0, z: -92.8, yaw: 160, pitch: -2, label: '河川敷' },
+  Digit1: { ...L.HERO, label: 'Gulabi Bazaar' },
+  Digit2: { x: 9.5, z: -9.0, yaw: 12, pitch: 6, label: 'Station Chowk' },
+  Digit3: { x: 20.0, z: -37.6, yaw: 95, pitch: 0, label: 'Platform 1' },
+  Digit4: { x: -12.8, z: -31.5, yaw: -8, pitch: 3, label: 'Level Crossing' },
+  Digit5: { x: -20.0, z: -92.8, yaw: 160, pitch: -2, label: 'Promenade' },
 };
 
 // ------------------------------------------------------------------ simulation
@@ -228,6 +228,7 @@ async function main() {
     return;
   }
   document.body.classList.add('loaded');
+  $('loadlabel').textContent = errors.length ? 'Some scenery could not load. Reload to retry.' : 'Your afternoon in the Pink City awaits.';
   const go = $('go'); if (go) { go.disabled = false; go.focus(); go.addEventListener('click', start); }
   canvas.addEventListener('click', () => { if (started) player.requestLock(); });
   document.addEventListener('pointerlockchange', () => { document.body.classList.toggle('locked', document.pointerLockElement === canvas); });
@@ -240,10 +241,17 @@ async function main() {
     if (e.code === 'Backquote') { const s = $('stats'); if (s) s.hidden = !s.hidden; }
     const v = VIEWS[e.code]; if (v) { player.fly = false; player.setPose(v.x, v.z, v.yaw, v.pitch); }
   });
+  document.querySelectorAll('[data-place]').forEach(button => button.addEventListener('click', () => {
+    const v = VIEWS['Digit' + button.dataset.place];
+    if (!v) return;
+    player.fly = false; player.setPose(v.x, v.z, v.yaw, v.pitch);
+    showToast(v.label);
+  }));
   const q = $('quality');
-  if (q) { q.value = qName; q.addEventListener('change', () => { try { localStorage.setItem('sakura.q', q.value); } catch (e) {} location.reload(); }); }
+  if (q) { q.value = qName; q.addEventListener('change', () => { try { localStorage.setItem('gulabi.q', q.value); } catch (e) {} location.reload(); }); }
   const mute = $('mute'); if (mute) mute.addEventListener('click', () => { audio.muted = !audio.muted; mute.setAttribute('aria-pressed', String(audio.muted)); });
   if (params.has('stats')) $('stats').hidden = false;
+  window.__ready = true;
   if (errors.length) console.warn('module errors', errors);
 }
-main();
+main().catch(e => { console.error(e); $('loadlabel').textContent = 'Unable to load the scene. Please reload to try again.'; });

@@ -1,4 +1,4 @@
-// E5 らーめん 春風 — interior: L-shaped wooden counter with steel stools, per-seat condiment sets
+// E5 ढाबा शर्मा — interior: L-shaped wooden counter with steel stools, per-seat condiment sets
 // (soy, vinegar, chili oil, pepper, ginger), chopstick boxes, tissue boxes, water pitchers & cups,
 // served bowls; open kitchen with a 2-burner range (wok, pot), noodle boiler with tebo baskets,
 // stock-pot range, steam hood with hanging ladles/strainers, work counter with bowls & garnish pans,
@@ -7,10 +7,10 @@
 import * as THREE from 'three';
 import * as PR from './props.js';
 
-const MENU = [['醤油らーめん', '750円'], ['味噌らーめん', '850円'], ['塩らーめん', '780円'], ['チャーシューメン', '980円'], ['つけ麺', '880円'], ['餃子（6個）', '400円'], ['半チャーハン', '380円'], ['ライス', '150円']];
-export const TEXTS = ['醤油らーめん', '味噌らーめん', '塩らーめん', 'チャーシューメン', 'つけ麺', '餃子', '半チャーハン', 'ライス', '大盛り', '味玉', '替え玉', 'ビール', '瓶ビール', 'ぎょうざ', '冷やし中華',
-  '750円', '850円', '780円', '980円', '880円', '400円', '380円', '150円', '+100円', '+120円', '100円', '550円', '食券', '食券をお買い求めください', '千円札', '硬貨', 'おつり', 'お手洗い', '水はセルフサービスです', 'ご来店ありがとうございます',
-  '春風', '桜川ビール', '生ビール', '春風さんへ', 'おいしい！', '一番', 'ようこそ', '酢', '醤油', 'ラー油', 'こしょう', '厨房'];
+const MENU = [['醤油ढाबा', '750 Rs'], ['DALढाबा', '850 Rs'], ['塩ढाबा', '780 Rs'], ['PANEERメン', '980 Rs'], ['つけ麺', '880 Rs'], ['SAMOSA（6個）', '400 Rs'], ['半チャーハン', '380 Rs'], ['ライス', '150 Rs']];
+export const TEXTS = ['醤油ढाबा', 'DALढाबा', '塩ढाबा', 'PANEERメン', 'つけ麺', 'SAMOSA', '半チャーハン', 'ライス', '大盛り', '味玉', '替え玉', 'ビール', '瓶ビール', 'SAMOSA', '冷やし中華',
+  '750 Rs', '850 Rs', '780 Rs', '980 Rs', '880 Rs', '400 Rs', '380 Rs', '150 Rs', '+100 Rs', '+120 Rs', '100 Rs', '550 Rs', '食券', '食券をお買い求めください', '千 Rs札', '硬貨', 'おつり', 'TOILET', '水はセルフサービスです', 'ご来店THANK YOU',
+  'शर्मा', 'Gulabiビール', '生ビール', 'शर्माさんへ', 'おいしい！', '一番', 'ようこそ', '酢', '醤油', 'ラー油', 'こしょう', '厨房'];
 
 export function buildRamenInterior(ctx, K, S, P) {
   const { FL, ZF, ZI, WT, X0, X1 } = P;
@@ -83,7 +83,7 @@ export function buildRamenInterior(ctx, K, S, P) {
   for (let k = 0; k < 4; k++) I.add('box', g, [2.95, ledgeY + k * 0.012, -3.68], [0.36, 0.011, 0.26], '#6a3e30');
   // menu tags hanging from the pass beam over the long leg
   B(cx1 - sxL, 0.5, 0.05, iWoodDark, [(sxL + cx1) / 2, CH - 0.25, czB + 0.0]);
-  const allTags = MENU.concat([['大盛り', '+100円'], ['味玉', '+120円'], ['替え玉', '100円'], ['瓶ビール', '550円']]);
+  const allTags = MENU.concat([['大盛り', '+100 Rs'], ['味玉', '+120 Rs'], ['替え玉', '100 Rs'], ['瓶ビール', '550 Rs']]);
   allTags.forEach(([a, b], i) => { const x = sxL + 0.2 + i * 0.315; menuTag(K, g, x, CH - 0.52, czB + 0.035, 0, a, b, i); });
 
   // ------------------------------------------------------------------ kitchen
@@ -175,7 +175,7 @@ export function buildRamenInterior(ctx, K, S, P) {
   {
     const wg = PR.grp(g, xi0 + 0.04, 0, 0, Math.PI / 2);        // local x = -world z, faces +x
     B(0.035, 0.04, 2.5, iBeam, [xi0 + 0.055, FL + 2.3, -4.95]);
-    const wtags = [['醤油らーめん', '750円'], ['味噌らーめん', '850円'], ['塩らーめん', '780円'], ['つけ麺', '880円'], ['餃子', '400円'], ['半チャーハン', '380円'], ['ライス', '150円'], ['冷やし中華', '850円'], ['ビール', '550円'], ['味玉', '+120円'], ['大盛り', '+100円'], ['替え玉', '100円']];
+    const wtags = [['醤油ढाबा', '750 Rs'], ['DALढाबा', '850 Rs'], ['塩ढाबा', '780 Rs'], ['つけ麺', '880 Rs'], ['SAMOSA', '400 Rs'], ['半チャーハン', '380 Rs'], ['ライス', '150 Rs'], ['冷やし中華', '850 Rs'], ['ビール', '550 Rs'], ['味玉', '+120 Rs'], ['大盛り', '+100 Rs'], ['替え玉', '100 Rs']];
     wtags.forEach(([a, b], i) => menuTag(K, wg, 3.8 + i * 0.2, FL + 2.07, 0.02, 0, a, b, i + 3, 0.16, 0.42));
     for (let i = 0; i < 3; i++) { K.box(wg, 0.26, 0.29, 0.012, K.im('#d9b86a', 0.3), [2.85 + i * 0.3, FL + 1.95, 0.006]); K.plane(wg, 0.23, 0.26, K.im('#ffffff', 0.35, { map: shikishiTex(K, i) }), [2.85 + i * 0.3, FL + 1.95, 0.0135]); }
     K.plane(wg, 0.46, 0.64, K.im('#ffffff', 0.35, { map: beerPosterTex(K) }), [6.6, FL + 1.45, 0.004]);
@@ -206,7 +206,7 @@ export function buildRamenInterior(ctx, K, S, P) {
     K.box(dg, 0.8, 1.95, 0.04, K.im('#b9ac98', 0.28, { map: T.vboards }), [0, 0.975, 0.02]);
     for (const sx of [-0.43, 0.43]) K.box(dg, 0.06, 2.0, 0.07, iBeam, [sx, 1.0, 0.035]); K.box(dg, 0.92, 0.06, 0.07, iBeam, [0, 2.0, 0.035]);
     K.cyl(dg, 0.025, 0.05, K.im('#c9a45a', 0.35), [0.3, 0.95, 0.06], 10, [Math.PI / 2, 0, 0]);
-    K.plane(dg, 0.3, 0.12, K.im('#ffffff', 0.35, { map: K.card(['お手洗い'], { w: 192, h: 72, bg: '#f4efe2', fg: '#3a3346', font: F.sans, size0: 34 }) }), [0, 1.6, 0.045]);
+    K.plane(dg, 0.3, 0.12, K.im('#ffffff', 0.35, { map: K.card(['TOILET'], { w: 192, h: 72, bg: '#f4efe2', fg: '#3a3346', font: F.sans, size0: 34 }) }), [0, 1.6, 0.045]);
   }
   // ------------------------------------------------------------------ lights
   for (let i = 0; i < 3; i++) {
@@ -244,7 +244,7 @@ function menuStand(K, p, x, y, z) {
   const g = PR.grp(p, x, y, z, 0.2);
   K.box(g, 0.14, 0.012, 0.06, K.im('#6a4c3a', 0.3), [0, 0.006, 0]);
   K.box(g, 0.13, 0.18, 0.006, K.im('#f4efe2', 0.3), [0, 0.1, 0], [-0.12, 0, 0]);
-  K.plane(g, 0.12, 0.17, K.im('#ffffff', 0.36, { map: K.card(['本日のおすすめ', '味噌らーめん', '850円'], { w: 128, h: 180, bg: '#f4efe2', fg: '#b8423c', fg2: '#3a3346', font: K.F.round }) }), [0, 0.1, 0.0045], 0, -0.12);
+  K.plane(g, 0.12, 0.17, K.im('#ffffff', 0.36, { map: K.card(['TODAY’S SPECIAL', 'DALढाबा', '850 Rs'], { w: 128, h: 180, bg: '#f4efe2', fg: '#b8423c', fg2: '#3a3346', font: K.F.round }) }), [0, 0.1, 0.0045], 0, -0.12);
 }
 function servedBowl(K, p, x, y, z, rnd) {
   const I = K.I;
@@ -374,14 +374,14 @@ function ticketTex(K) {
     g.fillStyle = '#2f3a48'; g.fillRect(0, 0, w, h);
     K.text(g, '食券をお買い求めください', w / 2, 18, w - 16, 16, K.F.sans, 700, '#e8f0f6');
     const cols = ['#f4efe2', '#f6dde4', '#f7e9b8', '#dfe8cf'];
-    MENU.concat([['大盛り', '+100円'], ['味玉', '+120円'], ['替え玉', '100円'], ['ビール', '550円']]).forEach(([a, b], i) => {
+    MENU.concat([['大盛り', '+100 Rs'], ['味玉', '+120 Rs'], ['替え玉', '100 Rs'], ['ビール', '550 Rs']]).forEach(([a, b], i) => {
       const x = 10 + (i % 3) * 80, y = 36 + Math.floor(i / 3) * 70;
       g.fillStyle = cols[Math.floor(i / 3) % 4]; K.rr(g, x, y, 74, 62, 6); g.fill();
       K.text(g, a.replace('（6個）', ''), x + 37, y + 16, 68, 14, K.F.sans, 700, '#2a211d');
       K.text(g, b, x + 37, y + 34, 68, 14, K.F.sans, 900, '#b8423c');
     });
     g.fillStyle = '#8fd1c1'; K.rr(g, 20, h - 50, 90, 36, 6); g.fill();
-    K.text(g, '千円札', 65, h - 32, 80, 16, K.F.sans, 700, '#2a211d');
+    K.text(g, '千 Rs札', 65, h - 32, 80, 16, K.F.sans, 700, '#2a211d');
     g.fillStyle = '#e9e2cf'; K.rr(g, 140, h - 50, 90, 36, 6); g.fill();
     K.text(g, '硬貨', 185, h - 32, 80, 16, K.F.sans, 700, '#2a211d');
   }, { key: 'sb-ramen-ticket2' });
@@ -392,7 +392,7 @@ function shikishiTex(K, i) {
     g.strokeStyle = ['#3a3346', '#2f5f9e', '#b8423c', '#3f8f5b'][i % 4]; g.lineWidth = 4;
     g.beginPath(); g.moveTo(24, 40 + i * 4); g.bezierCurveTo(50, 20, 70, 80, 100, 36); g.bezierCurveTo(80, 90, 40, 70, 30, 110); g.stroke();
     g.beginPath(); g.moveTo(40, 100); g.bezierCurveTo(60, 90, 90, 120, 104, 96); g.stroke();
-    K.text(g, ['春風さんへ', 'おいしい！', '一番', 'ようこそ'][i % 4], w / 2, h - 20, w - 20, 13, K.F.hand, 400, '#5a4238');
+    K.text(g, ['शर्माさんへ', 'おいしい！', '一番', 'ようこそ'][i % 4], w / 2, h - 20, w - 20, 13, K.F.hand, 400, '#5a4238');
   }, { key: 'sb-shikishi2-' + (i % 4) });
 }
 function beerPosterTex(K) {
@@ -401,7 +401,7 @@ function beerPosterTex(K) {
     g.fillStyle = '#e9a23b'; K.rr(g, 60, 80, 80, 130, 10); g.fill();
     g.fillStyle = '#fbf6ea'; K.rr(g, 56, 64, 88, 30, 14); g.fill();
     g.strokeStyle = '#fbf6ea'; g.lineWidth = 8; g.beginPath(); g.arc(146, 140, 22, -1.2, 1.2); g.stroke();
-    K.text(g, '桜川ビール', w / 2, 32, w - 20, 28, K.F.brush, 400, '#8e3b36');
+    K.text(g, 'Gulabiビール', w / 2, 32, w - 20, 28, K.F.brush, 400, '#8e3b36');
     K.text(g, '生ビール', w / 2, 240, w - 20, 26, K.F.round, 900, '#3a3346');
   }, { key: 'sb-beer-poster' });
 }
@@ -410,7 +410,7 @@ function waterSign(K) {
     g.fillStyle = '#f6f1e6'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#3f7fb5'; g.lineWidth = 5; g.strokeRect(6, 6, w - 12, h - 12);
     K.text(g, '水はセルフサービスです', w / 2, h * 0.4, w - 30, 22, K.F.sans, 700, '#2f4d7a');
-    K.text(g, 'ご来店ありがとうございます', w / 2, h * 0.72, w - 30, 18, K.F.sans, 500, '#3a3346');
+    K.text(g, 'ご来店THANK YOU', w / 2, h * 0.72, w - 30, 18, K.F.sans, 500, '#3a3346');
   }, { key: 'sb-water-sign' });
 }
 function calTex(K) {

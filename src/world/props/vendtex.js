@@ -5,7 +5,7 @@ import { rr, sakuraFlower, vtext, ftext } from './common.js';
 // ------------------------------------------------------------------ brands (fictional)
 export const BRANDS = {
   haru: { name: 'はるかぜ飲料', en: 'HARUKAZE BEVERAGE', casing: '#ece7e0', door: '#f0ece6', trim: '#e592ad', stile: '#e9e3dc', inner: '#f3f0ea' },
-  sakura: { name: 'SAKURA DRINKS', jp: 'さくらドリンクス', casing: '#d7675f', door: '#dc6e65', trim: '#fbf2ec', stile: '#cf5f58', inner: '#f6ece6' },
+  sakura: { name: 'NIMBU SODAS', jp: 'さくらドリンクス', casing: '#d7675f', door: '#dc6e65', trim: '#fbf2ec', stile: '#cf5f58', inner: '#f6ece6' },
   aozora: { name: 'あおぞら飲料', en: 'AOZORA DRINK', casing: '#a6c8e4', door: '#afcfe8', trim: '#2f6db8', stile: '#9dc0de', inner: '#eef4f9' },
   midori: { name: 'みどり茶房', en: 'MIDORI SABOU', casing: '#a3d6bf', door: '#aadbc5', trim: '#2d7a57', stile: '#98cdb5', inner: '#eef6f1' },
 };
@@ -79,14 +79,14 @@ export function makeVendTextures(ctx) {
       g.fillStyle = '#b89a62'; g.fillRect(0, h * 0.18, w, 2); g.fillRect(0, h * 0.8, w, 2);
       ftext(g, 'BLACK', C, h * 0.45, 104, 32, F.en, 900, '#f1ece2');
       ftext(g, '無糖', C, h * 0.68, 60, 20, F.sans, 700, '#e0c48c');
-      ftext(g, 'はるかぜ珈琲', C, h * 0.9, 90, 11, F.sans, 500, '#cbb89a');
+      ftext(g, 'はるかぜCHAI', C, h * 0.9, 90, 11, F.sans, 500, '#cbb89a');
     });
     // 2 green tea (pet)
     cell(2, (g, w, h) => {
       g.fillStyle = '#eef3e2'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#6aa46c'; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 10, w, 10);
       g.fillStyle = '#9cc782'; g.beginPath(); g.ellipse(C + 36, h * 0.55, 18, 34, 0.5, 0, Math.PI * 2); g.fill();
-      vtext(g, '緑茶', C - 6, 16, 30, F.brush, 700, 1.0, '#2f6b3f');
+      vtext(g, 'CHAI', C - 6, 16, 30, F.brush, 700, 1.0, '#2f6b3f');
       ftext(g, 'みどり茶', C + 40, h * 0.86, 60, 11, F.sans, 700, '#3d7a4a');
     }, 'pet', '#bfcb8e');
     // 3 lemon soda (can)
@@ -107,13 +107,13 @@ export function makeVendTextures(ctx) {
       ftext(g, 'いちご', C + 10, h * 0.34, 90, 26, F.round, 900, '#d33d5a');
       ftext(g, 'みるく', C + 10, h * 0.7, 90, 26, F.round, 900, '#ffffff');
     }, 'pet', '#f6cdd8');
-    // 5 天然水 (pet)
+    // 5 WATER (pet)
     cell(5, (g, w, h) => {
       g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#9fcde9'; g.beginPath(); g.moveTo(0, h); g.lineTo(C - 60, h * 0.45); g.lineTo(C - 20, h * 0.7); g.lineTo(C + 30, h * 0.32); g.lineTo(w, h); g.fill();
       g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(C + 14, h * 0.44); g.lineTo(C + 30, h * 0.32); g.lineTo(C + 46, h * 0.44); g.fill();
-      ftext(g, '天然水', C, h * 0.2, 110, 26, F.serif, 900, '#2b5d99');
-      ftext(g, '桜川の水', C + 44, h * 0.88, 70, 12, F.sans, 700, '#ffffff');
+      ftext(g, 'WATER', C, h * 0.2, 110, 26, F.serif, 900, '#2b5d99');
+      ftext(g, 'Gulabiの水', C + 44, h * 0.88, 70, 12, F.sans, 700, '#ffffff');
     }, 'pet', '#e4f1f8');
     // 6 orange (pet)
     cell(6, (g, w, h) => {
@@ -139,7 +139,7 @@ export function makeVendTextures(ctx) {
       g.fillStyle = 'rgba(255,255,255,0.8)'; for (let i = 0; i < 14; i++) { g.beginPath(); g.arc((i * 53) % w, h - ((i * 31) % h), 3 + (i % 3), 0, Math.PI * 2); g.fill(); }
       sakuraFlower(g, C, h * 0.3, 20, '#ffffff', '#e27a98');
       ftext(g, '桜ソーダ', C, h * 0.68, 110, 26, F.round, 900, '#b8456a');
-      ftext(g, 'SAKURA SODA', C, h * 0.9, 110, 11, F.en, 700, '#ffffff');
+      ftext(g, 'GULABI SODA', C, h * 0.9, 110, 11, F.en, 700, '#ffffff');
     });
     // 9 おしるこ (short can)
     cell(9, (g, w, h) => {
@@ -164,12 +164,12 @@ export function makeVendTextures(ctx) {
       g.strokeStyle = '#c99a44'; g.lineWidth = 2; for (let i = 0; i < 5; i++) { g.beginPath(); g.moveTo(C + 34 + i * 4, h * 0.9); g.quadraticCurveTo(C + 30 + i * 6, h * 0.5, C + 42 + i * 5, h * 0.18); g.stroke(); }
       vtext(g, 'むぎ茶', C - 8, 10, 25, F.brush, 700, 1.0, '#7a4a22');
     }, 'pet', '#caa05c');
-    // 12 ミルクティー (hot pet)
+    // 12 MILKティー (hot pet)
     cell(12, (g, w, h) => {
       g.fillStyle = '#f1e3cb'; g.fillRect(0, 0, w, h);
       g.fillStyle = '#9b6a45'; g.fillRect(0, h * 0.78, w, h * 0.22);
       g.fillStyle = '#ffffff'; rr(g, C + 26, h * 0.3, 26, 22, 4); g.fill(); g.strokeStyle = '#ffffff'; g.lineWidth = 3; g.beginPath(); g.arc(C + 54, h * 0.41, 6, -1.2, 1.2); g.stroke();
-      ftext(g, 'ミルク', C - 14, h * 0.28, 80, 22, F.round, 900, '#7b4a2c');
+      ftext(g, 'MILK', C - 14, h * 0.28, 80, 22, F.round, 900, '#7b4a2c');
       ftext(g, 'ティー', C - 14, h * 0.56, 80, 22, F.round, 900, '#7b4a2c');
       ftext(g, 'ROYAL MILK TEA', C, h * 0.89, 110, 11, F.en, 700, '#f4e8d6');
     }, 'pet', '#d9ba92');
@@ -221,7 +221,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = '#fbf2ec'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#d24b44'; g.fillRect(0, 0, w, 14); g.fillRect(0, h - 14, w, 14);
     sakuraFlower(g, 118, h / 2, 76, '#d9544c', '#fbf2ec');
-    ftext(g, 'SAKURA', 470, 100, 520, 110, F.en, 900, '#cc453e');
+    ftext(g, 'GULABI', 470, 100, 520, 110, F.en, 900, '#cc453e');
     ftext(g, 'DRINKS', 850, 104, 270, 64, F.en, 900, '#e0857c');
     ftext(g, 'さくらドリンクス', 560, 178, 600, 34, F.round, 900, '#b8433d');
   }, { key: 'props.vend.head.sakura' });
@@ -240,7 +240,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = '#8fd0a0'; g.beginPath(); g.ellipse(160, 130, 26, 54, -0.5, 0, Math.PI * 2); g.fill();
     g.strokeStyle = '#2e7c58'; g.lineWidth = 4; g.beginPath(); g.moveTo(80, 150); g.quadraticCurveTo(112, 100, 138, 44); g.stroke();
     ftext(g, 'みどり茶房', 560, 98, 640, 100, F.brush, 700, '#ffffff');
-    ftext(g, 'MIDORI SABOU — お茶のある毎日', 560, 182, 640, 30, F.sans, 700, '#d7efdf');
+    ftext(g, 'MIDORI SABOU — CHAIのある毎日', 560, 182, 640, 30, F.sans, 700, '#d7efdf');
   }, { key: 'props.vend.head.midori' });
 
   // ---------------------------------------------------------------- side graphics (384x1024), alpha
@@ -257,7 +257,7 @@ export function makeVendTextures(ctx) {
     g.clearRect(0, 0, w, h);
     g.fillStyle = 'rgba(251,242,236,0.95)'; g.fillRect(w * 0.18, 0, w * 0.64, h);
     sakuraFlower(g, w / 2, 190, 110, 'rgba(215,84,76,0.95)', 'rgba(251,242,236,1)');
-    g.fillStyle = 'rgba(204,69,62,1)'; vtext(g, 'SAKURA', w / 2, 360, 62, F.en, 900, 0.98);
+    g.fillStyle = 'rgba(204,69,62,1)'; vtext(g, 'GULABI', w / 2, 360, 62, F.en, 900, 0.98);
     for (const [x, y, r] of [[w / 2 - 50, 850, 20], [w / 2 + 40, 920, 26]]) sakuraFlower(g, x, y, r, 'rgba(224,133,124,0.9)', null);
   }, { key: 'props.vend.side.sakura' });
   sides.aozora = T.draw(384, 1024, (g, w, h) => {
@@ -274,7 +274,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = 'rgba(191,227,196,0.95)'; g.beginPath(); g.ellipse(w * 0.3, h * 0.72, 60, 130, 0.5, 0, Math.PI * 2); g.fill();
     g.fillStyle = 'rgba(143,208,160,0.95)'; g.beginPath(); g.ellipse(w * 0.66, h * 0.8, 44, 100, -0.5, 0, Math.PI * 2); g.fill();
     g.fillStyle = '#ffffff'; vtext(g, '茶房', w / 2, h * 0.14, 110, F.brush, 700, 1.04);
-    ftext(g, 'お茶のある毎日', w / 2, h * 0.5, 300, 34, F.sans, 700, '#e3f3e8');
+    ftext(g, 'CHAIのある毎日', w / 2, h * 0.5, 300, 34, F.sans, 700, '#e3f3e8');
   }, { key: 'props.vend.side.midori' });
 
   // ---------------------------------------------------------------- grime (alpha)
@@ -315,7 +315,7 @@ export function makeVendTextures(ctx) {
           g.strokeStyle = '#9aa3ad'; g.lineWidth = 1.5; rr(g, cx - 40, y0 + 6, 80, 23, 5); g.stroke();
           g.fillStyle = '#2a2d36'; g.font = `900 20px ${F.en}`; g.textAlign = 'right'; g.textBaseline = 'middle';
           g.fillText(String(s.price), cx + 16, y0 + 18);
-          g.font = `700 12px ${F.sans}`; g.textAlign = 'left'; g.fillText('円', cx + 18, y0 + 20);
+          g.font = `700 12px ${F.sans}`; g.textAlign = 'left'; g.fillText(' Rs', cx + 18, y0 + 20);
           if (s.sold) { g.fillStyle = '#e03a3a'; g.font = `900 12px ${F.sans}`; g.textAlign = 'center'; g.fillText('売切', cx - 28, y0 + 18); }
         });
       });
@@ -353,7 +353,7 @@ export function makeVendTextures(ctx) {
       const gr = g.createLinearGradient(x, y, x, y + h); gr.addColorStop(0, '#dcefff'); gr.addColorStop(1, '#9fcde9'); g.fillStyle = gr; g.fillRect(x, y, w, h);
       g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(x, y + h * 0.75); g.lineTo(x + w * 0.3, y + h * 0.35); g.lineTo(x + w * 0.45, y + h * 0.55); g.lineTo(x + w * 0.62, y + h * 0.28); g.lineTo(x + w, y + h * 0.72); g.lineTo(x + w, y + h); g.lineTo(x, y + h); g.fill();
       g.fillStyle = '#7fb6de'; g.fillRect(x, y + h * 0.84, w, h * 0.16);
-      ftext(g, '桜川の天然水', x + w / 2, y + h * 0.16, w * 0.9, 44, F.serif, 900, '#2b5d99');
+      ftext(g, 'GulabiのWATER', x + w / 2, y + h * 0.16, w * 0.9, 44, F.serif, 900, '#2b5d99');
       ftext(g, 'いつでも、すっきり。', x + w / 2, y + h * 0.92, w * 0.8, 24, F.sans, 700, '#ffffff');
     },
     tea: (g, x, y, w, h) => {
@@ -363,7 +363,7 @@ export function makeVendTextures(ctx) {
       ftext(g, 'みどり茶', x + w * 0.24, y + h * 0.4, w * 0.44, 46, F.brush, 700, '#2f6b3f');
       ftext(g, '国産茶葉100%', x + w * 0.24, y + h * 0.62, w * 0.44, 22, F.sans, 700, '#3d7a4a');
       g.fillStyle = '#3f8a55'; rr(g, x + 20, y + h * 0.74, 140, 40, 8); g.fill();
-      ftext(g, '160円', x + 90, y + h * 0.74 + 20, 130, 28, F.sans, 900, '#ffffff');
+      ftext(g, '160 Rs', x + 90, y + h * 0.74 + 20, 130, 28, F.sans, 900, '#ffffff');
     },
     coffee: (g, x, y, w, h) => {
       g.fillStyle = '#2e416b'; g.fillRect(x, y, w, h);
@@ -371,7 +371,7 @@ export function makeVendTextures(ctx) {
       g.fillStyle = '#6b4a36'; g.beginPath(); g.arc(x + w * 0.74, y + h * 0.55, h * 0.22, 0, Math.PI * 2); g.fill();
       g.strokeStyle = 'rgba(255,255,255,0.6)'; g.lineWidth = 4; for (let i = 0; i < 3; i++) { g.beginPath(); g.moveTo(x + w * 0.68 + i * 16, y + h * 0.2); g.quadraticCurveTo(x + w * 0.66 + i * 16, y + h * 0.1, x + w * 0.7 + i * 16, y + 8); g.stroke(); }
       ftext(g, '朝の一杯に。', x + w * 0.3, y + h * 0.3, w * 0.54, 34, F.serif, 900, '#f4ead8');
-      ftext(g, '微糖コーヒー', x + w * 0.3, y + h * 0.56, w * 0.54, 40, F.serif, 900, '#e5c98f');
+      ftext(g, '微糖CHAI', x + w * 0.3, y + h * 0.56, w * 0.54, 40, F.serif, 900, '#e5c98f');
       ftext(g, 'あったか〜いも あります', x + w * 0.3, y + h * 0.82, w * 0.56, 22, F.sans, 700, '#f39a8a');
     },
     ichigo: (g, x, y, w, h) => {
@@ -389,7 +389,7 @@ export function makeVendTextures(ctx) {
       g.strokeStyle = '#f3d84f'; g.lineWidth = 5; for (let i = 0; i < 8; i++) { g.beginPath(); g.moveTo(x + w * 0.78, y + h * 0.42); g.lineTo(x + w * 0.78 + 56 * Math.cos(i * 0.785), y + h * 0.42 + 56 * Math.sin(i * 0.785)); g.stroke(); }
       ftext(g, 'レモンソーダ', x + w * 0.32, y + h * 0.32, w * 0.6, 44, F.round, 900, '#2f6fb5');
       ftext(g, 'しゅわっと春', x + w * 0.32, y + h * 0.58, w * 0.58, 30, F.round, 900, '#3f86c9');
-      ftext(g, '150円', x + w * 0.32, y + h * 0.84, w * 0.4, 30, F.sans, 900, '#e0853a');
+      ftext(g, '150 Rs', x + w * 0.32, y + h * 0.84, w * 0.4, 30, F.sans, 900, '#e0853a');
     },
   };
   function lowerPanel(id, brand, ad, opts = {}) {
@@ -409,8 +409,8 @@ export function makeVendTextures(ctx) {
       g.fillStyle = '#2b3038'; rr(g, px + 14, py + 10, pw - 28, 22, 4); g.fill();
       g.fillStyle = '#ff6a4a'; g.font = `700 16px ${F.en}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('- - -', px + pw / 2, py + 22);
       const lab = (t, y, s = 12) => ftext(g, t, px + pw / 2, PY(y), pw - 10, s, F.sans, 700, '#e8ecf1');
-      lab('硬貨', 0.795, 12); lab('10・50・100・500円', 0.7, 9);
-      lab('千円札のみ', 0.595, 12);
+      lab('硬貨', 0.795, 12); lab('10・50・100・500 Rs', 0.7, 9);
+      lab('千 Rs札のみ', 0.595, 12);
       lab('交通系IC・電子マネー', 0.445, 9);
       lab('おつり', 0.405, 11);
       // take-out door art
@@ -418,7 +418,7 @@ export function makeVendTextures(ctx) {
       g.fillStyle = '#4a5260'; rr(g, tx, ty, tw, th, 8); g.fill();
       const gr = g.createLinearGradient(0, ty, 0, ty + th); gr.addColorStop(0, 'rgba(255,255,255,0.18)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.02)'); gr.addColorStop(1, 'rgba(0,0,0,0.12)');
       g.fillStyle = gr; rr(g, tx, ty, tw, th, 8); g.fill();
-      ftext(g, '取出口', tx + tw / 2, ty + th * 0.42, tw * 0.6, 26, F.sans, 900, '#e8ecf1');
+      ftext(g, '取EXIT', tx + tw / 2, ty + th * 0.42, tw * 0.6, 26, F.sans, 900, '#e8ecf1');
       ftext(g, 'PUSH ▼', tx + tw / 2, ty + th * 0.78, tw * 0.5, 13, F.en, 700, '#c5cdd8');
       // management sticker near the bottom right
       g.fillStyle = '#f6f4ef'; rr(g, PX(0.25), PY(0.26), PX(0.45) - PX(0.25), PY(0.14) - PY(0.26), 4); g.fill();
@@ -463,7 +463,7 @@ export function makeVendTextures(ctx) {
     // name
     g.fillStyle = '#ffffff'; rr(g, 50, 184, 156, 40, 18); g.fill();
     ftext(g, 'さくらぽん', 128, 205, 144, 28, F.round, 900, '#d24f7a');
-    ftext(g, '桜ヶ丘町 公式キャラクター', 128, 238, 150, 11, F.sans, 700, '#b8456a');
+    ftext(g, 'Gulabi Nagar 公式キャラクター', 128, 238, 150, 11, F.sans, 700, '#b8456a');
   }, { key: 'props.sticker.sakurapon' });
 
   // ---------------------------------------------------------------- nobori flag for the station pair (128x448)

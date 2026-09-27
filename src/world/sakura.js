@@ -75,8 +75,8 @@ export async function build(ctx) {
 
   ctx.services.sakura = { trees: published };
   ctx.sakuraStats = { ...stats, bases: B.tris };
-  if (globalThis.process?.env?.SAKURA_DEBUG) {
+  if (globalThis.process?.env?.GULABI_DEBUG) {
     console.log('[sakura stats]', JSON.stringify(ctx.sakuraStats), 'trees', specs.length);
-    if (globalThis.process.env.SAKURA_DEBUG === 'trees') for (const t of published) console.log('[sakura tree]', t.id, t.kind, 'trunk', t.trunk.x.toFixed(1), t.trunk.z.toFixed(1), 'r', t.r, 'h', t.h);
+    if (globalThis.process.env.GULABI_DEBUG === 'trees') for (const t of published) console.log('[sakura tree]', t.id, t.kind, 'trunk', t.trunk.x.toFixed(1), t.trunk.z.toFixed(1), 'r', t.r, 'h', t.h);
   }
 }

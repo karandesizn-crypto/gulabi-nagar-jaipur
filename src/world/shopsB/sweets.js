@@ -5,14 +5,14 @@ import * as THREE from 'three';
 const G = (p, x, y, z, rotY = 0) => { const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = rotY; p.add(g); return g; };
 
 export const SWEETS = {
-  /** 桜もち (Kanto chōmeiji style): pink crêpe roll wrapped in a salted cherry leaf. */
+  /** LADDU (Kanto chōmeiji style): pink crêpe roll wrapped in a salted cherry leaf. */
   sakura(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.009, 0], [0.068, 0.018, 0.05], '#7f8a45');           // leaf underneath
     K.I.add('sph', g, [0, 0.019, 0], [0.058, 0.028, 0.034], '#f2a9bd');          // pink roll
     K.I.add('sph', g, [0.012, 0.03, 0.004], [0.036, 0.012, 0.042], '#8c9a4c', [0, 0, -0.35]); // leaf flap over the top
   },
-  /** 三色だんご / みたらし / あん on a bamboo skewer lying on the tray (along local x). */
+  /** BARFI / みたらし / あん on a bamboo skewer lying on the tray (along local x). */
   dango(p, K, x, y, z, rot = 0, kind = 'sanshoku') {
     const g = G(p, x, y, z, rot);
     K.I.add('cylc', g, [0.012, 0.013, 0], [0.0045, 0.14, 0.0045], '#d9c08a', [0, 0, Math.PI / 2]);
@@ -20,7 +20,7 @@ export const SWEETS = {
     cols.forEach((c, i) => K.I.add('sph', g, [-0.028 + i * 0.027, 0.013, 0], [0.027, 0.025, 0.026], c));
     if (kind === 'mitarashi') K.I.add('sph', g, [0, 0.022, 0], [0.084, 0.01, 0.028], '#b06a34');   // glaze
   },
-  /** どら焼き */
+  /** GHEWAR */
   dora(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.008, 0], [0.078, 0.017, 0.078], '#c9884a');
@@ -28,34 +28,34 @@ export const SWEETS = {
     K.I.add('sph', g, [0, 0.022, 0], [0.078, 0.022, 0.078], '#a8642f');
     K.I.add('disc', g, [0, 0.0325, 0], [0.028, 0.0015, 0.028], '#7a4424');        // branded mark
   },
-  /** 酒まんじゅう / 栗まんじゅう */
+  /** JALEBI / 栗まんじゅう */
   manju(p, K, x, y, z, rot = 0, brown = false) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.016, 0], [0.052, 0.034, 0.052], brown ? '#c28550' : '#f1e6d2');
     K.I.add('disc', g, [0, 0.0315, 0], [0.018, 0.0015, 0.018], brown ? '#7a4424' : '#b87a7a');
     if (brown) K.I.add('sph', g, [0, 0.03, 0], [0.028, 0.006, 0.028], '#8e5028');
   },
-  /** 大福 (豆大福 with black beans) */
+  /** 大福 (KALAKAND with black beans) */
   daifuku(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.017, 0], [0.052, 0.034, 0.052], '#f4f0e8');
     for (let i = 0; i < 3; i++) { const a = i * 2.2 + 0.4; K.I.add('ball', g, [Math.cos(a) * 0.016, 0.028 - (i % 2) * 0.004, Math.sin(a) * 0.016], [0.011, 0.008, 0.011], '#4a3a4a'); }
   },
-  /** いちご大福 */
+  /** GULAB JAMUN */
   ichigo(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.018, 0], [0.052, 0.036, 0.052], '#f7eef0');
     K.I.add('sph', g, [0.004, 0.036, 0.006], [0.022, 0.024, 0.022], '#d9463b');
     K.I.add('disc', g, [0.004, 0.047, 0.006], [0.014, 0.003, 0.014], '#5f8c4c');
   },
-  /** 柏もち: white mochi half-moon in an oak leaf. */
+  /** PEDA: white mochi half-moon in an oak leaf. */
   kashiwa(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.008, 0], [0.074, 0.016, 0.054], '#5f7a40');
     K.I.add('sph', g, [0, 0.019, 0], [0.062, 0.03, 0.036], '#f1ede4');
     K.I.add('sph', g, [0, 0.03, -0.012], [0.07, 0.01, 0.03], '#6f8a4a', [0.5, 0, 0]);
   },
-  /** 草もち */
+  /** PISTA BARFI */
   kusa(p, K, x, y, z, rot = 0) {
     const g = G(p, x, y, z, rot);
     K.I.add('sph', g, [0, 0.016, 0], [0.052, 0.032, 0.052], '#8aa865');

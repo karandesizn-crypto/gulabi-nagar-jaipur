@@ -64,7 +64,7 @@ export function buildYards(A) {
   pave(16.2, 22.2, -26.4, -25.03);
   pave(15.9, 17.0, -27.9, -26.4);
 
-  // ---- public toilet block (お手洗い) x 17.2..21.8, z -30.6..-26.4, faces the plaza
+  // ---- public toilet block (TOILET) x 17.2..21.8, z -30.6..-26.4, faces the plaza
   {
     const X0 = 17.2, X1 = 21.8, Z0 = -30.6, Z1 = -26.4, B0 = 0.15, WT = 2.85, OT = 2.05, T = 0.15;
     k.box(X1 - X0 + 0.1, B0, Z1 - Z0 + 0.1, M.plinth, [(X0 + X1) / 2, B0 / 2, (Z0 + Z1) / 2]);
@@ -155,7 +155,7 @@ export function buildYards(A) {
     P.addCylinder(16.2, -28.55, 0.28, -1, 1);
   }
 
-  // ---- tool shed (物置) + staff bicycle shed (職員用駐輪場)
+  // ---- tool shed (物置) + staff bicycle shed (職員用CYCLE PARKING)
   {
     const x0 = 23.0, x1 = 25.4, z0 = -30.1, z1 = -28.7, H = 2.0;
     const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2;

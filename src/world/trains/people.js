@@ -14,7 +14,7 @@ export const OUTFITS = {
   pinkKnit: { top: '#e3a9b8', bottom: '#d9cfc0', collar: '#f1e6e0', legs: '#6c6674', skirt: true },
   staff: { top: '#2f3a5c', bottom: '#2f3a5c', collar: '#e9eaf0', ribbon: '#c9a04a', legs: '#2f3a5c', cap: '#2f3a5c' },
 };
-const SKIN = ['#efd3c0', '#e9c9b2', '#f2dccb'];
+const SKIN = ['#c9916d', '#a66e4d', '#d9ac83'];
 const HAIR = ['#3a3240', '#4a3a36', '#5b4638', '#6b5a52', '#b8b2b8'];
 
 /** o: { pose:'sit'|'stand', h, outfit, hair, skin, style:'short'|'long'|'bob'|'pony', acc:'phone'|'book'|'bag'|'none', strap: bool, lookDown }. */

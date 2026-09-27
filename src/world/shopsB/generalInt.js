@@ -1,4 +1,4 @@
-// E3 よろず屋 山田商店 — interior: wooden wall shelf and double-sided island packed with individually
+// E3 KIRANA शर्मा किराना — interior: wooden wall shelf and double-sided island packed with individually
 // modelled goods (instanced cup noodles, cans, PET & glass bottles, snack bags, jars, detergent,
 // toilet paper), a tiered dagashi stand with candy jars and hanging strips, household-goods shelf,
 // glass-door drinks cooler, old counter with register / scale / candy jars, raised tatami chōba
@@ -7,11 +7,11 @@
 import * as THREE from 'three';
 import * as PR from './props.js';
 
-export const TEXTS = ['カレー', 'せんべい', '洗剤', 'のり', 'ティッシュ', 'うどん', 'マッチ', 'キャラメル', 'サイダー', 'しょうゆ', 'みそ', 'お茶', 'ラーメン', 'クッキー', 'ビスケット', 'だがし',
-  'お米', '新米', '精米', '桜ヶ丘産 コシヒカリ', '5kg', '10kg', '冷凍食品', 'アイス', '冷たいお飲み物', '駄菓子', '10円', '20円', '30円', '50円', 'おやつ', '特売中', 'どれでも', '日用品', '調味料', '缶詰', 'インスタント',
-  'ほうき', 'はたき', 'ちりとり', 'やまだ', '4月', '山田商店', '町内会', 'お知らせ', '春の交通安全運動', '桜ヶ丘町', 'きなこ棒', 'ラムネ', 'ガム', 'あめ', 'くじ', 'ご自由にお使いください', 'かご'];
+export const TEXTS = ['カレー', 'せんべい', '洗剤', 'のり', 'ティッシュ', 'うどん', 'マッチ', 'キャラメル', 'サイダー', 'CURRY', 'DAL', 'CHAI', 'DHABA', 'クッキー', 'ビスケット', 'だがし',
+  'お米', '新米', '精米', 'गुलाबी नगर産 コシヒカリ', '5kg', '10kg', '冷凍食品', 'アイス', '冷たいお飲み物', '駄菓子', '10 Rs', '20 Rs', '30 Rs', '50 Rs', 'おやつ', '特売中', 'どれでも', '日用品', '調味料', '缶詰', 'インスタント',
+  'ほうき', 'はたき', 'ちりとり', 'Sharma', '4月', 'शर्मा किराना', '町内会', 'NOTICE', '春の交通安全運動', 'Gulabi Nagar', 'きなこ棒', 'ラムネ', 'ガム', 'あめ', 'くじ', 'ご自由にお使いください', 'かご'];
 
-const GOODS = ['カレー', 'せんべい', '洗剤', 'のり', 'ティッシュ', 'うどん', 'マッチ', 'キャラメル', 'サイダー', 'しょうゆ', 'みそ', 'お茶', 'ラーメン', 'クッキー', 'ビスケット', 'だがし'];
+const GOODS = ['カレー', 'せんべい', '洗剤', 'のり', 'ティッシュ', 'うどん', 'マッチ', 'キャラメル', 'サイダー', 'CURRY', 'DAL', 'CHAI', 'DHABA', 'クッキー', 'ビスケット', 'だがし'];
 const GOODS_COL = ['#e9a23b', '#c98a4e', '#5f8fcf', '#3f5f4e', '#f1c9d4', '#e9e2cf', '#d9463b', '#e8c547', '#8fd1c1', '#8e3b36', '#c9a57a', '#6f9a6a', '#d9463b', '#b98a6a', '#f2c230', '#ef9fbe'];
 const PACK = ['#d9463b', '#e8c547', '#3f7fb5', '#6f9a6a', '#e9a23b', '#ef9fbe', '#8fd1c1', '#f4efe6', '#b98a6a', '#5f8fcf'];
 
@@ -82,7 +82,7 @@ export function buildGeneralInterior(ctx, K, S, P) {
       c.fillStyle = '#f7e36a'; K.rr(c, 0, 0, W, H, 14); c.fill();
       c.strokeStyle = '#d9463b'; c.lineWidth = 6; K.rr(c, 6, 6, W - 12, H - 12, 10); c.stroke();
       K.text(c, 'おやつ 特売中!', W / 2, H * 0.43, W - 30, 40, F.round, 900, '#d9463b');
-      K.text(c, 'どれでも 3コ 200円', W / 2, H * 0.78, W - 40, 20, F.round, 700, '#3a3346');
+      K.text(c, 'どれでも 3コ 200 Rs', W / 2, H * 0.78, W - 40, 20, F.round, 700, '#3a3346');
     }, { key: 'sb-gen-pop' });
     B(0.02, 0.57, 0.02, K.im('#8d949b', 0.2), [-2.05, FL + 1.485, -3.2]);
     for (const s of [1, -1]) K.plane(g, 0.62, 0.23, K.im('#ffffff', 0.35, { map: pop }), [-2.05, FL + 1.88, -3.2 + s * 0.003], s > 0 ? 0 : Math.PI);
@@ -311,7 +311,7 @@ function dagashiStand(ctx, K, p, x, y, z, rnd) {
       else if (k === 3) for (let a = 0; a < 4; a++) for (let b = 0; b < 3; b++) I.add('box', g, [tx - 0.08 + a * 0.054, h + 0.035, tz - 0.06 + b * 0.06], [0.044, 0.02, 0.05], a % 2 ? c1 : '#f4efe6', [0, rnd.range(-0.3, 0.3), 0]);  // gum / menko packs
       else if (k === 4) for (let a = 0; a < 5; a++) for (let b = 0; b < 3; b++) I.add('cyl', g, [tx - 0.09 + a * 0.045, h + 0.035, tz - 0.055 + b * 0.055], [0.03, 0.05, 0.03], b % 2 ? c1 : c2);        // ramune candy tubes
       else for (let a = 0; a < 3; a++) I.add('box', g, [tx - 0.075 + a * 0.075, h + 0.035, tz], [0.06, 0.1, 0.16], a % 2 ? c1 : c2, [-0.6, 0, 0]);  // cards leaning
-      K.plane(g, 0.08, 0.04, K.im('#ffffff', 0.36, { map: K.card([['10円', '20円', '30円', '50円'][(i + si) % 4]], { w: 96, h: 48, bg: '#fbf4e4', fg: '#c9463e', font: K.F.round, size0: 30 }) }), [tx, h + 0.03, tz + 0.105], 0, -0.3);
+      K.plane(g, 0.08, 0.04, K.im('#ffffff', 0.36, { map: K.card([['10 Rs', '20 Rs', '30 Rs', '50 Rs'][(i + si) % 4]], { w: 96, h: 48, bg: '#fbf4e4', fg: '#c9463e', font: K.F.round, size0: 30 }) }), [tx, h + 0.03, tz + 0.105], 0, -0.3);
     }
   });
   // candy jars on the top step (glass, lids, candy inside)
@@ -325,7 +325,7 @@ function dagashiStand(ctx, K, p, x, y, z, rnd) {
     K.box(g, 0.012, 0.44, 0.004, K.im('#e9e2d0', 0.3), [sx, 1.2, -0.46]);
     for (let k = 0; k < 4; k++) I.add('pillow', g, [sx, 1.34 - k * 0.1, -0.45], [0.07, 0.085, 0.022], k % 2 ? c : '#f7f3ea', [0, 0, 0.05 * (k % 2 ? 1 : -1)]);
   }
-  K.plane(g, 0.46, 0.14, K.im('#ffffff', 0.36, { map: K.card(['駄菓子', '10円・20円・30円'], { w: 256, h: 84, bg: '#fbf4e4', fg: '#c9463e', fg2: '#3a3346', font: K.F.round }) }), [0, 1.5, -0.455]);
+  K.plane(g, 0.46, 0.14, K.im('#ffffff', 0.36, { map: K.card(['駄菓子', '10 Rs・20 Rs・30 Rs'], { w: 256, h: 84, bg: '#fbf4e4', fg: '#c9463e', fg2: '#3a3346', font: K.F.round }) }), [0, 1.5, -0.455]);
 }
 function candyJar(K, p, x, y, z, i, rnd, s = 1) {
   const r = 0.07 * s, h = 0.17 * s;
@@ -402,7 +402,7 @@ function riceTex(K, size) {
     g.fillStyle = '#c9463e'; g.beginPath(); g.arc(46, 88, 30, 0, 7); g.fill();
     K.text(g, '新米', 46, 88, 52, 26, K.F.brush, 400, '#f7efe0');
     K.text(g, 'お米', w * 0.62, 72, 140, 58, K.F.brush, 400, '#3a3346');
-    K.text(g, '桜ヶ丘産 コシヒカリ', w * 0.62, 118, 150, 20, K.F.sans, 700, '#3a3346');
+    K.text(g, 'गुलाबी नगर産 コシヒカリ', w * 0.62, 118, 150, 20, K.F.sans, 700, '#3a3346');
     K.text(g, size, w - 34, h - 11, 60, 18, K.F.en, 900, '#f7efe0');
     K.text(g, '精米', 40, h - 11, 60, 16, K.F.sans, 700, '#f7efe0');
   }, { key: 'sb-rice-' + size });
@@ -431,7 +431,7 @@ function bucketStack(K, p, x, y, z) {
   const cols = ['#3f7fb5', '#d9463b', '#e8c547', '#6f9a6a'];
   for (let i = 0; i < 4; i++) K.I.add('cup', p, [x, y + i * 0.06, z], [0.3, 0.26, 0.3], cols[i]);
   const hd = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.006, 4, 16, Math.PI), K.im('#8d949b', 0.3)); hd.position.set(x, y + 0.44, z); p.add(hd);
-  K.plane(p, 0.16, 0.08, K.im('#ffffff', 0.35, { map: K.card(['バケツ', '380円'], { w: 160, h: 72, bg: '#f4efe2', fg: '#3a3346', fg2: '#c9463e' }) }), [x, y + 0.22, z + 0.155], 0, 0.1);
+  K.plane(p, 0.16, 0.08, K.im('#ffffff', 0.35, { map: K.card(['バケツ', '380 Rs'], { w: 160, h: 72, bg: '#f4efe2', fg: '#3a3346', fg2: '#c9463e' }) }), [x, y + 0.22, z + 0.155], 0, 0.1);
 }
 function basketStack(K, p, x, y, z, n, color) {
   const I = K.I;
@@ -478,7 +478,7 @@ function houseNorenTex(K) {
     g.strokeStyle = '#eee8da'; g.lineWidth = 7; g.beginPath(); g.arc(w / 2, h * 0.52, 58, 0, 7); g.stroke();
     g.beginPath(); g.moveTo(w / 2 - 36, h * 0.47); g.lineTo(w / 2, h * 0.37); g.lineTo(w / 2 + 36, h * 0.47); g.stroke();
     K.text(g, '田', w / 2, h * 0.58, 60, 48, K.F.serif, 700, '#eee8da');
-    K.text(g, 'やまだ', w / 2, h * 0.86, w * 0.5, 30, K.F.brush, 400, '#eee8da');
+    K.text(g, 'Sharma', w / 2, h * 0.86, w * 0.5, 30, K.F.brush, 400, '#eee8da');
   }, { key: 'sb-yamada-noren2' });
 }
 function tatamiTex(K) {
@@ -496,16 +496,16 @@ function calendarTex(K) {
     g.fillStyle = '#f2b5c8'; for (let i = 0; i < 6; i++) { g.beginPath(); g.arc(20 + i * 24, 60 - (i % 2) * 18, 9, 0, 7); g.fill(); }
     K.text(g, '4月', w / 2, 104, 80, 26, K.F.serif, 700, '#3a3346');
     for (let d = 1; d <= 30; d++) { const c = (d + 2) % 7, rr = Math.floor((d + 2) / 7); K.text(g, String(d), 14 + c * 22, 130 + rr * 20, 20, 12, K.F.sans, 500, c === 0 ? '#c9463e' : '#3a3346'); }
-    K.text(g, '山田商店', w / 2, h - 10, 100, 14, K.F.sans, 700, '#6d6a80');
+    K.text(g, 'शर्मा किराना', w / 2, h - 10, 100, 14, K.F.sans, 700, '#6d6a80');
   }, { key: 'sb-yamada-cal' });
 }
 function noticeTex(K) {
   return K.tex.draw(256, 184, (g, w, h) => {
     g.fillStyle = '#f7f3ea'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#3f8f5b'; g.fillRect(0, 0, w, 34);
-    K.text(g, '町内会 お知らせ', w / 2, 18, w - 20, 22, K.F.sans, 900, '#fdf8ee');
+    K.text(g, '町内会 NOTICE', w / 2, 18, w - 20, 22, K.F.sans, 900, '#fdf8ee');
     K.text(g, '春の交通安全運動', w / 2, 70, w - 20, 26, K.F.sans, 900, '#3a3346');
     K.text(g, '4月6日〜15日', w / 2, 110, w - 20, 24, K.F.sans, 700, '#c9463e');
-    K.text(g, '桜ヶ丘町', w / 2, 158, w - 40, 18, K.F.sans, 700, '#6d6a80');
+    K.text(g, 'Gulabi Nagar', w / 2, 158, w - 40, 18, K.F.sans, 700, '#6d6a80');
   }, { key: 'sb-yamada-notice' });
 }

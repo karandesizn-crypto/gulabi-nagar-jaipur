@@ -1,4 +1,4 @@
-// E6: 桜ヶ丘稲荷神社 — a tiny neighbourhood Inari shrine on a raised gravel terrace.
+// E6: Gulabi Nagar Mandir — a tiny neighbourhood Inari shrine on a raised gravel terrace.
 // Lot frame: origin at the frontage centre, +Z faces the main street, lot = x∈[-4.25,4.25], z∈[-14,0].
 // Local +x of this lot points south (world +z). SPOTS.shrineSakura (lot -2.5,-6.5) is left clear.
 import * as THREE from 'three';

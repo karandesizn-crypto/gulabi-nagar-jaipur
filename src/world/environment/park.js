@@ -1,4 +1,4 @@
-// environment/park.js — 桜ヶ丘ふれあい緑地: a small green slope park on unowned ground east of the NE
+// environment/park.js — गुलाबी नगरふれあい緑地: a small green slope park on unowned ground east of the NE
 // block (mound with a winding gravel path, log steps, a bench on top looking over the tracks, tsutsuji
 // shrubs, young maples, an entrance sign); 市民農園 allotments and a gravel lot in the west strip.
 import * as L from '../layout.js';
@@ -109,9 +109,9 @@ export function buildPark(ctx, tx) {
     for (let i = 0; i < 40; i++) { const y = rr() * h; g.strokeStyle = 'rgba(90,62,40,0.35)'; g.lineWidth = 1 + rr() * 2; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.4, y + 6, w * 0.6, y - 6, w, y); g.stroke(); }
     g.strokeStyle = '#5a4032'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
     g.fillStyle = '#fbf3e4'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    ctx.tex.fitText(g, '桜ヶ丘ふれあい緑地', w / 2, h * 0.4, w * 0.88, 64, ctx.tex.FONTS.serif, 700);
-    ctx.tex.fitText(g, 'さくらがおか ふれあいりょくち', w / 2, h * 0.64, w * 0.8, 24, ctx.tex.FONTS.round, 700);
-    g.globalAlpha = 0.85; ctx.tex.fitText(g, '花壇にはいらないでね　桜ヶ丘町', w / 2, h * 0.83, w * 0.8, 20, ctx.tex.FONTS.sans, 500); g.globalAlpha = 1;
+    ctx.tex.fitText(g, 'गुलाबी नगरふれあい緑地', w / 2, h * 0.4, w * 0.88, 64, ctx.tex.FONTS.serif, 700);
+    ctx.tex.fitText(g, 'गुलाबी नगर ふれあいりょくち', w / 2, h * 0.64, w * 0.8, 24, ctx.tex.FONTS.round, 700);
+    g.globalAlpha = 0.85; ctx.tex.fitText(g, '花壇にはいらないでね　Gulabi Nagar', w / 2, h * 0.83, w * 0.8, 20, ctx.tex.FONTS.sans, 500); g.globalAlpha = 1;
   }, { key: 'env-park-sign' });
   {
     const x = 68.6, z = -7.3, y = terrainH(x, z);
@@ -171,14 +171,14 @@ export function buildPark(ctx, tx) {
     k.boxB(2.7, 0.08, 2.1, ctx.mat.toon('#7b8691', { paint: 0.04 }), [sx, sy + 2.1, sz], [0.08, 0, 0]);
     k.box(0.9, 1.8, 0.03, ctx.mat.toon('#8f98a0'), [sx + 0.4, sy + 0.95, sz + 0.91]);
     ctx.physics.addBox(sx, sz, 2.5, 1.9, 0, sy, sy + 2.3);
-    const at = ctx.tex.sign({ w: 512, h: 160, bg: '#f3f1ea', fg: '#2f5a3a', text: '桜ヶ丘市民農園', sub: '区画利用者以外の立ち入りはご遠慮ください', font: ctx.tex.FONTS.round, border: 10, borderColor: '#3f8f5b', radius: 12, key: 'env-allot-sign' });
+    const at = ctx.tex.sign({ w: 512, h: 160, bg: '#f3f1ea', fg: '#2f5a3a', text: 'गुलाबी नगर市民農園', sub: '区画利用者以外の立ち入りはご遠慮ください', font: ctx.tex.FONTS.round, border: 10, borderColor: '#3f8f5b', radius: 12, key: 'env-allot-sign' });
     const ax = A.x1 - 0.5, az = A.z0 - 1.2, ay = L.heightAt(ax, az);
     k.box(0.07, 1.4, 0.07, ctx.mat.toon('#e9e7e0'), [ax, ay + 0.7, az - 0.7]); k.box(0.07, 1.4, 0.07, ctx.mat.toon('#e9e7e0'), [ax, ay + 0.7, az + 0.7]);
     k.plane(1.6, 0.5, ctx.mat.toon('#ffffff', { map: at, paint: 0.02 }), [ax + 0.045, ay + 1.2, az], [0, Math.PI / 2, 0]); // faces east
     ctx.physics.addBox(ax, az, 0.2, 1.6, 0, ay, ay + 1.5);
   }
 
-  // ---------------------------------------------------------------- gravel lot: wheel stops + 月極駐車場 sign; 売地 sign in the vacant lot
+  // ---------------------------------------------------------------- gravel lot: wheel stops + 月極PARKING sign; 売地 sign in the vacant lot
   {
     const stop = ctx.mat.toon('#d9d5ca', { paint: 0.06 });
     const lineY = ctx.mat.decal('#f0ece0');
@@ -187,13 +187,13 @@ export function buildPark(ctx, tx) {
       k.boxB(1.6, 0.12, 0.16, stop, [x, L.heightAt(x, z), z]);
       k.box(0.08, 0.01, 4.6, lineY, [x + 1.7, L.heightAt(x, z) + 0.006, -9.4]);
     }
-    const pk = ctx.tex.sign({ w: 512, h: 256, bg: '#fbfaf6', fg: '#2f64b5', text: '月極駐車場', sub: '空きあり　お問い合わせは桜ヶ丘不動産まで', font: ctx.tex.FONTS.sans, border: 12, borderColor: '#2f64b5', radius: 10, key: 'env-parking-sign' });
+    const pk = ctx.tex.sign({ w: 512, h: 256, bg: '#fbfaf6', fg: '#2f64b5', text: '月極PARKING', sub: '空きあり　お問い合わせはगुलाबी नगर不動産まで', font: ctx.tex.FONTS.sans, border: 12, borderColor: '#2f64b5', radius: 10, key: 'env-parking-sign' });
     const px = -77.4, pz = -6.9, py = L.heightAt(px, pz);
     k.cyl(0.04, 0.04, 1.9, ctx.mat.toon('#9aa1a8'), [px, py + 0.95, pz], null, 8);
     k.plane(0.9, 0.45, ctx.mat.toon('#ffffff', { map: pk, paint: 0.02 }), [px, py + 1.6, pz + 0.05]);
     k.box(0.92, 0.47, 0.02, ctx.mat.toon('#e9ecee'), [px, py + 1.6, pz + 0.035]);
     ctx.physics.addCylinder(px, pz, 0.08, py, py + 2);
-    const sale = ctx.tex.sign({ w: 512, h: 256, bg: '#fffdf6', fg: '#c7372f', text: '売地', sub: '約 120 坪　建築条件なし　桜ヶ丘不動産', font: ctx.tex.FONTS.sans, border: 10, borderColor: '#c7372f', radius: 6, key: 'env-sale-sign' });
+    const sale = ctx.tex.sign({ w: 512, h: 256, bg: '#fffdf6', fg: '#c7372f', text: '売地', sub: '約 120 坪　建築条件なし　गुलाबी नगर不動産', font: ctx.tex.FONTS.sans, border: 10, borderColor: '#c7372f', radius: 6, key: 'env-sale-sign' });
     const sx = -68.5, sz = -7.0, sy = L.heightAt(sx, sz);
     k.box(0.07, 1.5, 0.07, ctx.mat.toon('#e9e7e0'), [sx - 0.55, sy + 0.75, sz]); k.box(0.07, 1.5, 0.07, ctx.mat.toon('#e9e7e0'), [sx + 0.55, sy + 0.75, sz]);
     k.box(1.3, 0.66, 0.03, ctx.mat.toon('#fbfaf6'), [sx, sy + 1.2, sz]);

@@ -1,4 +1,4 @@
-// W2 — 花屋 はなのわ (7 m wide flower shop, flat above). Lot-local: +z = street (east), +x = north.
+// W2 — फूल भंडार (7 m wide flower shop, flat above). Lot-local: +z = street (east), +x = north.
 // Pale green walls, street-facing gable, striped awning with wind chimes, the front crowded with
 // wooden crates, tin buckets and a tiered stand (instanced flower heads), warm interior (enterable).
 import * as THREE from 'three';
@@ -132,18 +132,18 @@ export function buildFlower(ctx, C) {
   // ---------------- awning + sign + projecting sign + wind chimes
   const aw = P.awning(S, {
     x0: X0, x1: X1, zWall: ZF, yTop: 3.08, depth: 1.45, drop: 0.5, stripe: ['#8fb58a', CREAM], n: 6, valance: GREEN_D, valH: 0.24, scallopW: 0.22,
-    valReg: A.lit.region(1000, 32, (g, w, h) => { g.fillStyle = GREEN_D; g.fillRect(0, 0, w, h); U.text(g, '花屋 はなのわ  ·  flower shop HANANOWA  ·  花束 · 鉢花 · ギフト', w / 2, h / 2 + 1, 18, F.round, CREAM, { weight: 700, maxW: w - 16 }); }, { bg: GREEN_D }),
+    valReg: A.lit.region(1000, 32, (g, w, h) => { g.fillStyle = GREEN_D; g.fillRect(0, 0, w, h); U.text(g, 'फूल भंडार  ·  flower shop PHOOL BHANDAR  ·  BOUQUETS · POTTED PLANTS · GIFTS', w / 2, h / 2 + 1, 18, F.round, CREAM, { weight: 700, maxW: w - 16 }); }, { bg: GREEN_D }),
   });
   {
     const rSign = A.lit.region(512, 110, (g, w, h) => {
       g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.strokeStyle = GREEN_D; g.lineWidth = 5; g.strokeRect(5, 5, w - 10, h - 10);
-      // flower wreath (はなのわ = ring of flowers)
+      // flower wreath (Phool Bhandar = ring of flowers)
       const cx = 64, cy = h / 2;
       for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; g.fillStyle = i % 2 ? '#8fb58a' : '#6f9a5a'; g.beginPath(); g.ellipse(cx + Math.cos(a) * 30, cy + Math.sin(a) * 30, 9, 5, a + 1.2, 0, 6.3); g.fill(); }
       for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3 + 0.3; U.sakura(g, cx + Math.cos(a) * 30, cy + Math.sin(a) * 30, 10, ['#e8819c', '#f2c230', '#f7d3de'][i % 3], '#fbf8f0'); }
-      U.text(g, '花屋', 160, h * 0.5, 44, F.round, GREEN_D, { weight: 900 });
-      U.text(g, 'はなのわ', 330, h * 0.44, 52, F.round, '#d9718f', { weight: 900 });
-      U.text(g, 'flower shop HANANOWA', 330, h * 0.82, 16, F.en, GREEN_D, { weight: 700 });
+      U.text(g, 'फूल', 160, h * 0.5, 44, F.round, GREEN_D, { weight: 900 });
+      U.text(g, 'Phool Bhandar', 330, h * 0.44, 52, F.round, '#d9718f', { weight: 900 });
+      U.text(g, 'flower shop PHOOL BHANDAR', 330, h * 0.82, 16, F.en, GREEN_D, { weight: 700 });
     });
     k.box(3.6, 0.62, 0.06, mTrim, [0, 3.53, ZF + 0.035]);
     S.card(rSign, 3.0, 0.58, [0, 3.53, ZF + 0.068]);
@@ -151,7 +151,7 @@ export function buildFlower(ctx, C) {
     const rV = A.lit.region(128, 400, (g, w, h) => {
       g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, w, h); g.fillStyle = GREEN_D; g.fillRect(0, 0, w, 12); g.fillRect(0, h - 12, w, 12);
       U.sakura(g, w / 2, 58, 34, '#e8819c', '#f2c230');
-      U.vtext(g, 'はなのわ', w / 2, 112, 56, F.round, GREEN_D, 900, 1.02);
+      U.vtext(g, 'Phool Bhandar', w / 2, 112, 56, F.round, GREEN_D, 900, 1.02);
       for (const [x, y, c] of [[26, 350, '#f2c230'], [64, 364, '#e8819c'], [100, 350, '#c9b8e8']]) U.sakura(g, x, y, 14, c, '#fbf8f0');
     });
     const px = X0 - 0.02, py = 3.95, pzz = ZF + 0.45;
@@ -175,7 +175,7 @@ export function buildFlower(ctx, C) {
       chimes.push({ g: pivot, ph: i * 1.7 });
     });
     // handwritten bouquet price cards hanging between the chimes
-    const cardTxt = [['花束', '¥1,000〜'], ['ミニブーケ', '¥800'], ['アレンジ', '¥3,000〜']];
+    const cardTxt = [['BOUQUETS', '₹1,000〜'], ['ミニブーケ', '₹800'], ['アレンジ', '₹3,000〜']];
     const cardRegs = cardTxt.map(([a, b]) => A.lit.region(96, 72, (g, w, h) => {
       g.fillStyle = '#e9d6b4'; g.fillRect(0, 0, w, h); g.strokeStyle = '#8a6446'; g.lineWidth = 2; g.strokeRect(3, 3, w - 6, h - 6);
       U.text(g, a, w / 2, 26, 18, F.hand, INK, { weight: 400, maxW: w - 12 }); U.text(g, b, w / 2, 52, 19, F.hand, '#c2476a', { weight: 400, maxW: w - 12 });
@@ -196,7 +196,7 @@ export function buildFlower(ctx, C) {
 
   // ---------------- front display: buckets, crates, tiered stand, price tags (instanced flowers)
   const mTin = M.t('#b9c0c6'), mTinD = M.t('#9aa3ab');
-  const priceTags = [['チューリップ', '1本 ¥200'], ['バラ', '1本 ¥300'], ['スイートピー', '¥350'], ['ラナンキュラス', '1本 ¥280'], ['かすみ草', '¥500'], ['マーガレット', '¥380'], ['桜の枝', '1本 ¥600'], ['春の花束', '¥1,500〜'], ['パンジー', '3ポット ¥500'], ['アジサイ', '鉢 ¥2,800']];
+  const priceTags = [['チューリップ', '1本 ₹200'], ['バラ', '1本 ₹300'], ['スイートピー', '₹350'], ['ラナンキュラス', '1本 ₹280'], ['かすみ草', '₹500'], ['マーガレット', '₹380'], ['桜の枝', '1本 ₹600'], ['春のBOUQUETS', '₹1,500〜'], ['BREADジー', '3ポット ₹500'], ['アジサイ', '鉢 ₹2,800']];
   const tagReg = {};
   for (const [n, p] of priceTags) tagReg[n] = A.lit.region(120, 80, (g, w, h) => { g.fillStyle = '#fbf8ee'; g.fillRect(0, 0, w, h); g.strokeStyle = '#d9718f'; g.lineWidth = 3; g.strokeRect(3, 3, w - 6, h - 6); U.text(g, n, w / 2, 26, 17, F.hand, INK, { weight: 400, maxW: w - 12 }); U.text(g, p, w / 2, 58, 21, F.hand, '#c2476a', { weight: 400, maxW: w - 12 }); }, { bg: '#fbf8ee' });
   const tag = (name, x, y, z, ry = 0) => {
@@ -296,7 +296,7 @@ export function buildFlower(ctx, C) {
     const pansy = [['#8e7cc3', '#f2c230'], ['#f2c230', '#fbf8f2'], ['#e8506a', '#f7d3de'], ['#c9b8e8', '#fbf8f2'], ['#f08a4b', '#f2c230']];
     for (let i = 0; i < 6; i++) smallPot(cx - 0.58 + i * 0.23, y0 + h1, -1.8, pansy[i % pansy.length]);
     for (let i = 0; i < 3; i++) smallPot(cx - 0.2 + i * 0.2, y0 + h1 * 2, -2.05, pansy[(i + 2) % pansy.length]);
-    tag('パンジー', cx + 0.62, y0 + h1, -1.66);
+    tag('BREADジー', cx + 0.62, y0 + h1, -1.66);
     for (let i = 0; i < 4; i++) smallPot(cx - 0.45 + i * 0.3, y0, -1.45, [['#fbf8f2', '#f2c230'], ['#f7d3de', '#fbf8f2']][i % 2], 'flowers');
     S.box(cx, -1.9, 1.3, 0.5, -1, 0.9);
     bucket(3.05, S.gy(3.05, -0.55), -0.55, 'sakura', null, { r: 0.16, h: 0.46 });
@@ -313,7 +313,7 @@ export function buildFlower(ctx, C) {
       const ct = (s, x, y, size, c, o = {}) => U.text(g, s, x, y, size, F.hand, c, { weight: 400, ...o });
       ct('春の花', w / 2, 36, 34, '#f7c3d3'); ct('入荷しました', w / 2, 76, 24, '#f4efe4');
       ct('スイートピー', w / 2, 120, 20, '#f4efe4'); ct('ラナンキュラス', w / 2, 150, 20, '#f4efe4');
-      ct('花束 ¥1,500〜', w / 2, 192, 24, '#f6e3a0'); ct('ご予約承ります', w / 2, 228, 17, '#bfe3d4');
+      ct('BOUQUETS ₹1,500〜', w / 2, 192, 24, '#f6e3a0'); ct('ORDERS WELCOME', w / 2, 228, 17, '#bfe3d4');
       U.sakura(g, 26, 30, 12, '#f7c3d3'); U.sakura(g, w - 26, 30, 12, '#f7c3d3');
     });
     const eg = S.k.group([1.35, S.gy(1.35, -0.35), -0.35], 0.25); const ke = ctx.kit(eg);

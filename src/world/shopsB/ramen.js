@@ -1,11 +1,11 @@
-// E5 らーめん 春風 (はるかぜ) — small neighbourhood ramen shop: dark wooden front, red paper
+// E5 ढाबा शर्मा (はるかぜ) — small neighbourhood ramen shop: dark wooden front, red paper
 // lanterns, red noren, menu board with prices, lattice window, tanuki statue, kitchen exhaust
 // with steam on the side wall; enterable interior with ticket machine, counter and stools.
 import * as THREE from 'three';
 import { buildRamenInterior } from './ramenInt.js';
 
-export const TEXTS = ['らーめん', 'ラーメン', '春風', 'はるかぜ', 'お品書き', '醤油らーめん', '味噌らーめん', '塩らーめん', 'チャーシューメン', 'つけ麺', '餃子', '6個', '半チャーハン', 'ライス', '大盛り', '味玉', '750円', '850円', '780円', '980円', '880円', '400円', '380円', '150円', '+100円', '+120円',
-  '食券', '食券をお買い求めください', '千円札', '硬貨', 'おつり', '中華そば', '創業昭和四十五年', '11:30〜14:30', '17:00〜21:00', '定休日 月曜日', '営業中', '準備中', '本日のおすすめ', 'スープ', '自家製麺', '特製', '冷やし中華', 'はじめました', 'ビール', '桜川ビール', '生ビール', '一番', 'サイン', '水はセルフサービスです', '替え玉', '100円', '味', 'ご来店ありがとうございます', 'ようこそ'];
+export const TEXTS = ['ढाबा', 'DHABA', 'शर्मा', 'はるかぜ', 'MENU', '醤油ढाबा', 'DALढाबा', '塩ढाबा', 'PANEERメン', 'つけ麺', 'SAMOSA', '6個', '半チャーハン', 'ライス', '大盛り', '味玉', '750 Rs', '850 Rs', '780 Rs', '980 Rs', '880 Rs', '400 Rs', '380 Rs', '150 Rs', '+100 Rs', '+120 Rs',
+  '食券', '食券をお買い求めください', '千 Rs札', '硬貨', 'おつり', 'THALI', 'SINCE 1970', '11:30〜14:30', '17:00〜21:00', 'CLOSED 月曜日', 'OPEN', 'CLOSED', 'TODAY’S SPECIAL', 'スープ', 'FRESH DAILY', '特製', '冷やし中華', 'はじめました', 'ビール', 'Gulabiビール', '生ビール', '一番', 'サイン', '水はセルフサービスです', '替え玉', '100 Rs', '味', 'ご来店THANK YOU', 'ようこそ'];
 
 export function buildRamen(ctx, K, lot) {
   const { mat } = ctx; const { C, T, F } = K;
@@ -81,8 +81,8 @@ export function buildRamen(ctx, K, lot) {
   const dOpt = { w: pw, h: 1.98, d: 0.045, frame: mFrame, glass: mGlass, stile: 0.055, top: 0.06, bottom: 0.1, bars: [0.33, 0.66], vbars: [-0.34, 0.34], kick: { h: 0.4, mat: K.mt('#6a5242', T.vboards), tile: 1.5 } };
   const fixed = K.panel(S.d, dOpt); fixed.position.set(openD.a1 - pw / 2, FL + 0.02, ZF - 0.03);
   const slider = K.panel(S.d, dOpt); slider.position.set(openD.a0 + pw / 2, FL + 0.02, ZF - 0.085);
-  K.eigyoPlate(fixed, 0, 1.43, 0.025, 0, '営業中', '');
-  K.decal(fixed, K.hoursSticker(['11:30〜14:30', '17:00〜21:00', '定休日 月曜日'], '#b8423c'), 0.22, 0.165, [0, 0.93, 0.024]);
+  K.eigyoPlate(fixed, 0, 1.43, 0.025, 0, 'OPEN', '');
+  K.decal(fixed, K.hoursSticker(['11:30〜14:30', '17:00〜21:00', 'CLOSED 月曜日'], '#b8423c'), 0.22, 0.165, [0, 0.93, 0.024]);
   K.autoSlide(S, fixed, { cx: -0.3, cz: ZF, r: 2.6, dx: pocket, rest: 1 });   // open during business hours
   K.autoSlide(S, slider, { cx: -0.3, cz: ZF, r: 2.6, dx: pw - 0.1 + pocket, rest: 1 });
   S.box(openD.a1 - pw + pocket, ZF - 0.12, openD.a1, ZF, FL, FL + 2.0);         // open-state footprint of the parked panels
@@ -107,7 +107,7 @@ export function buildRamen(ctx, K, lot) {
     K.lantern(S, { x, y: Y1 - 0.42, z: ZF + 0.45, r: 0.2, h: 0.56, tex: lTex, glow: 1.08 });
   }
   K.noren(S, { x: (openD.a0 + openD.a1) / 2, y: FL + 2.2, z: ZF + 0.1, w: 1.95, h: 0.78, n: 4, tex: norenTex(K, 1.95, 4), rodColor: '#43332a' });
-  // menu board (お品書き) right of the door + stand sign
+  // menu board (MENU) right of the door + stand sign
   {
     const mx = 1.85, my = FL + 1.48;
     B(1.5, 1.14, 0.06, mPost, [mx, my, ZF + 0.03]);
@@ -121,7 +121,7 @@ export function buildRamen(ctx, K, lot) {
     tanuki(g, K, tx, y0 + 0.1, tz, 0.62, -0.25);
     S.cyl(tx, tz, 0.24, y0, y0 + 0.8);
   }
-  // A-board: 本日のおすすめ
+  // A-board: TODAY’S SPECIAL
   {
     const x = -3.1, z = -0.55, y0 = S.gl(x, z) + 0.035;
     const bg = new THREE.Group(); bg.position.set(x, y0, z); bg.rotation.y = 0.4; g.add(bg);
@@ -274,7 +274,7 @@ function lanternTex(K) {
     gr.addColorStop(0, '#9e3a33'); gr.addColorStop(0.3, '#d9544a'); gr.addColorStop(0.5, '#ef6a5a'); gr.addColorStop(0.7, '#d9544a'); gr.addColorStop(1, '#9e3a33');
     g.fillStyle = gr; g.fillRect(0, 0, w, h);
     g.fillStyle = 'rgba(80,20,20,0.25)'; for (let y = 8; y < h; y += 14) g.fillRect(0, y, w, 2);
-    g.fillStyle = '#2a1f22'; g.font = `400 58px ${K.F.brush}`; K.vtext(g, 'らーめん', w * 0.5, 18, 54, 0.96);
+    g.fillStyle = '#2a1f22'; g.font = `400 58px ${K.F.brush}`; K.vtext(g, 'ढाबा', w * 0.5, 18, 54, 0.96);
     g.fillStyle = '#2a1f22'; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 10, w, 10);
   }, { key: 'sb-ramen-lantern' });
 }
@@ -286,7 +286,7 @@ function norenTex(K, W, n) {
     g.fillStyle = 'rgba(240,232,215,0.9)'; g.fillRect(0, 0, w, 18);
     const gap = 0.014, sw = (W - gap * (n - 1)) / n, chars = ['ら', 'ー', 'め', 'ん'];
     for (let i = 0; i < n; i++) { const cx = (i * (sw + gap) + sw / 2) / W * w; K.text(g, chars[i], cx, h * 0.5, w / n * 0.85, 150, K.F.brush, 400, '#f5eee0'); }
-    K.text(g, '春風', w * 0.9, h * 0.86, 90, 34, K.F.brush, 400, '#f5eee0');
+    K.text(g, 'शर्मा', w * 0.9, h * 0.86, 90, 34, K.F.brush, 400, '#f5eee0');
   }, { key: 'sb-ramen-noren' });
 }
 function roofSignTex(K) {
@@ -295,48 +295,48 @@ function roofSignTex(K) {
     const r = K.ctx.rng('ramen-sign'); K.blotch(g, w, h, r, 16, 0.08);
     g.strokeStyle = '#9e3b35'; g.lineWidth = 8; g.strokeRect(10, 10, w - 20, h - 20);
     g.fillStyle = '#b8423c'; K.rr(g, 30, 30, 150, h - 60, 12); g.fill();
-    K.text(g, '中華そば', 105, h / 2, 130, 36, K.F.brush, 400, '#fdf8ee');
-    K.text(g, 'らーめん', w * 0.44, h * 0.53, 420, 110, K.F.brush, 400, '#b8423c');
-    K.text(g, '春風', w * 0.82, h * 0.52, 200, 100, K.F.brush, 400, '#2a211d');
-    K.text(g, '創業昭和四十五年', w * 0.82, h * 0.86, 220, 18, K.F.serif, 700, '#5a4238');
+    K.text(g, 'THALI', 105, h / 2, 130, 36, K.F.brush, 400, '#fdf8ee');
+    K.text(g, 'ढाबा', w * 0.44, h * 0.53, 420, 110, K.F.brush, 400, '#b8423c');
+    K.text(g, 'शर्मा', w * 0.82, h * 0.52, 200, 100, K.F.brush, 400, '#2a211d');
+    K.text(g, 'SINCE 1970', w * 0.82, h * 0.86, 220, 18, K.F.serif, 700, '#5a4238');
   }, { key: 'sb-ramen-roofsign' });
 }
 function sodeTex(K) {
   return K.tex.draw(160, 544, (g, w, h) => {
     g.fillStyle = '#b8423c'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#f5eee0'; g.lineWidth = 5; g.strokeRect(9, 9, w - 18, h - 18);
-    g.fillStyle = '#f5eee0'; g.font = `900 92px ${K.F.round}`; K.vtext(g, 'ラーメン', w / 2, 26, 92, 1.02);
-    K.text(g, '春風', w / 2, h - 44, w - 30, 40, K.F.brush, 400, '#f7e28a');
+    g.fillStyle = '#f5eee0'; g.font = `900 92px ${K.F.round}`; K.vtext(g, 'DHABA', w / 2, 26, 92, 1.02);
+    K.text(g, 'शर्मा', w / 2, h - 44, w - 30, 40, K.F.brush, 400, '#f7e28a');
   }, { key: 'sb-ramen-sode' });
 }
-const MENU = [['醤油らーめん', '750円'], ['味噌らーめん', '850円'], ['塩らーめん', '780円'], ['チャーシューメン', '980円'], ['つけ麺', '880円'], ['餃子（6個）', '400円'], ['半チャーハン', '380円'], ['ライス', '150円']];
+const MENU = [['醤油ढाबा', '750 Rs'], ['DALढाबा', '850 Rs'], ['塩ढाबा', '780 Rs'], ['PANEERメン', '980 Rs'], ['つけ麺', '880 Rs'], ['SAMOSA（6個）', '400 Rs'], ['半チャーハン', '380 Rs'], ['ライス', '150 Rs']];
 function menuTex(K) {
   return K.tex.draw(512, 380, (g, w, h) => {
     g.fillStyle = '#f1e8d2'; g.fillRect(0, 0, w, h);
     const r = K.ctx.rng('ramen-menu'); K.blotch(g, w, h, r, 12, 0.07);
     g.fillStyle = '#3a2a22'; g.fillRect(0, 0, w, 58);
-    K.text(g, 'お品書き', w / 2, 30, w * 0.6, 40, K.F.brush, 400, '#f1e8d2');
+    K.text(g, 'MENU', w / 2, 30, w * 0.6, 40, K.F.brush, 400, '#f1e8d2');
     MENU.forEach(([a, b], i) => {
       const y = 86 + i * 34;
       K.text(g, a, 30, y, 290, 26, K.F.serif, 700, '#2a211d', 'left');
       g.fillStyle = 'rgba(58,42,34,0.35)'; for (let x = 300; x < 400; x += 10) g.fillRect(x, y + 4, 4, 3);
       K.text(g, b, w - 30, y, 110, 26, K.F.serif, 700, '#b8423c', 'right');
     });
-    K.text(g, '大盛り +100円 ・ 味玉 +120円 ・ 替え玉 100円', w / 2, h - 22, w - 40, 20, K.F.sans, 700, '#5a4238');
+    K.text(g, '大盛り +100 Rs ・ 味玉 +120 Rs ・ 替え玉 100 Rs', w / 2, h - 22, w - 40, 20, K.F.sans, 700, '#5a4238');
   }, { key: 'sb-ramen-menu' });
 }
 function osusumeTex(K) {
   return K.tex.draw(256, 368, (g, w, h) => {
     g.fillStyle = '#2f3a36'; g.fillRect(0, 0, w, h);
     const r = K.ctx.rng('ramen-chalk'); K.blotch(g, w, h, r, 14, 0.12, true);
-    K.text(g, '本日のおすすめ', w / 2, 38, w - 24, 30, K.F.hand, 400, '#f4efe2');
+    K.text(g, 'TODAY’S SPECIAL', w / 2, 38, w - 24, 30, K.F.hand, 400, '#f4efe2');
     K.text(g, '特製', w / 2, 92, w - 24, 30, K.F.hand, 400, '#f7e28a');
-    K.text(g, '味噌らーめん', w / 2, 136, w - 24, 34, K.F.hand, 400, '#f4efe2');
+    K.text(g, 'DALढाबा', w / 2, 136, w - 24, 34, K.F.hand, 400, '#f4efe2');
     // bowl doodle
     g.strokeStyle = '#f4efe2'; g.lineWidth = 3; g.beginPath(); g.arc(w / 2, 200, 56, 0, Math.PI); g.stroke(); g.beginPath(); g.moveTo(w / 2 - 62, 200); g.lineTo(w / 2 + 62, 200); g.stroke();
     g.strokeStyle = '#f7e28a'; for (let i = 0; i < 3; i++) { g.beginPath(); g.moveTo(w / 2 - 20 + i * 20, 190); g.bezierCurveTo(w / 2 - 30 + i * 20, 170, w / 2 - 10 + i * 20, 160, w / 2 - 20 + i * 20, 140); g.stroke(); }
-    K.text(g, '850円', w / 2, 290, w - 24, 40, K.F.hand, 400, '#f4b6c8');
-    K.text(g, '自家製麺', w / 2, 336, w - 24, 22, K.F.hand, 400, '#bfe0b0');
+    K.text(g, '850 Rs', w / 2, 290, w - 24, 40, K.F.hand, 400, '#f4b6c8');
+    K.text(g, 'FRESH DAILY', w / 2, 336, w - 24, 22, K.F.hand, 400, '#bfe0b0');
   }, { key: 'sb-ramen-osusume' });
 }
 function stainTex(K) {
