@@ -1,5 +1,5 @@
 // Station canvas textures: tiling surfaces + sign / poster / info atlases + foliage cards.
-// All text is natural Japanese; all brands are fictional (गुलाबी रेल, さくらパス …).
+// Station names and wayfinding are for the fictional Gulabi Rail line.
 import { makeAtlas } from './util.js';
 
 export const INK = { navy: '#223c6a', navy2: '#34507e', pink: '#dca443', pinkDeep: '#a34d36', paper: '#ecebe6', cream: '#ebe4d4', ink: '#34303f', grey: '#7d7b86', yellow: '#efc53c', red: '#cf4a44', green: '#3f8f5b', blue: '#3a6fb8', sky: '#9cc4ea' };
@@ -21,6 +21,26 @@ export function createStationTextures(ctx) {
     const font = o.font || F.sans, weight = o.weight || 700;
     if (o.maxW) T.fitText(g, s, x, y, o.maxW, size, font, weight);
     else { g.font = `${weight} ${size}px ${font}`; g.fillText(s, x, y); }
+  }
+  function exitPanel(g, w, h, direction, destination, detail) {
+    const ink = '#2f2c34';
+    g.fillStyle = '#f0c63a'; rr(g, 0, 0, w, h, 10); g.fill();
+    g.fillStyle = ink; g.beginPath();
+    if (direction === 'up') {
+      g.moveTo(70, 18); g.lineTo(108, 62); g.lineTo(84, 62); g.lineTo(84, 110);
+      g.lineTo(56, 110); g.lineTo(56, 62); g.lineTo(32, 62);
+    } else {
+      g.moveTo(26, h / 2); g.lineTo(76, h / 2 - 34); g.lineTo(76, h / 2 - 14);
+      g.lineTo(120, h / 2 - 14); g.lineTo(120, h / 2 + 14);
+      g.lineTo(76, h / 2 + 14); g.lineTo(76, h / 2 + 34);
+    }
+    g.closePath(); g.fill();
+    // Three measured columns keep the arrow, exit label, and destination apart.
+    g.fillRect(258, 20, 2, h - 40);
+    txt(g, 'EXIT', 188, 46, 46, ink, { weight: 900, font: F.en, maxW: 122 });
+    txt(g, 'निकास', 188, 91, 21, ink, { weight: 700, maxW: 122 });
+    txt(g, destination, 377, 46, 27, ink, { weight: 800, font: F.en, maxW: 206 });
+    txt(g, detail, 377, 90, 17, ink, { weight: 500, font: F.en, maxW: 206 });
   }
   function spaced(g, s, x, y, size, color, gap, o = {}) { // letter-spaced centred text
     g.font = `${o.weight || 700} ${size}px ${o.font || F.sans}`;
@@ -211,11 +231,11 @@ export function createStationTextures(ctx) {
   function ekimeihyo(g, W, H, left, right) {
     g.fillStyle = '#9aa0a8'; rr(g, 0, 0, W, H, 20); g.fill();
     g.fillStyle = '#eeede9'; rr(g, 6, 6, W - 12, H - 12, 16); g.fill();
-    txt(g, 'गुलाबी रेल  गुलाबी रेल', 36, 34, 22, INK.grey, { align: 'left', weight: 500 });
+    txt(g, 'गुलाबी रेल · जयपुर', 36, 34, 22, INK.grey, { align: 'left', weight: 500 });
     g.fillStyle = INK.pinkDeep; g.fillRect(36, 50, 110, 5);
     // station number box
     g.strokeStyle = INK.pinkDeep; g.lineWidth = 9; rr(g, 168, 64, 104, 104, 14); g.stroke();
-    txt(g, 'SK', 220, 92, 28, INK.navy, { weight: 700 }); txt(g, '07', 220, 138, 52, INK.navy, { weight: 900 });
+    txt(g, 'GN', 220, 92, 28, INK.navy, { weight: 700 }); txt(g, '07', 220, 138, 52, INK.navy, { weight: 900 });
     txt(g, 'गुलाबी नगर', W / 2 + 30, 124, 138, INK.navy, { weight: 900, maxW: 520 });
     spaced(g, 'गुलाबी नगर', W / 2 + 30, 212, 40, INK.navy, 14, { weight: 700, font: F.round });
     spaced(g, 'Gulabi Nagar', W / 2 + 30, 250, 30, '#4f5f7c', 5, { weight: 500, font: F.en });
@@ -241,7 +261,7 @@ export function createStationTextures(ctx) {
     g.fillStyle = '#2b4574'; rr(g, 0, 0, W, H, 10); g.fill();
     g.fillStyle = '#eeede9'; g.beginPath(); g.arc(64, H / 2, 44, 0, 7); g.fill();
     txt(g, String(no), 64, H / 2 + 3, 64, '#2b4574', { weight: 900 });
-    txt(g, '番線', 150, H / 2 + 2, 34, '#f1efe9', { weight: 700 });
+    txt(g, 'PL.', 150, H / 2 + 2, 26, '#f1efe9', { weight: 700, font: F.en, maxW: 75 });
     txt(g, dest, 350, H / 2 - 14, 34, '#f1efe9', { weight: 700, maxW: 300 });
     txt(g, en, 350, H / 2 + 28, 18, '#c9d3e6', { weight: 500, maxW: 300 });
     g.fillStyle = INK.pink; g.fillRect(0, H - 8, W, 8);
@@ -249,19 +269,13 @@ export function createStationTextures(ctx) {
   const signs = makeAtlas(ctx, 'st-atlas-signs', 1024, [
     { id: 'ekiN', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, prev, next) },   // read looking north: west (चाँदपोल) on the left
     { id: 'ekiS', w: 1016, h: 360, draw: (g, w, h) => ekimeihyo(g, w, h, next, prev) },   // read looking south: east (सांगानेर) on the left
-    { id: 'plat1', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 1, 'चाँदपोल・Gulabi BOUND', 'for Chandpole / Sakuragawa') },
-    { id: 'plat2', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 2, 'सांगानेर・山桜 BOUND', 'for Sanganer / Yamazakura') },
-    { id: 'exitL', w: 500, h: 128, draw: (g, w, h) => { // EXIT (yellow) arrow pointing left
-      g.fillStyle = '#f0c63a'; rr(g, 0, 0, w, h, 10); g.fill();
-      g.fillStyle = '#2f2c34'; g.beginPath(); g.moveTo(26, h / 2); g.lineTo(76, h / 2 - 34); g.lineTo(76, h / 2 - 14); g.lineTo(120, h / 2 - 14); g.lineTo(120, h / 2 + 14); g.lineTo(76, h / 2 + 14); g.lineTo(76, h / 2 + 34); g.fill();
-      txt(g, 'EXIT', 230, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
-      txt(g, 'Exit', 230, h / 2 + 38, 22, '#2f2c34', { weight: 700 });
-      txt(g, 'TICKETS', 400, h / 2 - 12, 34, '#2f2c34', { weight: 700 }); txt(g, 'Ticket Gate', 400, h / 2 + 26, 18, '#2f2c34', { weight: 500 });
-    } },
+    { id: 'plat1', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 1, 'चाँदपोल', 'Chandpole bound') },
+    { id: 'plat2', w: 500, h: 128, draw: (g, w, h) => platSign(g, w, h, 2, 'सांगानेर', 'Sanganer bound') },
+    { id: 'exitL', w: 500, h: 128, draw: (g, w, h) => exitPanel(g, w, h, 'left', 'TICKET GATE', 'Tickets / IC cards') },
     { id: 'toTrack2', w: 500, h: 128, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; rr(g, 0, 0, w, h, 10); g.fill();
-      txt(g, 'Platform 2 सांगानेर・山桜 BOUND', 210, h / 2 - 20, 30, '#f1efe9', { weight: 700, maxW: 380 });
-      txt(g, '構内Level Crossingをお渡りください  Track 2 via crossing', 210, h / 2 + 22, 17, '#c9d3e6', { weight: 500, maxW: 380 });
+      txt(g, 'PLATFORM 2 · SANGANER', 210, h / 2 - 20, 29, '#f1efe9', { weight: 700, maxW: 380 });
+      txt(g, 'Use the level crossing', 210, h / 2 + 22, 18, '#c9d3e6', { weight: 500, maxW: 380 });
       g.fillStyle = '#f1efe9'; g.beginPath(); g.moveTo(w - 62, 16); g.lineTo(w - 24, 60); g.lineTo(w - 48, 60); g.lineTo(w - 48, 110); g.lineTo(w - 76, 110); g.lineTo(w - 76, 60); g.lineTo(w - 100, 60); g.fill();
       g.fillStyle = INK.pink; g.fillRect(0, h - 8, w, 8);
     } },
@@ -290,7 +304,7 @@ export function createStationTextures(ctx) {
       spaced(g, 'गुलाबी नगर', 812, 46, 36, INK.navy, 6, { weight: 700, font: F.round });
       spaced(g, 'GULABI NAGAR STATION', 812, 92, 24, '#4f5f7c', 3, { weight: 700, font: F.en });
       g.fillStyle = INK.pink; g.fillRect(672, 116, 280, 5);
-      txt(g, 'गुलाबी रेल  गुलाबी रेल', 812, 140, 22, INK.grey, { weight: 500 });
+      txt(g, 'गुलाबी रेल · जयपुर', 812, 140, 22, INK.grey, { weight: 500 });
     } },
     { id: 'clock', w: 256, h: 256, draw: (g, w) => clockFace(g, w) },
     { id: 'ticketHead', w: 500, h: 96, draw: (g, w, h) => {
@@ -309,20 +323,14 @@ export function createStationTextures(ctx) {
       txt(g, 'のりこし精算機', w / 2, h / 2 - 12, 38, '#f4f2ec', { weight: 700 }); txt(g, 'Fare Adjustment', w / 2, h / 2 + 26, 17, '#c9d3e6', { weight: 500 });
       g.fillStyle = INK.pink; g.fillRect(0, h - 6, w, 6);
     } },
-    { id: 'exitUp', w: 500, h: 128, draw: (g, w, h) => { // EXIT (yellow) arrow straight ahead
-      g.fillStyle = '#f0c63a'; rr(g, 0, 0, w, h, 10); g.fill();
-      g.fillStyle = '#2f2c34'; g.beginPath(); g.moveTo(70, 18); g.lineTo(108, 62); g.lineTo(84, 62); g.lineTo(84, 110); g.lineTo(56, 110); g.lineTo(56, 62); g.lineTo(32, 62); g.fill();
-      txt(g, 'EXIT', 220, h / 2 - 10, 58, '#2f2c34', { weight: 900 });
-      txt(g, 'Exit', 220, h / 2 + 38, 22, '#2f2c34', { weight: 700 });
-      txt(g, 'Station Chowk・バス', 395, h / 2 - 12, 28, '#2f2c34', { weight: 700 }); txt(g, 'Station Square / Bus', 395, h / 2 + 26, 16, '#2f2c34', { weight: 500 });
-    } },
+    { id: 'exitUp', w: 500, h: 128, draw: (g, w, h) => exitPanel(g, w, h, 'up', 'STATION CHOWK', 'Bus stop / Plaza') },
     { id: 'gateSign', w: 1016, h: 110, draw: (g, w, h) => {
       g.fillStyle = '#2b4574'; g.fillRect(0, 0, w, h);
       txt(g, 'TICKETS', 120, h / 2 - 8, 46, '#f4f2ec', { weight: 700 }); txt(g, 'Ticket Gate', 120, h / 2 + 32, 18, '#c9d3e6', { weight: 500 });
       g.fillStyle = '#eeede9'; g.beginPath(); g.arc(300, h / 2, 30, 0, 7); g.fill(); txt(g, '1', 300, h / 2 + 2, 40, '#2b4574', { weight: 900 });
-      txt(g, 'चाँदपोल・Gulabi BOUND', 470, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Chandpole / Sakuragawa', 470, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
+      txt(g, 'CHANDPOLE', 470, h / 2 - 12, 29, '#f4f2ec', { weight: 700, maxW: 250 }); txt(g, 'Platform 1', 470, h / 2 + 24, 16, '#c9d3e6', { weight: 500, maxW: 250 });
       g.fillStyle = '#eeede9'; g.beginPath(); g.arc(660, h / 2, 30, 0, 7); g.fill(); txt(g, '2', 660, h / 2 + 2, 40, '#2b4574', { weight: 900 });
-      txt(g, 'सांगानेर・山桜 BOUND', 830, h / 2 - 12, 30, '#f4f2ec', { weight: 700 }); txt(g, 'for Sanganer / Yamazakura', 830, h / 2 + 24, 16, '#c9d3e6', { weight: 500 });
+      txt(g, 'SANGANER', 830, h / 2 - 12, 29, '#f4f2ec', { weight: 700, maxW: 250 }); txt(g, 'Platform 2', 830, h / 2 + 24, 16, '#c9d3e6', { weight: 500, maxW: 250 });
       g.fillStyle = INK.pink; g.fillRect(0, h - 7, w, 7);
     } },
     { id: 'depBoard', w: 512, h: 170, draw: (g, w, h) => { // 発車標 (LED look)
@@ -330,13 +338,13 @@ export function createStationTextures(ctx) {
       g.fillStyle = '#2d2c36'; g.fillRect(0, 0, w, 36);
       txt(g, '発車時刻  Departures', w / 2, 19, 20, '#dfe3ee', { weight: 500 });
       const row = (y, col, typ, time, dest, trk) => {
-        txt(g, typ, 48, y, 28, '#8fe39a', { weight: 700 });
-        txt(g, time, 150, y, 30, col, { weight: 700 });
-        txt(g, dest, 310, y, 28, col, { weight: 700 });
-        txt(g, trk, 460, y, 26, '#f5e7a0', { weight: 700 });
+        txt(g, typ, 48, y, 20, '#8fe39a', { weight: 700, maxW: 80 });
+        txt(g, time, 148, y, 27, col, { weight: 700, maxW: 84 });
+        txt(g, dest, 312, y, 26, col, { weight: 700, maxW: 180 });
+        txt(g, trk, 462, y, 24, '#f5e7a0', { weight: 700, maxW: 52 });
       };
-      row(78, '#ffb36b', 'LOCAL', '16:08', 'चाँदपोल・Gulabi', 'Platform 1');
-      row(126, '#ffb36b', 'LOCAL', '16:12', 'सांगानेर・山桜', 'Platform 2');
+      row(78, '#ffb36b', 'LOCAL', '16:08', 'चाँदपोल', '1');
+      row(126, '#ffb36b', 'LOCAL', '16:12', 'सांगानेर', '2');
       g.fillStyle = 'rgba(0,0,0,0.25)'; for (let y = 38; y < h; y += 4) g.fillRect(0, y, w, 1);
     } },
     { id: 'keepOut', w: 256, h: 190, draw: (g, w, h) => {
