@@ -2,6 +2,8 @@
 
 A walkable, cel-shaded, Jaipur-inspired railway neighbourhood. Explore a fictional station, bazaar and promenade in your browser. This adaptation builds on [Kenton-GMI's Sakuragaoka Station](https://github.com/Kenton-GMI/sakuragaoka-station), licensed under MIT; see [LICENSE](./LICENSE).
 
+[Play Gulabi Nagar](https://gulabi-nagar-jaipur.vercel.app) on Vercel.
+
 ## Explore
 
 ```sh
