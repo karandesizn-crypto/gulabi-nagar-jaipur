@@ -175,12 +175,12 @@ export function buildLevee(ctx, tx) {
       for (let i = 0; i < 14; i++) { const x = 40 + r() * (w - 80), y = 30 + r() * 60; g.fillStyle = r() < 0.5 ? '#f3c3d3' : '#f8dce6'; g.beginPath(); g.ellipse(x, y, 11, 7, r() * 3, 0, 7); g.fill(); }
       g.textAlign = 'center'; g.textBaseline = 'middle';
       g.fillStyle = '#fbf3e4';
-      ctx.tex.fitText(g, 'Gulabi堤 さくら並木', w / 2, h * 0.42, w * 0.88, 150, ctx.tex.FONTS.brush, 400);
+      ctx.tex.fitText(g, 'गुलाबी नदी', w / 2, h * 0.42, w * 0.88, 150, ctx.tex.FONTS.brush, 400);
       g.fillStyle = '#f4e3cf';
-      ctx.tex.fitText(g, 'さくらがわづつみ さくらなみき', w / 2, h * 0.66, w * 0.7, 40, ctx.tex.FONTS.serif, 700);
+      ctx.tex.fitText(g, 'GULABI RIVER WALK', w / 2, h * 0.66, w * 0.7, 40, ctx.tex.FONTS.serif, 700);
       g.globalAlpha = 0.9;
-      ctx.tex.fitText(g, 'Sakuragawa-zutsumi Cherry Blossom Promenade', w / 2, h * 0.77, w * 0.8, 30, ctx.tex.FONTS.en, 500);
-      ctx.tex.fitText(g, 'ソメイヨシノ 約160本・全長 約1.2km　　Gulabi Nagar観光協会', w / 2, h * 0.88, w * 0.84, 28, ctx.tex.FONTS.sans, 500);
+      ctx.tex.fitText(g, 'Gulabi River Promenade', w / 2, h * 0.77, w * 0.8, 30, ctx.tex.FONTS.en, 500);
+      ctx.tex.fitText(g, '1.2 km riverside promenade · Gulabi Nagar', w / 2, h * 0.88, w * 0.84, 28, ctx.tex.FONTS.sans, 500);
       g.globalAlpha = 1;
     }, { key: 'env-levee-sign' });
     const sx = -8.9, sz = R5.z - R5.halfW + 0.35, y = PATH_Y;

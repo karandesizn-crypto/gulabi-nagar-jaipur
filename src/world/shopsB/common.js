@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { makeShrub, makeHedge } from '../lib/foliage.js';
+import { localizeSceneText } from '../../core/scene-copy.js';
 
 export const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
@@ -23,21 +24,10 @@ export function createKit(ctx) {
   // ------------------------------------------------------------------ text helpers
   /** Vertical text; rotates long-vowel marks / wave dashes like real 縦書き. g.font must be set. */
   K.vtext = (g, text, x, y, size, gap = 1.04) => {
+    text = localizeSceneText(text);
     g.textAlign = 'center'; g.textBaseline = 'middle';
-    if (/[\u0900-\u097f]/.test(text)) {
-      K.tex.fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, F.sans, 700);
-      return y + size * 2;
-    }
-    let yy = y + size / 2;
-    for (const ch of text) {
-      if (ch === ' ' || ch === '　') { yy += size * 0.5; continue; }
-      if ('ー〜ｰ-―—…'.includes(ch)) { g.save(); g.translate(x, yy); g.rotate(Math.PI / 2); g.fillText(ch, 0, 0); g.restore(); }
-      else if ('、。'.includes(ch)) g.fillText(ch, x + size * 0.55, yy - size * 0.5);
-      else if ('ぁぃぅぇぉっゃゅょァィゥェォッャュョ'.includes(ch)) g.fillText(ch, x + size * 0.1, yy - size * 0.08);
-      else g.fillText(ch, x, yy);
-      yy += size * gap;
-    }
-    return yy;
+    K.tex.fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, F.sans, 700);
+    return y + size * 2;
   };
   K.font = (size, fam = F.sans, weight = 700) => `${weight} ${size}px ${fam}`;
   /** Text fitted into maxW, centred. */

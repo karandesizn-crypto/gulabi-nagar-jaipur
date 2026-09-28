@@ -233,7 +233,7 @@ export function createTrainTextures(ctx) {
       });
     }
     // --- car numbers
-    const nums = [...CAR_NUMBERS.A, ...CAR_NUMBERS.B, 'クハ' + CAR_NUMBERS.A[0], 'モハ' + CAR_NUMBERS.A[1], 'クハ' + CAR_NUMBERS.B[0], 'モハ' + CAR_NUMBERS.B[1]];
+    const nums = [...CAR_NUMBERS.A, ...CAR_NUMBERS.B, 'CAB ' + CAR_NUMBERS.A[0], 'MOTOR ' + CAR_NUMBERS.A[1], 'CAB ' + CAR_NUMBERS.B[0], 'MOTOR ' + CAR_NUMBERS.B[1]];
     nums.forEach((s, i) => {
       const [x, y, w, h] = R['num' + i];
       g.fillStyle = '#433d52'; g.textAlign = 'center'; g.textBaseline = 'middle';

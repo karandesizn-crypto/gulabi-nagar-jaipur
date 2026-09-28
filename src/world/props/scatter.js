@@ -58,7 +58,7 @@ function textures(ctx) {
   ];
   t.gachaHead = T.draw(512, 64, (g, w, h) => {
     const gr = g.createLinearGradient(0, 0, w, 0); gr.addColorStop(0, '#fbe3ea'); gr.addColorStop(0.5, '#fdf6e0'); gr.addColorStop(1, '#e3f1fb'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-    const letters = 'カプセルトイ', cols = ['#e2465c', '#f09a3a', '#e8b93a', '#3f9a68', '#2f6fc9', '#9a5ac9'];
+    const letters = 'GULABI', cols = ['#e2465c', '#f09a3a', '#e8b93a', '#3f9a68', '#2f6fc9', '#9a5ac9'];
     g.font = `900 40px ${F.round}`; g.textAlign = 'center'; g.textBaseline = 'middle';
     [...letters].forEach((ch, i) => { g.fillStyle = cols[i]; g.fillText(ch, 110 + i * 58, h / 2 + 3); });
     for (const [x, c] of [[40, '#f28b9b'], [472, '#7fc4e8']]) { g.fillStyle = c; g.beginPath(); g.arc(x, h / 2, 18, Math.PI, 0); g.fill(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(x, h / 2, 18, 0, Math.PI); g.fill(); }
@@ -134,7 +134,7 @@ function textures(ctx) {
     g.fillStyle = '#fbf8f2'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#3f8f5b'; g.fillRect(0, 0, w, 40);
     ftext(g, 'ゴミ集積所', w / 2, 21, w * 0.9, 28, F.sans, 900, '#ffffff');
-    [['月・木', '燃えるごみ', '#d9463b'], ['火', 'プラスチック', '#2f6fc9'], ['第2・4 水', 'びん・缶・ペット', '#3f8f5b'], ['金', '古紙・布', '#8a6446']].forEach(([d, k, c], i) => {
+    [['MON · THU', 'GENERAL WASTE', '#d9463b'], ['TUE', 'PLASTIC', '#2f6fc9'], ['2ND · 4TH WED', 'GLASS · CANS', '#3f8f5b'], ['FRI', 'PAPER & CLOTH', '#8a6446']].forEach(([d, k, c], i) => {
       g.fillStyle = c; rr(g, 10, 50 + i * 28, 78, 22, 5); g.fill();
       ftext(g, d, 49, 61 + i * 28, 72, 14, F.sans, 900, '#ffffff');
       ftext(g, k, 100, 61 + i * 28, 150, 16, F.sans, 700, '#3a3346', 'left');

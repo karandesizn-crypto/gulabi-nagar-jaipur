@@ -1,6 +1,7 @@
 // Station canvas textures: tiling surfaces + sign / poster / info atlases + foliage cards.
 // Station names and wayfinding are for the fictional Gulabi Rail line.
 import { makeAtlas } from './util.js';
+import { localizeSceneText } from '../../core/scene-copy.js';
 
 export const INK = { navy: '#223c6a', navy2: '#34507e', pink: '#dca443', pinkDeep: '#a34d36', paper: '#ecebe6', cream: '#ebe4d4', ink: '#34303f', grey: '#7d7b86', yellow: '#efc53c', red: '#cf4a44', green: '#3f8f5b', blue: '#3a6fb8', sky: '#9cc4ea' };
 
@@ -43,6 +44,7 @@ export function createStationTextures(ctx) {
     txt(g, detail, 377, 90, 17, ink, { weight: 500, font: F.en, maxW: 206 });
   }
   function spaced(g, s, x, y, size, color, gap, o = {}) { // letter-spaced centred text
+    s = localizeSceneText(s);
     g.font = `${o.weight || 700} ${size}px ${o.font || F.sans}`;
     if (/[\u0900-\u097f]/.test(s)) { T.fitText(g, s, x, y, 260, size, o.font || F.sans, o.weight || 700); return; }
     const chars = [...s]; const ws = chars.map(c => g.measureText(c).width);

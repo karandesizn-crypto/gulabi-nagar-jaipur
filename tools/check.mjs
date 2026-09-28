@@ -4,12 +4,15 @@
 // errors, triangles, meshes, materials, textures, colliders, bounds, and warnings.
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { hasForeignScript } from '../src/core/scene-copy.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 // ---------------------------------------------------------------- DOM stubs
 class Ctx2D {
   constructor(c) { this.canvas = c; this.font = '10px sans-serif'; }
+  fillText(t) { if (hasForeignScript(t)) throw new Error(`Foreign script painted on scene texture: ${t}`); }
+  strokeText(t) { this.fillText(t); }
   measureText(t) { const m = /(\d+(?:\.\d+)?)px/.exec(this.font); const s = m ? Number(m[1]) : 10; return { width: [...String(t)].length * s * 0.92, actualBoundingBoxAscent: s * 0.8, actualBoundingBoxDescent: s * 0.2 }; }
   createLinearGradient() { return { addColorStop() {} }; }
   createRadialGradient() { return { addColorStop() {} }; }

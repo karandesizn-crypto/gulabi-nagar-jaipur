@@ -68,8 +68,8 @@ async function loadFonts() {
   if (!document.fonts || !document.fonts.load) return;
   const faces = ['700 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"', '900 32px "Noto Sans Devanagari"', '700 32px "Noto Sans Devanagari"',
     '700 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"', '400 32px "Noto Sans Devanagari"'];
-  const jp = 'गुलाबी नगर स्टेशनगुलाबी नगरGulabi NagarMITHAIफूल書店चायSTOP';
-  await Promise.race([Promise.all(faces.map(f => document.fonts.load(f, jp).catch(() => null))), new Promise(r => setTimeout(r, 6000))]);
+  const sample = 'गुलाबी नगर स्टेशन जयपुर चाय फूल किताबें Gulabi Nagar MITHAI STOP';
+  await Promise.race([Promise.all(faces.map(f => document.fonts.load(f, sample).catch(() => null))), new Promise(r => setTimeout(r, 6000))]);
 }
 
 // ------------------------------------------------------------------ build
@@ -90,7 +90,7 @@ async function build() {
   const list = ONLY ? MODULES.filter(m => ONLY.includes(m)).concat(ONLY.filter(m => !MODULES.includes(m))) : MODULES;
   let i = 0;
   for (const name of list) {
-    setProgress(i / (list.length + 1), `${LABELS[name] || name} をCLOSED…`);
+    setProgress(i / (list.length + 1), `Loading ${LABELS[name] || name}…`);
     await new Promise(r => setTimeout(r, 0));
     const t0 = performance.now();
     try {

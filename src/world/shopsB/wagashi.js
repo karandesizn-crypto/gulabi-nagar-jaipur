@@ -456,7 +456,7 @@ function norenTex(K, W, n) {
     for (let i = 0; i < 2000; i++) { g.fillStyle = r() < 0.5 ? 'rgba(255,255,255,0.035)' : 'rgba(0,0,30,0.05)'; g.fillRect(r() * w, r() * h, 2, 2); }
     g.fillStyle = 'rgba(240,235,222,0.92)'; g.fillRect(0, 0, w, 22);
     const gap = 0.014, sw = (W - gap * (n - 1)) / n;
-    const chars = ['和', '菓', '子'];
+    const chars = ['MI', 'TH', 'AI'];
     for (let i = 0; i < n; i++) {
       const cx = (i * (sw + gap) + sw / 2) / W * w;
       K.text(g, chars[i], cx, h * 0.5, w / n * 0.9, 170, K.F.brush, 400, '#f3eee2');

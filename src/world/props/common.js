@@ -1,6 +1,7 @@
 // Shared helpers for the props module: floor sampling, placement groups, geometry utilities.
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { localizeSceneText } from '../../core/scene-copy.js';
 
 export const DEG = Math.PI / 180;
 
@@ -185,18 +186,18 @@ export function sakuraFlower(g, x, y, r, fill, center) {
   if (center) { g.fillStyle = center; g.beginPath(); g.arc(0, 0, r * 0.22, 0, Math.PI * 2); g.fill(); }
   g.restore();
 }
-/** Draw vertical Japanese text centered at x from y (canvas) with per-char size. */
+/** Fit localized text into a narrow sign without splitting Hindi syllables. */
 export function vtext(g, text, x, y, size, font, weight = 700, gap = 1.04, color = null) {
+  text = localizeSceneText(text);
   if (color) g.fillStyle = color;
   g.font = `${weight} ${size}px ${font}`;
   g.textAlign = 'center'; g.textBaseline = 'top';
-  let yy = y;
-  for (const ch of text) {
-    if (ch === 'ー' || ch === '〜' || ch === '～') { g.save(); g.translate(x, yy + size / 2); g.rotate(Math.PI / 2); g.textBaseline = 'middle'; g.fillText(ch, 0, 0); g.restore(); }
-    else g.fillText(ch, x, yy);
-    yy += size * gap;
+  let fitted = size;
+  while (fitted > 6 && g.measureText(text).width > size * 2.5) {
+    fitted--; g.font = `${weight} ${fitted}px ${font}`;
   }
-  return yy;
+  g.fillText(text, x, y + size);
+  return y + size * 2;
 }
 /** Fit & draw a single line. */
 export function ftext(g, text, x, y, maxW, size, font, weight = 700, color = null, align = 'center', base = 'middle') {

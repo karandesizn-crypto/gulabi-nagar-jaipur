@@ -172,11 +172,11 @@ export function makeCrossingTextures(ctx) {
     const rnd = rngFor('tomare');
     g.clearRect(0, 0, w, h);
     g.fillStyle = '#f3f1ea'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    const chars = ['止', 'ま', 'れ'];
+    const chars = ['S', 'T', 'O', 'P'];
     const fs = 158;
     g.font = `900 ${fs}px ${F.sans}`;
-    for (let i = 0; i < 3; i++) {
-      g.save(); g.translate(w * (i + 0.5) / 3, h * 0.5); g.scale(1, 2.95); g.fillText(chars[i], 0, 4); g.restore();
+    for (let i = 0; i < chars.length; i++) {
+      g.save(); g.translate(w * (i + 0.5) / chars.length, h * 0.5); g.scale(1, 2.95); g.fillText(chars[i], 0, 4); g.restore();
     }
     wearOut(g, w, h, rnd, 260);
   });
@@ -186,8 +186,8 @@ export function makeCrossingTextures(ctx) {
     g.clearRect(0, 0, w, h);
     g.fillStyle = '#f3f1ea'; g.textAlign = 'center'; g.textBaseline = 'middle';
     g.font = `900 70px ${F.round}`;
-    const ch = ['と', 'ま', 'れ'];
-    for (let i = 0; i < 3; i++) { g.save(); g.translate(w * (i + 0.5) / 3, h * 0.52); g.scale(1, 1.55); g.fillText(ch[i], 0, 2); g.restore(); }
+    const ch = ['S', 'T', 'O', 'P'];
+    for (let i = 0; i < ch.length; i++) { g.save(); g.translate(w * (i + 0.5) / ch.length, h * 0.52); g.scale(1, 1.55); g.fillText(ch[i], 0, 2); g.restore(); }
     wearOut(g, w, h, rnd, 60);
   });
   // footprints (a pair, pointing up = forward)
@@ -274,8 +274,8 @@ export function makeCrossingTextures(ctx) {
     g.fillStyle = '#f7f4ec'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#2d2a38'; g.lineWidth = 6; g.strokeRect(5, 5, w - 10, h - 10);
     g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillStyle = '#d23f36'; tex.fitText(g, 'とまれ', w / 2, 82, w - 30, 64, F.sans, 900);
-    g.fillStyle = '#2d2a38'; tex.fitText(g, 'みよ', w / 2, 170, w - 50, 66, F.sans, 900);
+    g.fillStyle = '#d23f36'; tex.fitText(g, 'STOP', w / 2, 82, w - 30, 64, F.sans, 900);
+    g.fillStyle = '#2d2a38'; tex.fitText(g, 'LOOK', w / 2, 170, w - 50, 66, F.sans, 900);
     g.fillStyle = '#6d6a78'; tex.fitText(g, 'गुलाबी रेल', w / 2, 228, w - 60, 18, F.sans, 700);
   });
 

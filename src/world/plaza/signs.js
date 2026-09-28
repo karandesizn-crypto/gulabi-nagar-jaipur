@@ -311,12 +311,12 @@ export function makeSigns(ctx, T) {
     poster(352, 362, 452, 252, 0.012, '#f7f7f2', (w, h) => {
       g.fillStyle = '#3f8f5b'; g.fillRect(0, 0, w, 50);
       txt(g, 'ごみ収集日のNOTICE', w / 2, 26, 28, F.sans, '#fff', 900);
-      const rows = [['月', 'もやすごみ', '#d9463b'], ['火', 'プラスチック', '#e9a23b'], ['水', 'びん・かん・ペットボトル', '#2f64b5'], ['木', 'もやすごみ', '#d9463b'], ['金', '古紙・布（第2・第4）', '#6a9a4a'], ['土・日', '収集はありません', '#8a8478']];
+      const rows = [['MON', 'GENERAL WASTE', '#d9463b'], ['TUE', 'PLASTIC', '#e9a23b'], ['WED', 'GLASS · CANS · BOTTLES', '#2f64b5'], ['THU', 'GENERAL WASTE', '#d9463b'], ['FRI', 'PAPER & CLOTH', '#6a9a4a'], ['WEEKEND', 'NO COLLECTION', '#8a8478']];
       rows.forEach(([d, t, c], i) => {
         const y = 60 + i * 28;
         g.fillStyle = i % 2 ? '#eef0ea' : '#f7f7f2'; g.fillRect(6, y, w - 12, 28);
-        rr(g, 12, y + 3, 70, 22, 5, c); txt(g, d, 47, y + 15, 17, F.sans, '#fff', 900);
-        txt(g, t, 96, y + 15, 19, F.sans, '#3a3346', 700, 'left');
+        rr(g, 12, y + 3, 70, 22, 5, c); txt(g, d, 47, y + 15, 17, F.sans, '#fff', 900, 'center', 'middle', 64);
+        txt(g, t, 96, y + 15, 19, F.sans, '#3a3346', 700, 'left', 'middle', w - 106);
       });
       txt(g, '朝8時30分までに、決められた場所へ出しましょう。  Gulabi Nagar内会 環境部', w / 2, h - 14, 13, F.sans, '#5a5460', 500, 'center', 'middle', w - 20);
     }, '#e9a23b');
@@ -547,7 +547,7 @@ export function makeSigns(ctx, T) {
     g.fillStyle = '#6f6e72'; g.beginPath(); g.arc(0, 0, 16, 0, 7); g.fill();
     g.restore();
     g.fillStyle = '#5d5c60'; g.font = `900 17px ${F.sans}`; g.textAlign = 'center'; g.textBaseline = 'middle';
-    const s = 'गुलाबी नगर・うすい・'; const n = [...s].length;
+    const s = 'GULABI NAGAR'; const n = [...s].length;
     [...s].forEach((ch, i) => { const a = -Math.PI / 2 + (i - n / 2 + 0.5) * 0.27; g.save(); g.translate(W / 2 + Math.cos(a) * 99, H / 2 + Math.sin(a) * 99); g.rotate(a + Math.PI / 2); g.fillText(ch, 0, 0); g.restore(); });
   }, { key: 'plaza-manhole' });
   S.grate = tex.draw(128, 128, (g, W, H) => {

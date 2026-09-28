@@ -294,8 +294,8 @@ export function makeStreetTextures(ctx) {
         g.fillText(c, 0, 0); g.restore();
       });
     };
-    stack(GLYPH.tomare, ['止', 'ま', 'れ'], 238);
-    stack(GLYPH.jokou, ['徐', 'TO'], 238);
+    stack(GLYPH.tomare, ['S', 'T', 'O', 'P'], 172);
+    stack(GLYPH.jokou, ['S', 'L', 'O', 'W'], 112);
     // 30 (two digits, condensed)
     g.save(); g.fillStyle = W; g.font = `900 250px ${F.sans}`; g.translate(GLYPH.n30.x + 128, GLYPH.n30.y + 136); g.scale(0.56, 1); g.fillText('30', 0, 0); g.restore();
     const twoLines = (cell, a, b, size) => {
@@ -303,9 +303,9 @@ export function makeStreetTextures(ctx) {
       T.fitText(g, a, cell.x + cell.w / 2, cell.y + cell.h * 0.26, cell.w * 0.96, size, F.sans, 900);
       T.fitText(g, b, cell.x + cell.w / 2, cell.y + cell.h * 0.76, cell.w * 0.96, size, F.sans, 900);
     };
-    twoLines(GLYPH.school, 'スクール', 'ゾーン', 118);
-    twoLines(GLYPH.hokou, '歩TO者', '優先', 118);
-    stack(GLYPH.tsugaku, ['通', '学', '路'], 116);
+    twoLines(GLYPH.school, 'SCHOOL', 'ZONE', 118);
+    twoLines(GLYPH.hokou, 'PEDESTRIANS', 'FIRST', 118);
+    stack(GLYPH.tsugaku, ['S', 'C', 'H', 'O', 'O', 'L'], 80);
     // one-line STOP (for narrow alleys, text across the lane, stretched along travel)
     g.save(); g.fillStyle = W; g.font = `900 120px ${F.sans}`; g.translate(GLYPH.tomareS.x + 128, GLYPH.tomareS.y + 128); g.scale(0.62, 1.9); g.fillText('STOP', 0, 4); g.restore();
     // ◇ crosswalk-ahead diamond (outline)
@@ -343,7 +343,7 @@ export function makeStreetTextures(ctx) {
       kid(c.x + 96, c.y + 150, 1.35, true); kid(c.x + 176, c.y + 168, 1.05, false);
       g.lineWidth = 9; g.beginPath(); g.moveTo(c.x + 118, c.y + 110); g.quadraticCurveTo(c.x + 140, c.y + 132, c.x + 160, c.y + 128); g.stroke(); }
     // バス box text (for the bus bay)
-    stack(GLYPH.bus, ['バ', 'ス'], 110);
+    stack(GLYPH.bus, ['B', 'U', 'S'], 90);
     for (const k of Object.keys(GLYPH)) { if (k === 'litter') continue; const c = GLYPH[k]; wear(g, c.x, c.y, c.w, c.h, 1.1); }
     // petals and small fallen leaves (drawn in colour, after the paint wear)
     { const c = GLYPH.litter;
@@ -575,8 +575,8 @@ export function makeStreetTextures(ctx) {
       g.fillStyle = WHITE; g.textAlign = 'center'; g.textBaseline = 'middle';
       T.fitText(g, 'गुलाबी नगर स्टेशन', cx, y0 + 56, 300, 58, F.sans, 900);
       T.fitText(g, 'Gulabi Nagar Sta.', cx, y0 + 98, 190, 22, F.en, 700);
-      T.fitText(g, 'Gulabi堤', x0 + 90, jy - 56, 160, 44, F.sans, 900);
-      T.fitText(g, 'Sakuragawa Bank', x0 + 94, jy + 44, 170, 19, F.en, 700);
+      T.fitText(g, 'गुलाबी नदी', x0 + 90, jy - 56, 160, 44, F.sans, 900);
+      T.fitText(g, 'Gulabi Riverbank', x0 + 94, jy + 44, 170, 19, F.en, 700);
       T.fitText(g, 'सांगानेर', x0 + 422, jy - 56, 160, 44, F.sans, 900);
       T.fitText(g, 'Sanganer', x0 + 420, jy + 44, 150, 19, F.en, 700);
       g.textAlign = 'left'; T.fitText(g, '1.5km', x0 + 30, jy + 82, 90, 20, F.en, 700); g.textAlign = 'right'; T.fitText(g, '2.8km', x0 + 482, jy + 82, 90, 20, F.en, 700); g.textAlign = 'center'; }

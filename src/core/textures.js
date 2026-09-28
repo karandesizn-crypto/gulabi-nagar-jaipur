@@ -1,5 +1,6 @@
 // Canvas-drawn textures: signs, posters, menus, patterns. Works in the browser and (stubbed) in node.
 import * as THREE from 'three';
+import { localizeSceneText } from './scene-copy.js';
 
 export const FONTS = {
   sans: '"Noto Sans Devanagari", "Arial Unicode MS", Arial, sans-serif',
@@ -18,6 +19,12 @@ export function createTextures() {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const g = c.getContext('2d');
+    // Every world label is painted to a canvas, including text drawn by modules
+    // that bypass the shared sign helper. Keep the measured and painted copy equal.
+    for (const method of ['measureText', 'fillText', 'strokeText']) {
+      const original = g[method].bind(g);
+      g[method] = (value, ...args) => original(localizeSceneText(value), ...args);
+    }
     return { canvas: c, g };
   }
 
@@ -45,6 +52,7 @@ export function createTextures() {
 
   /** Fit a single line of text into maxW by shrinking the font. Returns used size. */
   function fitText(g, text, x, y, maxW, size, font, weight = 700, opts = {}) {
+    text = localizeSceneText(text);
     let s = size;
     g.font = `${weight} ${s}px ${font}`;
     while (s > 6 && g.measureText(text).width > maxW) { s -= 1; g.font = `${weight} ${s}px ${font}`; }
@@ -53,17 +61,13 @@ export function createTextures() {
     return s;
   }
 
-  /** Vertical Japanese text (top to bottom), centered at x, starting at y. */
+  /** A compact horizontal label in vertical sign slots, keeping Hindi conjuncts intact. */
   function verticalText(g, text, x, y, size, font, weight = 700, gap = 1.05) {
+    text = localizeSceneText(text);
     g.font = `${weight} ${size}px ${font}`;
     g.textAlign = 'center'; g.textBaseline = 'top';
-    if (/[\u0900-\u097f]/.test(text)) {
-      fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, font, weight);
-      return y + size * 2;
-    }
-    let yy = y;
-    for (const ch of text) { g.fillText(ch, x, yy); yy += size * gap; }
-    return yy;
+    fitText(g, text, x, y + size, Math.max(size, x * 1.8), size, font, weight);
+    return y + size * 2;
   }
 
   /** Quick sign: {w,h,bg,fg,text,sub,font,weight,size,subSize,vertical,border,borderColor,radius,align,key}

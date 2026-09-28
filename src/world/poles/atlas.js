@@ -1,6 +1,7 @@
 // Canvas atlases for the poles module (電柱): concrete shaft strip, tiger-stripe sleeve, yellow guard,
 // transformer wrap, enamel pole ads (巻付広告), telecom plates (atlas A, opaque) and pole number plates,
 // stickers, pole-mounted signs (atlas B, alpha-tested die-cuts). All text is fictional-brand Japanese.
+import { localizeSceneText } from '../../core/scene-copy.js';
 
 export const AW = 1024;
 const TAU = Math.PI * 2;
@@ -56,17 +57,14 @@ const ROT = 'ー－―〜～…→←';
 const SMALL = 'ゃゅょっぁぃぅぇぉャュョッァィゥェォ';
 /** vertical text, centred at cx, starting at top. */
 function vtext(g, text, cx, top, size, font, weight = 700, gap = 1.04) {
+  text = localizeSceneText(text);
   g.font = `${weight} ${size}px ${font}`; g.textAlign = 'center'; g.textBaseline = 'middle';
-  let y = top + size * 0.5;
-  for (const ch of text) {
-    if (ch === ' ') { y += size * 0.45; continue; }
-    if (ROT.includes(ch)) { g.save(); g.translate(cx, y); g.rotate(Math.PI / 2); g.fillText(ch, 0, 0); g.restore(); }
-    else if (SMALL.includes(ch)) g.fillText(ch, cx + size * 0.12, y - size * 0.1);
-    else if ('、。'.includes(ch)) g.fillText(ch, cx + size * 0.34, y - size * 0.34);
-    else g.fillText(ch, cx, y);
-    y += size * gap;
+  let fitted = size;
+  while (fitted > 6 && g.measureText(text).width > size * 2.5) {
+    fitted--; g.font = `${weight} ${fitted}px ${font}`;
   }
-  return y;
+  g.fillText(text, cx, top + size);
+  return top + size * 2;
 }
 const vlen = (t) => [...t].reduce((s, c) => s + (c === ' ' ? 0.45 : 1.04), 0);
 function fit(g, text, x, y, maxW, size, font, weight = 700) {

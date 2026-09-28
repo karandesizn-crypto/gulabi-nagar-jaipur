@@ -73,10 +73,10 @@ export function getAtlas(ctx) {
       txt(kana, 30, 88, 34, F.sans, fg, 500, 'center', 40);
       txt(num, w * 0.58, 86, 66, F.sans, fg, 700, 'center', 180);
     });
-    plate(R.plVan, '#f2d34a', '#2e2c33', '480', 'す', '21-47');
-    plate(R.plKei, '#f2d34a', '#2e2c33', '580', 'さ', '33-91');
-    plate(R.plTaxi, '#2f7a4f', '#f2f1ea', '500', 'か', '25-11');
-    plate(R.plCar, '#f1f0ea', '#2f6b48', '530', 'ね', '88-21');
+    plate(R.plVan, '#f2d34a', '#2e2c33', '480', 'J', '21-47');
+    plate(R.plKei, '#f2d34a', '#2e2c33', '580', 'R', '33-91');
+    plate(R.plTaxi, '#2f7a4f', '#f2f1ea', '500', 'J', '25-11');
+    plate(R.plCar, '#f1f0ea', '#2f6b48', '530', 'R', '88-21');
 
     // ------------------------------------------------------------ taxi door livery
     box(R.taxiDoor, (w, h) => {
@@ -151,10 +151,10 @@ export function getAtlas(ctx) {
       g.restore();
       txt(sub, w * 0.5, 54, 16, F.sans, fg, 700, 'center', w - 30);
     });
-    brand(R.brandW1, 'Harukaze', 'ハルカゼ号 City 27', '#f4f1ea');
-    brand(R.brandD1, 'Harukaze', 'ハルカゼ号 City 27', '#3d3a48');
-    brand(R.brandW2, 'MIYAKO', 'みやこ シティサイクル', '#f4f1ea');
-    brand(R.brandD2, 'MIYAKO', 'みやこ シティサイクル', '#3d3a48');
+    brand(R.brandW1, 'Gulabi', 'CITY CYCLE 27', '#f4f1ea');
+    brand(R.brandD1, 'Gulabi', 'CITY CYCLE 27', '#3d3a48');
+    brand(R.brandW2, 'JAIPUR', 'CITY CYCLE', '#f4f1ea');
+    brand(R.brandD2, 'JAIPUR', 'CITY CYCLE', '#3d3a48');
     brand(R.brandW3, 'e-Hana', 'ASSIST  電動アシスト', '#f4f1ea');
     brand(R.brandD3, 'e-Hana', 'ASSIST  電動アシスト', '#3d3a48');
     box(R.taxiRear, (w, h) => {

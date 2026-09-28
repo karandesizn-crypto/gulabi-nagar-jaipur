@@ -6,6 +6,7 @@
 // Textures are only used for what is genuinely printed: labels, spines, covers, lids.
 import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { localizeSceneText } from '../../core/scene-copy.js';
 
 // swatch band: every label cell keeps its bottom 9 % for four solid colour swatches
 // (s0 side, s1 top, s2 back, s3 extra) that the non-printed faces sample.
@@ -292,7 +293,13 @@ export function makeGoods(ctx, C) {
       const H = h * 0.9, r = ctx.rng('spine' + i);
       const titles = ['さくら坂の約束', '風の手紙', '夜TO列車', '猫と暮らす', '春の庭', '星を数えて', '海辺の町', '青い傘', 'ひだまり日記', '旅する本屋', '雨上がり', '花冷え', '空色ノート', '遠い灯', '鉄道の歴史', 'MITHAIの本',
         '放課後さくら通信', 'ソラの冒険', '魔法学園', '探偵ミナト', '宇宙の果て', 'ねこ侍', '料理の達人', '青春ブルー', '竜の騎士', '恋する電車', 'ひみつ基地', '異世界食堂', 'バスケの王', '刀と桜', 'ロボ研', '山の家'];
-      const vt = (s, x, y0, size, color, font = F.serif) => { g.fillStyle = color; g.font = `700 ${size}px ${font}`; g.textAlign = 'center'; g.textBaseline = 'top'; let y = y0; for (const ch of s) { if (y > H * 0.8) break; g.fillText(ch, x, y); y += size * 1.04; } };
+      const vt = (s, x, y0, size, color, font = F.serif) => {
+        s = localizeSceneText(s);
+        g.save(); g.fillStyle = color; g.font = `700 ${size}px ${font}`;
+        g.textAlign = 'center'; g.textBaseline = 'middle';
+        g.translate(x, y0 + H * 0.35); g.rotate(-Math.PI / 2);
+        g.fillText(s, 0, 0, H * 0.68); g.restore();
+      };
       if (i < 16) {
         g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, H);
         const st = i % 4, dark = 'rgba(40,30,50,0.62)', mid = 'rgba(40,30,50,0.2)';

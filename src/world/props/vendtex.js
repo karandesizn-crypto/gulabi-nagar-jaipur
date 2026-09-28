@@ -4,10 +4,10 @@ import { rr, sakuraFlower, vtext, ftext } from './common.js';
 
 // ------------------------------------------------------------------ brands (fictional)
 export const BRANDS = {
-  haru: { name: 'はるかぜ飲料', en: 'HARUKAZE BEVERAGE', casing: '#ece7e0', door: '#f0ece6', trim: '#e592ad', stile: '#e9e3dc', inner: '#f3f0ea' },
+  haru: { name: 'गुलाबी पेय', en: 'GULABI DRINKS', casing: '#ece7e0', door: '#f0ece6', trim: '#e592ad', stile: '#e9e3dc', inner: '#f3f0ea' },
   sakura: { name: 'NIMBU SODAS', jp: 'さくらドリンクス', casing: '#d7675f', door: '#dc6e65', trim: '#fbf2ec', stile: '#cf5f58', inner: '#f6ece6' },
-  aozora: { name: 'あおぞら飲料', en: 'AOZORA DRINK', casing: '#a6c8e4', door: '#afcfe8', trim: '#2f6db8', stile: '#9dc0de', inner: '#eef4f9' },
-  midori: { name: 'みどり茶房', en: 'MIDORI SABOU', casing: '#a3d6bf', door: '#aadbc5', trim: '#2d7a57', stile: '#98cdb5', inner: '#eef6f1' },
+  aozora: { name: 'नीला आसमान', en: 'BLUE SKY DRINKS', casing: '#a6c8e4', door: '#afcfe8', trim: '#2f6db8', stile: '#9dc0de', inner: '#eef4f9' },
+  midori: { name: 'हरियाली चाय', en: 'HARIYALI CHAI', casing: '#a3d6bf', door: '#aadbc5', trim: '#2d7a57', stile: '#98cdb5', inner: '#eef6f1' },
 };
 
 // ------------------------------------------------------------------ products
@@ -113,7 +113,7 @@ export function makeVendTextures(ctx) {
       g.fillStyle = '#9fcde9'; g.beginPath(); g.moveTo(0, h); g.lineTo(C - 60, h * 0.45); g.lineTo(C - 20, h * 0.7); g.lineTo(C + 30, h * 0.32); g.lineTo(w, h); g.fill();
       g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(C + 14, h * 0.44); g.lineTo(C + 30, h * 0.32); g.lineTo(C + 46, h * 0.44); g.fill();
       ftext(g, 'WATER', C, h * 0.2, 110, 26, F.serif, 900, '#2b5d99');
-      ftext(g, 'Gulabiの水', C + 44, h * 0.88, 70, 12, F.sans, 700, '#ffffff');
+      ftext(g, 'GULABI WATER', C + 44, h * 0.88, 70, 12, F.sans, 700, '#ffffff');
     }, 'pet', '#e4f1f8');
     // 6 orange (pet)
     cell(6, (g, w, h) => {
@@ -214,7 +214,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = '#ffffff'; g.beginPath(); g.arc(120, h / 2, 82, 0, Math.PI * 2); g.fill();
     sakuraFlower(g, 120, h / 2, 64, '#ee92ae', '#d4577d');
     ftext(g, 'はるかぜ飲料', 560, 96, 640, 96, F.round, 900, '#b24a6d');
-    ftext(g, 'HARUKAZE BEVERAGE', 560, 176, 560, 30, F.en, 700, '#c96a8a');
+    ftext(g, 'GULABI DRINKS', 560, 176, 560, 30, F.en, 700, '#c96a8a');
     for (const [x, y, r] of [[900, 48, 14], [960, 86, 10], [870, 190, 9]]) sakuraFlower(g, x, y, r, '#ffffff', '#f1a3ba');
   }, { key: 'props.vend.head.haru' });
   headers.sakura = T.draw(1024, 224, (g, w, h) => {
@@ -231,7 +231,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = 'rgba(255,255,255,0.9)';
     for (const [x, y, rx, ry] of [[860, 150, 90, 34], [930, 120, 60, 36], [800, 130, 50, 28], [150, 70, 60, 20], [200, 58, 40, 22]]) { g.beginPath(); g.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); g.fill(); }
     ftext(g, 'あおぞら', 420, 98, 560, 104, F.round, 900, '#ffffff');
-    ftext(g, 'AOZORA DRINK · 飲料', 420, 180, 560, 32, F.en, 700, '#dcecfb');
+    ftext(g, 'BLUE SKY DRINKS', 420, 180, 560, 32, F.en, 700, '#dcecfb');
   }, { key: 'props.vend.head.aozora' });
   headers.midori = T.draw(1024, 224, (g, w, h) => {
     const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#2e7c58'); gr.addColorStop(1, '#46996f');
@@ -240,7 +240,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = '#8fd0a0'; g.beginPath(); g.ellipse(160, 130, 26, 54, -0.5, 0, Math.PI * 2); g.fill();
     g.strokeStyle = '#2e7c58'; g.lineWidth = 4; g.beginPath(); g.moveTo(80, 150); g.quadraticCurveTo(112, 100, 138, 44); g.stroke();
     ftext(g, 'みどり茶房', 560, 98, 640, 100, F.brush, 700, '#ffffff');
-    ftext(g, 'MIDORI SABOU — CHAIのある毎日', 560, 182, 640, 30, F.sans, 700, '#d7efdf');
+    ftext(g, 'HARIYALI CHAI · FRESH DAILY', 560, 182, 640, 30, F.sans, 700, '#d7efdf');
   }, { key: 'props.vend.head.midori' });
 
   // ---------------------------------------------------------------- side graphics (384x1024), alpha
@@ -353,8 +353,8 @@ export function makeVendTextures(ctx) {
       const gr = g.createLinearGradient(x, y, x, y + h); gr.addColorStop(0, '#dcefff'); gr.addColorStop(1, '#9fcde9'); g.fillStyle = gr; g.fillRect(x, y, w, h);
       g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(x, y + h * 0.75); g.lineTo(x + w * 0.3, y + h * 0.35); g.lineTo(x + w * 0.45, y + h * 0.55); g.lineTo(x + w * 0.62, y + h * 0.28); g.lineTo(x + w, y + h * 0.72); g.lineTo(x + w, y + h); g.lineTo(x, y + h); g.fill();
       g.fillStyle = '#7fb6de'; g.fillRect(x, y + h * 0.84, w, h * 0.16);
-      ftext(g, 'GulabiのWATER', x + w / 2, y + h * 0.16, w * 0.9, 44, F.serif, 900, '#2b5d99');
-      ftext(g, 'いつでも、すっきり。', x + w / 2, y + h * 0.92, w * 0.8, 24, F.sans, 700, '#ffffff');
+      ftext(g, 'GULABI WATER', x + w / 2, y + h * 0.16, w * 0.9, 44, F.serif, 900, '#2b5d99');
+      ftext(g, 'ALWAYS REFRESHING', x + w / 2, y + h * 0.92, w * 0.8, 24, F.sans, 700, '#ffffff');
     },
     tea: (g, x, y, w, h) => {
       g.fillStyle = '#eaf3e1'; g.fillRect(x, y, w, h);
@@ -497,7 +497,7 @@ export function makeVendTextures(ctx) {
     g.fillStyle = 'rgba(40,36,50,0.45)';
     for (let r = 0; r < 2; r++) for (let i = 0; i < 6; i++) { rr(g, 14 + i * 39, 22 + r * 46, 28, 32, 6); g.fill(); }
     g.fillStyle = 'rgba(255,255,255,0.25)'; g.fillRect(0, 0, w, 8);
-    g.fillStyle = 'rgba(255,255,255,0.7)'; g.font = `900 12px ${F.en}`; g.textAlign = 'center'; g.fillText('HARUKAZE', w / 2, h - 6);
+    g.fillStyle = 'rgba(255,255,255,0.7)'; g.font = `900 12px ${F.en}`; g.textAlign = 'center'; g.fillText('GULABI', w / 2, h - 6);
   }, { key: 'props.crate.' + c });
 
   return { atlas, headers, sides, grime, rails, lowerPanel, icFace, backPanel, sticker, flag, bin, crate };

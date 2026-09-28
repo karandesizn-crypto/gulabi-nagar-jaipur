@@ -284,7 +284,7 @@ function norenTex(K, W, n) {
     g.fillStyle = '#9e3b35'; g.fillRect(0, 0, w, h);
     for (let i = 0; i < 1800; i++) { g.fillStyle = r() < 0.5 ? 'rgba(255,255,255,0.03)' : 'rgba(40,0,0,0.05)'; g.fillRect(r() * w, r() * h, 2, 2); }
     g.fillStyle = 'rgba(240,232,215,0.9)'; g.fillRect(0, 0, w, 18);
-    const gap = 0.014, sw = (W - gap * (n - 1)) / n, chars = ['ら', 'ー', 'め', 'ん'];
+    const gap = 0.014, sw = (W - gap * (n - 1)) / n, chars = ['DHA', 'BA', 'SHAR', 'MA'];
     for (let i = 0; i < n; i++) { const cx = (i * (sw + gap) + sw / 2) / W * w; K.text(g, chars[i], cx, h * 0.5, w / n * 0.85, 150, K.F.brush, 400, '#f5eee0'); }
     K.text(g, 'शर्मा', w * 0.9, h * 0.86, 90, 34, K.F.brush, 400, '#f5eee0');
   }, { key: 'sb-ramen-noren' });
